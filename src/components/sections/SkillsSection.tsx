@@ -1,20 +1,46 @@
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
-import { Code2, TestTube, GitBranch, Wrench, FileText } from "lucide-react";
+import { Code2, TestTube, GitBranch, Wrench, FileText, BarChart3 } from "lucide-react";
 
 const skillCategories = [
   {
-    title: "Testes & QA",
+    title: "Testes Funcionais",
     icon: TestTube,
     color: "primary",
     skills: [
       { name: "Cypress", level: 90 },
       { name: "CodeceptJS", level: 85 },
-      { name: "Postman", level: 88 },
+      { name: "Gherkin", level: 82 },
       { name: "BDD", level: 80 },
-      { name: "Gestão de Testes", level: 85 },
-      { name: "Criação de Testes", level: 90 },
+    ],
+  },
+  {
+    title: "Testes de API",
+    icon: Wrench,
+    color: "secondary",
+    skills: [
+      { name: "Postman", level: 88 },
+      { name: "Insomnia", level: 86 },
+    ],
+  },
+  {
+    title: "Relatórios Automatizados",
+    icon: BarChart3,
+    color: "accent",
+    skills: [
+      { name: "Mochawesome", level: 92 },
+      { name: "JUnit", level: 90 },
+      { name: "Allure Report", level: 94 },
+    ],
+  },
+  {
+    title: "Linguagens",
+    icon: Code2,
+    color: "primary",
+    skills: [
+      { name: "JavaScript", level: 100 },
+      { name: "Java", level: 30 },
     ],
   },
   {
@@ -32,7 +58,10 @@ const skillCategories = [
     title: "Documentação",
     icon: FileText,
     color: "accent",
-    skills: [{ name: "Documentação Técnica", level: 88 }],
+    skills: [
+      { name: "Documentação de testes", level: 100 },
+      { name: "Documentação de bugs", level: 100 },
+    ],
   },
 ];
 
@@ -146,11 +175,14 @@ export const SkillsSection = () => {
                 "GitHub Actions",
                 "GitLab CI/CD",
                 "BDD",
+                  "Gherkin",
                 "Postman",
-                "Allure",
+                  "Allure Report",
                 "Jira",
+                  "Mochawesome",
+                  "JUnit",
+                  "Insomnia",
                 "Testes Exploratórios",
-                "Testes de API",
               ].map((tech, index) => (
                 <motion.span
                   key={tech}
