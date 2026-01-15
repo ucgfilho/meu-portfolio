@@ -9,10 +9,10 @@ const experiences = [
     role: "Analista de QA",
     period: "Jul/2025 – Atual",
     responsibilities: [
-      "Executar testes manuais e exploratórios no sistema SGDoctor Acadêmico, validando funcionalidades críticas de prontuário médico antes das releases.",
-      "Analisar requisitos de negócio junto ao time para definir critérios de aceite e cenários de teste, garantindo alinhamento com a necessidade do usuário final.",
-      "Identificar e documentar bugs de interface e integração (API), detalhando passos para reprodução e validando as correções (Reteste).",
-      "Implementar automações pontuais e validações de entrada de dados para prevenir falhas comuns de usuário e garantir a integridade do sistema.",
+      "Executei testes manuais e exploratórios no sistema SGDoctor Acadêmico, validando funcionalidades críticas de prontuário médico antes das releases.",
+      "Analisei requisitos de negócio junto ao time para definir critérios de aceite e cenários de teste, garantindo alinhamento com a necessidade do usuário final.",
+      "Identifiquei e documentei bugs de interface e integração (API), detalhando passos para reprodução e validando as correções (Reteste).",
+      "Implementei automações pontuais e validações de entrada de dados para prevenir falhas comuns de usuário e garantir a integridade do sistema.",
     ],
   },
 ];
