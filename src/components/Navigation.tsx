@@ -40,7 +40,7 @@ export const Navigation = () => {
             className="text-xl font-bold gradient-text"
             whileHover={{ scale: 1.05 }}
           >
-            UGondim
+            Meu Portfolio
           </motion.a>
 
           {/* Desktop Navigation */}
