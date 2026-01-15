@@ -1,17 +1,36 @@
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
-import { Award, BadgeCheck, Trophy, BookOpen, Users } from "lucide-react";
+import { Award, BadgeCheck, Trophy, BookOpen } from "lucide-react";
 
 const certifications = [
   { name: "JavaScript para Testers", issuer: "Qazando", icon: BookOpen },
-  { name: "Automação de Testes de API com JavaScript", issuer: "Qazando", icon: BookOpen },
-  { name: "Automação de Testes Web com Cypress", issuer: "Qazando", icon: BookOpen },
-  { name: "Conceitos de Testes de Software", issuer: "Qazando", icon: BookOpen },
+  {
+    name: "Automação de Testes de API com JavaScript",
+    issuer: "Qazando",
+    icon: BookOpen,
+  },
+  {
+    name: "Automação de Testes Web com Cypress",
+    issuer: "Qazando",
+    icon: BookOpen,
+  },
+  {
+    name: "Conceitos de Testes de Software",
+    issuer: "Qazando",
+    icon: BookOpen,
+  },
   { name: "Jornada QA 2025", issuer: "EBAC", icon: Trophy },
-  { name: "Curso de Algoritmos", issuer: "Curso em Vídeo (Gustavo Guanabara)", icon: BookOpen },
-  { name: "Olimpíada Brasileira de Informática", issuer: "UNICAMP", icon: Trophy },
-  { name: "Monitor da VIII Feira das Profissões", issuer: "UESB", icon: Users },
+  {
+    name: "Curso de Algoritmos",
+    issuer: "Curso em Vídeo (Gustavo Guanabara)",
+    icon: BookOpen,
+  },
+  {
+    name: "Olimpíada Brasileira de Informática",
+    issuer: "UNICAMP",
+    icon: Trophy,
+  },
 ];
 
 export const CertificationsSection = () => {
@@ -54,7 +73,9 @@ export const CertificationsSection = () => {
                     <h3 className="font-semibold text-foreground text-sm mb-1 group-hover:text-accent transition-colors line-clamp-2">
                       {cert.name}
                     </h3>
-                    <p className="text-xs text-muted-foreground">{cert.issuer}</p>
+                    <p className="text-xs text-muted-foreground">
+                      {cert.issuer}
+                    </p>
                   </div>
                   <BadgeCheck className="w-5 h-5 text-accent/50 group-hover:text-accent transition-colors flex-shrink-0" />
                 </div>

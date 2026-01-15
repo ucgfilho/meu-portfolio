@@ -32,13 +32,21 @@ const skillCategories = [
     title: "Documentação",
     icon: FileText,
     color: "accent",
-    skills: [
-      { name: "Documentação Técnica", level: 88 },
-    ],
+    skills: [{ name: "Documentação Técnica", level: 88 }],
   },
 ];
 
-const SkillBar = ({ name, level, delay, color }: { name: string; level: number; delay: number; color: string }) => {
+const SkillBar = ({
+  name,
+  level,
+  delay,
+  color,
+}: {
+  name: string;
+  level: number;
+  delay: number;
+  color: string;
+}) => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true });
 
@@ -78,7 +86,9 @@ export const SkillsSection = () => {
             <div className="p-2 rounded-lg bg-primary/10 border border-primary/20">
               <Code2 className="w-5 h-5 text-primary" />
             </div>
-            <h2 className="text-3xl md:text-4xl font-bold">Competências Técnicas</h2>
+            <h2 className="text-3xl md:text-4xl font-bold">
+              Competências Técnicas
+            </h2>
           </div>
 
           {/* Skills Grid */}
@@ -93,9 +103,13 @@ export const SkillsSection = () => {
               >
                 <div className="flex items-center gap-3 mb-6">
                   <div className={`p-2 rounded-lg bg-${category.color}/10`}>
-                    <category.icon className={`w-5 h-5 text-${category.color}`} />
+                    <category.icon
+                      className={`w-5 h-5 text-${category.color}`}
+                    />
                   </div>
-                  <h3 className="font-bold text-foreground">{category.title}</h3>
+                  <h3 className="font-bold text-foreground">
+                    {category.title}
+                  </h3>
                 </div>
 
                 <div className="space-y-4">
@@ -120,9 +134,24 @@ export const SkillsSection = () => {
             transition={{ duration: 0.8, delay: 0.6 }}
             className="mt-12 text-center"
           >
-            <h3 className="text-lg font-semibold text-muted-foreground mb-6">Todas as tecnologias</h3>
+            <h3 className="text-lg font-semibold text-muted-foreground mb-6">
+              Todas as tecnologias
+            </h3>
             <div className="flex flex-wrap justify-center gap-3">
-              {["Cypress", "Git", "Docker", "CodeceptJS", "GitHub Actions", "GitLab CI/CD", "BDD", "Postman", "Vue.js", "TypeScript", "Tailwind CSS", "Axios", "Inertia.js"].map((tech, index) => (
+              {[
+                "Cypress",
+                "Git",
+                "Docker",
+                "CodeceptJS",
+                "GitHub Actions",
+                "GitLab CI/CD",
+                "BDD",
+                "Postman",
+                "Allure",
+                "Jira",
+                "Testes Exploratórios",
+                "Testes de API",
+              ].map((tech, index) => (
                 <motion.span
                   key={tech}
                   initial={{ opacity: 0, scale: 0.8 }}

@@ -2,38 +2,54 @@ import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
 import { FolderKanban, ExternalLink, Github } from "lucide-react";
-import { Button } from "@/components/ui/button";
 
 const projects = [
   {
-    name: "Sistema SGDoctor Acadêmico",
-    description: "Sistema de gerenciamento acadêmico para área de saúde com módulos de assinaturas digitais, prontuários e controle de estoque. Arquitetura para 5 perfis de acesso com segurança e componentização avançada.",
-    technologies: ["Vue.js", "TypeScript", "Tailwind CSS", "Axios", "Inertia.js"],
-    link: null,
+    name: "SGDoctor Acadêmico",
+    description:
+      "Atuação como QA no SGDoctor Acadêmico, com testes manuais e exploratórios, validação de requisitos e documentação de bugs.",
+    technologies: [
+      "Testes Manuais",
+      "Testes Exploratórios",
+      "Casos de Teste",
+      "API",
+      "Bug Tracking",
+    ],
+    link: "https://gitlab.com/cpdsjq/sgdoctor_academico",
   },
   {
     name: "Automação E2E SauceDemo",
-    description: "Suite completa de testes E2E automatizados com Cypress, incluindo relatórios com JUnit e Mochawesome, integração contínua com GitHub Actions.",
-    technologies: ["Cypress", "JUnit", "Mochawesome", "CI/CD", "GitHub Actions"],
-    link: null,
+    description:
+      "Suite completa de testes E2E automatizados com Cypress, incluindo relatórios com JUnit e Mochawesome, integração contínua com GitHub Actions.",
+    technologies: [
+      "Cypress",
+      "JUnit",
+      "Mochawesome",
+      "CI/CD",
+      "GitHub Actions",
+    ],
+    link: "https://github.com/ucgfilho/ProjetoCY",
   },
   {
     name: "Automação de API com CodeceptJS",
-    description: "Projeto de automação de testes de API utilizando CodeceptJS com framework Mocha e relatórios detalhados com Allure.",
+    description:
+      "Projeto de automação de testes de API utilizando CodeceptJS com framework Mocha e relatórios detalhados com Allure.",
     technologies: ["CodeceptJS", "Mocha", "Allure", "API Testing"],
-    link: null,
+    link: "https://github.com/ucgfilho/ProjetoCodeceptJS",
   },
   {
     name: "Automação E2E Automation Practice",
-    description: "Testes E2E automatizados para e-commerce Automation Practice, utilizando dados dinâmicos com FakerJS para cenários realistas.",
+    description:
+      "Testes E2E automatizados para e-commerce Automation Practice, utilizando dados dinâmicos com FakerJS para cenários realistas.",
     technologies: ["Cypress", "FakerJS", "E2E Testing"],
-    link: null,
+    link: "https://github.com/ucgfilho/cypress-qazando",
   },
   {
     name: "Automação API Restful Dev",
-    description: "Testes automatizados de API REST utilizando Cypress, validando endpoints, respostas e fluxos de dados.",
+    description:
+      "Testes automatizados de API REST utilizando Cypress, validando endpoints, respostas e fluxos de dados.",
     technologies: ["Cypress", "API Testing", "REST"],
-    link: null,
+    link: "https://github.com/ucgfilho/cypress-api-test",
   },
 ];
 
@@ -61,8 +77,12 @@ export const ProjectsSection = () => {
           {/* Projects Grid */}
           <div className="grid md:grid-cols-2 gap-6">
             {projects.map((project, index) => (
-              <motion.div
+              <motion.a
                 key={index}
+                href={project.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`Abrir ${project.name}`}
                 initial={{ opacity: 0, y: 30 }}
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.6, delay: 0.1 * index }}
@@ -100,17 +120,12 @@ export const ProjectsSection = () => {
                     ))}
                   </div>
 
-                  {/* Link button - only show if project has link */}
-                  {project.link && (
-                    <Button variant="neon" size="sm" asChild className="mt-2">
-                      <a href={project.link} target="_blank" rel="noopener noreferrer">
-                        Ver Projeto
-                        <ExternalLink className="w-4 h-4" />
-                      </a>
-                    </Button>
-                  )}
+                  <div className="inline-flex items-center gap-2 text-sm text-primary/80 group-hover:text-primary transition-colors">
+                    Acessar repositório
+                    <ExternalLink className="w-4 h-4" />
+                  </div>
                 </div>
-              </motion.div>
+              </motion.a>
             ))}
           </div>
 
@@ -124,12 +139,15 @@ export const ProjectsSection = () => {
             <p className="text-muted-foreground mb-4">
               Veja mais projetos no meu GitHub
             </p>
-            <Button variant="heroOutline" size="lg" asChild>
-              <a href="https://github.com/ucgfilho" target="_blank" rel="noopener noreferrer">
-                <Github className="w-5 h-5" />
-                Ver GitHub
-              </a>
-            </Button>
+            <a
+              href="https://github.com/ucgfilho"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-primary/40 text-primary hover:bg-primary/10 transition-colors"
+            >
+              <Github className="w-5 h-5" />
+              Ver GitHub
+            </a>
           </motion.div>
         </motion.div>
       </div>

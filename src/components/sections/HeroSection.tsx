@@ -43,12 +43,13 @@ export const HeroSection = () => {
             className="mb-8"
           >
             <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold text-secondary mb-4">
-              Analista de QA & Desenvolvedor Front-End
+              Analista de QA
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-              Especialista em automação de testes, práticas DevOps e cultura de qualidade.
-              Construindo arquiteturas de testes escaláveis e implementando shift-left testing
-              em ambientes ágeis com entrega contínua.
+              Especialista em automação de testes, práticas DevOps e cultura de
+              qualidade. Construindo arquiteturas de testes escaláveis e
+              implementando shift-left testing em ambientes ágeis com entrega
+              contínua.
             </p>
           </motion.div>
 
@@ -81,9 +82,24 @@ export const HeroSection = () => {
             className="flex items-center justify-center gap-4"
           >
             {[
-              { icon: Linkedin, href: "https://www.linkedin.com/in/ucgfilho/", label: "LinkedIn", isCustom: false },
-              { icon: Github, href: "https://github.com/ucgfilho", label: "GitHub", isCustom: false },
-              { icon: GitLabIcon, href: "https://gitlab.com/ucgfilho", label: "GitLab", isCustom: true },
+              {
+                icon: Linkedin,
+                href: "https://www.linkedin.com/in/ucgfilho/",
+                label: "LinkedIn",
+                isCustom: false,
+              },
+              {
+                icon: Github,
+                href: "https://github.com/ucgfilho",
+                label: "GitHub",
+                isCustom: false,
+              },
+              {
+                icon: GitLabIcon,
+                href: "https://gitlab.com/ucgfilho",
+                label: "GitLab",
+                isCustom: true,
+              },
             ].map((social, index) => (
               <motion.a
                 key={social.label}
@@ -117,7 +133,7 @@ export const HeroSection = () => {
           transition={{ duration: 1.5, repeat: Infinity }}
           className="flex flex-col items-center gap-2 text-muted-foreground hover:text-primary transition-colors"
         >
-          <span className="text-xs font-medium">Scroll</span>
+          <span className="text-xs font-medium">Role para baixo</span>
           <ArrowDown className="w-4 h-4" />
         </motion.a>
       </motion.div>
