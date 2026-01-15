@@ -1,6 +1,6 @@
 # Meu Portfólio
 
-Bem-vindo ao repositório do meu portfólio pessoal. Este projeto apresenta minhas habilidades, certificações e projetos na área de desenvolvimento e QA.
+Bem-vindo(a) ao repositório do meu portfólio pessoal! Este projeto apresenta minhas habilidades, certificações e projetos na área de desenvolvimento e QA.
 
 ## Informações do Projeto
 
@@ -14,7 +14,7 @@ Siga os passos abaixo:
 
 ```sh
 # Passo 1: Clone o repositório
-git clone <URL_DO_SEU_REPOSITORIO>
+git clone https://github.com/ucgfilho/meu-portfolio.git
 
 # Passo 2: Entre na pasta do projeto
 cd meu-portfolio
