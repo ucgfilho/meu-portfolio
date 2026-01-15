@@ -22,6 +22,21 @@ const certifications = [
   },
   { name: "Jornada QA 2025", issuer: "EBAC", icon: Trophy },
   {
+    name: "Introdução ao Bootcamp - Java e QA",
+    issuer: "DIO",
+    icon: BookOpen,
+  },
+  {
+    name: "Estruturas de Controle em Java",
+    issuer: "DIO",
+    icon: BookOpen,
+  },
+  {
+    name: "Fundamentos da Linguagem de Programação Java",
+    issuer: "DIO",
+    icon: BookOpen,
+  },
+  {
     name: "Curso de Algoritmos",
     issuer: "Curso em Vídeo (Gustavo Guanabara)",
     icon: BookOpen,
@@ -29,6 +44,11 @@ const certifications = [
   {
     name: "Olimpíada Brasileira de Informática",
     issuer: "UNICAMP",
+    icon: Trophy,
+  },
+  {
+    name: "Versionamento de Código com Git e GitHub",
+    issuer: "DIO",
     icon: Trophy,
   },
 ];
