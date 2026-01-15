@@ -66,7 +66,7 @@ export const LoadingScreen = ({ onComplete }: { onComplete: () => void }) => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3 }}
             >
-              <h2 className="text-2xl font-bold gradient-text mb-2">UGondim</h2>
+              <h2 className="text-2xl font-bold gradient-text mb-2">Carregando portfólio...</h2>
               <motion.div
                 className="flex items-center justify-center gap-1"
                 initial={{ opacity: 0 }}
