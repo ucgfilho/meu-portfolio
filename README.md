@@ -14,7 +14,7 @@ Siga os passos abaixo:
 
 ```sh
 # Passo 1: Clone o repositório
-git clone <URL_DO_SEU_REPOSITORIO>
+git clone https://github.com/ucgfilho/meu-portfolio.git
 
 # Passo 2: Entre na pasta do projeto
 cd meu-portfolio
