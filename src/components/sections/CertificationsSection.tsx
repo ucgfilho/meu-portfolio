@@ -6,6 +6,7 @@ import { Award, BadgeCheck, Trophy, BookOpen, Users } from "lucide-react";
 const certifications = [
   { name: "JavaScript para Testers", issuer: "Qazando", icon: BookOpen },
   { name: "Automação de Testes de API com JavaScript", issuer: "Qazando", icon: BookOpen },
+  { name: "Automação de Testes Web com Cypress", issuer: "Qazando", icon: BookOpen },
   { name: "Conceitos de Testes de Software", issuer: "Qazando", icon: BookOpen },
   { name: "Jornada QA 2025", issuer: "EBAC", icon: Trophy },
   { name: "Curso de Algoritmos", issuer: "Curso em Vídeo (Gustavo Guanabara)", icon: BookOpen },

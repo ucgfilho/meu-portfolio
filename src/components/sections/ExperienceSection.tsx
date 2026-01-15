@@ -6,24 +6,13 @@ import { Briefcase, Calendar, CheckCircle2 } from "lucide-react";
 const experiences = [
   {
     company: "CPDS",
-    role: "Desenvolvedor Front-End",
+    role: "Analista de QA",
     period: "Jul/2025 – Atual",
-    achievements: [
-      {
-        title: "Arquitetura SGDoctor Acadêmico",
-        description: "Estruturei a arquitetura para 5 perfis de acesso, garantindo segurança e consistência através de controle estrito de permissões e componentização de DataTables.",
-        technologies: ["Vue.js", "TypeScript"],
-      },
-      {
-        title: "Módulo de Assinaturas Digitais",
-        description: "Assegurei 100% de rastreabilidade clínica e integridade dos dados ao desenvolver o módulo de assinaturas digitais e prontuários.",
-        technologies: ["Axios", "Inertia.js"],
-      },
-      {
-        title: "Refatoração do Módulo de Estoque",
-        description: "Melhorei a eficiência da gestão de insumos e manutenibilidade do código, implementando validações em tempo real e filtragem dinâmica.",
-        technologies: ["Tailwind CSS", "Vue.js"],
-      },
+    responsibilities: [
+      "Executar testes manuais e exploratórios no sistema SGDoctor Acadêmico, validando funcionalidades críticas de prontuário médico antes das releases.",
+      "Analisar requisitos de negócio junto ao time para definir critérios de aceite e cenários de teste, garantindo alinhamento com a necessidade do usuário final.",
+      "Identificar e documentar bugs de interface e integração (API), detalhando passos para reprodução e validando as correções (Reteste).",
+      "Implementar automações pontuais e validações de entrada de dados para prevenir falhas comuns de usuário e garantir a integridade do sistema.",
     ],
   },
 ];
@@ -70,9 +59,9 @@ export const ExperienceSection = () => {
                 </span>
               </div>
 
-              {/* Achievements */}
-              <div className="space-y-6">
-                {exp.achievements.map((achievement, index) => (
+              {/* Responsibilities */}
+              <div className="space-y-4">
+                {exp.responsibilities.map((responsibility, index) => (
                   <motion.div
                     key={index}
                     initial={{ opacity: 0, x: -30 }}
@@ -80,24 +69,10 @@ export const ExperienceSection = () => {
                     transition={{ duration: 0.6, delay: 0.4 + index * 0.1 }}
                     className="relative pl-8 border-l-2 border-primary/30 hover:border-primary transition-colors"
                   >
-                    <div className="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-primary/20 border-2 border-primary" />
-                    
-                    <h4 className="text-lg font-semibold text-foreground mb-2">
-                      {achievement.title}
-                    </h4>
-                    <p className="text-muted-foreground mb-3 leading-relaxed">
-                      {achievement.description}
+                    <div className="absolute -left-[9px] top-1 w-4 h-4 rounded-full bg-primary/20 border-2 border-primary" />
+                    <p className="text-muted-foreground leading-relaxed">
+                      {responsibility}
                     </p>
-                    <div className="flex flex-wrap gap-2">
-                      {achievement.technologies.map((tech, techIndex) => (
-                        <span
-                          key={techIndex}
-                          className="px-3 py-1 rounded-full bg-secondary/10 text-secondary text-xs font-medium border border-secondary/20"
-                        >
-                          {tech}
-                        </span>
-                      ))}
-                    </div>
                   </motion.div>
                 ))}
               </div>

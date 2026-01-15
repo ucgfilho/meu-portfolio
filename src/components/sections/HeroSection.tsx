@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { ArrowDown, Github, Linkedin, Mail, ExternalLink } from "lucide-react";
+import { GitLabIcon } from "@/components/icons/GitLabIcon";
 
 export const HeroSection = () => {
   return (
@@ -30,7 +31,7 @@ export const HeroSection = () => {
             <span className="text-foreground">Olá, eu sou</span>
             <br />
             <span className="gradient-text neon-text-purple">
-              Ubirajara Gondim
+              Ubirajara Filho
             </span>
           </motion.h1>
 
@@ -80,9 +81,9 @@ export const HeroSection = () => {
             className="flex items-center justify-center gap-4"
           >
             {[
-              { icon: Linkedin, href: "https://www.linkedin.com/in/ucgfilho/", label: "LinkedIn" },
-              { icon: Github, href: "https://github.com/ucgfilho", label: "GitHub" },
-              { icon: ExternalLink, href: "https://gitlab.com/ucgfilho", label: "GitLab" },
+              { icon: Linkedin, href: "https://www.linkedin.com/in/ucgfilho/", label: "LinkedIn", isCustom: false },
+              { icon: Github, href: "https://github.com/ucgfilho", label: "GitHub", isCustom: false },
+              { icon: GitLabIcon, href: "https://gitlab.com/ucgfilho", label: "GitLab", isCustom: true },
             ].map((social, index) => (
               <motion.a
                 key={social.label}

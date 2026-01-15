@@ -1,8 +1,9 @@
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
-import { Mail, Linkedin, Github, ExternalLink, Send, MapPin, Phone } from "lucide-react";
+import { Mail, Linkedin, Github, Send, MapPin, Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { GitLabIcon } from "@/components/icons/GitLabIcon";
 
 const contactLinks = [
   {
@@ -22,7 +23,7 @@ const contactLinks = [
   {
     name: "GitLab",
     href: "https://gitlab.com/ucgfilho",
-    icon: ExternalLink,
+    icon: GitLabIcon,
     color: "from-orange-500 to-red-500",
     description: "Mais repositórios",
   },
@@ -132,7 +133,7 @@ export const ContactSection = () => {
       >
         <div className="container mx-auto px-6 text-center">
           <p className="text-sm text-muted-foreground">
-            © {new Date().getFullYear()} Ubirajara Gondim. Feito com{" "}
+            © {new Date().getFullYear()} Ubirajara Filho. Feito com{" "}
             <span className="text-primary">♥</span> e muita automação de testes.
           </p>
         </div>
