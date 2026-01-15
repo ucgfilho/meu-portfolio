@@ -133,8 +133,7 @@ export const ContactSection = () => {
       >
         <div className="container mx-auto px-6 text-center">
           <p className="text-sm text-muted-foreground">
-            © {new Date().getFullYear()} Ubirajara Filho. Feito com{" "}
-            <span className="text-primary">♥</span> e muita automação de testes.
+            © {new Date().getFullYear()} Ubirajara Filho
           </p>
         </div>
       </motion.footer>
