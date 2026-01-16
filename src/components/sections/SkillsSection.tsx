@@ -182,7 +182,6 @@ export const SkillsSection = () => {
                   "Mochawesome",
                   "JUnit",
                   "Insomnia",
-                "Testes Exploratórios",
               ].map((tech, index) => (
                 <motion.span
                   key={tech}
