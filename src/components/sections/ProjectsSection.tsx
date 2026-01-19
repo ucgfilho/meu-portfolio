@@ -18,7 +18,7 @@ const projects = [
     link: "https://gitlab.com/cpdsjq/sgdoctor_academico",
   },
   {
-    name: "Automação E2E SauceDemo",
+    name: "Automação E2E no SauceDemo",
     description:
       "Suite completa de testes E2E automatizados com Cypress, incluindo relatórios com JUnit e Mochawesome, integração contínua com GitHub Actions.",
     technologies: [
@@ -38,14 +38,14 @@ const projects = [
     link: "https://github.com/ucgfilho/ProjetoCodeceptJS",
   },
   {
-    name: "Automação E2E Automation Practice",
+    name: "Automação E2E no Automation Practice",
     description:
       "Testes E2E automatizados para e-commerce Automation Practice, utilizando dados dinâmicos com FakerJS para cenários realistas.",
     technologies: ["Cypress", "FakerJS", "E2E Testing"],
     link: "https://github.com/ucgfilho/cypress-qazando",
   },
   {
-    name: "Automação API Restful Dev",
+    name: "Automação API no Restful API Dev",
     description:
       "Testes automatizados de API REST utilizando Cypress, validando endpoints, respostas e fluxos de dados.",
     technologies: ["Cypress", "API Testing", "REST"],
