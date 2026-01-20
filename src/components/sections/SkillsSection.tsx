@@ -1,7 +1,27 @@
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
-import { Code2, TestTube, GitBranch, Wrench, FileText, BarChart3 } from "lucide-react";
+import {
+  Code2,
+  TestTube,
+  GitBranch,
+  Wrench,
+  FileText,
+  BarChart3,
+} from "lucide-react";
+
+/* =============================================================================
+   SkillsSection - Material 3 Expressive
+   
+   DESIGN:
+   - Cards usando M3 filled card style
+   - Progress bars com gradiente M3
+   - Chips para tags de tecnologias
+   
+   ACESSIBILIDADE:
+   - Barras de progresso com valores percentuais visíveis
+   - Contraste adequado em todos os elementos
+   ============================================================================= */
 
 const skillCategories = [
   {
@@ -27,7 +47,7 @@ const skillCategories = [
   {
     title: "Relatórios Automatizados",
     icon: BarChart3,
-    color: "accent",
+    color: "tertiary",
     skills: [
       { name: "Mochawesome", level: 92 },
       { name: "JUnit", level: 90 },
@@ -58,7 +78,7 @@ const skillCategories = [
   {
     title: "Documentação",
     icon: FileText,
-    color: "accent",
+    color: "tertiary",
     skills: [
       { name: "Documentação de testes", level: 100 },
       { name: "Documentação de bugs", level: 100 },
@@ -66,11 +86,11 @@ const skillCategories = [
   },
 ];
 
+/* M3 Progress Bar com animação de entrada */
 const SkillBar = ({
   name,
   level,
   delay,
-  color,
 }: {
   name: string;
   level: number;
@@ -84,14 +104,16 @@ const SkillBar = ({
     <div ref={ref} className="space-y-2">
       <div className="flex justify-between items-center">
         <span className="text-sm font-medium text-foreground">{name}</span>
-        <span className="text-xs text-muted-foreground">{level}%</span>
+        <span className="text-xs text-muted-foreground font-medium">
+          {level}%
+        </span>
       </div>
       <div className="skill-bar">
         <motion.div
           className="skill-bar-fill"
           initial={{ width: 0 }}
           animate={isInView ? { width: `${level}%` } : {}}
-          transition={{ duration: 1, delay, ease: "easeOut" }}
+          transition={{ duration: 1, delay, ease: [0.4, 0, 0.2, 1] }}
         />
       </div>
     </div>
@@ -108,40 +130,46 @@ export const SkillsSection = () => {
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8 }}
+          transition={{ duration: 0.8, ease: [0, 0, 0, 1] }}
           className="max-w-6xl mx-auto"
         >
-          {/* Section header */}
-          <div className="flex items-center gap-3 mb-12">
-            <div className="p-2 rounded-lg bg-primary/10 border border-primary/20">
-              <Code2 className="w-5 h-5 text-primary" />
+          {/* Section header - M3 style */}
+          <div className="section-header">
+            <div className="section-header-icon">
+              <Code2 className="w-5 h-5" />
             </div>
-            <h2 className="text-3xl md:text-4xl font-bold">
+            <h2 className="text-3xl md:text-4xl font-bold text-foreground">
               Competências Técnicas
             </h2>
           </div>
 
-          {/* Skills Grid */}
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {/* Skills Grid - M3 Filled Cards */}
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {skillCategories.map((category, categoryIndex) => (
               <motion.div
                 key={category.title}
                 initial={{ opacity: 0, y: 30 }}
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.6, delay: 0.2 + categoryIndex * 0.1 }}
-                className="glass-card rounded-xl p-6 border border-border/50 hover:border-primary/30 transition-all duration-300"
+                transition={{
+                  duration: 0.6,
+                  delay: 0.2 + categoryIndex * 0.1,
+                  ease: [0, 0, 0, 1],
+                }}
+                className="rounded-2xl p-6 bg-surface-container border border-border/30 hover:bg-surface-container-high hover:border-primary/20 transition-all duration-300 ease-m3-emphasized"
               >
+                {/* Category header */}
                 <div className="flex items-center gap-3 mb-6">
-                  <div className={`p-2 rounded-lg bg-${category.color}/10`}>
+                  <div className={`p-2 rounded-xl bg-${category.color}/12`}>
                     <category.icon
                       className={`w-5 h-5 text-${category.color}`}
                     />
                   </div>
-                  <h3 className="font-bold text-foreground">
+                  <h3 className="font-semibold text-foreground">
                     {category.title}
                   </h3>
                 </div>
 
+                {/* Skills list */}
                 <div className="space-y-4">
                   {category.skills.map((skill, skillIndex) => (
                     <SkillBar
@@ -157,11 +185,11 @@ export const SkillsSection = () => {
             ))}
           </div>
 
-          {/* Tags cloud */}
+          {/* Tags cloud - M3 Chips */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.8, delay: 0.6 }}
+            transition={{ duration: 0.8, delay: 0.6, ease: [0, 0, 0, 1] }}
             className="mt-12 text-center"
           >
             <h3 className="text-lg font-semibold text-muted-foreground mb-6">
@@ -176,21 +204,22 @@ export const SkillsSection = () => {
                 "GitHub Actions",
                 "GitLab CI/CD",
                 "BDD",
-                  "Gherkin",
+                "Gherkin",
                 "Postman",
-                  "Allure Report",
+                "Allure Report",
                 "Jira",
-                  "Mochawesome",
-                  "JUnit",
-                  "Insomnia",
+                "Mochawesome",
+                "JUnit",
+                "Insomnia",
               ].map((tech, index) => (
                 <motion.span
                   key={tech}
                   initial={{ opacity: 0, scale: 0.8 }}
                   animate={isInView ? { opacity: 1, scale: 1 } : {}}
                   transition={{ duration: 0.4, delay: 0.8 + index * 0.05 }}
-                  whileHover={{ scale: 1.1 }}
-                  className="px-4 py-2 rounded-full glass-card border border-border/50 hover:border-primary/50 text-sm font-medium text-muted-foreground hover:text-primary transition-all duration-300 cursor-default"
+                  whileHover={{ scale: 1.05 }}
+                  /* M3 Assist Chip style */
+                  className="px-4 py-2 rounded-full bg-surface-container-high border border-border/30 hover:bg-primary/10 hover:border-primary/30 text-sm font-medium text-muted-foreground hover:text-primary transition-all duration-300 ease-m3-emphasized cursor-default"
                 >
                   {tech}
                 </motion.span>

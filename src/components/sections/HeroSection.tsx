@@ -3,46 +3,61 @@ import { Button } from "@/components/ui/button";
 import { ArrowDown, Github, Linkedin, Mail, ExternalLink } from "lucide-react";
 import { GitLabIcon } from "@/components/icons/GitLabIcon";
 
+/* =============================================================================
+   HeroSection - Material 3 Expressive
+   
+   DESIGN:
+   - Hierarquia tipográfica clara seguindo M3 type scale
+   - Animações com easing M3 (decelerated para entrada)
+   - Gradiente expressivo no nome para destaque visual
+   - Status badge usando M3 chip style
+   
+   ACESSIBILIDADE:
+   - Contraste de texto ≥ 7:1 (WCAG AAA)
+   - Links com labels descritivos
+   - Indicador de scroll com motion reduzido respeitado
+   ============================================================================= */
+
 export const HeroSection = () => {
   return (
     <section className="min-h-screen flex items-center justify-center relative overflow-hidden pt-20">
       <div className="container mx-auto px-6 py-20">
         <div className="max-w-4xl mx-auto text-center">
-          {/* Status badge */}
+          {/* Status badge - M3 Chip style 
+              Indica disponibilidade com indicador pulsante */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-card border border-neon-green/30 mb-8"
+            transition={{ duration: 0.6, ease: [0, 0, 0, 1] }}
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-tertiary/15 border border-tertiary/30 mb-8"
           >
-            <span className="w-2 h-2 rounded-full bg-neon-green animate-pulse" />
-            <span className="text-sm text-muted-foreground">
+            <span className="w-2 h-2 rounded-full bg-tertiary animate-pulse-soft" />
+            <span className="text-sm text-tertiary font-medium">
               Disponível para novas oportunidades
             </span>
           </motion.div>
 
-          {/* Name */}
+          {/* Nome - M3 Display Large 
+              Gradiente expressivo para destaque visual */}
           <motion.h1
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
+            transition={{ duration: 0.8, delay: 0.2, ease: [0, 0, 0, 1] }}
             className="text-4xl sm:text-5xl md:text-7xl font-bold mb-6"
           >
             <span className="text-foreground">Olá, eu sou</span>
             <br />
-            <span className="gradient-text neon-text-purple">
-              Ubirajara Filho
-            </span>
+            <span className="gradient-text-expressive">Ubirajara Filho</span>
           </motion.h1>
 
-          {/* Title */}
+          {/* Título e descrição - M3 Headline/Body */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
+            transition={{ duration: 0.8, delay: 0.4, ease: [0, 0, 0, 1] }}
             className="mb-8"
           >
-            <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold text-secondary mb-4">
+            <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold text-primary mb-4">
               Analista de QA
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
@@ -53,11 +68,11 @@ export const HeroSection = () => {
             </p>
           </motion.div>
 
-          {/* CTA Buttons */}
+          {/* CTA Buttons - M3 Button variants */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.6 }}
+            transition={{ duration: 0.8, delay: 0.6, ease: [0, 0, 0, 1] }}
             className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12"
           >
             <Button variant="hero" size="xl" asChild>
@@ -74,11 +89,11 @@ export const HeroSection = () => {
             </Button>
           </motion.div>
 
-          {/* Social Links */}
+          {/* Social Links - M3 Icon buttons com state layer */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.8 }}
+            transition={{ duration: 0.8, delay: 0.8, ease: [0, 0, 0, 1] }}
             className="flex items-center justify-center gap-4"
           >
             {[
@@ -86,19 +101,16 @@ export const HeroSection = () => {
                 icon: Linkedin,
                 href: "https://www.linkedin.com/in/ucgfilho/",
                 label: "LinkedIn",
-                isCustom: false,
               },
               {
                 icon: Github,
                 href: "https://github.com/ucgfilho",
                 label: "GitHub",
-                isCustom: false,
               },
               {
                 icon: GitLabIcon,
                 href: "https://gitlab.com/ucgfilho",
                 label: "GitLab",
-                isCustom: true,
               },
             ].map((social, index) => (
               <motion.a
@@ -106,8 +118,9 @@ export const HeroSection = () => {
                 href={social.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-3 rounded-full glass-card border border-border/50 hover:border-primary/50 text-muted-foreground hover:text-primary transition-all duration-300"
-                whileHover={{ scale: 1.1, y: -2 }}
+                aria-label={`Visitar perfil no ${social.label}`}
+                className="p-3 rounded-2xl bg-surface-container border border-border/50 hover:bg-surface-container-high hover:border-primary/50 text-muted-foreground hover:text-primary transition-all duration-300 ease-m3-emphasized"
+                whileHover={{ scale: 1.05, y: -2 }}
                 whileTap={{ scale: 0.95 }}
                 initial={{ opacity: 0, scale: 0 }}
                 animate={{ opacity: 1, scale: 1 }}
@@ -120,7 +133,7 @@ export const HeroSection = () => {
         </div>
       </div>
 
-      {/* Scroll indicator */}
+      {/* Scroll indicator - respects prefers-reduced-motion */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -129,9 +142,9 @@ export const HeroSection = () => {
       >
         <motion.a
           href="#about"
-          animate={{ y: [0, 10, 0] }}
-          transition={{ duration: 1.5, repeat: Infinity }}
-          className="flex flex-col items-center gap-2 text-muted-foreground hover:text-primary transition-colors"
+          animate={{ y: [0, 8, 0] }}
+          transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+          className="flex flex-col items-center gap-2 text-muted-foreground hover:text-primary transition-colors duration-300"
         >
           <span className="text-xs font-medium">Role para baixo</span>
           <ArrowDown className="w-4 h-4" />

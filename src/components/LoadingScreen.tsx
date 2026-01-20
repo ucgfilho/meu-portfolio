@@ -1,6 +1,18 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect } from "react";
 
+/* =============================================================================
+   LoadingScreen - Material 3 Expressive
+   
+   DESIGN:
+   - Background usando a cor de fundo M3 dark
+   - Spinner com cores primary, secondary e tertiary
+   - Animações suaves seguindo M3 motion guidelines
+   
+   ACESSIBILIDADE:
+   - Texto de carregamento para screen readers
+   ============================================================================= */
+
 export const LoadingScreen = ({ onComplete }: { onComplete: () => void }) => {
   const [isVisible, setIsVisible] = useState(true);
 
@@ -19,26 +31,29 @@ export const LoadingScreen = ({ onComplete }: { onComplete: () => void }) => {
         <motion.div
           initial={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          transition={{ duration: 0.5 }}
-          className="fixed inset-0 z-[100] flex items-center justify-center bg-[#0b0b0f] text-foreground"
+          transition={{ duration: 0.5, ease: [0.4, 0, 0.2, 1] }}
+          /* M3 Surface background color */
+          className="fixed inset-0 z-[100] flex items-center justify-center bg-background text-foreground"
+          role="status"
+          aria-label="Carregando portfólio"
         >
           <div className="text-center">
-            {/* Animated logo */}
+            {/* Animated logo - M3 style */}
             <motion.div
               initial={{ scale: 0.5, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
-              transition={{ duration: 0.5 }}
+              transition={{ duration: 0.5, ease: [0, 0, 0, 1] }}
               className="relative mb-8"
             >
-              {/* Glow rings */}
+              {/* Glow effect - M3 primary color */}
               <motion.div
                 className="absolute inset-0 rounded-full"
                 style={{
-                  boxShadow: "0 0 60px hsl(var(--neon-purple) / 0.5)",
+                  boxShadow: "0 0 40px hsl(var(--primary) / 0.3)",
                 }}
                 animate={{
-                  scale: [1, 1.2, 1],
-                  opacity: [0.5, 0.8, 0.5],
+                  scale: [1, 1.15, 1],
+                  opacity: [0.4, 0.7, 0.4],
                 }}
                 transition={{
                   duration: 2,
@@ -47,13 +62,15 @@ export const LoadingScreen = ({ onComplete }: { onComplete: () => void }) => {
                 }}
               />
 
+              {/* Outer ring */}
               <motion.div
-                className="w-24 h-24 rounded-full border-4 border-primary/30 flex items-center justify-center"
+                className="w-24 h-24 rounded-full border-4 border-surface-container-highest flex items-center justify-center"
                 animate={{ rotate: 360 }}
-                transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
+                transition={{ duration: 2.5, repeat: Infinity, ease: "linear" }}
               >
+                {/* Inner spinner with M3 colors */}
                 <motion.div
-                  className="w-16 h-16 rounded-full border-4 border-t-primary border-r-secondary border-b-accent border-l-transparent"
+                  className="w-16 h-16 rounded-full border-4 border-t-primary border-r-secondary border-b-tertiary border-l-transparent"
                   animate={{ rotate: -360 }}
                   transition={{
                     duration: 1.5,
@@ -64,17 +81,18 @@ export const LoadingScreen = ({ onComplete }: { onComplete: () => void }) => {
               </motion.div>
             </motion.div>
 
-            {/* Text */}
+            {/* Text - M3 typography */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.3 }}
+              transition={{ delay: 0.3, ease: [0, 0, 0, 1] }}
             >
-              <h2 className="text-2xl font-bold gradient-text mb-2">
+              <h2 className="text-2xl font-semibold gradient-text mb-3">
                 Carregando portfólio...
               </h2>
+              {/* Loading dots */}
               <motion.div
-                className="flex items-center justify-center gap-1"
+                className="flex items-center justify-center gap-1.5"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.5 }}
@@ -83,11 +101,12 @@ export const LoadingScreen = ({ onComplete }: { onComplete: () => void }) => {
                   <motion.span
                     key={i}
                     className="w-2 h-2 rounded-full bg-primary"
-                    animate={{ scale: [1, 1.5, 1], opacity: [0.5, 1, 0.5] }}
+                    animate={{ scale: [1, 1.4, 1], opacity: [0.5, 1, 0.5] }}
                     transition={{
                       duration: 0.8,
                       repeat: Infinity,
-                      delay: i * 0.2,
+                      delay: i * 0.15,
+                      ease: "easeInOut",
                     }}
                   />
                 ))}
