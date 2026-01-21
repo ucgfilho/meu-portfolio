@@ -33,7 +33,7 @@ export const LoadingScreen = ({ onComplete }: { onComplete: () => void }) => {
           exit={{ opacity: 0 }}
           transition={{ duration: 0.5, ease: [0.4, 0, 0.2, 1] }}
           /* M3 Surface background color */
-          className="fixed inset-0 z-[100] flex items-center justify-center bg-background text-foreground"
+          className="dark fixed inset-0 z-[100] flex items-center justify-center bg-background text-foreground"
           role="status"
           aria-label="Carregando portfólio"
         >
