@@ -20,27 +20,27 @@
      iOS 26 Liquid Glass - Light Theme
      =========================================================================== */
   :root {
-    /* Deep Space - fundos profundos */
+    /* Deep Space Light - fundos claros com tom azulado */
     --background: 220 20% 97%;
-    --foreground: 220 25% 10%;
+    --foreground: 222 47% 11%;
 
     /* Superfícies glass - opacidade ultra baixa */
     --card: 0 0% 100%;
-    --card-foreground: 220 25% 10%;
+    --card-foreground: 222 47% 11%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 220 25% 10%;
+    --popover-foreground: 222 47% 11%;
 
-    /* Primary: Azul cristalino */
-    --primary: 210 100% 50%;
+    /* Primary: Navy Blue - Forte e Profundo */
+    --primary: 222 47% 40%;
     --primary-foreground: 0 0% 100%;
 
-    /* Secondary: Cian aurora */
-    --secondary: 180 100% 45%;
+    /* Secondary: Steel Blue */
+    --secondary: 215 50% 50%;
     --secondary-foreground: 0 0% 100%;
 
-    /* Tertiary: Violeta nebulosa */
-    --tertiary: 270 100% 70%;
+    /* Tertiary: Slate Blue */
+    --tertiary: 210 40% 60%;
     --tertiary-foreground: 0 0% 100%;
 
     /* Muted */
@@ -48,7 +48,7 @@
     --muted-foreground: 220 10% 45%;
 
     /* Accent */
-    --accent: 180 100% 45%;
+    --accent: 215 50% 50%;
     --accent-foreground: 0 0% 100%;
 
     /* Destructive */
@@ -66,14 +66,14 @@
     --surface-container-highest: 220 10% 90%;
 
     /* Glass tokens */
-    --glass-bg: 0 0% 100% / 0.6;
-    --glass-border: 0 0% 100% / 0.3;
-    --glass-specular: 0 0% 100% / 0.5;
+    --glass-bg: 220 50% 50% / 0.05;
+    --glass-border: 220 50% 50% / 0.1;
+    --glass-specular: 220 50% 50% / 0.1;
 
     /* Borders */
     --border: 220 15% 88%;
     --input: 220 15% 88%;
-    --ring: 210 100% 50%;
+    --ring: 222 47% 40%;
     --outline: 220 10% 70%;
     --outline-variant: 220 10% 82%;
 
@@ -86,18 +86,18 @@
     --radius-2xl: 2.5rem;
     --radius-full: 9999px;
 
-    /* Gradientes Aurora */
+    /* Gradientes Aurora Monochromo Light */
     --gradient-aurora: linear-gradient(
       135deg,
-      hsl(210 100% 50% / 0.15) 0%,
-      hsl(180 100% 45% / 0.1) 50%,
-      hsl(270 100% 70% / 0.15) 100%
+      hsl(222 47% 40% / 0.1) 0%,
+      hsl(215 50% 50% / 0.08) 50%,
+      hsl(210 40% 60% / 0.1) 100%
     );
     --gradient-glass-border: linear-gradient(
       135deg,
-      hsl(0 0% 100% / 0.4) 0%,
-      hsl(0 0% 100% / 0.1) 50%,
-      hsl(0 0% 100% / 0.3) 100%
+      hsl(222 47% 40% / 0.2) 0%,
+      hsl(222 47% 40% / 0.05) 50%,
+      hsl(222 47% 40% / 0.15) 100%
     );
 
     /* Glow effects - aurora style */
@@ -118,81 +118,81 @@
      Deep Space Black com Aurora Borealis orbs
      =========================================================================== */
   .dark {
-    /* Deep Space Black - quase preto com matiz azulada fria */
-    --background: 225 30% 6%;
-    --foreground: 210 20% 95%;
+    /* Deep Space Navy - Azul Marinho Profundo Monocromático */
+    --background: 222 47% 11%;
+    --foreground: 210 40% 98%;
 
-    /* Glass surfaces */
-    --card: 225 25% 10%;
-    --card-foreground: 210 20% 95%;
+    /* Glass surfaces - Navy Tint */
+    --card: 222 47% 13%;
+    --card-foreground: 210 40% 98%;
 
-    --popover: 225 25% 10%;
-    --popover-foreground: 210 20% 95%;
+    --popover: 222 47% 13%;
+    --popover-foreground: 210 40% 98%;
 
-    /* Primary: Azul cristalino brilhante */
-    --primary: 210 100% 65%;
-    --primary-foreground: 225 30% 6%;
+    /* Primary: Royal Blue / Electric Blue - Contraste */
+    --primary: 217 91% 60%;
+    --primary-foreground: 222 47% 11%;
 
-    /* Secondary: Cian aurora luminoso */
-    --secondary: 180 100% 55%;
-    --secondary-foreground: 225 30% 6%;
+    /* Secondary: Deep Sky Blue - Monochromatic */
+    --secondary: 210 80% 60%;
+    --secondary-foreground: 222 47% 11%;
 
-    /* Tertiary: Violeta nebulosa expressivo */
-    --tertiary: 270 100% 75%;
-    --tertiary-foreground: 225 30% 6%;
+    /* Tertiary: Steel Blue - Monochromatic */
+    --tertiary: 220 60% 50%;
+    --tertiary-foreground: 222 47% 11%;
 
     /* Muted */
-    --muted: 225 20% 15%;
-    --muted-foreground: 210 15% 60%;
+    --muted: 217 33% 18%;
+    --muted-foreground: 215 20% 65%;
 
     /* Accent */
-    --accent: 180 100% 55%;
-    --accent-foreground: 225 30% 6%;
+    --accent: 217 91% 60%;
+    --accent-foreground: 222 47% 11%;
 
     /* Destructive */
     --destructive: 0 72% 60%;
     --destructive-foreground: 0 0% 100%;
 
-    /* Surface Hierarchy - Glass layers */
-    --surface: 225 25% 10%;
-    --surface-dim: 225 30% 4%;
-    --surface-bright: 225 20% 14%;
-    --surface-container-lowest: 225 30% 3%;
-    --surface-container-low: 225 25% 8%;
-    --surface-container: 225 22% 12%;
-    --surface-container-high: 225 20% 16%;
-    --surface-container-highest: 225 18% 20%;
+    /* Surface Hierarchy - Navy Glass layers */
+    --surface: 222 47% 13%;
+    --surface-dim: 222 47% 9%;
+    --surface-bright: 222 47% 16%;
+    --surface-container-lowest: 222 47% 7%;
+    --surface-container-low: 222 47% 10%;
+    --surface-container: 222 47% 12%;
+    --surface-container-high: 222 47% 15%;
+    --surface-container-highest: 222 47% 18%;
 
     /* Glass tokens - Dark mode */
-    --glass-bg: 0 0% 100% / 0.03;
-    --glass-border: 0 0% 100% / 0.08;
-    --glass-specular: 0 0% 100% / 0.15;
+    --glass-bg: 220 50% 15% / 0.1;
+    --glass-border: 210 50% 80% / 0.08;
+    --glass-specular: 210 50% 80% / 0.15;
 
     /* Borders */
-    --border: 225 20% 18%;
-    --input: 225 20% 18%;
-    --ring: 210 100% 65%;
-    --outline: 225 15% 30%;
-    --outline-variant: 225 15% 22%;
+    --border: 217 33% 20%;
+    --input: 217 33% 20%;
+    --ring: 217 91% 60%;
+    --outline: 217 33% 30%;
+    --outline-variant: 217 33% 25%;
 
-    /* Gradientes Aurora Dark */
+    /* Gradientes Aurora Monochromatic Navy */
     --gradient-aurora: linear-gradient(
       135deg,
-      hsl(210 100% 65% / 0.12) 0%,
-      hsl(180 100% 55% / 0.08) 50%,
-      hsl(270 100% 75% / 0.12) 100%
+      hsl(217 91% 60% / 0.15) 0%,
+      hsl(220 80% 50% / 0.1) 50%,
+      hsl(210 70% 40% / 0.15) 100%
     );
     --gradient-glass-border: linear-gradient(
       135deg,
-      hsl(0 0% 100% / 0.15) 0%,
-      hsl(0 0% 100% / 0.03) 50%,
-      hsl(0 0% 100% / 0.1) 100%
+      hsl(210 40% 98% / 0.15) 0%,
+      hsl(210 40% 98% / 0.03) 50%,
+      hsl(210 40% 98% / 0.1) 100%
     );
 
-    /* Glow effects - aurora style dark */
-    --glow-primary: 0 0 40px hsl(210 100% 65% / 0.35);
-    --glow-secondary: 0 0 40px hsl(180 100% 55% / 0.35);
-    --glow-tertiary: 0 0 40px hsl(270 100% 75% / 0.35);
+    /* Glow effects - Blue only */
+    --glow-primary: 0 0 40px hsl(217 91% 60% / 0.35);
+    --glow-secondary: 0 0 40px hsl(210 80% 60% / 0.25);
+    --glow-tertiary: 0 0 40px hsl(220 60% 50% / 0.25);
   }
 }
 
@@ -223,7 +223,12 @@
   }
 
   /* Tipografia - SF Pro com tracking aumentado, pesos finos */
-  h1, h2, h3, h4, h5, h6 {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     font-family: "SF Pro Display", var(--font-sans);
     @apply tracking-tight;
   }
@@ -285,7 +290,9 @@
     content: "";
     @apply absolute inset-0 pointer-events-none;
     background: var(--gradient-glass-border);
-    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask:
+      linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
     mask-composite: exclude;
     -webkit-mask-composite: xor;
     padding: 1px;
@@ -487,27 +494,13 @@
 }
 
 /* ===========================================================================
-   Scrollbar Styling - Minimal glass
+   Scrollbar Styling - Hidden
    =========================================================================== */
 * {
-  scrollbar-width: thin;
-  scrollbar-color: hsl(var(--border)) transparent;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
 }
 
 *::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
-}
-
-*::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-*::-webkit-scrollbar-thumb {
-  background: hsl(var(--border));
-  border-radius: 3px;
-}
-
-*::-webkit-scrollbar-thumb:hover {
-  background: hsl(var(--muted-foreground));
+  display: none;
 }

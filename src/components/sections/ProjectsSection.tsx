@@ -73,9 +73,9 @@ export const ProjectsSection = () => {
         <motion.div
           initial={{ opacity: 0, y: 60 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ 
-            duration: 0.8, 
-            ease: [0.34, 1.56, 0.64, 1]
+          transition={{
+            duration: 0.8,
+            ease: [0.34, 1.56, 0.64, 1],
           }}
           className="max-w-6xl mx-auto"
         >
@@ -110,21 +110,23 @@ export const ProjectsSection = () => {
                 className="glass-card-interactive group relative rounded-3xl p-6 overflow-hidden"
               >
                 {/* Aurora glow effect on hover */}
-                <div 
+                <div
                   className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none"
                   style={{
-                    background: "radial-gradient(circle at 80% 20%, hsl(var(--primary) / 0.15) 0%, transparent 50%)",
+                    background:
+                      "radial-gradient(circle at 80% 20%, hsl(var(--primary) / 0.15) 0%, transparent 50%)",
                   }}
                 />
 
                 <div className="relative z-10">
                   {/* Project icon - Glass container */}
-                  <motion.div 
+                  <motion.div
                     className="w-14 h-14 rounded-2xl flex items-center justify-center mb-5"
                     style={{
                       background: "hsl(var(--primary) / 0.1)",
                       border: "1px solid hsl(var(--primary) / 0.15)",
-                      boxShadow: "inset 0 1px 1px 0 hsl(0 0% 100% / 0.1), 0 0 16px hsl(var(--primary) / 0.15)",
+                      boxShadow:
+                        "inset 0 1px 1px 0 hsl(0 0% 100% / 0.1), 0 0 16px hsl(var(--primary) / 0.15)",
                     }}
                     whileHover={{ scale: 1.1, rotate: 5 }}
                     transition={{ type: "spring", stiffness: 400, damping: 17 }}
@@ -133,7 +135,7 @@ export const ProjectsSection = () => {
                   </motion.div>
 
                   {/* Content */}
-                  <h3 className="text-xl font-medium text-foreground mb-3 group-hover:text-primary transition-colors duration-300 tracking-wide">
+                  <h3 className="text-xl font-medium text-foreground mb-3 group-hover:text-primary transition-colors duration-75 tracking-wide">
                     {project.name}
                   </h3>
                   <p className="text-muted-foreground text-sm mb-5 leading-relaxed line-clamp-3 font-light">
@@ -145,7 +147,7 @@ export const ProjectsSection = () => {
                     {project.technologies.map((tech, techIndex) => (
                       <span
                         key={techIndex}
-                        className="px-3 py-1.5 rounded-full text-xs font-medium transition-all duration-300"
+                        className="px-3 py-1.5 rounded-full text-xs font-medium transition-all duration-75"
                         style={{
                           background: "hsl(0 0% 100% / 0.05)",
                           border: "1px solid hsl(0 0% 100% / 0.08)",
@@ -158,9 +160,9 @@ export const ProjectsSection = () => {
                   </div>
 
                   {/* Link indicator */}
-                  <div className="inline-flex items-center gap-2 text-sm text-primary/70 group-hover:text-primary transition-colors duration-300 font-medium">
+                  <div className="inline-flex items-center gap-2 text-sm text-primary/70 group-hover:text-primary transition-colors duration-75 font-medium">
                     Acessar repositório
-                    <ExternalLink className="w-4 h-4 group-hover:translate-x-1 group-hover:-translate-y-0.5 transition-transform duration-300" />
+                    <ExternalLink className="w-4 h-4 group-hover:translate-x-1 group-hover:-translate-y-0.5 transition-transform duration-75" />
                   </div>
                 </div>
               </motion.a>
@@ -171,10 +173,10 @@ export const ProjectsSection = () => {
           <motion.div
             initial={{ opacity: 0, y: 40 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ 
-              duration: 0.8, 
-              delay: 0.6, 
-              ease: [0.34, 1.56, 0.64, 1]
+            transition={{
+              duration: 0.8,
+              delay: 0.6,
+              ease: [0.34, 1.56, 0.64, 1],
             }}
             className="text-center mt-14"
           >
@@ -185,20 +187,31 @@ export const ProjectsSection = () => {
               href="https://github.com/ucgfilho"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-3 px-7 py-3.5 rounded-full text-foreground font-medium transition-all duration-300"
+              className="inline-flex items-center gap-3 px-7 py-3.5 rounded-full text-foreground font-medium transition-all duration-75 group"
               style={{
                 background: "hsl(0 0% 100% / 0.05)",
                 border: "1px solid hsl(0 0% 100% / 0.12)",
                 backdropFilter: "blur(20px)",
                 boxShadow: "inset 0 1px 1px 0 hsl(0 0% 100% / 0.1)",
               }}
-              whileHover={{ 
+              transition={{ duration: 0.05 }}
+              whileHover={{
                 scale: 1.05,
-                boxShadow: "inset 0 1px 2px 0 hsl(0 0% 100% / 0.2), 0 8px 30px -5px hsl(var(--primary) / 0.25)",
+                backgroundColor: "#333333",
+                borderColor: "#333333",
+                color: "#ffffff",
+                boxShadow:
+                  "inset 0 1px 2px 0 hsl(0 0% 100% / 0.2), 0 8px 30px -5px rgba(51, 51, 51, 0.5)",
+                transition: { duration: 0.05 },
               }}
-              whileTap={{ scale: 0.97 }}
+              whileTap={{
+                scale: 0.97,
+                backgroundColor: "#1a1a1a",
+                borderColor: "#1a1a1a",
+                transition: { duration: 0.05 },
+              }}
             >
-              <Github className="w-5 h-5" />
+              <Github className="w-5 h-5 transition-colors duration-75 group-hover:text-white" />
               Ver GitHub
             </motion.a>
           </motion.div>

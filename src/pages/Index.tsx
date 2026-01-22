@@ -1,8 +1,8 @@
-import { lazy, Suspense, useState } from "react";
+import { lazy, Suspense } from "react";
 import { AnimatedBackground } from "@/components/AnimatedBackground";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { Navigation } from "@/components/Navigation";
-import { LoadingScreen } from "@/components/LoadingScreen";
+import { ScrollToTop } from "@/components/ScrollToTop";
 
 const HeroSection = lazy(() =>
   import("@/components/sections/HeroSection").then((module) => ({
@@ -51,36 +51,29 @@ const ContactSection = lazy(() =>
 );
 
 const Index = () => {
-  const [isLoading, setIsLoading] = useState(true);
-
   return (
-    <>
-      <LoadingScreen onComplete={() => setIsLoading(false)} />
+    <div className="min-h-screen relative">
+      <AnimatedBackground />
+      <ThemeToggle />
+      <Navigation />
+      <ScrollToTop />
 
-      {!isLoading && (
-        <div className="min-h-screen relative">
-          <AnimatedBackground />
-          <ThemeToggle />
-          <Navigation />
-
-          <main>
-            <Suspense
-              fallback={<div className="sr-only">Carregando seções...</div>}
-            >
-              <HeroSection />
-              <AboutSection />
-              <EducationSection />
-              <ExperienceSection />
-              <CertificationsSection />
-              <SkillsSection />
-              <ProjectsSection />
-              <LanguagesSection />
-              <ContactSection />
-            </Suspense>
-          </main>
-        </div>
-      )}
-    </>
+      <main>
+        <Suspense
+          fallback={<div className="sr-only">Carregando seções...</div>}
+        >
+          <HeroSection />
+          <AboutSection />
+          <EducationSection />
+          <ExperienceSection />
+          <CertificationsSection />
+          <SkillsSection />
+          <ProjectsSection />
+          <LanguagesSection />
+          <ContactSection />
+        </Suspense>
+      </main>
+    </div>
   );
 };
 

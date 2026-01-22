@@ -42,9 +42,7 @@ export const Navigation = () => {
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.8, ease: [0.34, 1.56, 0.64, 1] }}
         className={`fixed top-0 left-0 right-0 z-40 transition-all duration-500 ease-spring ${
-          isScrolled
-            ? "py-3"
-            : "py-6 bg-transparent"
+          isScrolled ? "py-3" : "py-6 bg-transparent"
         }`}
       >
         {/* Glass effect container */}
@@ -79,20 +77,20 @@ export const Navigation = () => {
               <motion.a
                 key={item.href}
                 href={item.href}
-                className="relative px-4 py-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors duration-300 rounded-full group"
+                className="relative px-4 py-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors duration-75 rounded-full group"
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ 
-                  delay: 0.1 * index, 
+                transition={{
+                  delay: 0.1 * index,
                   type: "spring",
                   stiffness: 300,
-                  damping: 20
+                  damping: 20,
                 }}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
+                whileHover={{ scale: 1.05, transition: { duration: 0.05 } }}
+                whileTap={{ scale: 0.95, transition: { duration: 0.05 } }}
               >
                 {/* Hover background - glass effect */}
-                <span className="absolute inset-0 rounded-full bg-white/[0.05] opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                <span className="absolute inset-0 rounded-full bg-white/[0.05] opacity-0 group-hover:opacity-100 transition-opacity duration-75" />
                 <span className="relative">{item.label}</span>
               </motion.a>
             ))}
@@ -120,9 +118,9 @@ export const Navigation = () => {
           opacity: isMobileMenuOpen ? 1 : 0,
           x: isMobileMenuOpen ? 0 : "100%",
         }}
-        transition={{ 
-          duration: 0.5, 
-          ease: [0.34, 1.56, 0.64, 1]
+        transition={{
+          duration: 0.5,
+          ease: [0.34, 1.56, 0.64, 1],
         }}
         className="fixed inset-0 z-30 md:hidden"
         style={{ pointerEvents: isMobileMenuOpen ? "auto" : "none" }}
@@ -136,13 +134,14 @@ export const Navigation = () => {
         />
 
         {/* Menu panel */}
-        <motion.div 
+        <motion.div
           className="absolute right-0 top-0 bottom-0 w-80 p-6 pt-24"
           style={{
             background: "hsl(var(--background) / 0.9)",
             backdropFilter: "blur(60px)",
             borderLeft: "1px solid hsl(0 0% 100% / 0.08)",
-            boxShadow: "inset 1px 0 0 0 hsl(0 0% 100% / 0.05), -20px 0 60px -20px hsl(0 0% 0% / 0.5)",
+            boxShadow:
+              "inset 1px 0 0 0 hsl(0 0% 100% / 0.05), -20px 0 60px -20px hsl(0 0% 0% / 0.5)",
           }}
         >
           <nav className="flex flex-col gap-2">
@@ -157,11 +156,11 @@ export const Navigation = () => {
                   opacity: isMobileMenuOpen ? 1 : 0,
                   x: isMobileMenuOpen ? 0 : 30,
                 }}
-                transition={{ 
+                transition={{
                   delay: isMobileMenuOpen ? 0.1 * index : 0,
                   type: "spring",
                   stiffness: 300,
-                  damping: 25
+                  damping: 25,
                 }}
                 whileHover={{ scale: 1.02, x: 4 }}
                 whileTap={{ scale: 0.98 }}

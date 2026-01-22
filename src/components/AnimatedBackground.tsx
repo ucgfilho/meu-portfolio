@@ -1,4 +1,4 @@
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion } from "framer-motion";
 
 /* =============================================================================
    AnimatedBackground - iOS 26 Liquid Glass
@@ -6,32 +6,24 @@ import { motion, useScroll, useTransform } from "framer-motion";
    DESIGN:
    - Deep Space Black background
    - Aurora Borealis orbs com gradientes animados e muito desfocados
-   - Parallax suave ao rolar a página
+   - Background fixo (não acompanha o scroll)
    - Movimento orgânico e fluido
    ============================================================================= */
 
 export const AnimatedBackground = () => {
-  const { scrollY } = useScroll();
-  
-  // Parallax transforms para os orbs
-  const orb1Y = useTransform(scrollY, [0, 1000], [0, -150]);
-  const orb2Y = useTransform(scrollY, [0, 1000], [0, -100]);
-  const orb3Y = useTransform(scrollY, [0, 1000], [0, -200]);
-  const orb4Y = useTransform(scrollY, [0, 1000], [0, -80]);
-
   return (
     <div className="aurora-background">
       {/* Deep space base */}
       <div className="absolute inset-0 bg-background" />
-      
+
       {/* Aurora Orb 1 - Primary (top-left) */}
       <motion.div
         className="aurora-orb w-[600px] h-[600px] opacity-30"
         style={{
           top: "5%",
           left: "10%",
-          background: "radial-gradient(circle, hsl(var(--primary) / 0.6) 0%, transparent 70%)",
-          y: orb1Y,
+          background:
+            "radial-gradient(circle, hsl(var(--primary) / 0.6) 0%, transparent 70%)",
         }}
         animate={{
           x: [0, 60, -40, 0],
@@ -51,8 +43,8 @@ export const AnimatedBackground = () => {
         style={{
           top: "15%",
           right: "5%",
-          background: "radial-gradient(circle, hsl(var(--secondary) / 0.5) 0%, transparent 70%)",
-          y: orb2Y,
+          background:
+            "radial-gradient(circle, hsl(var(--secondary) / 0.5) 0%, transparent 70%)",
         }}
         animate={{
           x: [0, -50, 30, 0],
@@ -73,8 +65,8 @@ export const AnimatedBackground = () => {
         style={{
           top: "40%",
           left: "30%",
-          background: "radial-gradient(circle, hsl(var(--tertiary) / 0.4) 0%, transparent 70%)",
-          y: orb3Y,
+          background:
+            "radial-gradient(circle, hsl(var(--tertiary) / 0.4) 0%, transparent 70%)",
         }}
         animate={{
           x: [0, 40, -60, 0],
@@ -95,8 +87,8 @@ export const AnimatedBackground = () => {
         style={{
           bottom: "10%",
           right: "20%",
-          background: "radial-gradient(circle, hsl(var(--primary) / 0.3) 0%, hsl(var(--secondary) / 0.2) 50%, transparent 70%)",
-          y: orb4Y,
+          background:
+            "radial-gradient(circle, hsl(var(--primary) / 0.3) 0%, hsl(var(--secondary) / 0.2) 50%, transparent 70%)",
         }}
         animate={{
           x: [0, -30, 50, 0],
@@ -117,7 +109,8 @@ export const AnimatedBackground = () => {
         style={{
           top: "70%",
           left: "5%",
-          background: "radial-gradient(circle, hsl(var(--tertiary) / 0.5) 0%, transparent 70%)",
+          background:
+            "radial-gradient(circle, hsl(var(--tertiary) / 0.5) 0%, transparent 70%)",
         }}
         animate={{
           x: [0, 20, -20, 0],
@@ -133,7 +126,7 @@ export const AnimatedBackground = () => {
       />
 
       {/* Noise texture overlay - muito sutil */}
-      <div 
+      <div
         className="absolute inset-0 opacity-[0.02] pointer-events-none"
         style={{
           backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E")`,

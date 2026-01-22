@@ -83,21 +83,21 @@ export const CertificationsSection = () => {
                 animate={isInView ? { opacity: 1, scale: 1 } : {}}
                 transition={{ duration: 0.5, delay: 0.1 * index }}
                 whileHover={{ scale: 1.02, y: -4 }}
-                className="glass-card rounded-xl p-5 border border-border/50 hover:border-accent/50 transition-all duration-300 group cursor-pointer"
+                className="glass-card rounded-xl p-5 border border-border/50 hover:border-accent/50 transition-all duration-75 group cursor-pointer"
               >
                 <div className="flex items-start gap-4">
-                  <div className="p-2 rounded-lg bg-accent/10 group-hover:bg-accent/20 transition-colors">
+                  <div className="p-2 rounded-lg bg-accent/10 group-hover:bg-accent/20 transition-colors duration-75">
                     <cert.icon className="w-5 h-5 text-accent" />
                   </div>
                   <div className="flex-1">
-                    <h3 className="font-semibold text-foreground text-sm mb-1 group-hover:text-accent transition-colors line-clamp-2">
+                    <h3 className="font-semibold text-foreground text-sm mb-1 group-hover:text-accent transition-colors duration-75 line-clamp-2">
                       {cert.name}
                     </h3>
                     <p className="text-xs text-muted-foreground">
                       {cert.issuer}
                     </p>
                   </div>
-                  <BadgeCheck className="w-5 h-5 text-accent/50 group-hover:text-accent transition-colors flex-shrink-0" />
+                  <BadgeCheck className="w-5 h-5 text-accent/50 group-hover:text-accent transition-colors duration-75 flex-shrink-0" />
                 </div>
               </motion.div>
             ))}

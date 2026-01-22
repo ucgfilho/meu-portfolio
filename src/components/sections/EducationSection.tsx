@@ -30,7 +30,9 @@ export const EducationSection = () => {
             <div className="p-2 rounded-lg bg-secondary/10 border border-secondary/20">
               <GraduationCap className="w-5 h-5 text-secondary" />
             </div>
-            <h2 className="text-3xl md:text-4xl font-bold">Formação Acadêmica</h2>
+            <h2 className="text-3xl md:text-4xl font-bold">
+              Formação Acadêmica
+            </h2>
           </div>
 
           {/* Timeline */}
@@ -55,7 +57,7 @@ export const EducationSection = () => {
                 />
 
                 {/* Card */}
-                <div className="glass-card rounded-xl p-6 border border-border/50 hover:border-secondary/50 transition-all duration-300 group hover:shadow-lg">
+                <div className="glass-card rounded-xl p-6 border border-border/50 hover:border-secondary/50 transition-all duration-75 group hover:shadow-lg">
                   <div className="flex flex-wrap items-center gap-3 mb-4">
                     <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-secondary/10 text-secondary text-sm font-medium">
                       <Calendar className="w-3 h-3" />
@@ -66,7 +68,7 @@ export const EducationSection = () => {
                     </span>
                   </div>
 
-                  <h3 className="text-xl font-bold text-foreground mb-2 group-hover:text-secondary transition-colors">
+                  <h3 className="text-xl font-bold text-foreground mb-2 group-hover:text-secondary transition-colors duration-75">
                     {item.degree}
                   </h3>
 

@@ -22,21 +22,25 @@ export const HeroSection = () => {
           <motion.div
             initial={{ opacity: 0, y: 30, scale: 0.9 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
-            transition={{ 
-              duration: 0.8, 
-              ease: [0.34, 1.56, 0.64, 1]
+            transition={{
+              duration: 0.8,
+              ease: [0.34, 1.56, 0.64, 1],
             }}
             className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full mb-10"
             style={{
               background: "hsl(var(--tertiary) / 0.1)",
               border: "1px solid hsl(var(--tertiary) / 0.2)",
               backdropFilter: "blur(20px)",
-              boxShadow: "inset 0 1px 1px 0 hsl(0 0% 100% / 0.1), 0 0 20px -5px hsl(var(--tertiary) / 0.3)",
+              boxShadow:
+                "inset 0 1px 1px 0 hsl(0 0% 100% / 0.1), 0 0 20px -5px hsl(var(--tertiary) / 0.3)",
             }}
           >
-            <span 
+            <span
               className="w-2 h-2 rounded-full animate-pulse-soft"
-              style={{ background: "hsl(var(--tertiary))", boxShadow: "0 0 8px hsl(var(--tertiary))" }}
+              style={{
+                background: "hsl(var(--tertiary))",
+                boxShadow: "0 0 8px hsl(var(--tertiary))",
+              }}
             />
             <span className="text-sm text-tertiary font-medium tracking-wide">
               Disponível para novas oportunidades
@@ -47,14 +51,14 @@ export const HeroSection = () => {
           <motion.h1
             initial={{ opacity: 0, y: 40, scale: 0.95 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
-            transition={{ 
-              duration: 1, 
-              delay: 0.15, 
-              ease: [0.34, 1.56, 0.64, 1]
+            transition={{
+              duration: 1,
+              delay: 0.15,
+              ease: [0.34, 1.56, 0.64, 1],
             }}
             className="text-4xl sm:text-5xl md:text-7xl font-semibold mb-6 tracking-tight"
           >
-            <span className="text-foreground font-light">Olá, eu sou</span>
+            <span className="text-foreground font-light">Olá! eu sou</span>
             <br />
             <span className="gradient-text">Ubirajara Filho</span>
           </motion.h1>
@@ -63,10 +67,10 @@ export const HeroSection = () => {
           <motion.div
             initial={{ opacity: 0, y: 40, scale: 0.95 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
-            transition={{ 
-              duration: 1, 
-              delay: 0.3, 
-              ease: [0.34, 1.56, 0.64, 1]
+            transition={{
+              duration: 1,
+              delay: 0.3,
+              ease: [0.34, 1.56, 0.64, 1],
             }}
             className="mb-10"
           >
@@ -85,10 +89,10 @@ export const HeroSection = () => {
           <motion.div
             initial={{ opacity: 0, y: 40, scale: 0.95 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
-            transition={{ 
-              duration: 1, 
-              delay: 0.45, 
-              ease: [0.34, 1.56, 0.64, 1]
+            transition={{
+              duration: 1,
+              delay: 0.45,
+              ease: [0.34, 1.56, 0.64, 1],
             }}
             className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-14"
           >
@@ -110,10 +114,10 @@ export const HeroSection = () => {
           <motion.div
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ 
-              duration: 1, 
-              delay: 0.6, 
-              ease: [0.34, 1.56, 0.64, 1]
+            transition={{
+              duration: 1,
+              delay: 0.6,
+              ease: [0.34, 1.56, 0.64, 1],
             }}
             className="flex items-center justify-center gap-4"
           >
@@ -122,16 +126,22 @@ export const HeroSection = () => {
                 icon: Linkedin,
                 href: "https://www.linkedin.com/in/ucgfilho/",
                 label: "LinkedIn",
+                color: "#0a66c2",
+                activeColor: "#004182",
               },
               {
                 icon: Github,
                 href: "https://github.com/ucgfilho",
                 label: "GitHub",
+                color: "#333333",
+                activeColor: "#1a1a1a",
               },
               {
                 icon: GitLabIcon,
                 href: "https://gitlab.com/ucgfilho",
                 label: "GitLab",
+                color: "#fc6d26",
+                activeColor: "#e24329",
               },
             ].map((social, index) => (
               <motion.a
@@ -140,26 +150,36 @@ export const HeroSection = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={`Visitar perfil no ${social.label}`}
-                className="p-4 rounded-2xl text-muted-foreground hover:text-foreground transition-all duration-300"
+                className="p-4 rounded-2xl text-muted-foreground transition-all duration-75 relative group"
                 style={{
                   background: "hsl(0 0% 100% / 0.05)",
                   border: "1px solid hsl(0 0% 100% / 0.1)",
                   backdropFilter: "blur(20px)",
                   boxShadow: "inset 0 1px 1px 0 hsl(0 0% 100% / 0.1)",
                 }}
-                whileHover={{ 
-                  scale: 1.1, 
+                transition={{ duration: 0.05 }}
+                whileHover={{
+                  scale: 1.1,
                   y: -4,
-                  boxShadow: "inset 0 1px 2px 0 hsl(0 0% 100% / 0.2), 0 8px 25px -5px hsl(var(--primary) / 0.25)",
+                  backgroundColor: social.color,
+                  color: "#ffffff",
+                  borderColor: social.color,
+                  boxShadow: `inset 0 1px 2px 0 hsl(0 0% 100% / 0.2), 0 8px 25px -5px ${social.color}80`, // 80 is roughly 50% opacity hex
+                  transition: { duration: 0.05 },
                 }}
-                whileTap={{ scale: 0.95 }}
+                whileTap={{
+                  scale: 0.95,
+                  backgroundColor: social.activeColor,
+                  borderColor: social.activeColor,
+                  transition: { duration: 0.05 },
+                }}
                 initial={{ opacity: 0, scale: 0, y: 20 }}
                 animate={{ opacity: 1, scale: 1, y: 0 }}
-                transition={{ 
+                transition={{
                   delay: 0.8 + index * 0.1,
                   type: "spring",
                   stiffness: 300,
-                  damping: 20
+                  damping: 20,
                 }}
               >
                 <social.icon className="w-5 h-5" />
@@ -179,14 +199,16 @@ export const HeroSection = () => {
         <motion.a
           href="#about"
           animate={{ y: [0, 10, 0] }}
-          transition={{ 
-            duration: 2, 
-            repeat: Infinity, 
-            ease: "easeInOut"
+          transition={{
+            duration: 2,
+            repeat: Infinity,
+            ease: "easeInOut",
           }}
           className="flex flex-col items-center gap-2 text-muted-foreground hover:text-foreground transition-colors duration-300"
         >
-          <span className="text-xs font-light tracking-widest uppercase">Scroll</span>
+          <span className="text-xs font-light tracking-widest uppercase">
+            Scroll
+          </span>
           <ArrowDown className="w-4 h-4" />
         </motion.a>
       </motion.div>
