@@ -1,90 +1,142 @@
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 
 /* =============================================================================
-   AnimatedBackground - Material 3 Expressive
+   AnimatedBackground - iOS 26 Liquid Glass
    
    DESIGN:
-   - Gradientes sutis usando as cores primary, secondary e tertiary
-   - Movimento orgânico e fluido seguindo M3 Motion principles
-   - Opacidade reduzida para não competir com o conteúdo
-   
-   PERFORMANCE:
-   - Usa will-change implícito do Framer Motion
-   - Blobs posicionados com fixed para evitar reflow
+   - Deep Space Black background
+   - Aurora Borealis orbs com gradientes animados e muito desfocados
+   - Parallax suave ao rolar a página
+   - Movimento orgânico e fluido
    ============================================================================= */
 
 export const AnimatedBackground = () => {
+  const { scrollY } = useScroll();
+  
+  // Parallax transforms para os orbs
+  const orb1Y = useTransform(scrollY, [0, 1000], [0, -150]);
+  const orb2Y = useTransform(scrollY, [0, 1000], [0, -100]);
+  const orb3Y = useTransform(scrollY, [0, 1000], [0, -200]);
+  const orb4Y = useTransform(scrollY, [0, 1000], [0, -80]);
+
   return (
-    <div className="fixed inset-0 -z-10 overflow-hidden">
-      {/* Base gradient - M3 surface com gradientes sutis */}
-      <div className="absolute inset-0 animated-bg" />
-
-      {/* Animated blobs - cores M3 expressivas com opacidade reduzida */}
+    <div className="aurora-background">
+      {/* Deep space base */}
+      <div className="absolute inset-0 bg-background" />
+      
+      {/* Aurora Orb 1 - Primary (top-left) */}
       <motion.div
-        className="absolute top-1/4 left-1/4 w-96 h-96 rounded-full opacity-20"
+        className="aurora-orb w-[600px] h-[600px] opacity-30"
         style={{
-          background:
-            "radial-gradient(circle, hsl(var(--primary) / 0.3) 0%, transparent 70%)",
+          top: "5%",
+          left: "10%",
+          background: "radial-gradient(circle, hsl(var(--primary) / 0.6) 0%, transparent 70%)",
+          y: orb1Y,
         }}
         animate={{
-          x: [0, 50, -30, 0],
-          y: [0, -40, 30, 0],
-          scale: [1, 1.1, 0.95, 1],
+          x: [0, 60, -40, 0],
+          y: [0, -80, 40, 0],
+          scale: [1, 1.2, 0.9, 1],
         }}
         transition={{
-          duration: 15,
+          duration: 25,
           repeat: Infinity,
           ease: "easeInOut",
         }}
       />
 
+      {/* Aurora Orb 2 - Secondary (top-right) */}
       <motion.div
-        className="absolute top-2/3 right-1/4 w-80 h-80 rounded-full opacity-15"
+        className="aurora-orb w-[500px] h-[500px] opacity-25"
         style={{
-          background:
-            "radial-gradient(circle, hsl(var(--secondary) / 0.3) 0%, transparent 70%)",
+          top: "15%",
+          right: "5%",
+          background: "radial-gradient(circle, hsl(var(--secondary) / 0.5) 0%, transparent 70%)",
+          y: orb2Y,
         }}
         animate={{
-          x: [0, -40, 30, 0],
-          y: [0, 30, -40, 0],
-          scale: [1, 0.9, 1.1, 1],
+          x: [0, -50, 30, 0],
+          y: [0, 60, -50, 0],
+          scale: [1, 0.85, 1.15, 1],
         }}
         transition={{
-          duration: 12,
-          repeat: Infinity,
-          ease: "easeInOut",
-          delay: 1,
-        }}
-      />
-
-      <motion.div
-        className="absolute bottom-1/4 left-1/3 w-72 h-72 rounded-full opacity-15"
-        style={{
-          background:
-            "radial-gradient(circle, hsl(var(--tertiary) / 0.3) 0%, transparent 70%)",
-        }}
-        animate={{
-          x: [0, 30, -50, 0],
-          y: [0, -30, 20, 0],
-          scale: [1, 1.15, 0.9, 1],
-        }}
-        transition={{
-          duration: 18,
+          duration: 20,
           repeat: Infinity,
           ease: "easeInOut",
           delay: 2,
         }}
       />
 
-      {/* Grid pattern overlay - muito sutil para textura */}
-      <div
-        className="absolute inset-0 opacity-[0.015]"
+      {/* Aurora Orb 3 - Tertiary (center) */}
+      <motion.div
+        className="aurora-orb w-[700px] h-[700px] opacity-20"
         style={{
-          backgroundImage: `
-            linear-gradient(hsl(var(--foreground)) 1px, transparent 1px),
-            linear-gradient(90deg, hsl(var(--foreground)) 1px, transparent 1px)
-          `,
-          backgroundSize: "80px 80px",
+          top: "40%",
+          left: "30%",
+          background: "radial-gradient(circle, hsl(var(--tertiary) / 0.4) 0%, transparent 70%)",
+          y: orb3Y,
+        }}
+        animate={{
+          x: [0, 40, -60, 0],
+          y: [0, -40, 60, 0],
+          scale: [1, 1.1, 0.95, 1],
+        }}
+        transition={{
+          duration: 30,
+          repeat: Infinity,
+          ease: "easeInOut",
+          delay: 4,
+        }}
+      />
+
+      {/* Aurora Orb 4 - Primary/Secondary blend (bottom) */}
+      <motion.div
+        className="aurora-orb w-[550px] h-[550px] opacity-25"
+        style={{
+          bottom: "10%",
+          right: "20%",
+          background: "radial-gradient(circle, hsl(var(--primary) / 0.3) 0%, hsl(var(--secondary) / 0.2) 50%, transparent 70%)",
+          y: orb4Y,
+        }}
+        animate={{
+          x: [0, -30, 50, 0],
+          y: [0, 40, -30, 0],
+          scale: [1, 0.95, 1.1, 1],
+        }}
+        transition={{
+          duration: 22,
+          repeat: Infinity,
+          ease: "easeInOut",
+          delay: 6,
+        }}
+      />
+
+      {/* Smaller accent orbs */}
+      <motion.div
+        className="aurora-orb w-[300px] h-[300px] opacity-20"
+        style={{
+          top: "70%",
+          left: "5%",
+          background: "radial-gradient(circle, hsl(var(--tertiary) / 0.5) 0%, transparent 70%)",
+        }}
+        animate={{
+          x: [0, 20, -20, 0],
+          y: [0, -30, 20, 0],
+          scale: [1, 1.2, 0.9, 1],
+        }}
+        transition={{
+          duration: 18,
+          repeat: Infinity,
+          ease: "easeInOut",
+          delay: 8,
+        }}
+      />
+
+      {/* Noise texture overlay - muito sutil */}
+      <div 
+        className="absolute inset-0 opacity-[0.02] pointer-events-none"
+        style={{
+          backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E")`,
         }}
       />
     </div>

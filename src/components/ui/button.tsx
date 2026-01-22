@@ -5,75 +5,121 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 
 /* =============================================================================
-   Button Component - Material 3 Expressive
+   Button Component - iOS 26 Liquid Glass
    
-   Variantes seguindo M3 guidelines:
-   - filled: ação primária, usa cor primary
-   - tonal: ação secundária, usa surface-container com cor primary
-   - outlined: ação terciária, borda visível
-   - text: ação de menor ênfase
-   - elevated: com sombra sutil (M3 elevation)
-   
-   ACESSIBILIDADE:
-   - Todos os botões têm focus-visible ring para navegação por teclado
-   - Contraste mínimo de 4.5:1 (WCAG AA)
-   - Estado disabled com opacity reduzida e pointer-events desabilitado
+   Botões com estilo "Transparent Liquid Glass":
+   - Parecem feitos de vidro cristalino ou água
+   - Sem cores de fundo sólidas
+   - Box-shadow interno branco para simular reflexo de luz (specular)
+   - Hover intensifica o brilho
+   - Formato pill (rounded-full)
+   - Animações spring para feedback tátil
    ============================================================================= */
 
 const buttonVariants = cva(
-  /* Base styles: rounded-2xl para M3 Expressive, transições suaves */
-  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-2xl text-sm font-medium ring-offset-background transition-all duration-300 ease-m3-emphasized focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
+  /* Base: rounded-full (pill), glass backdrop, transições spring */
+  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-full text-sm font-medium ring-offset-background transition-all duration-300 ease-spring focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
   {
     variants: {
       variant: {
-        /* M3 Filled Button: Ação primária de maior destaque
-           Usa cor primary com foreground contrastante */
-        default:
-          "bg-primary text-primary-foreground hover:bg-primary/90 hover:shadow-elevation-2 active:scale-[0.98]",
+        /* Liquid Glass Primary - vidro com tom primário */
+        default: [
+          "bg-white/[0.08] text-foreground",
+          "border border-white/[0.12]",
+          "shadow-[inset_0_1px_1px_0_hsl(0_0%_100%/0.15),0_0_0_1px_hsl(0_0%_0%/0.05)]",
+          "backdrop-blur-xl",
+          "hover:bg-white/[0.15]",
+          "hover:shadow-[inset_0_1px_2px_0_hsl(0_0%_100%/0.25),0_4px_20px_-4px_hsl(var(--primary)/0.3)]",
+          "hover:border-white/[0.2]",
+          "active:scale-[0.97]",
+        ].join(" "),
 
-        /* M3 Tonal Button: Ação secundária
-           Background sutil com cor primária no texto */
-        tonal:
-          "bg-primary/15 text-primary hover:bg-primary/25 active:scale-[0.98]",
+        /* Liquid Glass Tonal - com cor primária sutil */
+        tonal: [
+          "bg-primary/[0.1] text-primary",
+          "border border-primary/[0.15]",
+          "shadow-[inset_0_1px_1px_0_hsl(var(--primary)/0.2)]",
+          "backdrop-blur-xl",
+          "hover:bg-primary/[0.18]",
+          "hover:shadow-[inset_0_1px_2px_0_hsl(var(--primary)/0.3),0_4px_20px_-4px_hsl(var(--primary)/0.4)]",
+          "active:scale-[0.97]",
+        ].join(" "),
 
-        /* M3 Outlined Button: Ação terciária
-           Borda visível, fundo transparente */
-        outline:
-          "border border-outline bg-transparent text-foreground hover:bg-primary/8 hover:border-primary/50 active:scale-[0.98]",
+        /* Liquid Glass Outline - apenas borda de luz */
+        outline: [
+          "bg-transparent text-foreground",
+          "border border-white/[0.15]",
+          "shadow-[inset_0_1px_1px_0_hsl(0_0%_100%/0.1)]",
+          "hover:bg-white/[0.05]",
+          "hover:border-white/[0.25]",
+          "hover:shadow-[inset_0_1px_2px_0_hsl(0_0%_100%/0.2)]",
+          "active:scale-[0.97]",
+        ].join(" "),
 
-        /* M3 Text Button: Menor ênfase
-           Sem fundo, apenas texto com hover state */
-        ghost: "hover:bg-primary/8 hover:text-primary active:scale-[0.98]",
+        /* Ghost - mínimo, apenas hover state */
+        ghost: [
+          "bg-transparent text-foreground",
+          "hover:bg-white/[0.05]",
+          "active:scale-[0.97]",
+        ].join(" "),
 
-        /* M3 Elevated Button: Com sombra
-           Para dar mais destaque que outlined mas menos que filled */
-        elevated:
-          "bg-surface-container text-foreground shadow-elevation-1 hover:shadow-elevation-2 hover:bg-surface-container-high active:scale-[0.98]",
-
-        /* Destructive: Para ações perigosas */
-        destructive:
-          "bg-destructive text-destructive-foreground hover:bg-destructive/90 active:scale-[0.98]",
+        /* Destructive - liquid glass vermelho */
+        destructive: [
+          "bg-destructive/[0.15] text-destructive",
+          "border border-destructive/[0.2]",
+          "shadow-[inset_0_1px_1px_0_hsl(var(--destructive)/0.2)]",
+          "backdrop-blur-xl",
+          "hover:bg-destructive/[0.25]",
+          "hover:shadow-[inset_0_1px_2px_0_hsl(var(--destructive)/0.3),0_4px_20px_-4px_hsl(var(--destructive)/0.4)]",
+          "active:scale-[0.97]",
+        ].join(" "),
 
         /* Link style */
         link: "text-primary underline-offset-4 hover:underline",
 
-        /* Hero variants: CTAs principais do portfolio
-           Gradiente expressivo com glow effect */
-        hero: "bg-gradient-to-r from-primary to-secondary text-primary-foreground font-semibold shadow-elevation-3 hover:shadow-glow-primary hover:scale-[1.02] active:scale-[0.98]",
+        /* Hero CTA - Liquid glass com glow Aurora */
+        hero: [
+          "bg-white/[0.08] text-foreground font-semibold",
+          "border border-white/[0.15]",
+          "shadow-[inset_0_1px_2px_0_hsl(0_0%_100%/0.2),0_0_20px_-5px_hsl(var(--primary)/0.3)]",
+          "backdrop-blur-xl",
+          "hover:bg-white/[0.15]",
+          "hover:border-white/[0.25]",
+          "hover:shadow-[inset_0_2px_4px_0_hsl(0_0%_100%/0.3),0_0_40px_-5px_hsl(var(--primary)/0.5)]",
+          "hover:scale-[1.03]",
+          "active:scale-[0.97]",
+        ].join(" "),
 
-        /* Hero Outlined: CTA secundário */
-        heroOutline:
-          "border-2 border-primary bg-transparent text-primary hover:bg-primary/10 hover:scale-[1.02] font-semibold active:scale-[0.98]",
+        /* Hero Outline - CTA secundário */
+        heroOutline: [
+          "bg-transparent text-foreground font-semibold",
+          "border-2 border-white/[0.2]",
+          "shadow-[inset_0_1px_1px_0_hsl(0_0%_100%/0.15)]",
+          "hover:bg-white/[0.08]",
+          "hover:border-white/[0.35]",
+          "hover:shadow-[inset_0_1px_2px_0_hsl(0_0%_100%/0.25),0_0_30px_-5px_hsl(var(--secondary)/0.4)]",
+          "hover:scale-[1.03]",
+          "active:scale-[0.97]",
+        ].join(" "),
 
-        /* Glow variant: Para elementos de destaque especial */
-        glow: "bg-primary text-primary-foreground font-semibold shadow-glow-primary hover:shadow-glow-secondary hover:scale-[1.02] active:scale-[0.98]",
+        /* Glow - destaque especial com aurora glow */
+        glow: [
+          "bg-white/[0.1] text-foreground font-semibold",
+          "border border-white/[0.2]",
+          "shadow-[inset_0_1px_2px_0_hsl(0_0%_100%/0.25),0_0_30px_-5px_hsl(var(--primary)/0.4)]",
+          "backdrop-blur-xl",
+          "hover:bg-white/[0.18]",
+          "hover:shadow-[inset_0_2px_4px_0_hsl(0_0%_100%/0.35),0_0_50px_-5px_hsl(var(--primary)/0.6)]",
+          "hover:scale-[1.03]",
+          "active:scale-[0.97]",
+        ].join(" "),
       },
       size: {
-        default: "h-10 px-5 py-2",
-        sm: "h-9 rounded-xl px-4 text-xs",
-        lg: "h-12 rounded-2xl px-8 text-base",
-        xl: "h-14 rounded-2xl px-10 text-lg",
-        icon: "h-10 w-10 rounded-xl",
+        default: "h-11 px-6 py-2",
+        sm: "h-9 px-4 text-xs",
+        lg: "h-13 px-8 text-base",
+        xl: "h-14 px-10 text-lg",
+        icon: "h-11 w-11",
       },
     },
     defaultVariants: {
