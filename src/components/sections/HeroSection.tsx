@@ -58,7 +58,11 @@ export const HeroSection = () => {
             }}
             className="text-4xl sm:text-5xl md:text-7xl font-semibold mb-6 tracking-tight"
           >
+<<<<<<< HEAD
             <span className="text-foreground font-light">Olá! Eu sou</span>
+=======
+            <span className="text-foreground font-light">Olá! eu sou</span>
+>>>>>>> 1d2048efc2af3961229813392027c5c239edd5bf
             <br />
             <span className="gradient-text">Ubirajara Filho</span>
           </motion.h1>
