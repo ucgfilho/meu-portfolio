@@ -101,12 +101,8 @@ export const ContactSection = () => {
           {/* Contact links grid - M3 Cards */}
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {contactLinks.map((link, index) => (
-              <motion.a
+              <motion.div
                 key={link.name}
-                href={link.href}
-                target={link.href.startsWith("mailto") ? undefined : "_blank"}
-                rel="noopener noreferrer"
-                aria-label={`Contato via ${link.name}`}
                 initial={{ opacity: 0, y: 30 }}
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
                 transition={{
@@ -114,38 +110,44 @@ export const ContactSection = () => {
                   delay: 0.1 * index,
                   ease: [0, 0, 0, 1],
                 }}
-                style={{
-                  backgroundColor: "hsl(var(--surface-container))",
-                  borderColor: "hsl(var(--border) / 0.3)",
-                }}
-                className="rounded-2xl p-6 border transition-all duration-75 group"
-                whileHover={{
-                  scale: 1.03,
-                  y: -4,
-                  backgroundColor: link.color,
-                  borderColor: link.color,
-                  transition: { duration: 0.05 },
-                }}
-                whileTap={{
-                  scale: 0.98,
-                  backgroundColor: link.activeColor,
-                  borderColor: link.activeColor,
-                  transition: { duration: 0.05 },
-                }}
-                /* M3 Filled Card */
-                className="rounded-2xl p-6 border transition-all duration-75 group"
               >
-                {/* Icon container - M3 style with primary tonal */}
-                <div className="w-12 h-12 rounded-xl bg-primary/12 flex items-center justify-center mb-4 mx-auto group-hover:bg-white/20 group-hover:scale-105 transition-all duration-75">
-                  <link.icon className="w-6 h-6 text-primary group-hover:text-white transition-colors duration-75" />
-                </div>
-                <h3 className="font-semibold text-foreground mb-1 group-hover:text-white transition-colors duration-75">
-                  {link.name}
-                </h3>
-                <p className="text-xs text-muted-foreground truncate group-hover:text-white/90 transition-colors duration-75">
-                  {link.description}
-                </p>
-              </motion.a>
+                <motion.a
+                  href={link.href}
+                  target={link.href.startsWith("mailto") ? undefined : "_blank"}
+                  rel="noopener noreferrer"
+                  aria-label={`Contato via ${link.name}`}
+                  style={{
+                    backgroundColor: "hsl(var(--surface-container))",
+                    borderColor: "hsl(var(--border) / 0.3)",
+                  }}
+                  className="rounded-2xl p-6 border transition-all duration-75 group block h-full"
+                  transition={{ duration: 0.2 }}
+                  whileHover={{
+                    scale: 1.05,
+                    y: -4,
+                    backgroundColor: link.color,
+                    borderColor: link.color,
+                    color: "#ffffff",
+                    boxShadow: `inset 0 1px 2px 0 hsl(0 0% 100% / 0.2), 0 8px 25px -5px ${link.color}80`,
+                  }}
+                  whileTap={{
+                    scale: 0.95,
+                    backgroundColor: link.activeColor,
+                    borderColor: link.activeColor,
+                  }}
+                >
+                  {/* Icon container - M3 style with primary tonal */}
+                  <div className="w-12 h-12 rounded-xl bg-primary/12 flex items-center justify-center mb-4 mx-auto group-hover:bg-white/20 group-hover:scale-105 transition-all duration-75">
+                    <link.icon className="w-6 h-6 text-primary group-hover:text-white transition-colors duration-75" />
+                  </div>
+                  <h3 className="font-semibold text-foreground mb-1 group-hover:text-white transition-colors duration-75">
+                    {link.name}
+                  </h3>
+                  <p className="text-xs text-muted-foreground truncate group-hover:text-white/90 transition-colors duration-75">
+                    {link.description}
+                  </p>
+                </motion.a>
+              </motion.div>
             ))}
           </div>
 

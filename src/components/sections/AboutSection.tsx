@@ -33,8 +33,6 @@ export const AboutSection = () => {
             className="relative group order-first"
           >
             <div className="relative rounded-3xl overflow-hidden border border-border/50 shadow-elevation-3 aspect-[3/4] max-w-sm mx-auto lg:mx-0">
-              {/* Hover overlay - M3 state layer */}
-              <div className="absolute inset-0 bg-gradient-to-tr from-primary/10 to-secondary/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 ease-m3-emphasized z-10" />
               <img
                 src="/images/profile-photo.png"
                 alt="Foto de Ubirajara Filho - Analista de QA"
@@ -71,11 +69,15 @@ export const AboutSection = () => {
                   {" "}
                   automação de testes
                 </span>
-                ,{" "}
-                <span className="text-secondary font-medium">
-                  práticas DevOps
+                <span className="text-primary font-medium">
+                  , práticas DevOps
                 </span>{" "}
-                e implementação de cultura de qualidade desde o planejamento.
+                e implementação da
+                <span className="text-primary font-medium">
+                  {" "}
+                  cultura de qualidade
+                </span>{" "}
+                desde o planejamento.
               </p>
               <p className="text-lg text-muted-foreground leading-relaxed">
                 Atualmente cursando{" "}

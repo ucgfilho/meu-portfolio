@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 /* =============================================================================
    AnimatedBackground - iOS 26 Liquid Glass
@@ -7,10 +8,47 @@ import { motion } from "framer-motion";
    - Deep Space Black background
    - Aurora Borealis orbs com gradientes animados e muito desfocados
    - Background fixo (não acompanha o scroll)
-   - Movimento orgânico e fluido
+   - Otimizado para mobile (remove animações pesadas)
    ============================================================================= */
 
 export const AnimatedBackground = () => {
+  const isMobile = useIsMobile();
+
+  // Mobile: Versão estática e leve para evitar travamentos
+  if (isMobile) {
+    return (
+      <div className="aurora-background">
+        {/* Deep space base */}
+        <div className="absolute inset-0 bg-background" />
+
+        {/* Static gradients for mobile */}
+        <div className="absolute top-0 left-0 w-full h-[50%] bg-gradient-to-b from-primary/10 to-transparent blur-3xl opacity-30" />
+        <div className="absolute bottom-0 right-0 w-full h-[50%] bg-gradient-to-t from-secondary/10 to-transparent blur-3xl opacity-30" />
+
+        {/* Simple Orb 1 */}
+        <div
+          className="absolute top-[10%] left-[10%] w-[300px] h-[300px] rounded-full blur-[80px] opacity-20"
+          style={{ background: "hsl(var(--primary))" }}
+        />
+
+        {/* Simple Orb 2 */}
+        <div
+          className="absolute bottom-[20%] right-[5%] w-[250px] h-[250px] rounded-full blur-[80px] opacity-15"
+          style={{ background: "hsl(var(--secondary))" }}
+        />
+
+        {/* Noise texture overlay */}
+        <div
+          className="absolute inset-0 opacity-[0.02] pointer-events-none"
+          style={{
+            backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E")`,
+          }}
+        />
+      </div>
+    );
+  }
+
+  // Desktop: Versão animada completa
   return (
     <div className="aurora-background">
       {/* Deep space base */}
@@ -125,7 +163,7 @@ export const AnimatedBackground = () => {
         }}
       />
 
-      {/* Noise texture overlay - muito sutil */}
+      {/* Noise texture overlay */}
       <div
         className="absolute inset-0 opacity-[0.02] pointer-events-none"
         style={{

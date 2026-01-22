@@ -45,23 +45,23 @@ export const HeroSection = () => {
             <span className="text-sm text-tertiary font-medium tracking-wide">
               Disponível para novas oportunidades
             </span>
-</motion.div>
+          </motion.div>
 
-{/* Nome - Display com gradient Aurora */}
-<motion.h1
-  initial={{ opacity: 0, y: 40, scale: 0.95 }}
-  animate={{ opacity: 1, y: 0, scale: 1 }}
-  transition={{
-    duration: 1,
-    delay: 0.15,
-    ease: [0.34, 1.56, 0.64, 1],
-  }}
-  className="text-4xl sm:text-5xl md:text-7xl font-semibold mb-6 tracking-tight"
->
-  <span className="text-foreground font-light">Olá! Eu sou</span>
-  <br />
-  <span className="gradient-text">Ubirajara Filho</span>
-</motion.h1>
+          {/* Nome - Display com gradient Aurora */}
+          <motion.h1
+            initial={{ opacity: 0, y: 40, scale: 0.95 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            transition={{
+              duration: 1,
+              delay: 0.15,
+              ease: [0.34, 1.56, 0.64, 1],
+            }}
+            className="text-4xl sm:text-5xl md:text-7xl font-semibold mb-6 tracking-tight"
+          >
+            <span className="text-foreground font-light">Olá! Eu sou</span>
+            <br />
+            <span className="gradient-text">Ubirajara Filho</span>
+          </motion.h1>
 
           {/* Título e descrição */}
           <motion.div
@@ -144,34 +144,8 @@ export const HeroSection = () => {
                 activeColor: "#e24329",
               },
             ].map((social, index) => (
-              <motion.a
+              <motion.div
                 key={social.label}
-                href={social.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={`Visitar perfil no ${social.label}`}
-                className="p-4 rounded-2xl text-muted-foreground transition-all duration-75 relative group"
-                style={{
-                  background: "hsl(0 0% 100% / 0.05)",
-                  border: "1px solid hsl(0 0% 100% / 0.1)",
-                  backdropFilter: "blur(20px)",
-                  boxShadow: "inset 0 1px 1px 0 hsl(0 0% 100% / 0.1)",
-                }}
-                whileHover={{
-                  scale: 1.1,
-                  y: -4,
-                  backgroundColor: social.color,
-                  color: "#ffffff",
-                  borderColor: social.color,
-                  boxShadow: `inset 0 1px 2px 0 hsl(0 0% 100% / 0.2), 0 8px 25px -5px ${social.color}80`, // 80 is roughly 50% opacity hex
-                  transition: { duration: 0.05 },
-                }}
-                whileTap={{
-                  scale: 0.95,
-                  backgroundColor: social.activeColor,
-                  borderColor: social.activeColor,
-                  transition: { duration: 0.05 },
-                }}
                 initial={{ opacity: 0, scale: 0, y: 20 }}
                 animate={{ opacity: 1, scale: 1, y: 0 }}
                 transition={{
@@ -181,8 +155,36 @@ export const HeroSection = () => {
                   damping: 20,
                 }}
               >
-                <social.icon className="w-5 h-5" />
-              </motion.a>
+                <motion.a
+                  href={social.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`Visitar perfil no ${social.label}`}
+                  className="p-4 rounded-2xl text-muted-foreground transition-all duration-75 relative group block"
+                  style={{
+                    background: "hsl(0 0% 100% / 0.05)",
+                    border: "1px solid hsl(0 0% 100% / 0.1)",
+                    backdropFilter: "blur(20px)",
+                    boxShadow: "inset 0 1px 1px 0 hsl(0 0% 100% / 0.1)",
+                  }}
+                  transition={{ duration: 0.2 }}
+                  whileHover={{
+                    scale: 1.05,
+                    y: -4,
+                    backgroundColor: social.color,
+                    color: "#ffffff",
+                    borderColor: social.color,
+                    boxShadow: `inset 0 1px 2px 0 hsl(0 0% 100% / 0.2), 0 8px 25px -5px ${social.color}80`, // 80 is roughly 50% opacity hex
+                  }}
+                  whileTap={{
+                    scale: 0.95,
+                    backgroundColor: social.activeColor,
+                    borderColor: social.activeColor,
+                  }}
+                >
+                  <social.icon className="w-5 h-5" />
+                </motion.a>
+              </motion.div>
             ))}
           </motion.div>
         </div>

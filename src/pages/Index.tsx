@@ -1,6 +1,5 @@
 import { lazy, Suspense } from "react";
 import { AnimatedBackground } from "@/components/AnimatedBackground";
-import { ThemeToggle } from "@/components/ThemeToggle";
 import { Navigation } from "@/components/Navigation";
 import { ScrollToTop } from "@/components/ScrollToTop";
 
@@ -54,7 +53,6 @@ const Index = () => {
   return (
     <div className="min-h-screen relative">
       <AnimatedBackground />
-      <ThemeToggle />
       <Navigation />
       <ScrollToTop />
 

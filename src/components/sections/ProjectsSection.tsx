@@ -194,21 +194,20 @@ export const ProjectsSection = () => {
                 backdropFilter: "blur(20px)",
                 boxShadow: "inset 0 1px 1px 0 hsl(0 0% 100% / 0.1)",
               }}
-              transition={{ duration: 0.05 }}
+              transition={{ duration: 0.2 }}
               whileHover={{
                 scale: 1.05,
+                y: -4,
                 backgroundColor: "#333333",
                 borderColor: "#333333",
                 color: "#ffffff",
                 boxShadow:
-                  "inset 0 1px 2px 0 hsl(0 0% 100% / 0.2), 0 8px 30px -5px rgba(51, 51, 51, 0.5)",
-                transition: { duration: 0.05 },
+                  "inset 0 1px 2px 0 hsl(0 0% 100% / 0.2), 0 8px 25px -5px rgba(51, 51, 51, 0.5)",
               }}
               whileTap={{
-                scale: 0.97,
+                scale: 0.95,
                 backgroundColor: "#1a1a1a",
                 borderColor: "#1a1a1a",
-                transition: { duration: 0.05 },
               }}
             >
               <Github className="w-5 h-5 transition-colors duration-75 group-hover:text-white" />
