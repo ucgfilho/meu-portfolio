@@ -68,9 +68,10 @@ export const AboutSection = () => {
                 <span className="text-primary font-medium">
                   {" "}
                   automação de testes
-                </span>
+                </span>,
                 <span className="text-primary font-medium">
-                  , práticas DevOps
+                  {" "}
+                  práticas de DevOps
                 </span>{" "}
                 e implementação da
                 <span className="text-primary font-medium">
