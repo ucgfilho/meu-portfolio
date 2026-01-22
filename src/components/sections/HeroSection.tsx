@@ -45,27 +45,23 @@ export const HeroSection = () => {
             <span className="text-sm text-tertiary font-medium tracking-wide">
               Disponível para novas oportunidades
             </span>
-          </motion.div>
+</motion.div>
 
-          {/* Nome - Display com gradient Aurora */}
-          <motion.h1
-            initial={{ opacity: 0, y: 40, scale: 0.95 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            transition={{
-              duration: 1,
-              delay: 0.15,
-              ease: [0.34, 1.56, 0.64, 1],
-            }}
-            className="text-4xl sm:text-5xl md:text-7xl font-semibold mb-6 tracking-tight"
-          >
-<<<<<<< HEAD
-            <span className="text-foreground font-light">Olá! Eu sou</span>
-=======
-            <span className="text-foreground font-light">Olá! eu sou</span>
->>>>>>> 1d2048efc2af3961229813392027c5c239edd5bf
-            <br />
-            <span className="gradient-text">Ubirajara Filho</span>
-          </motion.h1>
+{/* Nome - Display com gradient Aurora */}
+<motion.h1
+  initial={{ opacity: 0, y: 40, scale: 0.95 }}
+  animate={{ opacity: 1, y: 0, scale: 1 }}
+  transition={{
+    duration: 1,
+    delay: 0.15,
+    ease: [0.34, 1.56, 0.64, 1],
+  }}
+  className="text-4xl sm:text-5xl md:text-7xl font-semibold mb-6 tracking-tight"
+>
+  <span className="text-foreground font-light">Olá! Eu sou</span>
+  <br />
+  <span className="gradient-text">Ubirajara Filho</span>
+</motion.h1>
 
           {/* Título e descrição */}
           <motion.div
@@ -161,7 +157,6 @@ export const HeroSection = () => {
                   backdropFilter: "blur(20px)",
                   boxShadow: "inset 0 1px 1px 0 hsl(0 0% 100% / 0.1)",
                 }}
-                transition={{ duration: 0.05 }}
                 whileHover={{
                   scale: 1.1,
                   y: -4,
