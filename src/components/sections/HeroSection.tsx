@@ -208,7 +208,7 @@ export const HeroSection = () => {
           className="flex flex-col items-center gap-2 text-muted-foreground hover:text-foreground transition-colors duration-300"
         >
           <span className="text-xs font-light tracking-widest uppercase">
-            Scroll
+            Role para baixo
           </span>
           <ArrowDown className="w-4 h-4" />
         </motion.a>
