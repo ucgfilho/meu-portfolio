@@ -1,14 +1,11 @@
 import type { Config } from "tailwindcss";
 
 /* =============================================================================
-   Tailwind Config - Material 3 Expressive Design System
+   Tailwind Config - iOS 26 Liquid Glass Design System
    
-   Este arquivo configura o Tailwind CSS para seguir as diretrizes do
-   Material 3 Expressive, incluindo:
-   - Tokens de cor semânticos (primary, secondary, tertiary, surface levels)
-   - Tipografia SF Pro com hierarquia clara
-   - Border radius expressivos (M3 usa cantos mais arredondados)
-   - Animações seguindo M3 Motion guidelines
+   - Animações com física Spring (mola) estilo Apple
+   - Transições elásticas e fluidas
+   - Tokens de cor para glassmorphism
    ============================================================================= */
 
 export default {
@@ -30,10 +27,7 @@ export default {
     },
     extend: {
       /* -----------------------------------------------------------------------
-         Cores - Material 3 Expressive Token System
-         
-         Organização semântica: primary, secondary, tertiary para ações e destaques
-         Surface hierarchy para criar profundidade visual sem sombras pesadas
+         Cores - iOS 26 Liquid Glass Token System
          ----------------------------------------------------------------------- */
       colors: {
         border: "hsl(var(--border))",
@@ -42,19 +36,16 @@ export default {
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
 
-        /* Primary: cor principal para CTAs e elementos de destaque */
         primary: {
           DEFAULT: "hsl(var(--primary))",
           foreground: "hsl(var(--primary-foreground))",
         },
 
-        /* Secondary: cor complementar para ações secundárias */
         secondary: {
           DEFAULT: "hsl(var(--secondary))",
           foreground: "hsl(var(--secondary-foreground))",
         },
 
-        /* Tertiary: cor expressiva para personalidade (M3 Expressive) */
         tertiary: {
           DEFAULT: "hsl(var(--tertiary))",
           foreground: "hsl(var(--tertiary-foreground))",
@@ -85,8 +76,6 @@ export default {
           foreground: "hsl(var(--card-foreground))",
         },
 
-        /* Surface Hierarchy - M3 Tonal Elevation
-           Superfícies usam variação de tonalidade para indicar elevação */
         surface: {
           DEFAULT: "hsl(var(--surface))",
           dim: "hsl(var(--surface-dim))",
@@ -98,7 +87,6 @@ export default {
           "container-highest": "hsl(var(--surface-container-highest))",
         },
 
-        /* Outline colors para bordas e divisores */
         outline: {
           DEFAULT: "hsl(var(--outline))",
           variant: "hsl(var(--outline-variant))",
@@ -106,27 +94,20 @@ export default {
       },
 
       /* -----------------------------------------------------------------------
-         Border Radius - M3 Expressive
-         
-         Material 3 Expressive usa cantos mais arredondados para criar
-         uma linguagem visual mais suave e expressiva.
+         Border Radius - Liquid glass curves
          ----------------------------------------------------------------------- */
       borderRadius: {
-        "4xl": "2rem",
-        "3xl": "1.5rem",
-        "2xl": "1rem",
-        xl: "0.875rem",
+        "4xl": "2.5rem",
+        "3xl": "2rem",
+        "2xl": "1.25rem",
+        xl: "1rem",
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
       },
 
       /* -----------------------------------------------------------------------
-         Tipografia - SF Pro (San Francisco)
-         
-         SF Pro é otimizada para legibilidade em interfaces digitais.
-         - Display: para títulos grandes
-         - Text: para corpo de texto
+         Tipografia - SF Pro com tracking leve
          ----------------------------------------------------------------------- */
       fontFamily: {
         sans: [
@@ -141,12 +122,17 @@ export default {
         mono: ['"SF Mono"', '"JetBrains Mono"', '"Fira Code"', "monospace"],
       },
 
+      letterSpacing: {
+        tighter: "-0.02em",
+        tight: "-0.01em",
+        wide: "0.01em",
+        wider: "0.02em",
+      },
+
       /* -----------------------------------------------------------------------
-         Keyframes - M3 Motion Guidelines
+         Keyframes - Spring Physics (Apple-style)
          
-         Material 3 define curvas de easing específicas:
-         - emphasized: cubic-bezier(0.4, 0, 0.2, 1) - transições principais
-         - standard: cubic-bezier(0.2, 0, 0, 1) - maioria das animações
+         Animações com sensação elástica e fluida usando curvas spring
          ----------------------------------------------------------------------- */
       keyframes: {
         "accordion-down": {
@@ -157,81 +143,102 @@ export default {
           from: { height: "var(--radix-accordion-content-height)" },
           to: { height: "0" },
         },
-        /* Fade in com movimento sutil - entrada de elementos */
+        /* Fade in com spring bounce */
         "fade-in-up": {
-          "0%": { opacity: "0", transform: "translateY(16px)" },
-          "100%": { opacity: "1", transform: "translateY(0)" },
+          "0%": { opacity: "0", transform: "translateY(24px) scale(0.96)" },
+          "100%": { opacity: "1", transform: "translateY(0) scale(1)" },
         },
-        /* Fade in lateral - para listas e cards */
         "fade-in-right": {
-          "0%": { opacity: "0", transform: "translateX(-16px)" },
-          "100%": { opacity: "1", transform: "translateX(0)" },
+          "0%": { opacity: "0", transform: "translateX(-24px) scale(0.96)" },
+          "100%": { opacity: "1", transform: "translateX(0) scale(1)" },
         },
-        /* Scale in - para modais e popovers */
+        /* Scale in com spring */
         "scale-in": {
-          "0%": { opacity: "0", transform: "scale(0.95)" },
+          "0%": { opacity: "0", transform: "scale(0.9)" },
           "100%": { opacity: "1", transform: "scale(1)" },
         },
-        /* Pulse suave - para indicadores de status */
+        /* Pulse suave - aurora breathing */
         "pulse-soft": {
-          "0%, 100%": { opacity: "1" },
-          "50%": { opacity: "0.7" },
+          "0%, 100%": { opacity: "1", transform: "scale(1)" },
+          "50%": { opacity: "0.7", transform: "scale(1.02)" },
         },
-        /* Float - movimento sutil contínuo */
+        /* Float - movimento orgânico */
         float: {
-          "0%, 100%": { transform: "translateY(0)" },
-          "50%": { transform: "translateY(-8px)" },
+          "0%, 100%": { transform: "translateY(0) rotate(0deg)" },
+          "33%": { transform: "translateY(-10px) rotate(1deg)" },
+          "66%": { transform: "translateY(-5px) rotate(-1deg)" },
         },
-        /* Gradient shift - para backgrounds animados */
-        "gradient-shift": {
-          "0%": { backgroundPosition: "0% 50%" },
-          "50%": { backgroundPosition: "100% 50%" },
-          "100%": { backgroundPosition: "0% 50%" },
+        /* Aurora orb movement - muito suave */
+        "aurora-drift": {
+          "0%": { transform: "translate(0, 0) scale(1)" },
+          "25%": { transform: "translate(30px, -40px) scale(1.1)" },
+          "50%": { transform: "translate(-20px, -60px) scale(0.95)" },
+          "75%": { transform: "translate(-40px, -20px) scale(1.05)" },
+          "100%": { transform: "translate(0, 0) scale(1)" },
         },
-        /* Shimmer - efeito de carregamento */
+        /* Shimmer - reflexo de luz */
         shimmer: {
           "0%": { backgroundPosition: "-200% 0" },
           "100%": { backgroundPosition: "200% 0" },
         },
+        /* Glow pulse - brilho pulsante */
+        "glow-pulse": {
+          "0%, 100%": { opacity: "0.5", filter: "blur(60px)" },
+          "50%": { opacity: "0.8", filter: "blur(80px)" },
+        },
       },
 
       /* -----------------------------------------------------------------------
-         Animations - Combinação de keyframes com timing M3
+         Animations - Spring timing com sensação elástica
          ----------------------------------------------------------------------- */
       animation: {
-        "accordion-down": "accordion-down 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
-        "accordion-up": "accordion-up 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
-        "fade-in-up": "fade-in-up 0.5s cubic-bezier(0, 0, 0, 1) forwards",
-        "fade-in-right": "fade-in-right 0.5s cubic-bezier(0, 0, 0, 1) forwards",
-        "scale-in": "scale-in 0.2s cubic-bezier(0, 0, 0, 1) forwards",
-        "pulse-soft": "pulse-soft 2s cubic-bezier(0.4, 0, 0.6, 1) infinite",
-        float: "float 3s ease-in-out infinite",
-        "gradient-shift": "gradient-shift 8s ease infinite",
+        "accordion-down": "accordion-down 0.4s cubic-bezier(0.34, 1.56, 0.64, 1)",
+        "accordion-up": "accordion-up 0.4s cubic-bezier(0.34, 1.56, 0.64, 1)",
+        "fade-in-up": "fade-in-up 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards",
+        "fade-in-right": "fade-in-right 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards",
+        "scale-in": "scale-in 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards",
+        "pulse-soft": "pulse-soft 3s cubic-bezier(0.4, 0, 0.6, 1) infinite",
+        float: "float 6s ease-in-out infinite",
+        "aurora-drift": "aurora-drift 20s ease-in-out infinite",
         shimmer: "shimmer 2s linear infinite",
+        "glow-pulse": "glow-pulse 4s ease-in-out infinite",
       },
 
       /* -----------------------------------------------------------------------
-         Box Shadow - M3 Elevation Levels
-         
-         Sombras sutis para dark mode, seguindo M3 elevation guidelines.
+         Box Shadow - Glass effects & glows
          ----------------------------------------------------------------------- */
       boxShadow: {
-        "elevation-1": "var(--shadow-1)",
-        "elevation-2": "var(--shadow-2)",
-        "elevation-3": "var(--shadow-3)",
-        "elevation-4": "var(--shadow-4)",
-        "elevation-5": "var(--shadow-5)",
-        "glow-primary": "var(--glow-primary)",
-        "glow-secondary": "var(--glow-secondary)",
-        "glow-tertiary": "var(--glow-tertiary)",
+        /* Glass inner glow */
+        "glass-inner": "inset 0 1px 1px 0 hsl(0 0% 100% / 0.1)",
+        "glass-inner-strong": "inset 0 2px 4px 0 hsl(0 0% 100% / 0.2)",
+        /* Outer glows */
+        "glow-sm": "0 0 20px hsl(var(--primary) / 0.2)",
+        "glow-md": "0 0 40px hsl(var(--primary) / 0.3)",
+        "glow-lg": "0 0 60px hsl(var(--primary) / 0.4)",
+        /* Aurora shadows */
+        aurora: "0 8px 32px -8px hsl(var(--primary) / 0.2), 0 0 0 1px hsl(0 0% 100% / 0.05)",
       },
 
-      /* Transition timing functions M3 */
+      /* -----------------------------------------------------------------------
+         Transition timing - Spring physics curves
+         ----------------------------------------------------------------------- */
       transitionTimingFunction: {
-        "m3-emphasized": "cubic-bezier(0.4, 0, 0.2, 1)",
-        "m3-standard": "cubic-bezier(0.2, 0, 0, 1)",
-        "m3-decelerated": "cubic-bezier(0, 0, 0, 1)",
-        "m3-accelerated": "cubic-bezier(0.3, 0, 1, 1)",
+        /* Apple-style spring curves */
+        spring: "cubic-bezier(0.34, 1.56, 0.64, 1)",
+        "spring-soft": "cubic-bezier(0.22, 1.2, 0.36, 1)",
+        "spring-bounce": "cubic-bezier(0.68, -0.55, 0.27, 1.55)",
+        /* Smooth deceleration */
+        smooth: "cubic-bezier(0.4, 0, 0.2, 1)",
+        "smooth-out": "cubic-bezier(0, 0, 0.2, 1)",
+      },
+
+      /* -----------------------------------------------------------------------
+         Backdrop blur - Glass effects
+         ----------------------------------------------------------------------- */
+      backdropBlur: {
+        glass: "40px",
+        "glass-light": "20px",
+        "glass-heavy": "60px",
       },
     },
   },

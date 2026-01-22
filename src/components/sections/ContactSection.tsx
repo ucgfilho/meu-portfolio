@@ -24,24 +24,32 @@ const contactLinks = [
     href: "https://www.linkedin.com/in/ucgfilho/",
     icon: Linkedin,
     description: "Conecte-se comigo",
+    color: "#0a66c2",
+    activeColor: "#004182",
   },
   {
     name: "GitHub",
     href: "https://github.com/ucgfilho",
     icon: Github,
     description: "Veja meus projetos",
+    color: "#333333",
+    activeColor: "#1a1a1a",
   },
   {
     name: "GitLab",
     href: "https://gitlab.com/ucgfilho",
     icon: GitLabIcon,
     description: "Mais repositórios",
+    color: "#fc6d26",
+    activeColor: "#e24329",
   },
   {
     name: "Email",
     href: "mailto:ucgf.profissional@gmail.com",
     icon: Mail,
     description: "ucgf.profissional@gmail.com",
+    color: "#EA4335", // Gmail Red
+    activeColor: "#C5221F",
   },
 ];
 
@@ -106,19 +114,35 @@ export const ContactSection = () => {
                   delay: 0.1 * index,
                   ease: [0, 0, 0, 1],
                 }}
-                whileHover={{ scale: 1.03, y: -4 }}
-                whileTap={{ scale: 0.98 }}
+                style={{
+                  backgroundColor: "hsl(var(--surface-container))",
+                  borderColor: "hsl(var(--border) / 0.3)",
+                }}
+                className="rounded-2xl p-6 border transition-all duration-75 group"
+                whileHover={{
+                  scale: 1.03,
+                  y: -4,
+                  backgroundColor: link.color,
+                  borderColor: link.color,
+                  transition: { duration: 0.05 },
+                }}
+                whileTap={{
+                  scale: 0.98,
+                  backgroundColor: link.activeColor,
+                  borderColor: link.activeColor,
+                  transition: { duration: 0.05 },
+                }}
                 /* M3 Filled Card */
-                className="rounded-2xl p-6 bg-surface-container border border-border/30 hover:bg-surface-container-high hover:border-primary/30 transition-all duration-300 ease-m3-emphasized group"
+                className="rounded-2xl p-6 border transition-all duration-75 group"
               >
                 {/* Icon container - M3 style with primary tonal */}
-                <div className="w-12 h-12 rounded-xl bg-primary/12 flex items-center justify-center mb-4 mx-auto group-hover:bg-primary/20 group-hover:scale-105 transition-all duration-300 ease-m3-emphasized">
-                  <link.icon className="w-6 h-6 text-primary" />
+                <div className="w-12 h-12 rounded-xl bg-primary/12 flex items-center justify-center mb-4 mx-auto group-hover:bg-white/20 group-hover:scale-105 transition-all duration-75">
+                  <link.icon className="w-6 h-6 text-primary group-hover:text-white transition-colors duration-75" />
                 </div>
-                <h3 className="font-semibold text-foreground mb-1 group-hover:text-primary transition-colors duration-300">
+                <h3 className="font-semibold text-foreground mb-1 group-hover:text-white transition-colors duration-75">
                   {link.name}
                 </h3>
-                <p className="text-xs text-muted-foreground truncate">
+                <p className="text-xs text-muted-foreground truncate group-hover:text-white/90 transition-colors duration-75">
                   {link.description}
                 </p>
               </motion.a>

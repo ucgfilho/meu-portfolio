@@ -11,23 +11,19 @@ import {
 } from "lucide-react";
 
 /* =============================================================================
-   SkillsSection - Material 3 Expressive
+   SkillsSection - iOS 26 Liquid Glass
    
    DESIGN:
-   - Cards usando M3 filled card style
-   - Progress bars com gradiente M3
-   - Chips para tags de tecnologias
-   
-   ACESSIBILIDADE:
-   - Barras de progresso com valores percentuais visíveis
-   - Contraste adequado em todos os elementos
+   - Cards Liquid Glass com bordas de luz
+   - Progress bars com glow aurora
+   - Chips com glassmorphism
+   - Animações spring
    ============================================================================= */
 
 const skillCategories = [
   {
     title: "Testes Funcionais",
     icon: TestTube,
-    color: "primary",
     skills: [
       { name: "Cypress", level: 90 },
       { name: "CodeceptJS", level: 85 },
@@ -38,7 +34,6 @@ const skillCategories = [
   {
     title: "Testes de API",
     icon: Wrench,
-    color: "secondary",
     skills: [
       { name: "Postman", level: 88 },
       { name: "Insomnia", level: 86 },
@@ -47,7 +42,6 @@ const skillCategories = [
   {
     title: "Relatórios Automatizados",
     icon: BarChart3,
-    color: "tertiary",
     skills: [
       { name: "Mochawesome", level: 92 },
       { name: "JUnit", level: 90 },
@@ -57,7 +51,6 @@ const skillCategories = [
   {
     title: "Linguagens",
     icon: Code2,
-    color: "primary",
     skills: [
       { name: "JavaScript", level: 100 },
       { name: "SQL", level: 72 },
@@ -67,7 +60,6 @@ const skillCategories = [
   {
     title: "DevOps & CI/CD",
     icon: GitBranch,
-    color: "secondary",
     skills: [
       { name: "Git", level: 92 },
       { name: "GitHub Actions", level: 85 },
@@ -78,7 +70,6 @@ const skillCategories = [
   {
     title: "Documentação",
     icon: FileText,
-    color: "tertiary",
     skills: [
       { name: "Documentação de testes", level: 100 },
       { name: "Documentação de bugs", level: 100 },
@@ -86,7 +77,7 @@ const skillCategories = [
   },
 ];
 
-/* M3 Progress Bar com animação de entrada */
+/* Liquid Glass Progress Bar */
 const SkillBar = ({
   name,
   level,
@@ -95,7 +86,6 @@ const SkillBar = ({
   name: string;
   level: number;
   delay: number;
-  color: string;
 }) => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true });
@@ -103,8 +93,8 @@ const SkillBar = ({
   return (
     <div ref={ref} className="space-y-2">
       <div className="flex justify-between items-center">
-        <span className="text-sm font-medium text-foreground">{name}</span>
-        <span className="text-xs text-muted-foreground font-medium">
+        <span className="text-sm font-medium text-foreground tracking-wide">{name}</span>
+        <span className="text-xs text-muted-foreground font-light">
           {level}%
         </span>
       </div>
@@ -113,7 +103,11 @@ const SkillBar = ({
           className="skill-bar-fill"
           initial={{ width: 0 }}
           animate={isInView ? { width: `${level}%` } : {}}
-          transition={{ duration: 1, delay, ease: [0.4, 0, 0.2, 1] }}
+          transition={{ 
+            duration: 1.2, 
+            delay, 
+            ease: [0.34, 1.56, 0.64, 1]
+          }}
         />
       </div>
     </div>
@@ -128,43 +122,55 @@ export const SkillsSection = () => {
     <section id="skills" className="py-24 relative" ref={ref}>
       <div className="container mx-auto px-6">
         <motion.div
-          initial={{ opacity: 0, y: 50 }}
+          initial={{ opacity: 0, y: 60 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8, ease: [0, 0, 0, 1] }}
+          transition={{ 
+            duration: 0.8, 
+            ease: [0.34, 1.56, 0.64, 1]
+          }}
           className="max-w-6xl mx-auto"
         >
-          {/* Section header - M3 style */}
+          {/* Section header */}
           <div className="section-header">
             <div className="section-header-icon">
               <Code2 className="w-5 h-5" />
             </div>
-            <h2 className="text-3xl md:text-4xl font-bold text-foreground">
+            <h2 className="text-3xl md:text-4xl font-semibold text-foreground tracking-tight">
               Competências Técnicas
             </h2>
           </div>
 
-          {/* Skills Grid - M3 Filled Cards */}
+          {/* Skills Grid - Liquid Glass Cards */}
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {skillCategories.map((category, categoryIndex) => (
               <motion.div
                 key={category.title}
-                initial={{ opacity: 0, y: 30 }}
-                animate={isInView ? { opacity: 1, y: 0 } : {}}
+                initial={{ opacity: 0, y: 40, scale: 0.95 }}
+                animate={isInView ? { opacity: 1, y: 0, scale: 1 } : {}}
                 transition={{
-                  duration: 0.6,
-                  delay: 0.2 + categoryIndex * 0.1,
-                  ease: [0, 0, 0, 1],
+                  duration: 0.7,
+                  delay: 0.15 + categoryIndex * 0.1,
+                  ease: [0.34, 1.56, 0.64, 1],
                 }}
-                className="rounded-2xl p-6 bg-surface-container border border-border/30 hover:bg-surface-container-high hover:border-primary/20 transition-all duration-300 ease-m3-emphasized"
+                whileHover={{ 
+                  y: -8, 
+                  scale: 1.02,
+                }}
+                className="glass-card-interactive rounded-3xl p-6"
               >
                 {/* Category header */}
                 <div className="flex items-center gap-3 mb-6">
-                  <div className={`p-2 rounded-xl bg-${category.color}/12`}>
-                    <category.icon
-                      className={`w-5 h-5 text-${category.color}`}
-                    />
+                  <div 
+                    className="p-2.5 rounded-2xl"
+                    style={{
+                      background: "hsl(var(--primary) / 0.1)",
+                      border: "1px solid hsl(var(--primary) / 0.15)",
+                      boxShadow: "inset 0 1px 1px 0 hsl(0 0% 100% / 0.1), 0 0 12px hsl(var(--primary) / 0.15)",
+                    }}
+                  >
+                    <category.icon className="w-5 h-5 text-primary" />
                   </div>
-                  <h3 className="font-semibold text-foreground">
+                  <h3 className="font-medium text-foreground tracking-wide">
                     {category.title}
                   </h3>
                 </div>
@@ -176,8 +182,7 @@ export const SkillsSection = () => {
                       key={skill.name}
                       name={skill.name}
                       level={skill.level}
-                      delay={0.3 + categoryIndex * 0.1 + skillIndex * 0.1}
-                      color={category.color}
+                      delay={0.3 + categoryIndex * 0.1 + skillIndex * 0.08}
                     />
                   ))}
                 </div>
@@ -185,14 +190,18 @@ export const SkillsSection = () => {
             ))}
           </div>
 
-          {/* Tags cloud - M3 Chips */}
+          {/* Tags cloud - Glass Chips */}
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 40 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.8, delay: 0.6, ease: [0, 0, 0, 1] }}
-            className="mt-12 text-center"
+            transition={{ 
+              duration: 0.8, 
+              delay: 0.6, 
+              ease: [0.34, 1.56, 0.64, 1]
+            }}
+            className="mt-14 text-center"
           >
-            <h3 className="text-lg font-semibold text-muted-foreground mb-6">
+            <h3 className="text-lg font-light text-muted-foreground mb-6 tracking-wide">
               Todas as tecnologias
             </h3>
             <div className="flex flex-wrap justify-center gap-3">
@@ -214,12 +223,16 @@ export const SkillsSection = () => {
               ].map((tech, index) => (
                 <motion.span
                   key={tech}
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  animate={isInView ? { opacity: 1, scale: 1 } : {}}
-                  transition={{ duration: 0.4, delay: 0.8 + index * 0.05 }}
-                  whileHover={{ scale: 1.05 }}
-                  /* M3 Assist Chip style */
-                  className="px-4 py-2 rounded-full bg-surface-container-high border border-border/30 hover:bg-primary/10 hover:border-primary/30 text-sm font-medium text-muted-foreground hover:text-primary transition-all duration-300 ease-m3-emphasized cursor-default"
+                  initial={{ opacity: 0, scale: 0.8, y: 20 }}
+                  animate={isInView ? { opacity: 1, scale: 1, y: 0 } : {}}
+                  transition={{ 
+                    duration: 0.5, 
+                    delay: 0.8 + index * 0.04,
+                    ease: [0.34, 1.56, 0.64, 1]
+                  }}
+                  whileHover={{ scale: 1.08, y: -2 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="glass-chip cursor-default"
                 >
                   {tech}
                 </motion.span>

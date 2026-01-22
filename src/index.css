@@ -3,141 +3,107 @@
 @tailwind utilities;
 
 /* =============================================================================
-   MATERIAL 3 EXPRESSIVE - DESIGN SYSTEM
+   iOS 26 LIQUID GLASS - DESIGN SYSTEM
    =============================================================================
    
-   Sistema de design baseado no Material 3 Expressive do Google, com paletas
-   otimizadas para ambos os modos claro e escuro.
+   Sistema de design inspirado na estética futurista do iOS 26 Liquid Glass:
+   - Glassmorphism 2.0 com backdrop blur pesado
+   - Aurora Borealis vibes com orbs de gradiente ambiente
+   - Superfícies translúcidas com bordas de luz
+   - Animações com física spring (mola) estilo Apple
    
-   TIPOGRAFIA: SF Pro (San Francisco) - fonte do sistema Apple, otimizada
-   para legibilidade em interfaces digitais.
-   
-   ACESSIBILIDADE:
-   - Todos os textos têm contraste mínimo de 4.5:1 (WCAG AA)
-   - Textos importantes têm contraste ≥ 7:1 (WCAG AAA)
-   - Cores testadas para daltonismo (deuteranopia/protanopia)
+   TIPOGRAFIA: SF Pro com tracking aumentado e pesos finos para elegância
    ============================================================================= */
 
 @layer base {
   /* ===========================================================================
-     Material 3 Expressive - Light Theme
-     
-     PALETA LIGHT MODE:
-     - Background (#F8FAFC): Branco levemente azulado - mais suave que branco puro
-     - Primary (#1D5DB3): Azul escuro saturado - contraste forte para CTAs
-     - Secondary (#0B7285): Cian escuro - ações secundárias
-     - Tertiary (#7C3AED): Roxo vibrante - expressividade M3
-     
-     CONFORTO VISUAL:
-     - Background não é branco puro (#FFF), reduzindo fadiga em leitura prolongada
-     - Superfícies usam tons levemente azulados para harmonia
-     - Sombras sutis para hierarquia sem peso visual
+     iOS 26 Liquid Glass - Light Theme
      =========================================================================== */
   :root {
-    /* Background: Branco azulado suave - reduz fadiga visual vs branco puro
-       HSL: 210 40% 98% ≈ #F8FAFC */
-    --background: 210 40% 98%;
+    /* Deep Space Light - fundos claros com tom azulado */
+    --background: 220 20% 97%;
+    --foreground: 222 47% 11%;
 
-    /* Foreground: Cinza escuro com matiz azulada
-       HSL: 210 25% 15% ≈ #1E2A3B - contraste 12:1 contra background */
-    --foreground: 210 25% 15%;
-
-    /* Card: Branco puro para destacar do background */
+    /* Superfícies glass - opacidade ultra baixa */
     --card: 0 0% 100%;
-    --card-foreground: 210 25% 15%;
+    --card-foreground: 222 47% 11%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 210 25% 15%;
+    --popover-foreground: 222 47% 11%;
 
-    /* Primary: Azul M3 escuro para light mode - #1D5DB3
-       Contraste 4.8:1 contra branco (WCAG AA) */
-    --primary: 217 72% 41%;
+    /* Primary: Navy Blue - Forte e Profundo */
+    --primary: 222 47% 40%;
     --primary-foreground: 0 0% 100%;
 
-    /* Secondary: Cian escuro - #0B7285
-       Complementar ao primário */
-    --secondary: 189 85% 28%;
+    /* Secondary: Steel Blue */
+    --secondary: 215 50% 50%;
     --secondary-foreground: 0 0% 100%;
 
-    /* Tertiary: Roxo vibrante M3 - #7C3AED
-       Expressividade e personalidade */
-    --tertiary: 263 84% 58%;
+    /* Tertiary: Slate Blue */
+    --tertiary: 210 40% 60%;
     --tertiary-foreground: 0 0% 100%;
 
-    /* Muted: Para textos secundários e backgrounds sutis */
-    --muted: 210 20% 94%;
-    --muted-foreground: 210 15% 45%;
+    /* Muted */
+    --muted: 220 15% 92%;
+    --muted-foreground: 220 10% 45%;
 
-    /* Accent: Mesmo que secondary para consistência */
-    --accent: 189 85% 28%;
+    /* Accent */
+    --accent: 215 50% 50%;
     --accent-foreground: 0 0% 100%;
 
-    /* Destructive: Vermelho acessível */
-    --destructive: 0 84% 45%;
+    /* Destructive */
+    --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
 
-    /* =========================================================================
-       Surface Hierarchy - Material 3 Tonal Elevation (Light)
-       
-       Em light mode, superfícies mais elevadas são ligeiramente mais escuras
-       (oposto do dark mode) para criar profundidade visual.
-       ========================================================================= */
+    /* Surface Hierarchy - Liquid Glass */
     --surface: 0 0% 100%;
-    --surface-dim: 210 25% 96%;
+    --surface-dim: 220 15% 95%;
     --surface-bright: 0 0% 100%;
     --surface-container-lowest: 0 0% 100%;
-    --surface-container-low: 210 30% 98%;
-    --surface-container: 210 25% 96%;
-    --surface-container-high: 210 20% 93%;
-    --surface-container-highest: 210 18% 90%;
+    --surface-container-low: 220 20% 98%;
+    --surface-container: 220 15% 96%;
+    --surface-container-high: 220 12% 93%;
+    --surface-container-highest: 220 10% 90%;
 
-    /* Borders e outlines - sutis mas visíveis */
-    --border: 210 20% 88%;
-    --input: 210 20% 88%;
-    --ring: 217 72% 41%;
-    --outline: 210 15% 70%;
-    --outline-variant: 210 15% 82%;
+    /* Glass tokens */
+    --glass-bg: 220 50% 50% / 0.05;
+    --glass-border: 220 50% 50% / 0.1;
+    --glass-specular: 220 50% 50% / 0.1;
 
-    /* Radius M3 Expressive - cantos mais arredondados */
-    --radius: 1rem;
-    --radius-sm: 0.5rem;
-    --radius-md: 0.75rem;
-    --radius-lg: 1rem;
-    --radius-xl: 1.5rem;
-    --radius-2xl: 2rem;
+    /* Borders */
+    --border: 220 15% 88%;
+    --input: 220 15% 88%;
+    --ring: 222 47% 40%;
+    --outline: 220 10% 70%;
+    --outline-variant: 220 10% 82%;
+
+    /* Radius - mais arredondados para liquid feel */
+    --radius: 1.25rem;
+    --radius-sm: 0.75rem;
+    --radius-md: 1rem;
+    --radius-lg: 1.25rem;
+    --radius-xl: 1.75rem;
+    --radius-2xl: 2.5rem;
     --radius-full: 9999px;
 
-    /* Elevation shadows M3 - Light mode */
-    --shadow-1: 0 1px 2px 0 rgb(0 0 0 / 0.05);
-    --shadow-2: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
-    --shadow-3:
-      0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-    --shadow-4:
-      0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
-    --shadow-5:
-      0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
-
-    /* Gradientes M3 - Light mode (cores mais saturadas) */
-    --gradient-primary: linear-gradient(
+    /* Gradientes Aurora Monochromo Light */
+    --gradient-aurora: linear-gradient(
       135deg,
-      hsl(217 72% 41%),
-      hsl(189 85% 28%)
+      hsl(222 47% 40% / 0.1) 0%,
+      hsl(215 50% 50% / 0.08) 50%,
+      hsl(210 40% 60% / 0.1) 100%
     );
-    --gradient-secondary: linear-gradient(
+    --gradient-glass-border: linear-gradient(
       135deg,
-      hsl(189 85% 28%),
-      hsl(263 84% 58%)
-    );
-    --gradient-expressive: linear-gradient(
-      135deg,
-      hsl(217 72% 41%),
-      hsl(263 84% 58%)
+      hsl(222 47% 40% / 0.2) 0%,
+      hsl(222 47% 40% / 0.05) 50%,
+      hsl(222 47% 40% / 0.15) 100%
     );
 
-    /* Glow effects - mais sutis em light mode */
-    --glow-primary: 0 0 15px hsl(217 72% 41% / 0.2);
-    --glow-secondary: 0 0 15px hsl(189 85% 28% / 0.2);
-    --glow-tertiary: 0 0 15px hsl(263 84% 58% / 0.2);
+    /* Glow effects - aurora style */
+    --glow-primary: 0 0 30px hsl(210 100% 50% / 0.3);
+    --glow-secondary: 0 0 30px hsl(180 100% 45% / 0.3);
+    --glow-tertiary: 0 0 30px hsl(270 100% 70% / 0.3);
 
     /* Tipografia SF Pro */
     --font-sans:
@@ -147,130 +113,97 @@
   }
 
   /* ===========================================================================
-     Material 3 Expressive - Dark Theme (Principal)
+     iOS 26 Liquid Glass - Dark Theme (Principal)
      
-     ACESSIBILIDADE:
-     - Todos os textos primários têm contraste ≥ 7:1 (WCAG AAA)
-     - Textos secundários têm contraste ≥ 4.5:1 (WCAG AA)
-     - Cores de destaque testadas para daltonismo (deuteranopia/protanopia)
-     
-     CONFORTO VISUAL:
-     - Background #0F1419 evita "preto puro" que causa fadiga
-     - Superfícies usam tonal elevation (cor) ao invés de sombras pesadas
-     - Contraste reduzido em bordas para não competir com conteúdo
+     Deep Space Black com Aurora Borealis orbs
      =========================================================================== */
   .dark {
-    /* Background principal: cinza escuro com matiz azulada fria
-       HSL: 210 24% 8% ≈ #0F1419
-       Evita preto puro para reduzir fadiga visual */
-    --background: 210 24% 8%;
+    /* Deep Space Navy - Azul Marinho Profundo Monocromático */
+    --background: 222 47% 11%;
+    --foreground: 210 40% 98%;
 
-    /* Foreground: branco suavizado para evitar contraste extremo
-       HSL: 210 20% 93% ≈ #E8ECF0 */
-    --foreground: 210 20% 93%;
+    /* Glass surfaces - Navy Tint */
+    --card: 222 47% 13%;
+    --card-foreground: 210 40% 98%;
 
-    /* Card: superfície elevada level 1
-       Ligeiramente mais clara que background */
-    --card: 210 20% 12%;
-    --card-foreground: 210 20% 93%;
+    --popover: 222 47% 13%;
+    --popover-foreground: 210 40% 98%;
 
-    --popover: 210 20% 12%;
-    --popover-foreground: 210 20% 93%;
+    /* Primary: Royal Blue / Electric Blue - Contraste */
+    --primary: 217 91% 60%;
+    --primary-foreground: 222 47% 11%;
 
-    /* Primary: Azul claro M3 - #A8C7FA
-       Luminância ~78%, contraste 8.2:1 contra background
-       Expressivo mas confortável para os olhos */
-    --primary: 217 90% 82%;
-    --primary-foreground: 217 100% 10%;
+    /* Secondary: Deep Sky Blue - Monochromatic */
+    --secondary: 210 80% 60%;
+    --secondary-foreground: 222 47% 11%;
 
-    /* Secondary: Cian claro - #C2E7FF
-       Complementar ao primário, mantém harmonia */
-    --secondary: 199 100% 88%;
-    --secondary-foreground: 199 100% 10%;
+    /* Tertiary: Steel Blue - Monochromatic */
+    --tertiary: 220 60% 50%;
+    --tertiary-foreground: 222 47% 11%;
 
-    /* Tertiary: Lavanda expressivo - #EFDBFF
-       Adiciona personalidade seguindo M3 Expressive */
-    --tertiary: 271 100% 92%;
-    --tertiary-foreground: 271 100% 10%;
+    /* Muted */
+    --muted: 217 33% 18%;
+    --muted-foreground: 215 20% 65%;
 
-    /* Muted: para textos secundários e elementos desabilitados
-       Contraste 4.8:1 (WCAG AA) */
-    --muted: 210 15% 18%;
-    --muted-foreground: 210 15% 65%;
+    /* Accent */
+    --accent: 217 91% 60%;
+    --accent-foreground: 222 47% 11%;
 
-    /* Accent: destaque para interações */
-    --accent: 199 100% 88%;
-    --accent-foreground: 199 100% 10%;
-
-    /* Destructive: vermelho acessível em dark mode */
-    --destructive: 0 72% 65%;
+    /* Destructive */
+    --destructive: 0 72% 60%;
     --destructive-foreground: 0 0% 100%;
 
-    /* =========================================================================
-       Surface Hierarchy - Material 3 Tonal Elevation
-       
-       Em vez de sombras, M3 usa variação tonal para indicar elevação.
-       Superfícies mais elevadas são ligeiramente mais claras.
-       ========================================================================= */
-    --surface: 210 20% 12%;
-    --surface-dim: 210 24% 6%;
-    --surface-bright: 210 15% 18%;
-    --surface-container-lowest: 210 24% 4%;
-    --surface-container-low: 210 20% 10%;
-    --surface-container: 210 18% 14%;
-    --surface-container-high: 210 16% 18%;
-    --surface-container-highest: 210 14% 22%;
+    /* Surface Hierarchy - Navy Glass layers */
+    --surface: 222 47% 13%;
+    --surface-dim: 222 47% 9%;
+    --surface-bright: 222 47% 16%;
+    --surface-container-lowest: 222 47% 7%;
+    --surface-container-low: 222 47% 10%;
+    --surface-container: 222 47% 12%;
+    --surface-container-high: 222 47% 15%;
+    --surface-container-highest: 222 47% 18%;
 
-    /* Borders e outlines sutis - não competem com conteúdo */
-    --border: 210 15% 22%;
-    --input: 210 15% 22%;
-    --ring: 217 90% 82%;
-    --outline: 210 10% 35%;
-    --outline-variant: 210 10% 25%;
+    /* Glass tokens - Dark mode */
+    --glass-bg: 220 50% 15% / 0.1;
+    --glass-border: 210 50% 80% / 0.08;
+    --glass-specular: 210 50% 80% / 0.15;
 
-    /* Shadows para dark mode - mais sutis */
-    --shadow-1: 0 1px 2px 0 rgb(0 0 0 / 0.3);
-    --shadow-2: 0 1px 3px 0 rgb(0 0 0 / 0.4), 0 1px 2px -1px rgb(0 0 0 / 0.3);
-    --shadow-3:
-      0 4px 6px -1px rgb(0 0 0 / 0.4), 0 2px 4px -2px rgb(0 0 0 / 0.3);
-    --shadow-4:
-      0 10px 15px -3px rgb(0 0 0 / 0.4), 0 4px 6px -4px rgb(0 0 0 / 0.3);
-    --shadow-5:
-      0 20px 25px -5px rgb(0 0 0 / 0.5), 0 8px 10px -6px rgb(0 0 0 / 0.4);
+    /* Borders */
+    --border: 217 33% 20%;
+    --input: 217 33% 20%;
+    --ring: 217 91% 60%;
+    --outline: 217 33% 30%;
+    --outline-variant: 217 33% 25%;
 
-    /* Gradientes M3 para dark mode */
-    --gradient-primary: linear-gradient(
+    /* Gradientes Aurora Monochromatic Navy */
+    --gradient-aurora: linear-gradient(
       135deg,
-      hsl(217 90% 82%),
-      hsl(199 100% 88%)
+      hsl(217 91% 60% / 0.15) 0%,
+      hsl(220 80% 50% / 0.1) 50%,
+      hsl(210 70% 40% / 0.15) 100%
     );
-    --gradient-secondary: linear-gradient(
+    --gradient-glass-border: linear-gradient(
       135deg,
-      hsl(199 100% 88%),
-      hsl(271 100% 92%)
-    );
-    --gradient-expressive: linear-gradient(
-      135deg,
-      hsl(217 90% 82%),
-      hsl(271 100% 92%)
+      hsl(210 40% 98% / 0.15) 0%,
+      hsl(210 40% 98% / 0.03) 50%,
+      hsl(210 40% 98% / 0.1) 100%
     );
 
-    /* Glow effects sutis para elementos interativos */
-    --glow-primary: 0 0 20px hsl(217 90% 82% / 0.25);
-    --glow-secondary: 0 0 20px hsl(199 100% 88% / 0.25);
-    --glow-tertiary: 0 0 20px hsl(271 100% 92% / 0.25);
+    /* Glow effects - Blue only */
+    --glow-primary: 0 0 40px hsl(217 91% 60% / 0.35);
+    --glow-secondary: 0 0 40px hsl(210 80% 60% / 0.25);
+    --glow-tertiary: 0 0 40px hsl(220 60% 50% / 0.25);
   }
 }
 
 /* ===========================================================================
-   Base Styles - Material 3 Expressive
+   Base Styles - iOS 26 Liquid Glass
    =========================================================================== */
 @layer base {
   * {
     @apply border-border;
   }
 
-  /* Smooth scrolling com reduced motion support */
   html {
     scroll-behavior: smooth;
   }
@@ -284,205 +217,188 @@
   body {
     @apply bg-background text-foreground antialiased;
     font-family: var(--font-sans);
-    /* Otimização de renderização de texto */
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
 
-  /* Tipografia M3 - Hierarquia clara */
+  /* Tipografia - SF Pro com tracking aumentado, pesos finos */
   h1,
   h2,
   h3,
   h4,
   h5,
   h6 {
-    @apply font-semibold tracking-tight;
-    /* SF Pro Display para títulos */
     font-family: "SF Pro Display", var(--font-sans);
+    @apply tracking-tight;
   }
 
   h1 {
-    @apply text-4xl md:text-5xl lg:text-6xl;
+    @apply text-4xl md:text-5xl lg:text-6xl font-semibold;
+    letter-spacing: -0.02em;
   }
   h2 {
-    @apply text-3xl md:text-4xl;
+    @apply text-3xl md:text-4xl font-semibold;
+    letter-spacing: -0.01em;
   }
   h3 {
-    @apply text-2xl md:text-3xl;
+    @apply text-2xl md:text-3xl font-medium;
   }
   h4 {
-    @apply text-xl md:text-2xl;
+    @apply text-xl md:text-2xl font-medium;
   }
 
   p {
-    @apply leading-relaxed;
-    /* SF Pro Text para corpo de texto */
+    @apply leading-relaxed tracking-wide font-light;
     font-family: "SF Pro Text", var(--font-sans);
   }
 
-  /* Focus visible para acessibilidade */
   :focus-visible {
     @apply outline-none ring-2 ring-ring ring-offset-2 ring-offset-background;
   }
 
-  /* Seleção de texto com cores do tema */
   ::selection {
     @apply bg-primary/30 text-foreground;
   }
 }
 
 /* ===========================================================================
-   Components - Material 3 Expressive
+   Components - iOS 26 Liquid Glass
    =========================================================================== */
 @layer components {
   /* ---------------------------------------------------------------------------
-     Surface Card - M3 Tonal Elevation
+     Liquid Glass Card - Glassmorphism 2.0
      
-     Cards usam elevação tonal (variação de cor) ao invés de sombras pesadas.
-     Isso reduz fadiga visual e mantém hierarquia clara.
-     --------------------------------------------------------------------------- */
-  .m3-surface {
-    @apply bg-card rounded-2xl border border-border/50;
-    /* Transição suave para interações */
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  }
-
-  .m3-surface:hover {
-    @apply border-primary/30;
-    background: hsl(var(--surface-container-high));
-  }
-
-  /* ---------------------------------------------------------------------------
-     Glass Card - Efeito glassmorphism M3
-     
-     Backdrop blur com transparência para criar profundidade
-     sem sombras pesadas.
+     - backdrop-filter: blur(40px)
+     - Background ultra baixa opacidade
+     - Bordas de luz com gradiente
+     - Specular highlight (reflexo interno)
      --------------------------------------------------------------------------- */
   .glass-card {
-    @apply backdrop-blur-xl border border-border/30;
-    background: hsl(var(--surface-container) / 0.8);
+    @apply relative rounded-3xl overflow-hidden;
+    backdrop-filter: blur(40px) saturate(180%);
+    -webkit-backdrop-filter: blur(40px) saturate(180%);
+    background: hsl(var(--glass-bg));
+    border: 1px solid hsl(var(--glass-border));
+    /* Specular highlight - brilho interno de cima */
+    box-shadow:
+      inset 0 1px 1px 0 hsl(var(--glass-specular)),
+      0 0 0 1px hsl(0 0% 0% / 0.03);
+  }
+
+  .glass-card::before {
+    content: "";
+    @apply absolute inset-0 pointer-events-none;
+    background: var(--gradient-glass-border);
+    mask:
+      linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
+    mask-composite: exclude;
+    -webkit-mask-composite: xor;
+    padding: 1px;
+    border-radius: inherit;
+    opacity: 0.5;
+  }
+
+  /* Glass Card com hover - intensifica brilho */
+  .glass-card-interactive {
+    @apply glass-card cursor-pointer;
+    transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+
+  .glass-card-interactive:hover {
+    background: hsl(0 0% 100% / 0.08);
+    box-shadow:
+      inset 0 1px 2px 0 hsl(0 0% 100% / 0.25),
+      0 8px 32px -8px hsl(var(--primary) / 0.15),
+      0 0 0 1px hsl(0 0% 100% / 0.1);
+    transform: translateY(-4px) scale(1.01);
   }
 
   /* ---------------------------------------------------------------------------
-     M3 Filled Card - Card com fundo sólido
-     --------------------------------------------------------------------------- */
-  .m3-filled-card {
-    @apply rounded-2xl p-6;
-    background: hsl(var(--surface-container));
-  }
-
-  /* ---------------------------------------------------------------------------
-     M3 Outlined Card - Card com borda
-     --------------------------------------------------------------------------- */
-  .m3-outlined-card {
-    @apply rounded-2xl p-6 border;
-    border-color: hsl(var(--outline-variant));
-    background: transparent;
-  }
-
-  /* ---------------------------------------------------------------------------
-     M3 Elevated Card - Card com elevação (sombra sutil)
-     --------------------------------------------------------------------------- */
-  .m3-elevated-card {
-    @apply rounded-2xl p-6;
-    background: hsl(var(--surface-container-low));
-    box-shadow: var(--shadow-2);
-  }
-
-  /* ---------------------------------------------------------------------------
-     Gradient Text - M3 Expressive
-     
-     Gradientes expressivos para títulos e destaques.
+     Gradient Text - Aurora style
      --------------------------------------------------------------------------- */
   .gradient-text {
     @apply bg-clip-text text-transparent;
-    background-image: var(--gradient-primary);
+    background-image: linear-gradient(
+      135deg,
+      hsl(var(--primary)) 0%,
+      hsl(var(--secondary)) 50%,
+      hsl(var(--tertiary)) 100%
+    );
   }
 
   .gradient-text-expressive {
     @apply bg-clip-text text-transparent;
-    background-image: var(--gradient-expressive);
+    background-image: linear-gradient(
+      135deg,
+      hsl(var(--primary)) 0%,
+      hsl(var(--tertiary)) 100%
+    );
   }
 
   /* ---------------------------------------------------------------------------
-     M3 Chip/Badge - Elemento de tag
-     
-     ACESSIBILIDADE:
-     - Light mode: fundo mais opaco para contraste adequado
-     - Dark mode: fundo transparente funciona bem com cores claras
+     Liquid Glass Chip/Badge
      --------------------------------------------------------------------------- */
-  .m3-chip {
-    @apply inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-sm font-medium;
-    background: hsl(var(--surface-container-high));
-    color: hsl(var(--foreground));
-    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  .glass-chip {
+    @apply inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-sm font-medium;
+    backdrop-filter: blur(20px);
+    background: hsl(var(--glass-bg));
+    border: 1px solid hsl(var(--glass-border));
+    box-shadow: inset 0 1px 1px 0 hsl(var(--glass-specular));
+    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
   }
 
-  .m3-chip:hover {
-    background: hsl(var(--surface-container-highest));
+  .glass-chip:hover {
+    background: hsl(0 0% 100% / 0.1);
+    box-shadow:
+      inset 0 1px 2px 0 hsl(0 0% 100% / 0.3),
+      0 4px 16px -4px hsl(var(--primary) / 0.2);
   }
 
-  /* Chips coloridos - diferentes opacidades para light/dark mode */
-  .m3-chip-primary {
-    @apply m3-chip;
-    background: hsl(var(--primary) / 0.12);
+  /* Colored chips */
+  .glass-chip-primary {
+    @apply glass-chip;
+    background: hsl(var(--primary) / 0.1);
+    border-color: hsl(var(--primary) / 0.2);
     color: hsl(var(--primary));
   }
 
-  .dark .m3-chip-primary {
-    background: hsl(var(--primary) / 0.18);
-  }
-
-  .m3-chip-secondary {
-    @apply m3-chip;
-    background: hsl(var(--secondary) / 0.12);
+  .glass-chip-secondary {
+    @apply glass-chip;
+    background: hsl(var(--secondary) / 0.1);
+    border-color: hsl(var(--secondary) / 0.2);
     color: hsl(var(--secondary));
   }
 
-  .dark .m3-chip-secondary {
-    background: hsl(var(--secondary) / 0.18);
-  }
-
-  .m3-chip-tertiary {
-    @apply m3-chip;
-    background: hsl(var(--tertiary) / 0.12);
+  .glass-chip-tertiary {
+    @apply glass-chip;
+    background: hsl(var(--tertiary) / 0.1);
+    border-color: hsl(var(--tertiary) / 0.2);
     color: hsl(var(--tertiary));
   }
 
-  .dark .m3-chip-tertiary {
-    background: hsl(var(--tertiary) / 0.18);
-  }
-
   /* ---------------------------------------------------------------------------
-     M3 Icon Container
-     --------------------------------------------------------------------------- */
-  .m3-icon-container {
-    @apply flex items-center justify-center rounded-xl;
-    background: hsl(var(--primary) / 0.12);
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  }
-
-  .m3-icon-container:hover {
-    background: hsl(var(--primary) / 0.2);
-    transform: scale(1.05);
-  }
-
-  /* ---------------------------------------------------------------------------
-     Progress/Skill Bar - M3 Style
+     Skill Bar - Liquid Glass style
      --------------------------------------------------------------------------- */
   .skill-bar {
     @apply relative h-2 rounded-full overflow-hidden;
-    background: hsl(var(--surface-container-highest));
+    background: hsl(var(--glass-bg));
+    border: 1px solid hsl(var(--glass-border));
   }
 
   .skill-bar-fill {
     @apply absolute left-0 top-0 h-full rounded-full;
-    background: var(--gradient-primary);
+    background: linear-gradient(
+      90deg,
+      hsl(var(--primary)) 0%,
+      hsl(var(--secondary)) 100%
+    );
+    box-shadow: 0 0 12px hsl(var(--primary) / 0.5);
   }
 
   /* ---------------------------------------------------------------------------
-     Timeline - M3 Style
+     Timeline - Aurora gradient
      --------------------------------------------------------------------------- */
   .timeline-line {
     @apply absolute left-4 top-0 bottom-0 w-0.5;
@@ -492,47 +408,33 @@
       hsl(var(--secondary)),
       hsl(var(--tertiary))
     );
+    box-shadow: 0 0 8px hsl(var(--primary) / 0.5);
   }
 
   .timeline-dot {
-    @apply absolute left-2.5 w-4 h-4 rounded-full border-2;
-    border-color: hsl(var(--primary));
+    @apply absolute left-2.5 w-4 h-4 rounded-full;
     background: hsl(var(--background));
-    box-shadow: var(--glow-primary);
+    border: 2px solid hsl(var(--primary));
+    box-shadow:
+      0 0 12px hsl(var(--primary) / 0.6),
+      inset 0 0 4px hsl(var(--primary) / 0.3);
   }
 
   /* ---------------------------------------------------------------------------
-     Animated Background - Gradiente expressivo sutil
-     --------------------------------------------------------------------------- */
-  .animated-bg {
-    background:
-      radial-gradient(
-        ellipse at 20% 20%,
-        hsl(var(--primary) / 0.08) 0%,
-        transparent 50%
-      ),
-      radial-gradient(
-        ellipse at 80% 80%,
-        hsl(var(--secondary) / 0.06) 0%,
-        transparent 50%
-      ),
-      radial-gradient(
-        ellipse at 50% 50%,
-        hsl(var(--tertiary) / 0.04) 0%,
-        transparent 50%
-      );
-  }
-
-  /* ---------------------------------------------------------------------------
-     Section Header - Estilo consistente para headers de seção
+     Section Header - Glass style
      --------------------------------------------------------------------------- */
   .section-header {
     @apply flex items-center gap-3 mb-12;
   }
 
   .section-header-icon {
-    @apply p-2.5 rounded-xl;
-    background: hsl(var(--primary) / 0.12);
+    @apply p-2.5 rounded-2xl;
+    backdrop-filter: blur(20px);
+    background: hsl(var(--primary) / 0.1);
+    border: 1px solid hsl(var(--primary) / 0.2);
+    box-shadow:
+      inset 0 1px 1px 0 hsl(0 0% 100% / 0.1),
+      0 0 16px hsl(var(--primary) / 0.2);
   }
 
   .section-header-icon svg {
@@ -541,43 +443,37 @@
   }
 
   /* ---------------------------------------------------------------------------
-     Interactive States - M3 State Layer
-     
-     Material 3 usa "state layers" - overlays de cor para indicar
-     estados de interação (hover, pressed, focused).
+     Aurora Background - Deep space with animated orbs
      --------------------------------------------------------------------------- */
-  .state-layer {
-    @apply relative overflow-hidden;
+  .aurora-background {
+    @apply fixed inset-0 -z-10 overflow-hidden;
+    background: hsl(var(--background));
   }
 
-  .state-layer::before {
-    content: "";
-    @apply absolute inset-0 opacity-0 transition-opacity duration-200;
-    background: hsl(var(--primary));
+  .aurora-orb {
+    @apply absolute rounded-full;
+    filter: blur(80px);
   }
 
-  .state-layer:hover::before {
-    opacity: 0.08;
-  }
-
-  .state-layer:active::before {
-    opacity: 0.12;
-  }
-
-  .state-layer:focus-visible::before {
-    opacity: 0.12;
+  /* ---------------------------------------------------------------------------
+     Parallax Container
+     --------------------------------------------------------------------------- */
+  .parallax-container {
+    @apply relative;
+    transform-style: preserve-3d;
+    perspective: 1000px;
   }
 }
 
 /* ===========================================================================
-   Utilities - Material 3 Expressive
+   Utilities - iOS 26 Liquid Glass
    =========================================================================== */
 @layer utilities {
   .text-balance {
     text-wrap: balance;
   }
 
-  /* Glow effects para elementos de destaque */
+  /* Glow effects */
   .glow-primary {
     box-shadow: var(--glow-primary);
   }
@@ -589,57 +485,22 @@
   .glow-tertiary {
     box-shadow: var(--glow-tertiary);
   }
+
+  /* Glass blur utilities */
+  .backdrop-blur-glass {
+    backdrop-filter: blur(40px) saturate(180%);
+    -webkit-backdrop-filter: blur(40px) saturate(180%);
+  }
 }
 
 /* ===========================================================================
-   Scrollbar Styling - Minimalista
+   Scrollbar Styling - Hidden
    =========================================================================== */
 * {
-  scrollbar-width: thin;
-  scrollbar-color: hsl(var(--border)) transparent;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
 }
 
 *::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
-}
-
-*::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-*::-webkit-scrollbar-thumb {
-  background: hsl(var(--border));
-  border-radius: 3px;
-}
-
-*::-webkit-scrollbar-thumb:hover {
-  background: hsl(var(--muted-foreground));
-}
-
-/* ===========================================================================
-   Motion - Material 3 Easing Curves
-   
-   M3 usa curvas de easing específicas para diferentes tipos de movimento:
-   - emphasized: para transições principais (0.4, 0, 0.2, 1)
-   - standard: para a maioria das animações (0.2, 0, 0, 1)
-   - decelerated: para elementos entrando (0, 0, 0, 1)
-   - accelerated: para elementos saindo (0.3, 0, 1, 1)
-   =========================================================================== */
-@media (prefers-reduced-motion: no-preference) {
-  .motion-emphasized {
-    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  }
-
-  .motion-standard {
-    transition-timing-function: cubic-bezier(0.2, 0, 0, 1);
-  }
-
-  .motion-decelerated {
-    transition-timing-function: cubic-bezier(0, 0, 0, 1);
-  }
-
-  .motion-accelerated {
-    transition-timing-function: cubic-bezier(0.3, 0, 1, 1);
-  }
+  display: none;
 }

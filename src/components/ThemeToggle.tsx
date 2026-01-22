@@ -39,7 +39,7 @@ export const ThemeToggle = () => {
     <motion.button
       onClick={toggleTheme}
       aria-label={isDark ? "Ativar modo claro" : "Ativar modo escuro"}
-      className="fixed top-6 right-6 z-50 p-3 rounded-full glass-card border border-border/50 hover:border-primary/50 transition-all duration-300 ease-m3-emphasized"
+      className="fixed top-6 right-6 z-50 p-3 rounded-full glass-card border border-border/50 hover:border-primary/50 transition-all duration-75 ease-m3-emphasized"
       whileHover={{ scale: 1.05 }}
       whileTap={{ scale: 0.95 }}
       initial={{ opacity: 0, y: -20 }}
