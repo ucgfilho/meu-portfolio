@@ -150,21 +150,6 @@ export const ContactSection = () => {
               </motion.div>
             ))}
           </div>
-
-          {/* CTA */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.8, delay: 0.6, ease: [0, 0, 0, 1] }}
-            className="mt-12"
-          >
-            <Button variant="hero" size="xl" asChild>
-              <a href="mailto:ucgf.profissional@gmail.com">
-                <Mail className="w-5 h-5" />
-                Enviar Email
-              </a>
-            </Button>
-          </motion.div>
         </motion.div>
       </div>
 

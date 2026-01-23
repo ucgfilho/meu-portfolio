@@ -17,7 +17,7 @@ const projects = [
   {
     name: "SGDoctor Acadêmico",
     description:
-      "Atuação como QA no SGDoctor Acadêmico, com testes manuais e exploratórios, validação de requisitos e documentação de bugs.",
+      "Atuação como QA no SGDoctor Acadêmico, com testes manuais e automatizados, validação de requisitos e documentação de bugs.",
     technologies: [
       "Testes Manuais",
       "Testes Exploratórios",
@@ -30,7 +30,7 @@ const projects = [
   {
     name: "Automação E2E no SauceDemo",
     description:
-      "Suite completa de testes E2E automatizados com Cypress, incluindo relatórios com JUnit e Mochawesome, integração contínua com GitHub Actions.",
+      "Suite completa de testes E2E automatizados com Cypress, incluindo relatórios com JUnit e Mochawesome e integração contínua com GitHub Actions.",
     technologies: [
       "Cypress",
       "JUnit",
@@ -50,12 +50,12 @@ const projects = [
   {
     name: "Automação E2E no Automation Practice",
     description:
-      "Testes E2E automatizados para e-commerce Automation Practice, utilizando dados dinâmicos com FakerJS para cenários realistas.",
+      "Testes E2E automatizados para o e-commerce Automation Practice, utilizando dados dinâmicos com FakerJS para cenários realistas.",
     technologies: ["Cypress", "FakerJS", "E2E Testing"],
     link: "https://github.com/ucgfilho/cypress-qazando",
   },
   {
-    name: "Automação API no Restful API Dev",
+    name: "Automação de API no Restful API Dev",
     description:
       "Testes automatizados de API REST utilizando Cypress, validando endpoints, respostas e fluxos de dados.",
     technologies: ["Cypress", "API Testing", "REST"],
