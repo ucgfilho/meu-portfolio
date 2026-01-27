@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { ArrowDown, Github, Linkedin, Mail, ExternalLink } from "lucide-react";
 import { GitLabIcon } from "@/components/icons/GitLabIcon";
+import { useTranslation } from "react-i18next";
 
 /* =============================================================================
    HeroSection - iOS 26 Liquid Glass
@@ -14,6 +15,7 @@ import { GitLabIcon } from "@/components/icons/GitLabIcon";
    ============================================================================= */
 
 export const HeroSection = () => {
+  const { t } = useTranslation();
   return (
     <section className="min-h-screen flex items-center justify-center relative overflow-hidden pt-20">
       <div className="container mx-auto px-6 py-20">
@@ -42,7 +44,7 @@ export const HeroSection = () => {
               }}
             />
             <span className="text-sm text-tertiary font-medium tracking-wide">
-              Disponível para novas oportunidades
+              {t("hero.availableStatus")}
             </span>
           </motion.div>
 
@@ -56,9 +58,11 @@ export const HeroSection = () => {
             }}
             className="text-4xl sm:text-5xl md:text-7xl font-semibold mb-6 tracking-tight"
           >
-            <span className="text-foreground font-light">Olá! Eu sou</span>
+            <span className="text-foreground font-light">
+              {t("hero.greeting")}
+            </span>
             <br />
-            <span className="gradient-text">Ubirajara Filho</span>
+            <span className="gradient-text">{t("hero.name")}</span>
           </motion.h1>
 
           {/* Título e descrição */}
@@ -72,13 +76,10 @@ export const HeroSection = () => {
             className="mb-10"
           >
             <h2 className="text-xl sm:text-2xl md:text-3xl font-medium text-primary mb-5 tracking-wide">
-              Analista de QA
+              {t("hero.title")}
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed tracking-wide font-light">
-              Especialista em automação de testes, práticas DevOps e cultura de
-              qualidade. Construindo arquiteturas de testes escaláveis e
-              implementando shift-left testing em ambientes ágeis com entrega
-              contínua.
+              {t("hero.description")}
             </p>
           </motion.div>
 
@@ -94,13 +95,13 @@ export const HeroSection = () => {
           >
             <Button variant="hero" size="xl" asChild>
               <a href="#projects">
-                Ver Projetos
+                {t("hero.viewProjects")}
                 <ExternalLink className="w-5 h-5" />
               </a>
             </Button>
             <Button variant="heroOutline" size="xl" asChild>
               <a href="#contact">
-                Entrar em Contato
+                {t("hero.contact")}
                 <Mail className="w-5 h-5" />
               </a>
             </Button>
@@ -154,7 +155,9 @@ export const HeroSection = () => {
                   href={social.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  aria-label={`Visitar perfil no ${social.label}`}
+                  aria-label={t("hero.visitProfile", {
+                    platform: social.label,
+                  })}
                   className="p-4 rounded-2xl text-muted-foreground transition-all duration-75 relative group block"
                   style={{
                     background: "hsl(0 0% 100% / 0.05)",
@@ -203,7 +206,7 @@ export const HeroSection = () => {
           className="flex flex-col items-center gap-2 text-muted-foreground hover:text-foreground transition-colors duration-200"
         >
           <span className="text-xs font-light tracking-widest uppercase">
-            Role para baixo
+            {t("hero.scrollDown")}
           </span>
           <ArrowDown className="w-4 h-4" />
         </motion.a>

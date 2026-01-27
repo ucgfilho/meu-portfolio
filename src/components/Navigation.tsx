@@ -1,6 +1,8 @@
 import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
+import { useTranslation } from "react-i18next";
+import { LanguageSwitcher } from "./LanguageSwitcher";
 
 /* =============================================================================
    Navigation - iOS 26 Liquid Glass
@@ -12,19 +14,20 @@ import { Menu, X } from "lucide-react";
    - Animações spring para interações
    ============================================================================= */
 
-const navItems = [
-  { label: "Sobre", href: "#about" },
-  { label: "Formação", href: "#education" },
-  { label: "Experiência", href: "#experience" },
-  { label: "Certificações", href: "#certifications" },
-  { label: "Skills", href: "#skills" },
-  { label: "Projetos", href: "#projects" },
-  { label: "Contato", href: "#contact" },
-];
-
 export const Navigation = () => {
+  const { t } = useTranslation();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  const navItems = [
+    { label: t("nav.about"), href: "#about" },
+    { label: t("nav.education"), href: "#education" },
+    { label: t("nav.experience"), href: "#experience" },
+    { label: t("nav.certifications"), href: "#certifications" },
+    { label: t("nav.skills"), href: "#skills" },
+    { label: t("nav.projects"), href: "#projects" },
+    { label: t("nav.contact"), href: "#contact" },
+  ];
 
   useEffect(() => {
     const handleScroll = () => {
@@ -59,18 +62,7 @@ export const Navigation = () => {
           }}
         />
 
-        <div className="container mx-auto px-6 flex items-center justify-between relative">
-          {/* Logo - Gradient text */}
-          <motion.a
-            href="#"
-            className="text-xl font-semibold gradient-text tracking-tight"
-            whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.98 }}
-            transition={{ duration: 0.15 }}
-          >
-            Meu Portfólio
-          </motion.a>
-
+        <div className="container mx-auto px-6 flex items-center justify-center relative">
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-1">
             {navItems.map((item, index) => (
@@ -92,11 +84,16 @@ export const Navigation = () => {
                 <span className="relative">{item.label}</span>
               </motion.a>
             ))}
+
+            {/* Language Switcher */}
+            <div className="ml-2">
+              <LanguageSwitcher />
+            </div>
           </div>
 
           {/* Mobile Menu Button */}
           <motion.button
-            className="md:hidden relative p-2 rounded-2xl text-foreground"
+            className="md:hidden absolute right-6 p-2 rounded-2xl text-foreground"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             aria-label={isMobileMenuOpen ? "Fechar menu" : "Abrir menu"}
             aria-expanded={isMobileMenuOpen}
@@ -165,6 +162,11 @@ export const Navigation = () => {
                 <span className="relative">{item.label}</span>
               </motion.a>
             ))}
+
+            {/* Language Switcher for Mobile */}
+            <div className="mt-4 px-5">
+              <LanguageSwitcher />
+            </div>
           </nav>
         </motion.div>
       </motion.div>

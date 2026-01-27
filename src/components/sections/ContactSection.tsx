@@ -4,6 +4,7 @@ import { useRef } from "react";
 import { Mail, Linkedin, Github, Send, MapPin, Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { GitLabIcon } from "@/components/icons/GitLabIcon";
+import { useTranslation } from "react-i18next";
 
 /* =============================================================================
    ContactSection - Material 3 Expressive
@@ -18,44 +19,45 @@ import { GitLabIcon } from "@/components/icons/GitLabIcon";
    - Contraste adequado em todos os elementos
    ============================================================================= */
 
-const contactLinks = [
-  {
-    name: "LinkedIn",
-    href: "https://www.linkedin.com/in/ucgfilho/",
-    icon: Linkedin,
-    description: "Conecte-se comigo",
-    color: "#0a66c2",
-    activeColor: "#004182",
-  },
-  {
-    name: "GitHub",
-    href: "https://github.com/ucgfilho",
-    icon: Github,
-    description: "Veja meus projetos",
-    color: "#333333",
-    activeColor: "#1a1a1a",
-  },
-  {
-    name: "GitLab",
-    href: "https://gitlab.com/ucgfilho",
-    icon: GitLabIcon,
-    description: "Mais repositórios",
-    color: "#fc6d26",
-    activeColor: "#e24329",
-  },
-  {
-    name: "Email",
-    href: "mailto:ucgf.profissional@gmail.com",
-    icon: Mail,
-    description: "ucgf.profissional@gmail.com",
-    color: "#EA4335", // Gmail Red
-    activeColor: "#C5221F",
-  },
-];
-
 export const ContactSection = () => {
+  const { t } = useTranslation();
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
+
+  const contactLinks = [
+    {
+      name: "LinkedIn",
+      href: "https://www.linkedin.com/in/ucgfilho/",
+      icon: Linkedin,
+      description: t("contact.linkedinDescription"),
+      color: "#0a66c2",
+      activeColor: "#004182",
+    },
+    {
+      name: "GitHub",
+      href: "https://github.com/ucgfilho",
+      icon: Github,
+      description: t("contact.githubDescription"),
+      color: "#333333",
+      activeColor: "#1a1a1a",
+    },
+    {
+      name: "GitLab",
+      href: "https://gitlab.com/ucgfilho",
+      icon: GitLabIcon,
+      description: t("contact.gitlabDescription"),
+      color: "#fc6d26",
+      activeColor: "#e24329",
+    },
+    {
+      name: "Email",
+      href: "mailto:ucgf.profissional@gmail.com",
+      icon: Mail,
+      description: t("contact.emailDescription"),
+      color: "#EA4335", // Gmail Red
+      activeColor: "#C5221F",
+    },
+  ];
 
   return (
     <section id="contact" className="py-24 relative" ref={ref}>
@@ -72,13 +74,12 @@ export const ContactSection = () => {
               <Send className="w-5 h-5" />
             </div>
             <h2 className="text-3xl md:text-4xl font-bold text-foreground">
-              Vamos Conversar?
+              {t("contact.title")}
             </h2>
           </div>
 
           <p className="text-lg text-muted-foreground mb-12 max-w-2xl mx-auto leading-relaxed">
-            Estou sempre aberto a novas oportunidades, colaborações e projetos
-            interessantes. Não hesite em entrar em contato!
+            {t("contact.description")}
           </p>
 
           {/* Contact info - M3 Chips */}
@@ -90,11 +91,15 @@ export const ContactSection = () => {
           >
             <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-surface-container-high border border-border/30">
               <Phone className="w-4 h-4 text-primary" />
-              <span className="text-sm text-foreground">(73) 99847-8938</span>
+              <span className="text-sm text-foreground">
+                {t("contact.phone")}
+              </span>
             </div>
             <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-surface-container-high border border-border/30">
               <MapPin className="w-4 h-4 text-secondary" />
-              <span className="text-sm text-foreground">Bahia, Brasil</span>
+              <span className="text-sm text-foreground">
+                {t("contact.location")}
+              </span>
             </div>
           </motion.div>
 
@@ -114,7 +119,7 @@ export const ContactSection = () => {
                   href={link.href}
                   target={link.href.startsWith("mailto") ? undefined : "_blank"}
                   rel="noopener noreferrer"
-                  aria-label={`Contato via ${link.name}`}
+                  aria-label={t("contact.openLink", { platform: link.name })}
                   style={{
                     backgroundColor: "hsl(var(--surface-container))",
                     borderColor: "hsl(var(--border) / 0.3)",

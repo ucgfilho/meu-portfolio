@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
 import { FolderKanban, ExternalLink, Github } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 /* =============================================================================
    ProjectsSection - iOS 26 Liquid Glass
@@ -13,59 +14,55 @@ import { FolderKanban, ExternalLink, Github } from "lucide-react";
    - Animações spring fluidas
    ============================================================================= */
 
-const projects = [
-  {
-    name: "SGDoctor Acadêmico",
-    description:
-      "Atuação como QA no SGDoctor Acadêmico, com testes manuais e automatizados, validação de requisitos e documentação de bugs.",
-    technologies: [
-      "Testes Manuais",
-      "Testes Exploratórios",
-      "Casos de Teste",
-      "API",
-      "Bug Tracking",
-    ],
-    link: "https://gitlab.com/cpdsjq/sgdoctor_academico",
-  },
-  {
-    name: "Automação E2E no SauceDemo",
-    description:
-      "Suite completa de testes E2E automatizados com Cypress, incluindo relatórios com JUnit e Mochawesome e integração contínua com GitHub Actions.",
-    technologies: [
-      "Cypress",
-      "JUnit",
-      "Mochawesome",
-      "CI/CD",
-      "GitHub Actions",
-    ],
-    link: "https://github.com/ucgfilho/ProjetoCY",
-  },
-  {
-    name: "Automação de API com CodeceptJS",
-    description:
-      "Projeto de automação de testes de API utilizando CodeceptJS com framework Mocha e relatórios detalhados com Allure.",
-    technologies: ["CodeceptJS", "Mocha", "Allure", "API Testing"],
-    link: "https://github.com/ucgfilho/ProjetoCodeceptJS",
-  },
-  {
-    name: "Automação E2E no Automation Practice",
-    description:
-      "Testes E2E automatizados para o e-commerce Automation Practice, utilizando dados dinâmicos com FakerJS para cenários realistas.",
-    technologies: ["Cypress", "FakerJS", "E2E Testing"],
-    link: "https://github.com/ucgfilho/cypress-qazando",
-  },
-  {
-    name: "Automação de API no Restful API Dev",
-    description:
-      "Testes automatizados de API REST utilizando Cypress, validando endpoints, respostas e fluxos de dados.",
-    technologies: ["Cypress", "API Testing", "REST"],
-    link: "https://github.com/ucgfilho/cypress-api-test",
-  },
-];
-
 export const ProjectsSection = () => {
+  const { t } = useTranslation();
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
+
+  const projects = [
+    {
+      name: t("projects.sgdoctor.name"),
+      description: t("projects.sgdoctor.description"),
+      technologies: [
+        "Testes Manuais",
+        "Testes Exploratórios",
+        "Casos de Teste",
+        "API",
+        "Bug Tracking",
+      ],
+      link: "https://gitlab.com/cpdsjq/sgdoctor_academico",
+    },
+    {
+      name: t("projects.saucedemo.name"),
+      description: t("projects.saucedemo.description"),
+      technologies: [
+        "Cypress",
+        "JUnit",
+        "Mochawesome",
+        "CI/CD",
+        "GitHub Actions",
+      ],
+      link: "https://github.com/ucgfilho/ProjetoCY",
+    },
+    {
+      name: t("projects.codeceptjs.name"),
+      description: t("projects.codeceptjs.description"),
+      technologies: ["CodeceptJS", "Mocha", "Allure", "API Testing"],
+      link: "https://github.com/ucgfilho/ProjetoCodeceptJS",
+    },
+    {
+      name: t("projects.automationPractice.name"),
+      description: t("projects.automationPractice.description"),
+      technologies: ["Cypress", "FakerJS", "E2E Testing"],
+      link: "https://github.com/ucgfilho/cypress-qazando",
+    },
+    {
+      name: t("projects.restfulApi.name"),
+      description: t("projects.restfulApi.description"),
+      technologies: ["Cypress", "API Testing", "REST"],
+      link: "https://github.com/ucgfilho/cypress-api-test",
+    },
+  ];
 
   return (
     <section id="projects" className="py-24 relative" ref={ref}>
@@ -84,7 +81,7 @@ export const ProjectsSection = () => {
               <FolderKanban className="w-5 h-5" />
             </div>
             <h2 className="text-3xl md:text-4xl font-semibold text-foreground tracking-tight">
-              Projetos
+              {t("projects.title")}
             </h2>
           </div>
 
@@ -96,7 +93,9 @@ export const ProjectsSection = () => {
                 href={project.link}
                 target="_blank"
                 rel="noopener noreferrer"
-                aria-label={`Abrir repositório do projeto ${project.name}`}
+                aria-label={t("projects.openRepository", {
+                  projectName: project.name,
+                })}
                 initial={{ opacity: 0, y: 30 }}
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
                 transition={{

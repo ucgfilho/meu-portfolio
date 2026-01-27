@@ -9,6 +9,7 @@ import {
   FileText,
   BarChart3,
 } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 /* =============================================================================
    SkillsSection - iOS 26 Liquid Glass
@@ -20,47 +21,48 @@ import {
    - Animações spring
    ============================================================================= */
 
-const skillCategories = [
-  {
-    title: "Testes Funcionais",
-    icon: TestTube,
-    skills: ["Cypress", "CodeceptJS", "Gherkin", "BDD"],
-  },
-  {
-    title: "Testes de API",
-    icon: Wrench,
-    skills: ["Postman", "Insomnia"],
-  },
-  {
-    title: "Testes Mobile",
-    icon: TestTube,
-    skills: ["Appium", "Robot Framework"],
-  },
-  {
-    title: "Relatórios Automatizados",
-    icon: BarChart3,
-    skills: ["Mochawesome", "JUnit", "Allure Report"],
-  },
-  {
-    title: "Linguagens",
-    icon: Code2,
-    skills: ["JavaScript", "Python", "SQL"],
-  },
-  {
-    title: "DevOps & CI/CD",
-    icon: GitBranch,
-    skills: ["Git", "GitHub Actions", "GitLab CI/CD", "Docker"],
-  },
-  {
-    title: "Documentação",
-    icon: FileText,
-    skills: ["Documentação de testes", "Documentação de bugs"],
-  },
-];
-
 export const SkillsSection = () => {
+  const { t } = useTranslation();
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
+
+  const skillCategories = [
+    {
+      title: t("skills.functionalTests"),
+      icon: TestTube,
+      skills: ["Cypress", "CodeceptJS", "Gherkin", "BDD"],
+    },
+    {
+      title: t("skills.apiTests"),
+      icon: Wrench,
+      skills: ["Postman", "Insomnia"],
+    },
+    {
+      title: t("skills.mobileTests"),
+      icon: TestTube,
+      skills: ["Appium", "Robot Framework"],
+    },
+    {
+      title: t("skills.automatedReports"),
+      icon: BarChart3,
+      skills: ["Mochawesome", "JUnit", "Allure Report"],
+    },
+    {
+      title: t("skills.languages"),
+      icon: Code2,
+      skills: ["JavaScript", "Python", "SQL"],
+    },
+    {
+      title: t("skills.devops"),
+      icon: GitBranch,
+      skills: ["Git", "GitHub Actions", "GitLab CI/CD", "Docker"],
+    },
+    {
+      title: t("skills.documentation"),
+      icon: FileText,
+      skills: [t("skills.testDocumentation"), t("skills.bugDocumentation")],
+    },
+  ];
 
   return (
     <section id="skills" className="py-24 relative" ref={ref}>
@@ -79,7 +81,7 @@ export const SkillsSection = () => {
               <Code2 className="w-5 h-5" />
             </div>
             <h2 className="text-3xl md:text-4xl font-semibold text-foreground tracking-tight">
-              Competências Técnicas
+              {t("skills.title")}
             </h2>
           </div>
 

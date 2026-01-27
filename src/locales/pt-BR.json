@@ -1,0 +1,86 @@
+{
+  "nav": {
+    "title": "Meu Portfólio",
+    "about": "Sobre",
+    "education": "Formação",
+    "experience": "Experiência",
+    "certifications": "Certificações",
+    "skills": "Skills",
+    "projects": "Projetos",
+    "contact": "Contato"
+  },
+  "hero": {
+    "availableStatus": "Disponível para novas oportunidades",
+    "greeting": "Olá! Eu sou",
+    "name": "Ubirajara Filho",
+    "title": "Analista de QA",
+    "description": "Especialista em automação de testes, práticas DevOps e cultura de qualidade. Construindo arquiteturas de testes escaláveis e implementando shift-left testing em ambientes ágeis com entrega contínua.",
+    "viewProjects": "Ver Projetos",
+    "contact": "Entrar em Contato",
+    "scrollDown": "Role para baixo",
+    "visitProfile": "Visitar perfil no {{platform}}"
+  },
+  "about": {
+    "title": "Sobre Mim",
+    "bio1": "Sou um profissional apaixonado por qualidade de software, com foco em",
+    "bio1Highlight1": "automação de testes",
+    "bio1Highlight2": "práticas de DevOps",
+    "bio1Highlight3": "cultura de qualidade",
+    "bio1End": "desde o planejamento.",
+    "bio2Start": "Atualmente cursando",
+    "bio2Course": "Sistemas de Informação",
+    "bio2End": "na UESB, busco constantemente aprimorar minhas habilidades e contribuir para projetos que valorizem a excelência técnica e a entrega contínua.",
+    "goalTitle": "Objetivo",
+    "goalDescription": "Atuar como Analista de QA valorizando automação, DevOps e qualidade desde o planejamento.",
+    "differentialTitle": "Diferencial",
+    "differentialDescription": "Identificação técnica de falhas, arquiteturas de testes escaláveis e shift-left testing.",
+    "imageAlt": "Foto de Ubirajara Filho - Analista de QA"
+  },
+  "skills": {
+    "title": "Competências Técnicas",
+    "functionalTests": "Testes Funcionais",
+    "apiTests": "Testes de API",
+    "mobileTests": "Testes Mobile",
+    "automatedReports": "Relatórios Automatizados",
+    "languages": "Linguagens",
+    "devops": "DevOps & CI/CD",
+    "documentation": "Documentação",
+    "testDocumentation": "Documentação de testes",
+    "bugDocumentation": "Documentação de bugs"
+  },
+  "projects": {
+    "title": "Projetos",
+    "sgdoctor": {
+      "name": "SGDoctor Acadêmico",
+      "description": "Atuação como QA no SGDoctor Acadêmico, com testes manuais e automatizados, validação de requisitos e documentação de bugs."
+    },
+    "saucedemo": {
+      "name": "Automação E2E no SauceDemo",
+      "description": "Suite completa de testes E2E automatizados com Cypress, incluindo relatórios com JUnit e Mochawesome e integração contínua com GitHub Actions."
+    },
+    "codeceptjs": {
+      "name": "Automação de API com CodeceptJS",
+      "description": "Projeto de automação de testes de API utilizando CodeceptJS com framework Mocha e relatórios detalhados com Allure."
+    },
+    "automationPractice": {
+      "name": "Automação E2E no Automation Practice",
+      "description": "Testes E2E automatizados para o e-commerce Automation Practice, utilizando dados dinâmicos com FakerJS para cenários realistas."
+    },
+    "restfulApi": {
+      "name": "Automação de API no Restful API Dev",
+      "description": "Testes automatizados de API REST utilizando Cypress, validando endpoints, respostas e fluxos de dados."
+    },
+    "openRepository": "Abrir repositório do projeto {{projectName}}"
+  },
+  "contact": {
+    "title": "Vamos Conversar?",
+    "description": "Estou sempre aberto a novas oportunidades, colaborações e projetos interessantes. Não hesite em entrar em contato!",
+    "phone": "(73) 99847-8938",
+    "location": "Bahia, Brasil",
+    "linkedinDescription": "Conecte-se comigo",
+    "githubDescription": "Veja meus projetos",
+    "gitlabDescription": "Mais repositórios",
+    "emailDescription": "ucgf.profissional@gmail.com",
+    "openLink": "Abrir link para {{platform}}"
+  }
+}

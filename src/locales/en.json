@@ -1,0 +1,86 @@
+{
+  "nav": {
+    "title": "My Portfolio",
+    "about": "About",
+    "education": "Education",
+    "experience": "Experience",
+    "certifications": "Certifications",
+    "skills": "Skills",
+    "projects": "Projects",
+    "contact": "Contact"
+  },
+  "hero": {
+    "availableStatus": "Available for new opportunities",
+    "greeting": "Hello! I'm",
+    "name": "Ubirajara Filho",
+    "title": "QA Analyst",
+    "description": "Expert in test automation, DevOps practices, and quality culture. Building scalable test architectures and implementing shift-left testing in agile environments with continuous delivery.",
+    "viewProjects": "View Projects",
+    "contact": "Get in Touch",
+    "scrollDown": "Scroll down",
+    "visitProfile": "Visit {{platform}} profile"
+  },
+  "about": {
+    "title": "About Me",
+    "bio1": "I'm a professional passionate about software quality, focusing on",
+    "bio1Highlight1": "test automation",
+    "bio1Highlight2": "DevOps practices",
+    "bio1Highlight3": "quality culture",
+    "bio1End": "from planning.",
+    "bio2Start": "Currently studying",
+    "bio2Course": "Information Systems",
+    "bio2End": "at UESB, I constantly seek to improve my skills and contribute to projects that value technical excellence and continuous delivery.",
+    "goalTitle": "Goal",
+    "goalDescription": "Work as a QA Analyst valuing automation, DevOps, and quality from planning.",
+    "differentialTitle": "Differential",
+    "differentialDescription": "Technical identification of failures, scalable test architectures, and shift-left testing.",
+    "imageAlt": "Photo of Ubirajara Filho - QA Analyst"
+  },
+  "skills": {
+    "title": "Technical Skills",
+    "functionalTests": "Functional Tests",
+    "apiTests": "API Tests",
+    "mobileTests": "Mobile Tests",
+    "automatedReports": "Automated Reports",
+    "languages": "Languages",
+    "devops": "DevOps & CI/CD",
+    "documentation": "Documentation",
+    "testDocumentation": "Test documentation",
+    "bugDocumentation": "Bug documentation"
+  },
+  "projects": {
+    "title": "Projects",
+    "sgdoctor": {
+      "name": "SGDoctor Academic",
+      "description": "Acting as QA in SGDoctor Academic, with manual and automated tests, requirements validation, and bug documentation."
+    },
+    "saucedemo": {
+      "name": "E2E Automation on SauceDemo",
+      "description": "Complete suite of automated E2E tests with Cypress, including reports with JUnit and Mochawesome and continuous integration with GitHub Actions."
+    },
+    "codeceptjs": {
+      "name": "API Automation with CodeceptJS",
+      "description": "API test automation project using CodeceptJS with Mocha framework and detailed reports with Allure."
+    },
+    "automationPractice": {
+      "name": "E2E Automation on Automation Practice",
+      "description": "Automated E2E tests for Automation Practice e-commerce, using dynamic data with FakerJS for realistic scenarios."
+    },
+    "restfulApi": {
+      "name": "API Automation on Restful API Dev",
+      "description": "Automated REST API tests using Cypress, validating endpoints, responses, and data flows."
+    },
+    "openRepository": "Open {{projectName}} project repository"
+  },
+  "contact": {
+    "title": "Let's Talk?",
+    "description": "I'm always open to new opportunities, collaborations, and interesting projects. Don't hesitate to get in touch!",
+    "phone": "+55 (73) 99847-8938",
+    "location": "Bahia, Brazil",
+    "linkedinDescription": "Connect with me",
+    "githubDescription": "See my projects",
+    "gitlabDescription": "More repositories",
+    "emailDescription": "ucgf.profissional@gmail.com",
+    "openLink": "Open link to {{platform}}"
+  }
+}

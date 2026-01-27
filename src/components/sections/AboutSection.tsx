@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
 import { User, Target, Sparkles } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 /* =============================================================================
    AboutSection - Material 3 Expressive
@@ -18,6 +19,7 @@ import { User, Target, Sparkles } from "lucide-react";
    ============================================================================= */
 
 export const AboutSection = () => {
+  const { t } = useTranslation();
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
@@ -35,7 +37,7 @@ export const AboutSection = () => {
             <div className="relative rounded-3xl overflow-hidden border border-border/50 shadow-elevation-3 aspect-[3/4] max-w-sm mx-auto lg:mx-0">
               <img
                 src="/images/profile-photo.png"
-                alt="Foto de Ubirajara Filho - Analista de QA"
+                alt={t("about.imageAlt")}
                 className="w-full h-full object-cover transition-transform duration-300 ease-out group-hover:scale-105"
               />
               {/* Gradient overlay for depth */}
@@ -56,39 +58,33 @@ export const AboutSection = () => {
                 <User className="w-5 h-5" />
               </div>
               <h2 className="text-3xl md:text-4xl font-bold text-foreground">
-                Sobre Mim
+                {t("about.title")}
               </h2>
             </div>
 
             {/* Bio - M3 Body Large */}
             <div className="space-y-6">
               <p className="text-lg text-muted-foreground leading-relaxed">
-                Sou um profissional apaixonado por qualidade de software, com
-                foco em
+                {t("about.bio1")}{" "}
                 <span className="text-primary font-medium">
-                  {" "}
-                  automação de testes
+                  {t("about.bio1Highlight1")}
                 </span>
-                ,
+                ,{" "}
                 <span className="text-primary font-medium">
-                  {" "}
-                  práticas de DevOps
+                  {t("about.bio1Highlight2")}
                 </span>{" "}
-                e implementação da
+                e implementação da{" "}
                 <span className="text-primary font-medium">
-                  {" "}
-                  cultura de qualidade
+                  {t("about.bio1Highlight3")}
                 </span>{" "}
-                desde o planejamento.
+                {t("about.bio1End")}
               </p>
               <p className="text-lg text-muted-foreground leading-relaxed">
-                Atualmente cursando{" "}
+                {t("about.bio2Start")}{" "}
                 <span className="text-tertiary font-medium">
-                  Sistemas de Informação
+                  {t("about.bio2Course")}
                 </span>{" "}
-                na UESB, busco constantemente aprimorar minhas habilidades e
-                contribuir para projetos que valorizem a excelência técnica e a
-                entrega contínua.
+                {t("about.bio2End")}
               </p>
             </div>
 
@@ -101,11 +97,10 @@ export const AboutSection = () => {
                   </div>
                   <div>
                     <h3 className="font-semibold text-foreground mb-1">
-                      Objetivo
+                      {t("about.goalTitle")}
                     </h3>
                     <p className="text-muted-foreground text-sm leading-relaxed">
-                      Atuar como Analista de QA valorizando automação, DevOps e
-                      qualidade desde o planejamento.
+                      {t("about.goalDescription")}
                     </p>
                   </div>
                 </div>
@@ -118,11 +113,10 @@ export const AboutSection = () => {
                   </div>
                   <div>
                     <h3 className="font-semibold text-foreground mb-1">
-                      Diferencial
+                      {t("about.differentialTitle")}
                     </h3>
                     <p className="text-muted-foreground text-sm leading-relaxed">
-                      Identificação técnica de falhas, arquiteturas de testes
-                      escaláveis e shift-left testing.
+                      {t("about.differentialDescription")}
                     </p>
                   </div>
                 </div>
