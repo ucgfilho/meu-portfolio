@@ -20,9 +20,9 @@ export const EducationSection = () => {
     <section id="education" className="py-24 relative" ref={ref}>
       <div className="container mx-auto px-6">
         <motion.div
-          initial={{ opacity: 0, y: 50 }}
+          initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8 }}
+          transition={{ duration: 0.4 }}
           className="max-w-4xl mx-auto"
         >
           {/* Section header */}
@@ -43,21 +43,21 @@ export const EducationSection = () => {
             {education.map((item, index) => (
               <motion.div
                 key={index}
-                initial={{ opacity: 0, x: -50 }}
+                initial={{ opacity: 0, x: -30 }}
                 animate={isInView ? { opacity: 1, x: 0 } : {}}
-                transition={{ duration: 0.8, delay: 0.2 + index * 0.2 }}
+                transition={{ duration: 0.4, delay: 0.1 + index * 0.1 }}
                 className="relative pl-12 pb-12 last:pb-0"
               >
                 {/* Timeline dot */}
                 <motion.div
                   initial={{ scale: 0 }}
                   animate={isInView ? { scale: 1 } : {}}
-                  transition={{ duration: 0.5, delay: 0.4 + index * 0.2 }}
+                  transition={{ duration: 0.3, delay: 0.2 + index * 0.1 }}
                   className="absolute left-2 w-5 h-5 rounded-full border-2 border-secondary bg-background shadow-[0_0_20px_hsl(var(--neon-cyan)/0.5)]"
                 />
 
                 {/* Card */}
-                <div className="glass-card rounded-xl p-6 border border-border/50 hover:border-secondary/50 transition-all duration-75 group hover:shadow-lg">
+                <div className="glass-card rounded-xl p-6 border border-border/50 hover:border-secondary/50 transition-all duration-200 group hover:shadow-lg">
                   <div className="flex flex-wrap items-center gap-3 mb-4">
                     <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-secondary/10 text-secondary text-sm font-medium">
                       <Calendar className="w-3 h-3" />
@@ -68,7 +68,7 @@ export const EducationSection = () => {
                     </span>
                   </div>
 
-                  <h3 className="text-xl font-bold text-foreground mb-2 group-hover:text-secondary transition-colors duration-75">
+                  <h3 className="text-xl font-bold text-foreground mb-2 group-hover:text-secondary transition-colors duration-200">
                     {item.degree}
                   </h3>
 

@@ -71,11 +71,10 @@ export const ProjectsSection = () => {
     <section id="projects" className="py-24 relative" ref={ref}>
       <div className="container mx-auto px-6">
         <motion.div
-          initial={{ opacity: 0, y: 60 }}
+          initial={{ opacity: 0, y: 40 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{
-            duration: 0.8,
-            ease: [0.34, 1.56, 0.64, 1],
+            duration: 0.4,
           }}
           className="max-w-6xl mx-auto"
         >
@@ -98,20 +97,19 @@ export const ProjectsSection = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={`Abrir repositório do projeto ${project.name}`}
-                initial={{ opacity: 0, y: 40, scale: 0.95 }}
-                animate={isInView ? { opacity: 1, y: 0, scale: 1 } : {}}
+                initial={{ opacity: 0, y: 30 }}
+                animate={isInView ? { opacity: 1, y: 0 } : {}}
                 transition={{
-                  duration: 0.7,
-                  delay: 0.1 * index,
-                  ease: [0.34, 1.56, 0.64, 1],
+                  duration: 0.4,
+                  delay: 0.05 * index,
                 }}
-                whileHover={{ y: -8, scale: 1.02 }}
+                whileHover={{ y: -6, scale: 1.01 }}
                 whileTap={{ scale: 0.98 }}
                 className="glass-card-interactive group relative rounded-3xl p-6 overflow-hidden"
               >
                 {/* Aurora glow effect on hover */}
                 <div
-                  className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none"
+                  className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
                   style={{
                     background:
                       "radial-gradient(circle at 80% 20%, hsl(var(--primary) / 0.15) 0%, transparent 50%)",
@@ -135,7 +133,7 @@ export const ProjectsSection = () => {
                   </motion.div>
 
                   {/* Content */}
-                  <h3 className="text-xl font-medium text-foreground mb-3 group-hover:text-primary transition-colors duration-75 tracking-wide">
+                  <h3 className="text-xl font-medium text-foreground mb-3 group-hover:text-primary transition-colors duration-200 tracking-wide">
                     {project.name}
                   </h3>
                   <p className="text-muted-foreground text-sm mb-5 leading-relaxed line-clamp-3 font-light">
@@ -147,7 +145,7 @@ export const ProjectsSection = () => {
                     {project.technologies.map((tech, techIndex) => (
                       <span
                         key={techIndex}
-                        className="px-3 py-1.5 rounded-full text-xs font-medium transition-all duration-75"
+                        className="px-3 py-1.5 rounded-full text-xs font-medium transition-all duration-200"
                         style={{
                           background: "hsl(0 0% 100% / 0.05)",
                           border: "1px solid hsl(0 0% 100% / 0.08)",
@@ -160,9 +158,9 @@ export const ProjectsSection = () => {
                   </div>
 
                   {/* Link indicator */}
-                  <div className="inline-flex items-center gap-2 text-sm text-primary/70 group-hover:text-primary transition-colors duration-75 font-medium">
+                  <div className="inline-flex items-center gap-2 text-sm text-primary/70 group-hover:text-primary transition-colors duration-200 font-medium">
                     Acessar repositório
-                    <ExternalLink className="w-4 h-4 group-hover:translate-x-1 group-hover:-translate-y-0.5 transition-transform duration-75" />
+                    <ExternalLink className="w-4 h-4 group-hover:translate-x-1 group-hover:-translate-y-0.5 transition-transform duration-200" />
                   </div>
                 </div>
               </motion.a>
@@ -171,12 +169,11 @@ export const ProjectsSection = () => {
 
           {/* GitHub CTA - Liquid Glass Button */}
           <motion.div
-            initial={{ opacity: 0, y: 40 }}
+            initial={{ opacity: 0, y: 30 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{
-              duration: 0.8,
-              delay: 0.6,
-              ease: [0.34, 1.56, 0.64, 1],
+              duration: 0.4,
+              delay: 0.3,
             }}
             className="text-center mt-14"
           >
@@ -187,17 +184,17 @@ export const ProjectsSection = () => {
               href="https://github.com/ucgfilho"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-3 px-7 py-3.5 rounded-full text-foreground font-medium transition-all duration-75 group"
+              className="inline-flex items-center gap-3 px-7 py-3.5 rounded-full text-foreground font-medium transition-all duration-200 group"
               style={{
                 background: "hsl(0 0% 100% / 0.05)",
                 border: "1px solid hsl(0 0% 100% / 0.12)",
                 backdropFilter: "blur(20px)",
                 boxShadow: "inset 0 1px 1px 0 hsl(0 0% 100% / 0.1)",
               }}
-              transition={{ duration: 0.2 }}
+              transition={{ duration: 0.15 }}
               whileHover={{
-                scale: 1.05,
-                y: -4,
+                scale: 1.03,
+                y: -3,
                 backgroundColor: "#333333",
                 borderColor: "#333333",
                 color: "#ffffff",
@@ -210,7 +207,7 @@ export const ProjectsSection = () => {
                 borderColor: "#1a1a1a",
               }}
             >
-              <Github className="w-5 h-5 transition-colors duration-75 group-hover:text-white" />
+              <Github className="w-5 h-5 transition-colors duration-200 group-hover:text-white" />
               Ver GitHub
             </motion.a>
           </motion.div>

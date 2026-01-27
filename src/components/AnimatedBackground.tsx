@@ -64,12 +64,12 @@ export const AnimatedBackground = () => {
             "radial-gradient(circle, hsl(var(--primary) / 0.6) 0%, transparent 70%)",
         }}
         animate={{
-          x: [0, 60, -40, 0],
-          y: [0, -80, 40, 0],
-          scale: [1, 1.2, 0.9, 1],
+          x: [0, 50, -30, 0],
+          y: [0, -60, 30, 0],
+          scale: [1, 1.15, 0.95, 1],
         }}
         transition={{
-          duration: 25,
+          duration: 18,
           repeat: Infinity,
           ease: "easeInOut",
         }}
@@ -85,15 +85,15 @@ export const AnimatedBackground = () => {
             "radial-gradient(circle, hsl(var(--secondary) / 0.5) 0%, transparent 70%)",
         }}
         animate={{
-          x: [0, -50, 30, 0],
-          y: [0, 60, -50, 0],
-          scale: [1, 0.85, 1.15, 1],
+          x: [0, -40, 25, 0],
+          y: [0, 50, -40, 0],
+          scale: [1, 0.9, 1.1, 1],
         }}
         transition={{
-          duration: 20,
+          duration: 15,
           repeat: Infinity,
           ease: "easeInOut",
-          delay: 2,
+          delay: 1.5,
         }}
       />
 
@@ -107,15 +107,15 @@ export const AnimatedBackground = () => {
             "radial-gradient(circle, hsl(var(--tertiary) / 0.4) 0%, transparent 70%)",
         }}
         animate={{
-          x: [0, 40, -60, 0],
-          y: [0, -40, 60, 0],
-          scale: [1, 1.1, 0.95, 1],
+          x: [0, 35, -50, 0],
+          y: [0, -35, 50, 0],
+          scale: [1, 1.08, 0.97, 1],
         }}
         transition={{
-          duration: 30,
+          duration: 22,
           repeat: Infinity,
           ease: "easeInOut",
-          delay: 4,
+          delay: 3,
         }}
       />
 
@@ -129,15 +129,15 @@ export const AnimatedBackground = () => {
             "radial-gradient(circle, hsl(var(--primary) / 0.3) 0%, hsl(var(--secondary) / 0.2) 50%, transparent 70%)",
         }}
         animate={{
-          x: [0, -30, 50, 0],
-          y: [0, 40, -30, 0],
-          scale: [1, 0.95, 1.1, 1],
+          x: [0, -25, 40, 0],
+          y: [0, 35, -25, 0],
+          scale: [1, 0.97, 1.08, 1],
         }}
         transition={{
-          duration: 22,
+          duration: 16,
           repeat: Infinity,
           ease: "easeInOut",
-          delay: 6,
+          delay: 4.5,
         }}
       />
 
@@ -151,15 +151,15 @@ export const AnimatedBackground = () => {
             "radial-gradient(circle, hsl(var(--tertiary) / 0.5) 0%, transparent 70%)",
         }}
         animate={{
-          x: [0, 20, -20, 0],
-          y: [0, -30, 20, 0],
-          scale: [1, 1.2, 0.9, 1],
+          x: [0, 18, -18, 0],
+          y: [0, -25, 18, 0],
+          scale: [1, 1.15, 0.95, 1],
         }}
         transition={{
-          duration: 18,
+          duration: 13,
           repeat: Infinity,
           ease: "easeInOut",
-          delay: 8,
+          delay: 6,
         }}
       />
 

@@ -61,9 +61,9 @@ export const CertificationsSection = () => {
     <section id="certifications" className="py-24 relative" ref={ref}>
       <div className="container mx-auto px-6">
         <motion.div
-          initial={{ opacity: 0, y: 50 }}
+          initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8 }}
+          transition={{ duration: 0.4 }}
           className="max-w-6xl mx-auto"
         >
           {/* Section header */}
@@ -79,25 +79,25 @@ export const CertificationsSection = () => {
             {certifications.map((cert, index) => (
               <motion.div
                 key={index}
-                initial={{ opacity: 0, scale: 0.9 }}
+                initial={{ opacity: 0, scale: 0.95 }}
                 animate={isInView ? { opacity: 1, scale: 1 } : {}}
-                transition={{ duration: 0.5, delay: 0.1 * index }}
+                transition={{ duration: 0.3, delay: 0.05 * index }}
                 whileHover={{ scale: 1.02, y: -4 }}
-                className="glass-card rounded-xl p-5 border border-border/50 hover:border-accent/50 transition-all duration-75 group cursor-pointer"
+                className="glass-card rounded-xl p-5 border border-border/50 hover:border-accent/50 transition-all duration-200 group cursor-pointer"
               >
                 <div className="flex items-start gap-4">
-                  <div className="p-2 rounded-lg bg-accent/10 group-hover:bg-accent/20 transition-colors duration-75">
+                  <div className="p-2 rounded-lg bg-accent/10 group-hover:bg-accent/20 transition-colors duration-200">
                     <cert.icon className="w-5 h-5 text-accent" />
                   </div>
                   <div className="flex-1">
-                    <h3 className="font-semibold text-foreground text-sm mb-1 group-hover:text-accent transition-colors duration-75 line-clamp-2">
+                    <h3 className="font-semibold text-foreground text-sm mb-1 group-hover:text-accent transition-colors duration-200 line-clamp-2">
                       {cert.name}
                     </h3>
                     <p className="text-xs text-muted-foreground">
                       {cert.issuer}
                     </p>
                   </div>
-                  <BadgeCheck className="w-5 h-5 text-accent/50 group-hover:text-accent transition-colors duration-75 flex-shrink-0" />
+                  <BadgeCheck className="w-5 h-5 text-accent/50 group-hover:text-accent transition-colors duration-200 flex-shrink-0" />
                 </div>
               </motion.div>
             ))}

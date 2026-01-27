@@ -20,11 +20,10 @@ export const HeroSection = () => {
         <div className="max-w-4xl mx-auto text-center">
           {/* Status badge - Glass chip */}
           <motion.div
-            initial={{ opacity: 0, y: 30, scale: 0.9 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{
-              duration: 0.8,
-              ease: [0.34, 1.56, 0.64, 1],
+              duration: 0.3,
             }}
             className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full mb-10"
             style={{
@@ -49,12 +48,11 @@ export const HeroSection = () => {
 
           {/* Nome - Display com gradient Aurora */}
           <motion.h1
-            initial={{ opacity: 0, y: 40, scale: 0.95 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{
-              duration: 1,
-              delay: 0.15,
-              ease: [0.34, 1.56, 0.64, 1],
+              duration: 0.4,
+              delay: 0.1,
             }}
             className="text-4xl sm:text-5xl md:text-7xl font-semibold mb-6 tracking-tight"
           >
@@ -65,12 +63,11 @@ export const HeroSection = () => {
 
           {/* Título e descrição */}
           <motion.div
-            initial={{ opacity: 0, y: 40, scale: 0.95 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{
-              duration: 1,
-              delay: 0.3,
-              ease: [0.34, 1.56, 0.64, 1],
+              duration: 0.4,
+              delay: 0.15,
             }}
             className="mb-10"
           >
@@ -87,12 +84,11 @@ export const HeroSection = () => {
 
           {/* CTA Buttons - Liquid Glass */}
           <motion.div
-            initial={{ opacity: 0, y: 40, scale: 0.95 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{
-              duration: 1,
-              delay: 0.45,
-              ease: [0.34, 1.56, 0.64, 1],
+              duration: 0.4,
+              delay: 0.2,
             }}
             className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-14"
           >
@@ -112,12 +108,11 @@ export const HeroSection = () => {
 
           {/* Social Links - Liquid Glass icons */}
           <motion.div
-            initial={{ opacity: 0, y: 40 }}
+            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{
-              duration: 1,
-              delay: 0.6,
-              ease: [0.34, 1.56, 0.64, 1],
+              duration: 0.4,
+              delay: 0.25,
             }}
             className="flex items-center justify-center gap-4"
           >
@@ -194,18 +189,18 @@ export const HeroSection = () => {
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ delay: 1.5, duration: 1 }}
+        transition={{ delay: 0.3, duration: 0.3 }}
         className="absolute bottom-8 left-1/2 -translate-x-1/2"
       >
         <motion.a
           href="#about"
-          animate={{ y: [0, 10, 0] }}
+          animate={{ y: [0, 8, 0] }}
           transition={{
-            duration: 2,
+            duration: 1.5,
             repeat: Infinity,
             ease: "easeInOut",
           }}
-          className="flex flex-col items-center gap-2 text-muted-foreground hover:text-foreground transition-colors duration-300"
+          className="flex flex-col items-center gap-2 text-muted-foreground hover:text-foreground transition-colors duration-200"
         >
           <span className="text-xs font-light tracking-widest uppercase">
             Role para baixo

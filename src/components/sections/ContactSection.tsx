@@ -61,9 +61,9 @@ export const ContactSection = () => {
     <section id="contact" className="py-24 relative" ref={ref}>
       <div className="container mx-auto px-6">
         <motion.div
-          initial={{ opacity: 0, y: 50 }}
+          initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8, ease: [0, 0, 0, 1] }}
+          transition={{ duration: 0.4 }}
           className="max-w-4xl mx-auto text-center"
         >
           {/* Section header - M3 style */}
@@ -83,9 +83,9 @@ export const ContactSection = () => {
 
           {/* Contact info - M3 Chips */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 15 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6, delay: 0.2, ease: [0, 0, 0, 1] }}
+            transition={{ duration: 0.3, delay: 0.1 }}
             className="flex flex-wrap justify-center gap-4 mb-12"
           >
             <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-surface-container-high border border-border/30">
@@ -103,12 +103,11 @@ export const ContactSection = () => {
             {contactLinks.map((link, index) => (
               <motion.div
                 key={link.name}
-                initial={{ opacity: 0, y: 30 }}
+                initial={{ opacity: 0, y: 20 }}
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
                 transition={{
-                  duration: 0.5,
-                  delay: 0.1 * index,
-                  ease: [0, 0, 0, 1],
+                  duration: 0.3,
+                  delay: 0.05 * index,
                 }}
               >
                 <motion.a
@@ -120,11 +119,11 @@ export const ContactSection = () => {
                     backgroundColor: "hsl(var(--surface-container))",
                     borderColor: "hsl(var(--border) / 0.3)",
                   }}
-                  className="rounded-2xl p-6 border transition-all duration-75 group block h-full"
-                  transition={{ duration: 0.2 }}
+                  className="rounded-2xl p-6 border transition-all duration-200 group block h-full"
+                  transition={{ duration: 0.15 }}
                   whileHover={{
-                    scale: 1.05,
-                    y: -4,
+                    scale: 1.03,
+                    y: -3,
                     backgroundColor: link.color,
                     borderColor: link.color,
                     color: "#ffffff",
@@ -137,13 +136,13 @@ export const ContactSection = () => {
                   }}
                 >
                   {/* Icon container - M3 style with primary tonal */}
-                  <div className="w-12 h-12 rounded-xl bg-primary/12 flex items-center justify-center mb-4 mx-auto group-hover:bg-white/20 group-hover:scale-105 transition-all duration-75">
-                    <link.icon className="w-6 h-6 text-primary group-hover:text-white transition-colors duration-75" />
+                  <div className="w-12 h-12 rounded-xl bg-primary/12 flex items-center justify-center mb-4 mx-auto group-hover:bg-white/20 group-hover:scale-105 transition-all duration-200">
+                    <link.icon className="w-6 h-6 text-primary group-hover:text-white transition-colors duration-200" />
                   </div>
-                  <h3 className="font-semibold text-foreground mb-1 group-hover:text-white transition-colors duration-75">
+                  <h3 className="font-semibold text-foreground mb-1 group-hover:text-white transition-colors duration-200">
                     {link.name}
                   </h3>
-                  <p className="text-xs text-muted-foreground truncate group-hover:text-white/90 transition-colors duration-75">
+                  <p className="text-xs text-muted-foreground truncate group-hover:text-white/90 transition-colors duration-200">
                     {link.description}
                   </p>
                 </motion.a>

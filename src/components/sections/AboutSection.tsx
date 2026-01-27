@@ -27,16 +27,16 @@ export const AboutSection = () => {
         <div className="grid lg:grid-cols-[40%_1fr] gap-12 items-center max-w-6xl mx-auto">
           {/* Profile Image Column - M3 Image card style */}
           <motion.div
-            initial={{ opacity: 0, x: -50 }}
+            initial={{ opacity: 0, x: -30 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.8, ease: [0, 0, 0, 1] }}
+            transition={{ duration: 0.4 }}
             className="relative group order-first"
           >
             <div className="relative rounded-3xl overflow-hidden border border-border/50 shadow-elevation-3 aspect-[3/4] max-w-sm mx-auto lg:mx-0">
               <img
                 src="/images/profile-photo.png"
                 alt="Foto de Ubirajara Filho - Analista de QA"
-                className="w-full h-full object-cover transition-transform duration-700 ease-m3-emphasized group-hover:scale-105"
+                className="w-full h-full object-cover transition-transform duration-300 ease-out group-hover:scale-105"
               />
               {/* Gradient overlay for depth */}
               <div className="absolute inset-0 bg-gradient-to-t from-background/50 via-transparent to-transparent opacity-40" />
@@ -45,9 +45,9 @@ export const AboutSection = () => {
 
           {/* Content Column */}
           <motion.div
-            initial={{ opacity: 0, x: 50 }}
+            initial={{ opacity: 0, x: 30 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.8, delay: 0.2, ease: [0, 0, 0, 1] }}
+            transition={{ duration: 0.4, delay: 0.1 }}
             className="space-y-8"
           >
             {/* Header - M3 section header style */}
@@ -68,7 +68,8 @@ export const AboutSection = () => {
                 <span className="text-primary font-medium">
                   {" "}
                   automação de testes
-                </span>,
+                </span>
+                ,
                 <span className="text-primary font-medium">
                   {" "}
                   práticas de DevOps
@@ -93,7 +94,7 @@ export const AboutSection = () => {
 
             {/* Cards - M3 Filled cards */}
             <div className="grid sm:grid-cols-2 gap-4 pt-4">
-              <div className="rounded-2xl p-5 bg-surface-container border border-border/30 hover:bg-surface-container-high hover:border-primary/30 transition-all duration-300 ease-m3-emphasized">
+              <div className="rounded-2xl p-5 bg-surface-container border border-border/30 hover:bg-surface-container-high hover:border-primary/30 transition-all duration-200">
                 <div className="flex flex-col gap-3">
                   <div className="p-2 w-fit rounded-xl bg-primary/12">
                     <Target className="w-5 h-5 text-primary" />
@@ -110,7 +111,7 @@ export const AboutSection = () => {
                 </div>
               </div>
 
-              <div className="rounded-2xl p-5 bg-surface-container border border-border/30 hover:bg-surface-container-high hover:border-secondary/30 transition-all duration-300 ease-m3-emphasized">
+              <div className="rounded-2xl p-5 bg-surface-container border border-border/30 hover:bg-surface-container-high hover:border-secondary/30 transition-all duration-200">
                 <div className="flex flex-col gap-3">
                   <div className="p-2 w-fit rounded-xl bg-secondary/12">
                     <Sparkles className="w-5 h-5 text-secondary" />

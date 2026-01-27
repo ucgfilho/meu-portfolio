@@ -31,7 +31,7 @@ export const LoadingScreen = ({ onComplete }: { onComplete: () => void }) => {
         <motion.div
           initial={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          transition={{ duration: 0.5, ease: [0.4, 0, 0.2, 1] }}
+          transition={{ duration: 0.3 }}
           /* M3 Surface background color */
           className="dark fixed inset-0 z-[100] flex items-center justify-center bg-background text-foreground"
           role="status"
@@ -40,9 +40,9 @@ export const LoadingScreen = ({ onComplete }: { onComplete: () => void }) => {
           <div className="text-center">
             {/* Animated logo - M3 style */}
             <motion.div
-              initial={{ scale: 0.5, opacity: 0 }}
+              initial={{ scale: 0.8, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
-              transition={{ duration: 0.5, ease: [0, 0, 0, 1] }}
+              transition={{ duration: 0.3 }}
               className="relative mb-8"
             >
               {/* Glow effect - M3 primary color */}
@@ -52,11 +52,11 @@ export const LoadingScreen = ({ onComplete }: { onComplete: () => void }) => {
                   boxShadow: "0 0 40px hsl(var(--primary) / 0.3)",
                 }}
                 animate={{
-                  scale: [1, 1.15, 1],
+                  scale: [1, 1.1, 1],
                   opacity: [0.4, 0.7, 0.4],
                 }}
                 transition={{
-                  duration: 2,
+                  duration: 1.5,
                   repeat: Infinity,
                   ease: "easeInOut",
                 }}
@@ -66,14 +66,14 @@ export const LoadingScreen = ({ onComplete }: { onComplete: () => void }) => {
               <motion.div
                 className="w-24 h-24 rounded-full border-4 border-surface-container-highest flex items-center justify-center"
                 animate={{ rotate: 360 }}
-                transition={{ duration: 2.5, repeat: Infinity, ease: "linear" }}
+                transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
               >
                 {/* Inner spinner with M3 colors */}
                 <motion.div
                   className="w-16 h-16 rounded-full border-4 border-t-primary border-r-secondary border-b-tertiary border-l-transparent"
                   animate={{ rotate: -360 }}
                   transition={{
-                    duration: 1.5,
+                    duration: 1.2,
                     repeat: Infinity,
                     ease: "linear",
                   }}
@@ -83,9 +83,9 @@ export const LoadingScreen = ({ onComplete }: { onComplete: () => void }) => {
 
             {/* Text - M3 typography */}
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.3, ease: [0, 0, 0, 1] }}
+              transition={{ delay: 0.2, duration: 0.3 }}
             >
               <h2 className="text-2xl font-semibold gradient-text mb-3">
                 Carregando portfólio...
@@ -95,17 +95,17 @@ export const LoadingScreen = ({ onComplete }: { onComplete: () => void }) => {
                 className="flex items-center justify-center gap-1.5"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
-                transition={{ delay: 0.5 }}
+                transition={{ delay: 0.3, duration: 0.3 }}
               >
                 {[0, 1, 2].map((i) => (
                   <motion.span
                     key={i}
                     className="w-2 h-2 rounded-full bg-primary"
-                    animate={{ scale: [1, 1.4, 1], opacity: [0.5, 1, 0.5] }}
+                    animate={{ scale: [1, 1.3, 1], opacity: [0.5, 1, 0.5] }}
                     transition={{
-                      duration: 0.8,
+                      duration: 0.6,
                       repeat: Infinity,
-                      delay: i * 0.15,
+                      delay: i * 0.1,
                       ease: "easeInOut",
                     }}
                   />

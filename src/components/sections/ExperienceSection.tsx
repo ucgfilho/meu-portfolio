@@ -24,9 +24,9 @@ export const ExperienceSection = () => {
     <section id="experience" className="py-24 relative" ref={ref}>
       <div className="container mx-auto px-6">
         <motion.div
-          initial={{ opacity: 0, y: 50 }}
+          initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8 }}
+          transition={{ duration: 0.4 }}
           className="max-w-5xl mx-auto"
         >
           {/* Section header */}
@@ -43,10 +43,10 @@ export const ExperienceSection = () => {
           {experiences.map((exp, expIndex) => (
             <motion.div
               key={expIndex}
-              initial={{ opacity: 0, y: 50 }}
+              initial={{ opacity: 0, y: 30 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="glass-card rounded-2xl p-8 border border-border/50 hover:border-primary/30 transition-all duration-75"
+              transition={{ duration: 0.4, delay: 0.1 }}
+              className="glass-card rounded-2xl p-8 border border-border/50 hover:border-primary/30 transition-all duration-200"
             >
               {/* Header */}
               <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-8">
@@ -69,10 +69,10 @@ export const ExperienceSection = () => {
                 {exp.responsibilities.map((responsibility, index) => (
                   <motion.div
                     key={index}
-                    initial={{ opacity: 0, x: -30 }}
+                    initial={{ opacity: 0, x: -20 }}
                     animate={isInView ? { opacity: 1, x: 0 } : {}}
-                    transition={{ duration: 0.6, delay: 0.4 + index * 0.1 }}
-                    className="relative pl-8 border-l-2 border-primary/30 hover:border-primary transition-colors duration-75"
+                    transition={{ duration: 0.3, delay: 0.2 + index * 0.05 }}
+                    className="relative pl-8 border-l-2 border-primary/30 hover:border-primary transition-colors duration-200"
                   >
                     <div className="absolute -left-[9px] top-1 w-4 h-4 rounded-full bg-primary/20 border-2 border-primary" />
                     <p className="text-muted-foreground leading-relaxed">

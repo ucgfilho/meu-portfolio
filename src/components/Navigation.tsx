@@ -38,16 +38,16 @@ export const Navigation = () => {
     <>
       {/* Liquid Glass Navbar */}
       <motion.nav
-        initial={{ y: -100, opacity: 0 }}
+        initial={{ y: -80, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.8, ease: [0.34, 1.56, 0.64, 1] }}
-        className={`fixed top-0 left-0 right-0 z-40 transition-all duration-500 ease-spring ${
+        transition={{ duration: 0.4 }}
+        className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
           isScrolled ? "py-3" : "py-6 bg-transparent"
         }`}
       >
         {/* Glass effect container */}
         <div
-          className={`absolute inset-0 transition-all duration-500 ${
+          className={`absolute inset-0 transition-all duration-300 ${
             isScrolled
               ? "backdrop-blur-glass bg-background/60 border-b border-white/[0.08]"
               : ""
@@ -66,7 +66,7 @@ export const Navigation = () => {
             className="text-xl font-semibold gradient-text tracking-tight"
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
-            transition={{ type: "spring", stiffness: 400, damping: 17 }}
+            transition={{ duration: 0.15 }}
           >
             Meu Portfólio
           </motion.a>
@@ -77,20 +77,18 @@ export const Navigation = () => {
               <motion.a
                 key={item.href}
                 href={item.href}
-                className="relative px-4 py-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors duration-75 rounded-full group"
-                initial={{ opacity: 0, y: -20 }}
+                className="relative px-4 py-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors duration-200 rounded-full group"
+                initial={{ opacity: 0, y: -15 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{
-                  delay: 0.1 * index,
-                  type: "spring",
-                  stiffness: 300,
-                  damping: 20,
+                  delay: 0.05 * index,
+                  duration: 0.3,
                 }}
-                whileHover={{ scale: 1.05, transition: { duration: 0.05 } }}
-                whileTap={{ scale: 0.95, transition: { duration: 0.05 } }}
+                whileHover={{ scale: 1.03 }}
+                whileTap={{ scale: 0.97 }}
               >
                 {/* Hover background - glass effect */}
-                <span className="absolute inset-0 rounded-full bg-white/[0.05] opacity-0 group-hover:opacity-100 transition-opacity duration-75" />
+                <span className="absolute inset-0 rounded-full bg-white/[0.05] opacity-0 group-hover:opacity-100 transition-opacity duration-200" />
                 <span className="relative">{item.label}</span>
               </motion.a>
             ))}
@@ -119,8 +117,7 @@ export const Navigation = () => {
           x: isMobileMenuOpen ? 0 : "100%",
         }}
         transition={{
-          duration: 0.5,
-          ease: [0.34, 1.56, 0.64, 1],
+          duration: 0.3,
         }}
         className="fixed inset-0 z-30 md:hidden"
         style={{ pointerEvents: isMobileMenuOpen ? "auto" : "none" }}
@@ -151,22 +148,20 @@ export const Navigation = () => {
                 href={item.href}
                 className="relative px-5 py-4 text-lg font-medium text-foreground rounded-2xl overflow-hidden group"
                 onClick={() => setIsMobileMenuOpen(false)}
-                initial={{ opacity: 0, x: 30 }}
+                initial={{ opacity: 0, x: 20 }}
                 animate={{
                   opacity: isMobileMenuOpen ? 1 : 0,
-                  x: isMobileMenuOpen ? 0 : 30,
+                  x: isMobileMenuOpen ? 0 : 20,
                 }}
                 transition={{
-                  delay: isMobileMenuOpen ? 0.1 * index : 0,
-                  type: "spring",
-                  stiffness: 300,
-                  damping: 25,
+                  delay: isMobileMenuOpen ? 0.05 * index : 0,
+                  duration: 0.25,
                 }}
-                whileHover={{ scale: 1.02, x: 4 }}
+                whileHover={{ scale: 1.02, x: 3 }}
                 whileTap={{ scale: 0.98 }}
               >
                 {/* Hover glass effect */}
-                <span className="absolute inset-0 bg-white/[0.03] opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                <span className="absolute inset-0 bg-white/[0.03] opacity-0 group-hover:opacity-100 transition-opacity duration-200" />
                 <span className="relative">{item.label}</span>
               </motion.a>
             ))}

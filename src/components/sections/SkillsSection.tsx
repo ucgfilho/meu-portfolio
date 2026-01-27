@@ -24,95 +24,39 @@ const skillCategories = [
   {
     title: "Testes Funcionais",
     icon: TestTube,
-    skills: [
-      { name: "Cypress", level: 90 },
-      { name: "CodeceptJS", level: 85 },
-      { name: "Gherkin", level: 82 },
-      { name: "BDD", level: 80 },
-    ],
+    skills: ["Cypress", "CodeceptJS", "Gherkin", "BDD"],
   },
   {
     title: "Testes de API",
     icon: Wrench,
-    skills: [
-      { name: "Postman", level: 88 },
-      { name: "Insomnia", level: 86 },
-    ],
+    skills: ["Postman", "Insomnia"],
+  },
+  {
+    title: "Testes Mobile",
+    icon: TestTube,
+    skills: ["Appium", "Robot Framework"],
   },
   {
     title: "Relatórios Automatizados",
     icon: BarChart3,
-    skills: [
-      { name: "Mochawesome", level: 92 },
-      { name: "JUnit", level: 90 },
-      { name: "Allure Report", level: 94 },
-    ],
+    skills: ["Mochawesome", "JUnit", "Allure Report"],
   },
   {
     title: "Linguagens",
     icon: Code2,
-    skills: [
-      { name: "JavaScript", level: 100 },
-      { name: "SQL", level: 72 },
-      { name: "Java", level: 30 },
-    ],
+    skills: ["JavaScript", "Python", "SQL"],
   },
   {
     title: "DevOps & CI/CD",
     icon: GitBranch,
-    skills: [
-      { name: "Git", level: 92 },
-      { name: "GitHub Actions", level: 85 },
-      { name: "GitLab CI/CD", level: 82 },
-      { name: "Docker", level: 75 },
-    ],
+    skills: ["Git", "GitHub Actions", "GitLab CI/CD", "Docker"],
   },
   {
     title: "Documentação",
     icon: FileText,
-    skills: [
-      { name: "Documentação de testes", level: 100 },
-      { name: "Documentação de bugs", level: 100 },
-    ],
+    skills: ["Documentação de testes", "Documentação de bugs"],
   },
 ];
-
-/* Liquid Glass Progress Bar */
-const SkillBar = ({
-  name,
-  level,
-  delay,
-}: {
-  name: string;
-  level: number;
-  delay: number;
-}) => {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true });
-
-  return (
-    <div ref={ref} className="space-y-2">
-      <div className="flex justify-between items-center">
-        <span className="text-sm font-medium text-foreground tracking-wide">{name}</span>
-        <span className="text-xs text-muted-foreground font-light">
-          {level}%
-        </span>
-      </div>
-      <div className="skill-bar">
-        <motion.div
-          className="skill-bar-fill"
-          initial={{ width: 0 }}
-          animate={isInView ? { width: `${level}%` } : {}}
-          transition={{ 
-            duration: 1.2, 
-            delay, 
-            ease: [0.34, 1.56, 0.64, 1]
-          }}
-        />
-      </div>
-    </div>
-  );
-};
 
 export const SkillsSection = () => {
   const ref = useRef(null);
@@ -122,11 +66,10 @@ export const SkillsSection = () => {
     <section id="skills" className="py-24 relative" ref={ref}>
       <div className="container mx-auto px-6">
         <motion.div
-          initial={{ opacity: 0, y: 60 }}
+          initial={{ opacity: 0, y: 40 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ 
-            duration: 0.8, 
-            ease: [0.34, 1.56, 0.64, 1]
+          transition={{
+            duration: 0.4,
           }}
           className="max-w-6xl mx-auto"
         >
@@ -145,27 +88,27 @@ export const SkillsSection = () => {
             {skillCategories.map((category, categoryIndex) => (
               <motion.div
                 key={category.title}
-                initial={{ opacity: 0, y: 40, scale: 0.95 }}
-                animate={isInView ? { opacity: 1, y: 0, scale: 1 } : {}}
+                initial={{ opacity: 0, y: 30 }}
+                animate={isInView ? { opacity: 1, y: 0 } : {}}
                 transition={{
-                  duration: 0.7,
-                  delay: 0.15 + categoryIndex * 0.1,
-                  ease: [0.34, 1.56, 0.64, 1],
+                  duration: 0.4,
+                  delay: 0.05 + categoryIndex * 0.05,
                 }}
-                whileHover={{ 
-                  y: -8, 
-                  scale: 1.02,
+                whileHover={{
+                  y: -6,
+                  scale: 1.01,
                 }}
                 className="glass-card-interactive rounded-3xl p-6"
               >
                 {/* Category header */}
                 <div className="flex items-center gap-3 mb-6">
-                  <div 
+                  <div
                     className="p-2.5 rounded-2xl"
                     style={{
                       background: "hsl(var(--primary) / 0.1)",
                       border: "1px solid hsl(var(--primary) / 0.15)",
-                      boxShadow: "inset 0 1px 1px 0 hsl(0 0% 100% / 0.1), 0 0 12px hsl(var(--primary) / 0.15)",
+                      boxShadow:
+                        "inset 0 1px 1px 0 hsl(0 0% 100% / 0.1), 0 0 12px hsl(var(--primary) / 0.15)",
                     }}
                   >
                     <category.icon className="w-5 h-5 text-primary" />
@@ -176,14 +119,20 @@ export const SkillsSection = () => {
                 </div>
 
                 {/* Skills list */}
-                <div className="space-y-4">
+                <div className="flex flex-wrap gap-2">
                   {category.skills.map((skill, skillIndex) => (
-                    <SkillBar
-                      key={skill.name}
-                      name={skill.name}
-                      level={skill.level}
-                      delay={0.3 + categoryIndex * 0.1 + skillIndex * 0.08}
-                    />
+                    <motion.span
+                      key={skill}
+                      initial={{ opacity: 0, scale: 0.9 }}
+                      animate={isInView ? { opacity: 1, scale: 1 } : {}}
+                      transition={{
+                        duration: 0.3,
+                        delay: 0.1 + categoryIndex * 0.05 + skillIndex * 0.03,
+                      }}
+                      className="px-3 py-1.5 rounded-full text-sm font-medium text-foreground bg-primary/10 border border-primary/20"
+                    >
+                      {skill}
+                    </motion.span>
                   ))}
                 </div>
               </motion.div>
@@ -192,12 +141,11 @@ export const SkillsSection = () => {
 
           {/* Tags cloud - Glass Chips */}
           <motion.div
-            initial={{ opacity: 0, y: 40 }}
+            initial={{ opacity: 0, y: 30 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ 
-              duration: 0.8, 
-              delay: 0.6, 
-              ease: [0.34, 1.56, 0.64, 1]
+            transition={{
+              duration: 0.4,
+              delay: 0.3,
             }}
             className="mt-14 text-center"
           >
@@ -220,17 +168,19 @@ export const SkillsSection = () => {
                 "Mochawesome",
                 "JUnit",
                 "Insomnia",
+                "Appium",
+                "Robot Framework",
+                "Python",
               ].map((tech, index) => (
                 <motion.span
                   key={tech}
-                  initial={{ opacity: 0, scale: 0.8, y: 20 }}
-                  animate={isInView ? { opacity: 1, scale: 1, y: 0 } : {}}
-                  transition={{ 
-                    duration: 0.5, 
-                    delay: 0.8 + index * 0.04,
-                    ease: [0.34, 1.56, 0.64, 1]
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={isInView ? { opacity: 1, scale: 1 } : {}}
+                  transition={{
+                    duration: 0.3,
+                    delay: 0.4 + index * 0.02,
                   }}
-                  whileHover={{ scale: 1.08, y: -2 }}
+                  whileHover={{ scale: 1.05, y: -2 }}
                   whileTap={{ scale: 0.95 }}
                   className="glass-chip cursor-default"
                 >
