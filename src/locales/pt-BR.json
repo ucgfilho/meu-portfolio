@@ -71,7 +71,7 @@
       "description": "Testes automatizados de API REST utilizando Cypress, validando endpoints, respostas e fluxos de dados."
     },
     "mobileAutomation": {
-      "name": "Automação Mobile com Appium",
+      "name": "Automação Mobile no QAzando Food",
       "description": "Testes automatizados E2E no app QAzando Food, usando Robot Framework + Appium e com execução no BrowserStack como Device Farm."
     },
     "openRepository": "Abrir repositório do projeto {{projectName}}"
