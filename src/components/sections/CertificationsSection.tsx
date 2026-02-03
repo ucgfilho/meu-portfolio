@@ -20,6 +20,11 @@ const certifications = [
     issuer: "Qazando",
     icon: BookOpen,
   },
+  {
+    name: "Automação Mobile com Appium, Robot Framework e BrowserStack",
+    issuer: "Qazando",
+    icon: Trophy,
+  },
   { name: "Jornada QA 2025", issuer: "EBAC", icon: Trophy },
   {
     name: "Introdução ao Bootcamp - Java e QA",

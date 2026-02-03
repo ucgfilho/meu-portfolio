@@ -62,6 +62,12 @@ export const ProjectsSection = () => {
       technologies: ["Cypress", "API Testing", "REST"],
       link: "https://github.com/ucgfilho/cypress-api-test",
     },
+    {
+      name: t("projects.mobileAutomation.name"),
+      description: t("projects.mobileAutomation.description"),
+      technologies: ["Appium", "Robot Framework", "BrowserStack"],
+      link: "https://github.com/ucgfilho/robot-appium",
+    },
   ];
 
   return (

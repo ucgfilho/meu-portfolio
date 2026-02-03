@@ -40,7 +40,7 @@ export const SkillsSection = () => {
     {
       title: t("skills.mobileTests"),
       icon: TestTube,
-      skills: ["Appium", "Robot Framework"],
+      skills: ["Appium", "Robot Framework", "BrowserStack"],
     },
     {
       title: t("skills.automatedReports"),
@@ -172,6 +172,7 @@ export const SkillsSection = () => {
                 "Insomnia",
                 "Appium",
                 "Robot Framework",
+                "BrowserStack",
                 "Python",
               ].map((tech, index) => (
                 <motion.span

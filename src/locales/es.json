@@ -70,6 +70,10 @@
       "name": "Automatización de API en Restful API Dev",
       "description": "Pruebas automatizadas de API REST utilizando Cypress, validando endpoints, respuestas y flujos de datos."
     },
+    "mobileAutomation": {
+      "name": "Automatización Mobile con Appium",
+      "description": "Pruebas automatizadas E2E en la app QAzando Food, utilizando Robot Framework + Appium con ejecución en BrowserStack como Device Farm."
+    },
     "openRepository": "Abrir repositorio del proyecto {{projectName}}"
   },
   "contact": {
