@@ -1,7 +1,15 @@
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
-import { Languages } from "lucide-react";
+
+/* =============================================================================
+   LanguagesSection - Editorial High-End
+   
+   DESIGN:
+   - Grid de cards de idiomas minimalistas
+   - Barra de proficiência horizontal simples
+   - Tipografia limpa e hierárquica
+   ============================================================================= */
 
 const languages = [
   {
@@ -28,88 +36,74 @@ export const LanguagesSection = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: { staggerChildren: 0.1 },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] },
+    },
+  };
+
   return (
-    <section className="py-24 relative" ref={ref}>
+    <section className="py-24 md:py-32 relative" ref={ref}>
       <div className="container mx-auto px-6">
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.4 }}
+          variants={containerVariants}
+          initial="hidden"
+          animate={isInView ? "visible" : "hidden"}
           className="max-w-4xl mx-auto"
         >
           {/* Section header */}
-          <div className="flex items-center gap-3 mb-12">
-            <div className="p-2 rounded-lg bg-secondary/10 border border-secondary/20">
-              <Languages className="w-5 h-5 text-secondary" />
-            </div>
-            <h2 className="text-3xl md:text-4xl font-bold">Idiomas</h2>
-          </div>
+          <motion.div
+            variants={itemVariants}
+            className="section-header justify-center"
+          >
+            <span className="section-label">Idiomas</span>
+          </motion.div>
 
           {/* Languages grid */}
-          <div className="grid sm:grid-cols-3 gap-6">
-            {languages.map((lang, index) => (
+          <div className="grid sm:grid-cols-3 gap-5">
+            {languages.map((lang) => (
               <motion.div
                 key={lang.name}
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={isInView ? { opacity: 1, scale: 1 } : {}}
-                transition={{ duration: 0.3, delay: 0.05 * index }}
-                whileHover={{ scale: 1.03 }}
-                className="glass-card rounded-2xl p-6 border border-border/50 hover:border-secondary/50 transition-all duration-200 text-center group"
+                variants={itemVariants}
+                className="card p-6 text-center group hover:border-accent/30 transition-colors duration-200"
               >
-                <motion.div
-                  initial={{ scale: 0 }}
-                  animate={isInView ? { scale: 1 } : {}}
-                  transition={{
-                    duration: 0.3,
-                    delay: 0.1 + index * 0.05,
-                    type: "spring",
-                  }}
-                  className="text-5xl mb-4"
-                >
-                  {lang.flag}
-                </motion.div>
+                {/* Flag */}
+                <div className="text-4xl mb-4">{lang.flag}</div>
 
-                <h3 className="text-lg font-bold text-foreground mb-2">
+                {/* Name and level */}
+                <h3 className="text-lg font-medium text-foreground mb-1">
                   {lang.name}
                 </h3>
-                <p className="text-secondary font-medium mb-4">{lang.level}</p>
+                <p className="text-sm text-accent font-medium mb-5">
+                  {lang.level}
+                </p>
 
-                {/* Proficiency circle */}
-                <div className="relative w-20 h-20 mx-auto">
-                  <svg className="w-20 h-20 transform -rotate-90">
-                    <circle
-                      className="text-muted"
-                      strokeWidth="6"
-                      stroke="currentColor"
-                      fill="transparent"
-                      r="32"
-                      cx="40"
-                      cy="40"
-                    />
-                    <motion.circle
-                      className="text-secondary"
-                      strokeWidth="6"
-                      strokeLinecap="round"
-                      stroke="currentColor"
-                      fill="transparent"
-                      r="32"
-                      cx="40"
-                      cy="40"
-                      initial={{ strokeDasharray: "0 201" }}
-                      animate={
-                        isInView
-                          ? {
-                              strokeDasharray: `${(lang.proficiency / 100) * 201} 201`,
-                            }
-                          : {}
-                      }
-                      transition={{ duration: 0.8, delay: 0.2 + index * 0.1 }}
-                    />
-                  </svg>
-                  <span className="absolute inset-0 flex items-center justify-center text-sm font-bold text-foreground">
-                    {lang.proficiency}%
-                  </span>
+                {/* Proficiency bar */}
+                <div className="h-1.5 bg-border rounded-full overflow-hidden">
+                  <motion.div
+                    className="h-full bg-accent rounded-full"
+                    initial={{ width: 0 }}
+                    animate={isInView ? { width: `${lang.proficiency}%` } : {}}
+                    transition={{
+                      duration: 0.8,
+                      ease: [0.25, 0.46, 0.45, 0.94],
+                    }}
+                  />
                 </div>
+                <p className="text-xs text-muted-foreground mt-2">
+                  {lang.proficiency}%
+                </p>
               </motion.div>
             ))}
           </div>

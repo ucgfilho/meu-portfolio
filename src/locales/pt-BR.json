@@ -14,7 +14,7 @@
     "greeting": "Olá! Eu sou",
     "name": "Ubirajara Filho",
     "title": "Analista de QA",
-    "description": "Especialista em automação de testes, práticas DevOps e cultura de qualidade. Construindo arquiteturas de testes escaláveis e implementando shift-left testing em ambientes ágeis com entrega contínua.",
+    "description": "Trabalho com automação de testes e práticas DevOps para garantir qualidade desde o início. Gosto de construir soluções que facilitam o trabalho das equipes e tornam os testes mais eficientes.",
     "viewProjects": "Ver Projetos",
     "contact": "Entrar em Contato",
     "scrollDown": "Role para baixo",
@@ -22,22 +22,22 @@
   },
   "about": {
     "title": "Sobre Mim",
-    "bio1": "Sou um profissional apaixonado por qualidade de software, com foco em",
+    "bio1": "Sou apaixonado por qualidade de software, com foco em",
     "bio1Highlight1": "automação de testes",
-    "bio1Highlight2": "práticas de DevOps",
+    "bio1Highlight2": "DevOps",
     "bio1Highlight3": "cultura de qualidade",
-    "bio1End": "desde o planejamento.",
+    "bio1End": "desde o início do projeto.",
     "bio2Start": "Atualmente cursando",
     "bio2Course": "Sistemas de Informação",
-    "bio2End": "na UESB, busco constantemente aprimorar minhas habilidades e contribuir para projetos que valorizem a excelência técnica e a entrega contínua.",
+    "bio2End": "na UESB, estou sempre buscando aprender mais e contribuir em projetos que valorizam qualidade e boas práticas.",
     "goalTitle": "Objetivo",
-    "goalDescription": "Atuar como Analista de QA valorizando automação, DevOps e qualidade desde o planejamento.",
+    "goalDescription": "Trabalhar como Analista de QA aplicando automação e boas práticas desde o planejamento.",
     "differentialTitle": "Diferencial",
-    "differentialDescription": "Identificação técnica de falhas, arquiteturas de testes escaláveis e shift-left testing.",
+    "differentialDescription": "Análise técnica de problemas, criação de testes escaláveis e foco em prevenção de bugs.",
     "imageAlt": "Foto de Ubirajara Filho - Analista de QA"
   },
   "skills": {
-    "title": "Competências Técnicas",
+    "title": "Tecnologias e Habilidades",
     "functionalTests": "Testes Funcionais",
     "apiTests": "Testes de API",
     "mobileTests": "Testes Mobile",
@@ -52,33 +52,33 @@
     "title": "Projetos",
     "sgdoctor": {
       "name": "SGDoctor Acadêmico",
-      "description": "Atuação como QA no SGDoctor Acadêmico, com testes manuais e automatizados, validação de requisitos e documentação de bugs."
+      "description": "Trabalhei como QA no SGDoctor, fazendo testes manuais e automatizados, validando requisitos e documentando bugs encontrados."
     },
     "saucedemo": {
       "name": "Automação E2E no SauceDemo",
-      "description": "Suite completa de testes E2E automatizados com Cypress, incluindo relatórios com JUnit e Mochawesome e integração contínua com GitHub Actions."
+      "description": "Suite de testes E2E com Cypress, incluindo relatórios automáticos e integração com GitHub Actions."
     },
     "codeceptjs": {
       "name": "Automação de API com CodeceptJS",
-      "description": "Projeto de automação de testes de API utilizando CodeceptJS com framework Mocha e relatórios detalhados com Allure."
+      "description": "Automação de testes de API com CodeceptJS e relatórios detalhados usando Allure."
     },
     "automationPractice": {
       "name": "Automação E2E no Automation Practice",
-      "description": "Testes E2E automatizados para o e-commerce Automation Practice, utilizando dados dinâmicos com FakerJS para cenários realistas."
+      "description": "Testes E2E para e-commerce, usando dados dinâmicos com FakerJS para cenários mais realistas."
     },
     "restfulApi": {
       "name": "Automação de API no Restful API Dev",
-      "description": "Testes automatizados de API REST utilizando Cypress, validando endpoints, respostas e fluxos de dados."
+      "description": "Testes de API REST com Cypress, validando endpoints e respostas."
     },
     "mobileAutomation": {
       "name": "Automação Mobile no QAzando Food",
-      "description": "Testes automatizados E2E no app QAzando Food, usando Robot Framework + Appium e com execução no BrowserStack como Device Farm."
+      "description": "Testes E2E em app mobile usando Robot Framework e Appium, com execução no BrowserStack."
     },
     "openRepository": "Abrir repositório do projeto {{projectName}}"
   },
   "contact": {
     "title": "Vamos Conversar?",
-    "description": "Estou sempre aberto a novas oportunidades, colaborações e projetos interessantes. Não hesite em entrar em contato!",
+    "description": "Estou sempre aberto a novas oportunidades e projetos interessantes. Vamos conversar!",
     "phone": "(73) 99847-8938",
     "location": "Bahia, Brasil",
     "linkedinDescription": "Conecte-se comigo",

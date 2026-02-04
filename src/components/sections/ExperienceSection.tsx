@@ -1,13 +1,24 @@
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
-import { Briefcase, Calendar, CheckCircle2 } from "lucide-react";
+import { Calendar } from "lucide-react";
+
+/* =============================================================================
+   ExperienceSection - Editorial High-End
+   
+   DESIGN:
+   - Card único com layout limpo
+   - Badge de status para período atual
+   - Lista de responsabilidades com marcadores discretos
+   - Tipografia hierárquica clara
+   ============================================================================= */
 
 const experiences = [
   {
     company: "CPDS",
     role: "Analista de QA",
     period: "Jul/2025 – Atual",
+    isCurrent: true,
     responsibilities: [
       "Elaborei testes automatizados de Web e API em 2 módulos (pacientes e estoque) do sistema do SGDoctor, no qual tive que validar todas as funcionalidades e respostas da API previstas nas regras de negócio",
       "Resultou na agilização e antecipação da finalização do projeto, possibilitando a entrega de 2 módulos completos e sem bugs que impactassem negativamente a experiência do usuário",
@@ -20,67 +31,85 @@ export const ExperienceSection = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: { staggerChildren: 0.1 },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] },
+    },
+  };
+
   return (
-    <section id="experience" className="py-24 relative" ref={ref}>
+    <section id="experience" className="py-24 md:py-32 relative" ref={ref}>
       <div className="container mx-auto px-6">
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.4 }}
-          className="max-w-5xl mx-auto"
+          variants={containerVariants}
+          initial="hidden"
+          animate={isInView ? "visible" : "hidden"}
+          className="max-w-4xl mx-auto"
         >
           {/* Section header */}
-          <div className="flex items-center gap-3 mb-12">
-            <div className="p-2 rounded-lg bg-primary/10 border border-primary/20">
-              <Briefcase className="w-5 h-5 text-primary" />
-            </div>
-            <h2 className="text-3xl md:text-4xl font-bold">
-              Experiência Profissional
-            </h2>
-          </div>
+          <motion.div
+            variants={itemVariants}
+            className="section-header justify-center"
+          >
+            <span className="section-label">Experiência Profissional</span>
+          </motion.div>
 
           {/* Experience cards */}
           {experiences.map((exp, expIndex) => (
             <motion.div
               key={expIndex}
-              initial={{ opacity: 0, y: 30 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.4, delay: 0.1 }}
-              className="glass-card rounded-2xl p-8 border border-border/50 hover:border-primary/30 transition-all duration-200"
+              variants={itemVariants}
+              className="card p-8"
             >
               {/* Header */}
-              <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-8">
+              <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4 mb-8">
                 <div>
-                  <h3 className="text-2xl font-bold text-foreground">
+                  <h3 className="text-2xl font-medium text-foreground mb-1">
                     {exp.role}
                   </h3>
-                  <p className="text-lg text-primary font-medium">
-                    {exp.company}
-                  </p>
+                  <p className="text-accent font-medium">{exp.company}</p>
                 </div>
-                <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-medium w-fit">
-                  <Calendar className="w-4 h-4" />
-                  {exp.period}
-                </span>
+
+                <div className="flex items-center gap-3">
+                  {exp.isCurrent && (
+                    <span className="status-badge">
+                      <span className="status-dot" />
+                      Atual
+                    </span>
+                  )}
+                  <span className="inline-flex items-center gap-2 text-sm text-muted-foreground">
+                    <Calendar className="w-4 h-4" />
+                    {exp.period}
+                  </span>
+                </div>
               </div>
 
               {/* Responsibilities */}
-              <div className="space-y-4">
+              <ul className="space-y-4">
                 {exp.responsibilities.map((responsibility, index) => (
-                  <motion.div
+                  <motion.li
                     key={index}
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={isInView ? { opacity: 1, x: 0 } : {}}
-                    transition={{ duration: 0.3, delay: 0.2 + index * 0.05 }}
-                    className="relative pl-8 border-l-2 border-primary/30 hover:border-primary transition-colors duration-200"
+                    variants={itemVariants}
+                    className="flex gap-4"
                   >
-                    <div className="absolute -left-[9px] top-1 w-4 h-4 rounded-full bg-primary/20 border-2 border-primary" />
+                    <span className="mt-2 w-1.5 h-1.5 rounded-full bg-accent shrink-0" />
                     <p className="text-muted-foreground leading-relaxed">
                       {responsibility}
                     </p>
-                  </motion.div>
+                  </motion.li>
                 ))}
-              </div>
+              </ul>
             </motion.div>
           ))}
         </motion.div>

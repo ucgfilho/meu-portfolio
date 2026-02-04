@@ -12,12 +12,12 @@ import US from "country-flag-icons/react/3x2/US";
 import ES from "country-flag-icons/react/3x2/ES";
 
 /* =============================================================================
-   LanguageSwitcher - iOS 26 Liquid Glass
+   LanguageSwitcher - Editorial High-End
    
    DESIGN:
-   - Dropdown menu com glassmorphism
-   - Ícone de globo com animações fluidas
-   - Liquid Glass hover effects
+   - Dropdown menu minimalista
+   - Transições suaves
+   - Estilo limpo e elegante
    ============================================================================= */
 
 const languages = [
@@ -42,29 +42,19 @@ export const LanguageSwitcher = () => {
       <DropdownMenuTrigger asChild>
         <Button
           variant="ghost"
-          className="relative h-11 px-4 rounded-full gap-2.5 hover:scale-105 transition-transform flex items-center"
-          style={{
-            background: "hsl(0 0% 100% / 0.08)",
-            border: "1px solid hsl(0 0% 100% / 0.15)",
-            backdropFilter: "blur(20px)",
-            boxShadow:
-              "inset 0 1px 1px 0 hsl(0 0% 100% / 0.1), 0 0 20px -5px hsl(var(--primary) / 0.2)",
-          }}
+          className="relative h-10 px-3 rounded-lg gap-2 transition-colors flex items-center hover:bg-foreground hover:text-background group"
         >
           <motion.div
             key={currentLanguage.code}
-            initial={{ scale: 0.8, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            className="flex items-center justify-center w-7 h-5 rounded overflow-hidden shadow-sm flex-shrink-0"
-            style={{
-              border: "1px solid hsl(0 0% 100% / 0.2)",
-            }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            className="flex items-center justify-center w-6 h-4 rounded overflow-hidden flex-shrink-0 border border-border"
           >
             <currentLanguage.FlagIcon
               style={{ width: "100%", height: "100%", display: "block" }}
             />
           </motion.div>
-          <span className="text-sm font-medium text-foreground hidden sm:inline whitespace-nowrap">
+          <span className="text-sm font-medium text-foreground group-hover:text-background hidden sm:inline whitespace-nowrap">
             {currentLanguage.label}
           </span>
           <span className="sr-only">Alternar idioma</span>
@@ -72,30 +62,19 @@ export const LanguageSwitcher = () => {
       </DropdownMenuTrigger>
       <DropdownMenuContent
         align="end"
-        className="w-48"
-        style={{
-          background: "hsl(var(--background) / 0.95)",
-          backdropFilter: "blur(20px)",
-          border: "1px solid hsl(0 0% 100% / 0.1)",
-          boxShadow: "0 8px 32px -8px hsl(0 0% 0% / 0.3)",
-        }}
+        className="w-48 bg-surface-container border-border"
       >
         {languages.map((lang) => (
           <DropdownMenuItem
             key={lang.code}
             onClick={() => changeLanguage(lang.code)}
-            className={`cursor-pointer text-base py-3 flex items-center ${
+            className={`cursor-pointer text-sm py-2.5 flex items-center ${
               i18n.language === lang.code
-                ? "bg-primary/15 text-primary font-medium"
-                : ""
+                ? "bg-accent/10 text-accent font-medium"
+                : "hover:bg-foreground hover:text-background"
             }`}
           >
-            <div
-              className="mr-3 w-8 h-6 rounded overflow-hidden shadow-sm flex items-center justify-center flex-shrink-0"
-              style={{
-                border: `1px solid ${i18n.language === lang.code ? "hsl(var(--primary) / 0.5)" : "hsl(var(--border))"}`,
-              }}
-            >
+            <div className="mr-3 w-7 h-5 rounded overflow-hidden flex items-center justify-center flex-shrink-0 border border-border">
               <lang.FlagIcon
                 style={{ width: "100%", height: "100%", display: "block" }}
               />

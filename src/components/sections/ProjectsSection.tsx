@@ -1,17 +1,17 @@
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
-import { FolderKanban, ExternalLink, Github } from "lucide-react";
+import { ArrowUpRight, Github } from "lucide-react";
 import { useTranslation } from "react-i18next";
 
 /* =============================================================================
-   ProjectsSection - iOS 26 Liquid Glass
+   ProjectsSection - Editorial High-End
    
    DESIGN:
-   - Cards Liquid Glass com bordas de luz graduais
-   - Hover que intensifica o brilho
-   - Chips glassmorphism para tecnologias
-   - Animações spring fluidas
+   - Cards flat com hover elegante
+   - Chips minimalistas para tecnologias
+   - Seta de link que aparece no hover
+   - Grid responsivo 2 colunas
    ============================================================================= */
 
 export const ProjectsSection = () => {
@@ -23,37 +23,25 @@ export const ProjectsSection = () => {
     {
       name: t("projects.sgdoctor.name"),
       description: t("projects.sgdoctor.description"),
-      technologies: [
-        "Testes Manuais",
-        "Testes Exploratórios",
-        "Casos de Teste",
-        "API",
-        "Bug Tracking",
-      ],
+      technologies: ["Testes Manuais", "API", "Bug Tracking"],
       link: "https://gitlab.com/cpdsjq/sgdoctor_academico",
     },
     {
       name: t("projects.saucedemo.name"),
       description: t("projects.saucedemo.description"),
-      technologies: [
-        "Cypress",
-        "JUnit",
-        "Mochawesome",
-        "CI/CD",
-        "GitHub Actions",
-      ],
+      technologies: ["Cypress", "CI/CD", "GitHub Actions"],
       link: "https://github.com/ucgfilho/ProjetoCY",
     },
     {
       name: t("projects.codeceptjs.name"),
       description: t("projects.codeceptjs.description"),
-      technologies: ["CodeceptJS", "Mocha", "Allure", "API Testing"],
+      technologies: ["CodeceptJS", "Allure", "API Testing"],
       link: "https://github.com/ucgfilho/ProjetoCodeceptJS",
     },
     {
       name: t("projects.automationPractice.name"),
       description: t("projects.automationPractice.description"),
-      technologies: ["Cypress", "FakerJS", "E2E Testing"],
+      technologies: ["Cypress", "FakerJS", "E2E"],
       link: "https://github.com/ucgfilho/cypress-qazando",
     },
     {
@@ -65,33 +53,46 @@ export const ProjectsSection = () => {
     {
       name: t("projects.mobileAutomation.name"),
       description: t("projects.mobileAutomation.description"),
-      technologies: ["Appium", "Robot Framework", "BrowserStack"],
+      technologies: ["Appium", "Robot Framework"],
       link: "https://github.com/ucgfilho/robot-appium",
     },
   ];
 
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: { staggerChildren: 0.1 },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] },
+    },
+  };
+
   return (
-    <section id="projects" className="py-24 relative" ref={ref}>
+    <section id="projects" className="py-24 md:py-32 relative" ref={ref}>
       <div className="container mx-auto px-6">
         <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{
-            duration: 0.4,
-          }}
+          variants={containerVariants}
+          initial="hidden"
+          animate={isInView ? "visible" : "hidden"}
           className="max-w-6xl mx-auto"
         >
           {/* Section header */}
-          <div className="section-header">
-            <div className="section-header-icon">
-              <FolderKanban className="w-5 h-5" />
-            </div>
-            <h2 className="text-3xl md:text-4xl font-semibold text-foreground tracking-tight">
-              {t("projects.title")}
-            </h2>
-          </div>
+          <motion.div
+            variants={itemVariants}
+            className="section-header justify-center"
+          >
+            <span className="section-label">{t("projects.title")}</span>
+          </motion.div>
 
-          {/* Projects Grid - Liquid Glass Cards */}
+          {/* Projects Grid */}
           <div className="grid md:grid-cols-2 gap-6">
             {projects.map((project, index) => (
               <motion.a
@@ -102,119 +103,49 @@ export const ProjectsSection = () => {
                 aria-label={t("projects.openRepository", {
                   projectName: project.name,
                 })}
-                initial={{ opacity: 0, y: 30 }}
-                animate={isInView ? { opacity: 1, y: 0 } : {}}
-                transition={{
-                  duration: 0.4,
-                  delay: 0.05 * index,
-                }}
-                whileHover={{ y: -6, scale: 1.01 }}
-                whileTap={{ scale: 0.98 }}
-                className="glass-card-interactive group relative rounded-3xl p-6 overflow-hidden"
+                variants={itemVariants}
+                className="card-interactive group p-6"
               >
-                {/* Aurora glow effect on hover */}
-                <div
-                  className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
-                  style={{
-                    background:
-                      "radial-gradient(circle at 80% 20%, hsl(var(--primary) / 0.15) 0%, transparent 50%)",
-                  }}
-                />
-
-                <div className="relative z-10">
-                  {/* Project icon - Glass container */}
-                  <motion.div
-                    className="w-14 h-14 rounded-2xl flex items-center justify-center mb-5"
-                    style={{
-                      background: "hsl(var(--primary) / 0.1)",
-                      border: "1px solid hsl(var(--primary) / 0.15)",
-                      boxShadow:
-                        "inset 0 1px 1px 0 hsl(0 0% 100% / 0.1), 0 0 16px hsl(var(--primary) / 0.15)",
-                    }}
-                    whileHover={{ scale: 1.1, rotate: 5 }}
-                    transition={{ type: "spring", stiffness: 400, damping: 17 }}
-                  >
-                    <FolderKanban className="w-6 h-6 text-primary" />
-                  </motion.div>
-
-                  {/* Content */}
-                  <h3 className="text-xl font-medium text-foreground mb-3 group-hover:text-primary transition-colors duration-200 tracking-wide">
+                {/* Header with arrow */}
+                <div className="flex items-start justify-between gap-4 mb-4">
+                  <h3 className="text-xl font-medium text-foreground group-hover:text-accent transition-colors">
                     {project.name}
                   </h3>
-                  <p className="text-muted-foreground text-sm mb-5 leading-relaxed line-clamp-3 font-light">
-                    {project.description}
-                  </p>
+                  <ArrowUpRight className="w-5 h-5 text-muted-foreground opacity-0 -translate-y-1 translate-x-1 group-hover:opacity-100 group-hover:translate-y-0 group-hover:translate-x-0 transition-all duration-200" />
+                </div>
 
-                  {/* Technologies - Glass Chips */}
-                  <div className="flex flex-wrap gap-2 mb-5">
-                    {project.technologies.map((tech, techIndex) => (
-                      <span
-                        key={techIndex}
-                        className="px-3 py-1.5 rounded-full text-xs font-medium transition-all duration-200"
-                        style={{
-                          background: "hsl(0 0% 100% / 0.05)",
-                          border: "1px solid hsl(0 0% 100% / 0.08)",
-                          color: "hsl(var(--muted-foreground))",
-                        }}
-                      >
-                        {tech}
-                      </span>
-                    ))}
-                  </div>
+                {/* Description */}
+                <p className="text-muted-foreground text-sm mb-5 leading-relaxed line-clamp-2">
+                  {project.description}
+                </p>
 
-                  {/* Link indicator */}
-                  <div className="inline-flex items-center gap-2 text-sm text-primary/70 group-hover:text-primary transition-colors duration-200 font-medium">
-                    Acessar repositório
-                    <ExternalLink className="w-4 h-4 group-hover:translate-x-1 group-hover:-translate-y-0.5 transition-transform duration-200" />
-                  </div>
+                {/* Technologies */}
+                <div className="flex flex-wrap gap-2">
+                  {project.technologies.map((tech, techIndex) => (
+                    <span key={techIndex} className="chip-outline">
+                      {tech}
+                    </span>
+                  ))}
                 </div>
               </motion.a>
             ))}
           </div>
 
-          {/* GitHub CTA - Liquid Glass Button */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{
-              duration: 0.4,
-              delay: 0.3,
-            }}
-            className="text-center mt-14"
-          >
-            <p className="text-muted-foreground mb-5 font-light tracking-wide">
+          {/* GitHub CTA */}
+          <motion.div variants={itemVariants} className="text-center mt-16">
+            <p className="text-sm text-muted-foreground mb-6">
               Veja mais projetos no meu GitHub
             </p>
-            <motion.a
+            <a
               href="https://github.com/ucgfilho"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-3 px-7 py-3.5 rounded-full text-foreground font-medium transition-all duration-200 group"
-              style={{
-                background: "hsl(0 0% 100% / 0.05)",
-                border: "1px solid hsl(0 0% 100% / 0.12)",
-                backdropFilter: "blur(20px)",
-                boxShadow: "inset 0 1px 1px 0 hsl(0 0% 100% / 0.1)",
-              }}
-              transition={{ duration: 0.15 }}
-              whileHover={{
-                scale: 1.03,
-                y: -3,
-                backgroundColor: "#333333",
-                borderColor: "#333333",
-                color: "#ffffff",
-                boxShadow:
-                  "inset 0 1px 2px 0 hsl(0 0% 100% / 0.2), 0 8px 25px -5px rgba(51, 51, 51, 0.5)",
-              }}
-              whileTap={{
-                scale: 0.95,
-                backgroundColor: "#1a1a1a",
-                borderColor: "#1a1a1a",
-              }}
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-foreground text-background text-sm font-medium hover:bg-foreground/90 transition-colors duration-200 group"
             >
-              <Github className="w-5 h-5 transition-colors duration-200 group-hover:text-white" />
+              <Github className="w-4 h-4" />
               Ver GitHub
-            </motion.a>
+              <ArrowUpRight className="w-4 h-4 opacity-0 -translate-y-0.5 translate-x-0.5 group-hover:opacity-100 group-hover:translate-y-0 group-hover:translate-x-0 transition-all duration-200" />
+            </a>
           </motion.div>
         </motion.div>
       </div>

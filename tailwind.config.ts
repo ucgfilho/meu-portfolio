@@ -1,11 +1,11 @@
 import type { Config } from "tailwindcss";
 
 /* =============================================================================
-   Tailwind Config - iOS 26 Liquid Glass Design System
+   Tailwind Config - Editorial High-End Design System
    
-   - Animações com física Spring (mola) estilo Apple
-   - Transições elásticas e fluidas
-   - Tokens de cor para glassmorphism
+   - Tipografia Inter com pesos variados
+   - Animações sutis e elegantes
+   - Tokens minimalistas
    ============================================================================= */
 
 export default {
@@ -20,14 +20,14 @@ export default {
   theme: {
     container: {
       center: true,
-      padding: "2rem",
+      padding: "1.5rem",
       screens: {
-        "2xl": "1400px",
+        "2xl": "1280px",
       },
     },
     extend: {
       /* -----------------------------------------------------------------------
-         Cores - iOS 26 Liquid Glass Token System
+         Cores - Editorial Design System
          ----------------------------------------------------------------------- */
       colors: {
         border: "hsl(var(--border))",
@@ -78,61 +78,62 @@ export default {
 
         surface: {
           DEFAULT: "hsl(var(--surface))",
-          dim: "hsl(var(--surface-dim))",
-          bright: "hsl(var(--surface-bright))",
-          "container-lowest": "hsl(var(--surface-container-lowest))",
-          "container-low": "hsl(var(--surface-container-low))",
+          elevated: "hsl(var(--surface-elevated))",
           container: "hsl(var(--surface-container))",
           "container-high": "hsl(var(--surface-container-high))",
-          "container-highest": "hsl(var(--surface-container-highest))",
-        },
-
-        outline: {
-          DEFAULT: "hsl(var(--outline))",
-          variant: "hsl(var(--outline-variant))",
         },
       },
 
       /* -----------------------------------------------------------------------
-         Border Radius - Liquid glass curves
+         Border Radius - Mais conservador
          ----------------------------------------------------------------------- */
       borderRadius: {
-        "4xl": "2.5rem",
-        "3xl": "2rem",
-        "2xl": "1.25rem",
-        xl: "1rem",
-        lg: "var(--radius)",
-        md: "calc(var(--radius) - 2px)",
-        sm: "calc(var(--radius) - 4px)",
+        "4xl": "2rem",
+        "3xl": "1.5rem",
+        "2xl": "1rem",
+        xl: "0.75rem",
+        lg: "0.5rem",
+        md: "0.375rem",
+        sm: "0.25rem",
       },
 
       /* -----------------------------------------------------------------------
-         Tipografia - SF Pro com tracking leve
+         Tipografia - Inter
          ----------------------------------------------------------------------- */
       fontFamily: {
         sans: [
-          '"SF Pro Display"',
-          '"SF Pro Text"',
+          '"Inter"',
           "-apple-system",
           "BlinkMacSystemFont",
           '"Segoe UI"',
           "Roboto",
           "sans-serif",
         ],
-        mono: ['"SF Mono"', '"JetBrains Mono"', '"Fira Code"', "monospace"],
+        mono: ['"JetBrains Mono"', '"Fira Code"', "monospace"],
+      },
+
+      fontSize: {
+        display: [
+          "clamp(3rem, 12vw, 8rem)",
+          { lineHeight: "0.9", letterSpacing: "-0.04em" },
+        ],
+        "display-sm": [
+          "clamp(2rem, 6vw, 4rem)",
+          { lineHeight: "1", letterSpacing: "-0.03em" },
+        ],
       },
 
       letterSpacing: {
-        tighter: "-0.02em",
-        tight: "-0.01em",
-        wide: "0.01em",
-        wider: "0.02em",
+        tighter: "-0.04em",
+        tight: "-0.02em",
+        normal: "0",
+        wide: "0.025em",
+        wider: "0.1em",
+        widest: "0.2em",
       },
 
       /* -----------------------------------------------------------------------
-         Keyframes - Spring Physics (Apple-style)
-         
-         Animações com sensação elástica e fluida usando curvas spring
+         Keyframes - Sutis e Elegantes
          ----------------------------------------------------------------------- */
       keyframes: {
         "accordion-down": {
@@ -143,102 +144,68 @@ export default {
           from: { height: "var(--radix-accordion-content-height)" },
           to: { height: "0" },
         },
-        /* Fade in com spring bounce */
+        "fade-in": {
+          "0%": { opacity: "0" },
+          "100%": { opacity: "1" },
+        },
         "fade-in-up": {
-          "0%": { opacity: "0", transform: "translateY(24px) scale(0.96)" },
-          "100%": { opacity: "1", transform: "translateY(0) scale(1)" },
+          "0%": { opacity: "0", transform: "translateY(20px)" },
+          "100%": { opacity: "1", transform: "translateY(0)" },
         },
-        "fade-in-right": {
-          "0%": { opacity: "0", transform: "translateX(-24px) scale(0.96)" },
-          "100%": { opacity: "1", transform: "translateX(0) scale(1)" },
+        "fade-in-down": {
+          "0%": { opacity: "0", transform: "translateY(-20px)" },
+          "100%": { opacity: "1", transform: "translateY(0)" },
         },
-        /* Scale in com spring */
         "scale-in": {
-          "0%": { opacity: "0", transform: "scale(0.9)" },
+          "0%": { opacity: "0", transform: "scale(0.95)" },
           "100%": { opacity: "1", transform: "scale(1)" },
         },
-        /* Pulse suave - aurora breathing */
+        "slide-in-right": {
+          "0%": { opacity: "0", transform: "translateX(20px)" },
+          "100%": { opacity: "1", transform: "translateX(0)" },
+        },
         "pulse-soft": {
-          "0%, 100%": { opacity: "1", transform: "scale(1)" },
-          "50%": { opacity: "0.7", transform: "scale(1.02)" },
-        },
-        /* Float - movimento orgânico */
-        float: {
-          "0%, 100%": { transform: "translateY(0) rotate(0deg)" },
-          "33%": { transform: "translateY(-10px) rotate(1deg)" },
-          "66%": { transform: "translateY(-5px) rotate(-1deg)" },
-        },
-        /* Aurora orb movement - muito suave */
-        "aurora-drift": {
-          "0%": { transform: "translate(0, 0) scale(1)" },
-          "25%": { transform: "translate(30px, -40px) scale(1.1)" },
-          "50%": { transform: "translate(-20px, -60px) scale(0.95)" },
-          "75%": { transform: "translate(-40px, -20px) scale(1.05)" },
-          "100%": { transform: "translate(0, 0) scale(1)" },
-        },
-        /* Shimmer - reflexo de luz */
-        shimmer: {
-          "0%": { backgroundPosition: "-200% 0" },
-          "100%": { backgroundPosition: "200% 0" },
-        },
-        /* Glow pulse - brilho pulsante */
-        "glow-pulse": {
-          "0%, 100%": { opacity: "0.5", filter: "blur(60px)" },
-          "50%": { opacity: "0.8", filter: "blur(80px)" },
+          "0%, 100%": { opacity: "1" },
+          "50%": { opacity: "0.5" },
         },
       },
 
       /* -----------------------------------------------------------------------
-         Animations - Spring timing com sensação elástica
+         Animations
          ----------------------------------------------------------------------- */
       animation: {
-        "accordion-down": "accordion-down 0.4s cubic-bezier(0.34, 1.56, 0.64, 1)",
-        "accordion-up": "accordion-up 0.4s cubic-bezier(0.34, 1.56, 0.64, 1)",
-        "fade-in-up": "fade-in-up 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards",
-        "fade-in-right": "fade-in-right 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards",
-        "scale-in": "scale-in 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards",
-        "pulse-soft": "pulse-soft 3s cubic-bezier(0.4, 0, 0.6, 1) infinite",
-        float: "float 6s ease-in-out infinite",
-        "aurora-drift": "aurora-drift 20s ease-in-out infinite",
-        shimmer: "shimmer 2s linear infinite",
-        "glow-pulse": "glow-pulse 4s ease-in-out infinite",
+        "accordion-down": "accordion-down 0.2s ease-out",
+        "accordion-up": "accordion-up 0.2s ease-out",
+        "fade-in": "fade-in 0.5s ease-out forwards",
+        "fade-in-up": "fade-in-up 0.6s ease-out forwards",
+        "fade-in-down": "fade-in-down 0.6s ease-out forwards",
+        "scale-in": "scale-in 0.3s ease-out forwards",
+        "slide-in-right": "slide-in-right 0.4s ease-out forwards",
+        "pulse-soft": "pulse-soft 2s ease-in-out infinite",
       },
 
       /* -----------------------------------------------------------------------
-         Box Shadow - Glass effects & glows
+         Box Shadow
          ----------------------------------------------------------------------- */
       boxShadow: {
-        /* Glass inner glow */
-        "glass-inner": "inset 0 1px 1px 0 hsl(0 0% 100% / 0.1)",
-        "glass-inner-strong": "inset 0 2px 4px 0 hsl(0 0% 100% / 0.2)",
-        /* Outer glows */
-        "glow-sm": "0 0 20px hsl(var(--primary) / 0.2)",
-        "glow-md": "0 0 40px hsl(var(--primary) / 0.3)",
-        "glow-lg": "0 0 60px hsl(var(--primary) / 0.4)",
-        /* Aurora shadows */
-        aurora: "0 8px 32px -8px hsl(var(--primary) / 0.2), 0 0 0 1px hsl(0 0% 100% / 0.05)",
+        "glow-sm": "0 0 20px -5px hsl(var(--accent) / 0.3)",
+        "glow-md": "0 0 40px -10px hsl(var(--accent) / 0.4)",
+        "glow-lg": "0 0 60px -15px hsl(var(--accent) / 0.5)",
+        card: "0 4px 20px -5px hsl(0 0% 0% / 0.1)",
+        "card-hover": "0 20px 40px -20px hsl(var(--accent) / 0.2)",
       },
 
       /* -----------------------------------------------------------------------
-         Transition timing - Spring physics curves
+         Transition
          ----------------------------------------------------------------------- */
       transitionTimingFunction: {
-        /* Apple-style spring curves */
-        spring: "cubic-bezier(0.34, 1.56, 0.64, 1)",
-        "spring-soft": "cubic-bezier(0.22, 1.2, 0.36, 1)",
-        "spring-bounce": "cubic-bezier(0.68, -0.55, 0.27, 1.55)",
-        /* Smooth deceleration */
         smooth: "cubic-bezier(0.4, 0, 0.2, 1)",
         "smooth-out": "cubic-bezier(0, 0, 0.2, 1)",
+        "smooth-in": "cubic-bezier(0.4, 0, 1, 1)",
       },
 
-      /* -----------------------------------------------------------------------
-         Backdrop blur - Glass effects
-         ----------------------------------------------------------------------- */
-      backdropBlur: {
-        glass: "40px",
-        "glass-light": "20px",
-        "glass-heavy": "60px",
+      transitionDuration: {
+        "400": "400ms",
       },
     },
   },

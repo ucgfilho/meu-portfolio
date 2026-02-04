@@ -5,121 +5,71 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 
 /* =============================================================================
-   Button Component - iOS 26 Liquid Glass
+   Button Component - Editorial High-End
    
-   Botões com estilo "Transparent Liquid Glass":
-   - Parecem feitos de vidro cristalino ou água
-   - Sem cores de fundo sólidas
-   - Box-shadow interno branco para simular reflexo de luz (specular)
-   - Hover intensifica o brilho
-   - Formato pill (rounded-full)
-   - Animações spring para feedback tátil
+   DESIGN:
+   - Botões minimalistas e elegantes
+   - Variantes: default (filled), outline, ghost
+   - Transições suaves
+   - Estados de hover e focus claros
    ============================================================================= */
 
 const buttonVariants = cva(
-  /* Base: rounded-full (pill), glass backdrop, transições spring */
-  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-full text-sm font-medium ring-offset-background transition-all duration-75 ease-spring focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
+  /* Base styles */
+  "inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
   {
     variants: {
       variant: {
-        /* Liquid Glass Primary - vidro com tom primário */
+        /* Default - Filled with accent */
         default: [
-          "bg-white/[0.08] text-foreground",
-          "border border-white/[0.12]",
-          "shadow-[inset_0_1px_1px_0_hsl(0_0%_100%/0.15),0_0_0_1px_hsl(0_0%_0%/0.05)]",
-          "backdrop-blur-xl",
-          "hover:bg-white/[0.15]",
-          "hover:shadow-[inset_0_1px_2px_0_hsl(0_0%_100%/0.25),0_4px_20px_-4px_hsl(var(--primary)/0.3)]",
-          "hover:border-white/[0.2]",
-          "active:scale-[0.97]",
+          "bg-accent text-accent-foreground",
+          "rounded-full",
+          "hover:bg-foreground hover:text-background",
+          "active:scale-[0.98]",
         ].join(" "),
 
-        /* Liquid Glass Tonal - com cor primária sutil */
-        tonal: [
-          "bg-primary/[0.1] text-primary",
-          "border border-primary/[0.15]",
-          "shadow-[inset_0_1px_1px_0_hsl(var(--primary)/0.2)]",
-          "backdrop-blur-xl",
-          "hover:bg-primary/[0.18]",
-          "hover:shadow-[inset_0_1px_2px_0_hsl(var(--primary)/0.3),0_4px_20px_-4px_hsl(var(--primary)/0.4)]",
-          "active:scale-[0.97]",
-        ].join(" "),
-
-        /* Liquid Glass Outline - apenas borda de luz */
+        /* Outline */
         outline: [
           "bg-transparent text-foreground",
-          "border border-white/[0.15]",
-          "shadow-[inset_0_1px_1px_0_hsl(0_0%_100%/0.1)]",
-          "hover:bg-white/[0.05]",
-          "hover:border-white/[0.25]",
-          "hover:shadow-[inset_0_1px_2px_0_hsl(0_0%_100%/0.2)]",
-          "active:scale-[0.97]",
+          "border border-border",
+          "rounded-full",
+          "hover:bg-foreground hover:text-background hover:border-foreground",
+          "active:scale-[0.98]",
         ].join(" "),
 
-        /* Ghost - mínimo, apenas hover state */
+        /* Ghost */
         ghost: [
           "bg-transparent text-foreground",
-          "hover:bg-white/[0.05]",
-          "active:scale-[0.97]",
+          "rounded-lg",
+          "hover:bg-foreground hover:text-background",
+          "active:scale-[0.98]",
         ].join(" "),
 
-        /* Destructive - liquid glass vermelho */
+        /* Secondary */
+        secondary: [
+          "bg-surface-container text-foreground",
+          "rounded-full",
+          "hover:bg-foreground hover:text-background",
+          "active:scale-[0.98]",
+        ].join(" "),
+
+        /* Destructive */
         destructive: [
-          "bg-destructive/[0.15] text-destructive",
-          "border border-destructive/[0.2]",
-          "shadow-[inset_0_1px_1px_0_hsl(var(--destructive)/0.2)]",
-          "backdrop-blur-xl",
-          "hover:bg-destructive/[0.25]",
-          "hover:shadow-[inset_0_1px_2px_0_hsl(var(--destructive)/0.3),0_4px_20px_-4px_hsl(var(--destructive)/0.4)]",
-          "active:scale-[0.97]",
+          "bg-destructive text-destructive-foreground",
+          "rounded-full",
+          "hover:bg-destructive/90",
+          "active:scale-[0.98]",
         ].join(" "),
 
         /* Link style */
-        link: "text-primary underline-offset-4 hover:underline",
-
-        /* Hero CTA - Liquid glass com glow Aurora */
-        hero: [
-          "bg-white/[0.08] text-foreground font-semibold",
-          "border border-white/[0.15]",
-          "shadow-[inset_0_1px_2px_0_hsl(0_0%_100%/0.2),0_0_20px_-5px_hsl(var(--primary)/0.3)]",
-          "backdrop-blur-xl",
-          "hover:bg-white/[0.15]",
-          "hover:border-white/[0.25]",
-          "hover:shadow-[inset_0_2px_4px_0_hsl(0_0%_100%/0.3),0_0_40px_-5px_hsl(var(--primary)/0.5)]",
-          "hover:scale-[1.03]",
-          "active:scale-[0.97]",
-        ].join(" "),
-
-        /* Hero Outline - CTA secundário */
-        heroOutline: [
-          "bg-transparent text-foreground font-semibold",
-          "border-2 border-white/[0.2]",
-          "shadow-[inset_0_1px_1px_0_hsl(0_0%_100%/0.15)]",
-          "hover:bg-white/[0.08]",
-          "hover:border-white/[0.35]",
-          "hover:shadow-[inset_0_1px_2px_0_hsl(0_0%_100%/0.25),0_0_30px_-5px_hsl(var(--secondary)/0.4)]",
-          "hover:scale-[1.03]",
-          "active:scale-[0.97]",
-        ].join(" "),
-
-        /* Glow - destaque especial com aurora glow */
-        glow: [
-          "bg-white/[0.1] text-foreground font-semibold",
-          "border border-white/[0.2]",
-          "shadow-[inset_0_1px_2px_0_hsl(0_0%_100%/0.25),0_0_30px_-5px_hsl(var(--primary)/0.4)]",
-          "backdrop-blur-xl",
-          "hover:bg-white/[0.18]",
-          "hover:shadow-[inset_0_2px_4px_0_hsl(0_0%_100%/0.35),0_0_50px_-5px_hsl(var(--primary)/0.6)]",
-          "hover:scale-[1.03]",
-          "active:scale-[0.97]",
-        ].join(" "),
+        link: "text-accent underline-offset-4 hover:underline p-0 h-auto",
       },
       size: {
-        default: "h-11 px-6 py-2",
+        default: "h-10 px-5 py-2",
         sm: "h-9 px-4 text-xs",
-        lg: "h-13 px-8 text-base",
+        lg: "h-12 px-8 text-base",
         xl: "h-14 px-10 text-lg",
-        icon: "h-11 w-11",
+        icon: "h-10 w-10 rounded-lg",
       },
     },
     defaultVariants: {

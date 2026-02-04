@@ -5,13 +5,13 @@ import { useTranslation } from "react-i18next";
 import { LanguageSwitcher } from "./LanguageSwitcher";
 
 /* =============================================================================
-   Navigation - iOS 26 Liquid Glass
+   Navigation - Editorial High-End
    
    DESIGN:
-   - Navbar com glassmorphism pesado
-   - Blur de 40px quando scrollado
-   - Bordas de luz sutis
-   - Animações spring para interações
+   - Navbar minimalista e clean
+   - Backdrop blur sutil quando scrollado
+   - Transições suaves
+   - Mobile menu elegante
    ============================================================================= */
 
 export const Navigation = () => {
@@ -39,27 +39,22 @@ export const Navigation = () => {
 
   return (
     <>
-      {/* Liquid Glass Navbar */}
+      {/* Navbar */}
       <motion.nav
-        initial={{ y: -80, opacity: 0 }}
+        initial={{ y: -100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.4 }}
+        transition={{ duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
         className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
-          isScrolled ? "py-3" : "py-6 bg-transparent"
+          isScrolled ? "py-4" : "py-6"
         }`}
       >
-        {/* Glass effect container */}
+        {/* Background */}
         <div
           className={`absolute inset-0 transition-all duration-300 ${
             isScrolled
-              ? "backdrop-blur-glass bg-background/60 border-b border-white/[0.08]"
-              : ""
+              ? "bg-background/80 backdrop-blur-md border-b border-border"
+              : "bg-transparent"
           }`}
-          style={{
-            boxShadow: isScrolled
-              ? "inset 0 -1px 0 0 hsl(0 0% 100% / 0.05), 0 4px 30px -10px hsl(0 0% 0% / 0.3)"
-              : "none",
-          }}
         />
 
         <div className="container mx-auto px-6 flex items-center justify-center relative">
@@ -69,19 +64,15 @@ export const Navigation = () => {
               <motion.a
                 key={item.href}
                 href={item.href}
-                className="relative px-4 py-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors duration-200 rounded-full group"
-                initial={{ opacity: 0, y: -15 }}
+                className="px-4 py-2 text-sm font-medium text-muted-foreground hover:text-background transition-colors duration-200 rounded-lg hover:bg-foreground"
+                initial={{ opacity: 0, y: -10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{
-                  delay: 0.05 * index,
-                  duration: 0.3,
+                  delay: 0.1 + index * 0.05,
+                  duration: 0.4,
                 }}
-                whileHover={{ scale: 1.03 }}
-                whileTap={{ scale: 0.97 }}
               >
-                {/* Hover background - glass effect */}
-                <span className="absolute inset-0 rounded-full bg-white/[0.05] opacity-0 group-hover:opacity-100 transition-opacity duration-200" />
-                <span className="relative">{item.label}</span>
+                {item.label}
               </motion.a>
             ))}
 
@@ -92,36 +83,30 @@ export const Navigation = () => {
           </div>
 
           {/* Mobile Menu Button */}
-          <motion.button
-            className="md:hidden absolute right-6 p-2 rounded-2xl text-foreground"
+          <button
+            className="md:hidden absolute right-6 p-2 rounded-lg text-foreground hover:bg-foreground hover:text-background transition-colors"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             aria-label={isMobileMenuOpen ? "Fechar menu" : "Abrir menu"}
             aria-expanded={isMobileMenuOpen}
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
           >
-            <span className="absolute inset-0 rounded-2xl bg-white/[0.05]" />
             {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-          </motion.button>
+          </button>
         </div>
       </motion.nav>
 
-      {/* Mobile Menu - Liquid Glass style */}
+      {/* Mobile Menu */}
       <motion.div
         initial={false}
         animate={{
           opacity: isMobileMenuOpen ? 1 : 0,
-          x: isMobileMenuOpen ? 0 : "100%",
+          pointerEvents: isMobileMenuOpen ? "auto" : "none",
         }}
-        transition={{
-          duration: 0.3,
-        }}
+        transition={{ duration: 0.2 }}
         className="fixed inset-0 z-30 md:hidden"
-        style={{ pointerEvents: isMobileMenuOpen ? "auto" : "none" }}
       >
-        {/* Backdrop with heavy blur */}
+        {/* Backdrop */}
         <motion.div
-          className="absolute inset-0 backdrop-blur-glass bg-background/80"
+          className="absolute inset-0 bg-background/95 backdrop-blur-sm"
           onClick={() => setIsMobileMenuOpen(false)}
           initial={{ opacity: 0 }}
           animate={{ opacity: isMobileMenuOpen ? 1 : 0 }}
@@ -129,42 +114,37 @@ export const Navigation = () => {
 
         {/* Menu panel */}
         <motion.div
-          className="absolute right-0 top-0 bottom-0 w-80 p-6 pt-24"
-          style={{
-            background: "hsl(var(--background) / 0.9)",
-            backdropFilter: "blur(60px)",
-            borderLeft: "1px solid hsl(0 0% 100% / 0.08)",
-            boxShadow:
-              "inset 1px 0 0 0 hsl(0 0% 100% / 0.05), -20px 0 60px -20px hsl(0 0% 0% / 0.5)",
+          className="absolute inset-x-0 top-0 p-6 pt-24"
+          initial={{ y: -20, opacity: 0 }}
+          animate={{
+            y: isMobileMenuOpen ? 0 : -20,
+            opacity: isMobileMenuOpen ? 1 : 0,
           }}
+          transition={{ duration: 0.3, ease: "easeOut" }}
         >
-          <nav className="flex flex-col gap-2">
+          <nav className="flex flex-col gap-1">
             {navItems.map((item, index) => (
               <motion.a
                 key={item.href}
                 href={item.href}
-                className="relative px-5 py-4 text-lg font-medium text-foreground rounded-2xl overflow-hidden group"
+                className="px-4 py-4 text-lg font-medium text-foreground rounded-xl hover:bg-foreground hover:text-background transition-colors"
                 onClick={() => setIsMobileMenuOpen(false)}
-                initial={{ opacity: 0, x: 20 }}
+                initial={{ opacity: 0, x: -20 }}
                 animate={{
                   opacity: isMobileMenuOpen ? 1 : 0,
-                  x: isMobileMenuOpen ? 0 : 20,
+                  x: isMobileMenuOpen ? 0 : -20,
                 }}
                 transition={{
-                  delay: isMobileMenuOpen ? 0.05 * index : 0,
-                  duration: 0.25,
+                  delay: isMobileMenuOpen ? 0.1 + index * 0.05 : 0,
+                  duration: 0.3,
                 }}
-                whileHover={{ scale: 1.02, x: 3 }}
-                whileTap={{ scale: 0.98 }}
               >
-                {/* Hover glass effect */}
-                <span className="absolute inset-0 bg-white/[0.03] opacity-0 group-hover:opacity-100 transition-opacity duration-200" />
-                <span className="relative">{item.label}</span>
+                {item.label}
               </motion.a>
             ))}
 
             {/* Language Switcher for Mobile */}
-            <div className="mt-4 px-5">
+            <div className="mt-4 px-4">
               <LanguageSwitcher />
             </div>
           </nav>

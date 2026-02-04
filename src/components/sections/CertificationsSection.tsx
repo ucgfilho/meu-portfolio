@@ -3,6 +3,15 @@ import { useInView } from "framer-motion";
 import { useRef } from "react";
 import { Award, BadgeCheck, Trophy, BookOpen } from "lucide-react";
 
+/* =============================================================================
+   CertificationsSection - Editorial High-End
+   
+   DESIGN:
+   - Grid compacto de certificações
+   - Cards minimalistas com hover sutil
+   - Badge de verificação no hover
+   ============================================================================= */
+
 const certifications = [
   { name: "JavaScript para Testers", issuer: "Qazando", icon: BookOpen },
   {
@@ -21,88 +30,82 @@ const certifications = [
     icon: BookOpen,
   },
   {
-    name: "Automação Mobile com Appium, Robot Framework e BrowserStack",
+    name: "Automação Mobile com Appium e Robot",
     issuer: "Qazando",
     icon: Trophy,
   },
   { name: "Jornada QA 2025", issuer: "EBAC", icon: Trophy },
-  {
-    name: "Introdução ao Bootcamp - Java e QA",
-    issuer: "DIO",
-    icon: BookOpen,
-  },
-  {
-    name: "Estruturas de Controle em Java",
-    issuer: "DIO",
-    icon: BookOpen,
-  },
-  {
-    name: "Fundamentos da Linguagem de Programação Java",
-    issuer: "DIO",
-    icon: BookOpen,
-  },
-  {
-    name: "Curso de Algoritmos",
-    issuer: "Curso em Vídeo (Gustavo Guanabara)",
-    icon: BookOpen,
-  },
+  { name: "Introdução ao Bootcamp - Java e QA", issuer: "DIO", icon: BookOpen },
+  { name: "Estruturas de Controle em Java", issuer: "DIO", icon: BookOpen },
+  { name: "Fundamentos de Java", issuer: "DIO", icon: BookOpen },
+  { name: "Curso de Algoritmos", issuer: "Curso em Vídeo", icon: BookOpen },
   {
     name: "Olimpíada Brasileira de Informática",
     issuer: "UNICAMP",
     icon: Trophy,
   },
-  {
-    name: "Versionamento de Código com Git e GitHub",
-    issuer: "DIO",
-    icon: Trophy,
-  },
+  { name: "Versionamento com Git e GitHub", issuer: "DIO", icon: Trophy },
 ];
 
 export const CertificationsSection = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: { staggerChildren: 0.05 },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 15 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.4, ease: [0.25, 0.46, 0.45, 0.94] },
+    },
+  };
+
   return (
-    <section id="certifications" className="py-24 relative" ref={ref}>
+    <section id="certifications" className="py-24 md:py-32 relative" ref={ref}>
       <div className="container mx-auto px-6">
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.4 }}
+          variants={containerVariants}
+          initial="hidden"
+          animate={isInView ? "visible" : "hidden"}
           className="max-w-6xl mx-auto"
         >
           {/* Section header */}
-          <div className="flex items-center gap-3 mb-12">
-            <div className="p-2 rounded-lg bg-accent/10 border border-accent/20">
-              <Award className="w-5 h-5 text-accent" />
-            </div>
-            <h2 className="text-3xl md:text-4xl font-bold">Certificações</h2>
-          </div>
+          <motion.div
+            variants={itemVariants}
+            className="section-header justify-center"
+          >
+            <span className="section-label">Certificações</span>
+          </motion.div>
 
           {/* Grid */}
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {certifications.map((cert, index) => (
               <motion.div
                 key={index}
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={isInView ? { opacity: 1, scale: 1 } : {}}
-                transition={{ duration: 0.3, delay: 0.05 * index }}
-                whileHover={{ scale: 1.02, y: -4 }}
-                className="glass-card rounded-xl p-5 border border-border/50 hover:border-accent/50 transition-all duration-200 group cursor-pointer"
+                variants={itemVariants}
+                className="card p-5 group hover:border-accent/30 transition-colors duration-200"
               >
                 <div className="flex items-start gap-4">
-                  <div className="p-2 rounded-lg bg-accent/10 group-hover:bg-accent/20 transition-colors duration-200">
-                    <cert.icon className="w-5 h-5 text-accent" />
+                  <div className="icon-container-sm group-hover:bg-accent/10 group-hover:border-accent/20 transition-colors duration-200">
+                    <cert.icon className="w-4 h-4 text-muted-foreground group-hover:text-accent transition-colors duration-200" />
                   </div>
-                  <div className="flex-1">
-                    <h3 className="font-semibold text-foreground text-sm mb-1 group-hover:text-accent transition-colors duration-200 line-clamp-2">
+                  <div className="flex-1 min-w-0">
+                    <h3 className="font-medium text-foreground text-sm mb-1 group-hover:text-accent transition-colors duration-200 line-clamp-2">
                       {cert.name}
                     </h3>
                     <p className="text-xs text-muted-foreground">
                       {cert.issuer}
                     </p>
                   </div>
-                  <BadgeCheck className="w-5 h-5 text-accent/50 group-hover:text-accent transition-colors duration-200 flex-shrink-0" />
+                  <BadgeCheck className="w-4 h-4 text-muted-foreground/30 group-hover:text-accent transition-colors duration-200 flex-shrink-0" />
                 </div>
               </motion.div>
             ))}

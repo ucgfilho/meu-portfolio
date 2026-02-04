@@ -3,201 +3,135 @@
 @tailwind utilities;
 
 /* =============================================================================
-   iOS 26 LIQUID GLASS - DESIGN SYSTEM
+   EDITORIAL HIGH-END DESIGN SYSTEM
    =============================================================================
    
-   Sistema de design inspirado na estética futurista do iOS 26 Liquid Glass:
-   - Glassmorphism 2.0 com backdrop blur pesado
-   - Aurora Borealis vibes com orbs de gradiente ambiente
-   - Superfícies translúcidas com bordas de luz
-   - Animações com física spring (mola) estilo Apple
+   Inspirado na estética editorial premium do landonorris.com:
+   - Tipografia bold e impactante
+   - Espaçamento generoso (breathing room)
+   - Contraste marcante (fundo escuro, texto claro)
+   - Minimalismo sofisticado
+   - Animações sutis e elegantes
    
-   TIPOGRAFIA: SF Pro com tracking aumentado e pesos finos para elegância
+   PALETA: Monocromático escuro com accent cyan
    ============================================================================= */
+
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap");
 
 @layer base {
   /* ===========================================================================
-     iOS 26 Liquid Glass - Light Theme
+     Light Theme
      =========================================================================== */
   :root {
-    /* Deep Space Light - fundos claros com tom azulado */
-    --background: 220 20% 97%;
-    --foreground: 222 47% 11%;
+    /* Background */
+    --background: 0 0% 98%;
+    --background-elevated: 0 0% 100%;
+    --foreground: 0 0% 4%;
 
-    /* Superfícies glass - opacidade ultra baixa */
+    /* Card */
     --card: 0 0% 100%;
-    --card-foreground: 222 47% 11%;
+    --card-foreground: 0 0% 4%;
 
+    /* Popover */
     --popover: 0 0% 100%;
-    --popover-foreground: 222 47% 11%;
+    --popover-foreground: 0 0% 4%;
 
-    /* Primary: Navy Blue - Forte e Profundo */
-    --primary: 222 47% 40%;
-    --primary-foreground: 0 0% 100%;
+    /* Primary */
+    --primary: 0 0% 9%;
+    --primary-foreground: 0 0% 98%;
 
-    /* Secondary: Steel Blue */
-    --secondary: 215 50% 50%;
-    --secondary-foreground: 0 0% 100%;
+    /* Secondary */
+    --secondary: 0 0% 96%;
+    --secondary-foreground: 0 0% 9%;
 
-    /* Tertiary: Slate Blue */
-    --tertiary: 210 40% 60%;
-    --tertiary-foreground: 0 0% 100%;
+    /* Accent: White */
+    --accent: 0 0% 98%;
+    --accent-foreground: 0 0% 4%;
+
+    /* Tertiary */
+    --tertiary: 175 70% 35%;
+    --tertiary-foreground: 0 0% 98%;
 
     /* Muted */
-    --muted: 220 15% 92%;
-    --muted-foreground: 220 10% 45%;
-
-    /* Accent */
-    --accent: 215 50% 50%;
-    --accent-foreground: 0 0% 100%;
+    --muted: 0 0% 96%;
+    --muted-foreground: 0 0% 45%;
 
     /* Destructive */
     --destructive: 0 84% 60%;
-    --destructive-foreground: 0 0% 100%;
+    --destructive-foreground: 0 0% 98%;
 
-    /* Surface Hierarchy - Liquid Glass */
+    /* Surface */
     --surface: 0 0% 100%;
-    --surface-dim: 220 15% 95%;
-    --surface-bright: 0 0% 100%;
-    --surface-container-lowest: 0 0% 100%;
-    --surface-container-low: 220 20% 98%;
-    --surface-container: 220 15% 96%;
-    --surface-container-high: 220 12% 93%;
-    --surface-container-highest: 220 10% 90%;
-
-    /* Glass tokens */
-    --glass-bg: 220 50% 50% / 0.05;
-    --glass-border: 220 50% 50% / 0.1;
-    --glass-specular: 220 50% 50% / 0.1;
+    --surface-elevated: 0 0% 100%;
+    --surface-container: 0 0% 96%;
+    --surface-container-high: 0 0% 93%;
 
     /* Borders */
-    --border: 220 15% 88%;
-    --input: 220 15% 88%;
-    --ring: 222 47% 40%;
-    --outline: 220 10% 70%;
-    --outline-variant: 220 10% 82%;
+    --border: 0 0% 90%;
+    --input: 0 0% 90%;
+    --ring: 0 0% 98%;
 
-    /* Radius - mais arredondados para liquid feel */
-    --radius: 1.25rem;
-    --radius-sm: 0.75rem;
-    --radius-md: 1rem;
-    --radius-lg: 1.25rem;
-    --radius-xl: 1.75rem;
-    --radius-2xl: 2.5rem;
-    --radius-full: 9999px;
-
-    /* Gradientes Aurora Monochromo Light */
-    --gradient-aurora: linear-gradient(
-      135deg,
-      hsl(222 47% 40% / 0.1) 0%,
-      hsl(215 50% 50% / 0.08) 50%,
-      hsl(210 40% 60% / 0.1) 100%
-    );
-    --gradient-glass-border: linear-gradient(
-      135deg,
-      hsl(222 47% 40% / 0.2) 0%,
-      hsl(222 47% 40% / 0.05) 50%,
-      hsl(222 47% 40% / 0.15) 100%
-    );
-
-    /* Glow effects - aurora style */
-    --glow-primary: 0 0 30px hsl(210 100% 50% / 0.3);
-    --glow-secondary: 0 0 30px hsl(180 100% 45% / 0.3);
-    --glow-tertiary: 0 0 30px hsl(270 100% 70% / 0.3);
-
-    /* Tipografia SF Pro */
-    --font-sans:
-      "SF Pro Display", "SF Pro Text", -apple-system, BlinkMacSystemFont,
-      "Segoe UI", Roboto, sans-serif;
-    --font-mono: "SF Mono", "JetBrains Mono", "Fira Code", monospace;
+    /* Radius */
+    --radius: 0.5rem;
   }
 
   /* ===========================================================================
-     iOS 26 Liquid Glass - Dark Theme (Principal)
-     
-     Deep Space Black com Aurora Borealis orbs
+     Dark Theme (Principal - Editorial High-End)
      =========================================================================== */
   .dark {
-    /* Deep Space Navy - Azul Marinho Profundo Monocromático */
-    --background: 222 47% 11%;
-    --foreground: 210 40% 98%;
+    /* Background: Charcoal Profundo */
+    --background: 0 0% 4%;
+    --background-elevated: 0 0% 7%;
+    --foreground: 0 0% 96%;
 
-    /* Glass surfaces - Navy Tint */
-    --card: 222 47% 13%;
-    --card-foreground: 210 40% 98%;
+    /* Card */
+    --card: 0 0% 7%;
+    --card-foreground: 0 0% 96%;
 
-    --popover: 222 47% 13%;
-    --popover-foreground: 210 40% 98%;
+    /* Popover */
+    --popover: 0 0% 7%;
+    --popover-foreground: 0 0% 96%;
 
-    /* Primary: Royal Blue / Electric Blue - Contraste */
-    --primary: 217 91% 60%;
-    --primary-foreground: 222 47% 11%;
+    /* Primary: Off-White */
+    --primary: 0 0% 96%;
+    --primary-foreground: 0 0% 4%;
 
-    /* Secondary: Deep Sky Blue - Monochromatic */
-    --secondary: 210 80% 60%;
-    --secondary-foreground: 222 47% 11%;
+    /* Secondary */
+    --secondary: 0 0% 12%;
+    --secondary-foreground: 0 0% 96%;
 
-    /* Tertiary: Steel Blue - Monochromatic */
-    --tertiary: 220 60% 50%;
-    --tertiary-foreground: 222 47% 11%;
+    /* Accent: White */
+    --accent: 0 0% 96%;
+    --accent-foreground: 0 0% 4%;
+
+    /* Tertiary */
+    --tertiary: 175 70% 38%;
+    --tertiary-foreground: 0 0% 4%;
 
     /* Muted */
-    --muted: 217 33% 18%;
-    --muted-foreground: 215 20% 65%;
-
-    /* Accent */
-    --accent: 217 91% 60%;
-    --accent-foreground: 222 47% 11%;
+    --muted: 0 0% 12%;
+    --muted-foreground: 0 0% 50%;
 
     /* Destructive */
-    --destructive: 0 72% 60%;
-    --destructive-foreground: 0 0% 100%;
+    --destructive: 0 72% 55%;
+    --destructive-foreground: 0 0% 98%;
 
-    /* Surface Hierarchy - Navy Glass layers */
-    --surface: 222 47% 13%;
-    --surface-dim: 222 47% 9%;
-    --surface-bright: 222 47% 16%;
-    --surface-container-lowest: 222 47% 7%;
-    --surface-container-low: 222 47% 10%;
-    --surface-container: 222 47% 12%;
-    --surface-container-high: 222 47% 15%;
-    --surface-container-highest: 222 47% 18%;
-
-    /* Glass tokens - Dark mode */
-    --glass-bg: 220 50% 15% / 0.1;
-    --glass-border: 210 50% 80% / 0.08;
-    --glass-specular: 210 50% 80% / 0.15;
+    /* Surface Hierarchy */
+    --surface: 0 0% 7%;
+    --surface-elevated: 0 0% 10%;
+    --surface-container: 0 0% 9%;
+    --surface-container-high: 0 0% 12%;
+    --surface-container-highest: 0 0% 15%;
 
     /* Borders */
-    --border: 217 33% 20%;
-    --input: 217 33% 20%;
-    --ring: 217 91% 60%;
-    --outline: 217 33% 30%;
-    --outline-variant: 217 33% 25%;
-
-    /* Gradientes Aurora Monochromatic Navy */
-    --gradient-aurora: linear-gradient(
-      135deg,
-      hsl(217 91% 60% / 0.15) 0%,
-      hsl(220 80% 50% / 0.1) 50%,
-      hsl(210 70% 40% / 0.15) 100%
-    );
-    --gradient-glass-border: linear-gradient(
-      135deg,
-      hsl(210 40% 98% / 0.15) 0%,
-      hsl(210 40% 98% / 0.03) 50%,
-      hsl(210 40% 98% / 0.1) 100%
-    );
-
-    /* Glow effects - Blue only */
-    --glow-primary: 0 0 40px hsl(217 91% 60% / 0.35);
-    --glow-secondary: 0 0 40px hsl(210 80% 60% / 0.25);
-    --glow-tertiary: 0 0 40px hsl(220 60% 50% / 0.25);
+    --border: 0 0% 16%;
+    --input: 0 0% 16%;
+    --ring: 175 84% 42%;
   }
 }
 
 /* ===========================================================================
-   Base Styles - iOS 26 Liquid Glass
+   Base Styles
    =========================================================================== */
 @layer base {
   * {
@@ -206,295 +140,316 @@
 
   html {
     scroll-behavior: smooth;
+    font-size: 16px;
   }
 
   @media (prefers-reduced-motion: reduce) {
     html {
       scroll-behavior: auto;
     }
+
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
   }
 
   body {
     @apply bg-background text-foreground antialiased;
-    font-family: var(--font-sans);
+    font-family:
+      "Inter",
+      -apple-system,
+      BlinkMacSystemFont,
+      "Segoe UI",
+      Roboto,
+      sans-serif;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
 
-  /* Tipografia - SF Pro com tracking aumentado, pesos finos */
+  /* Tipografia Editorial */
   h1,
   h2,
   h3,
   h4,
   h5,
   h6 {
-    font-family: "SF Pro Display", var(--font-sans);
-    @apply tracking-tight;
+    @apply font-bold tracking-tight text-foreground;
+    letter-spacing: -0.03em;
   }
 
   h1 {
-    @apply text-4xl md:text-5xl lg:text-6xl font-semibold;
-    letter-spacing: -0.02em;
+    @apply text-5xl md:text-6xl lg:text-7xl;
   }
+
   h2 {
-    @apply text-3xl md:text-4xl font-semibold;
-    letter-spacing: -0.01em;
+    @apply text-3xl md:text-4xl lg:text-5xl;
   }
+
   h3 {
-    @apply text-2xl md:text-3xl font-medium;
+    @apply text-2xl md:text-3xl;
   }
+
   h4 {
-    @apply text-xl md:text-2xl font-medium;
+    @apply text-xl md:text-2xl;
   }
 
   p {
-    @apply leading-relaxed tracking-wide font-light;
-    font-family: "SF Pro Text", var(--font-sans);
+    @apply leading-relaxed text-muted-foreground;
   }
 
+  /* Focus visible melhorado */
   :focus-visible {
-    @apply outline-none ring-2 ring-ring ring-offset-2 ring-offset-background;
+    @apply outline-none ring-2 ring-accent ring-offset-2 ring-offset-background;
   }
 
   ::selection {
-    @apply bg-primary/30 text-foreground;
+    @apply bg-accent/30 text-foreground;
   }
 }
 
 /* ===========================================================================
-   Components - iOS 26 Liquid Glass
+   Component Classes
    =========================================================================== */
 @layer components {
   /* ---------------------------------------------------------------------------
-     Liquid Glass Card - Glassmorphism 2.0
-     
-     - backdrop-filter: blur(40px)
-     - Background ultra baixa opacidade
-     - Bordas de luz com gradiente
-     - Specular highlight (reflexo interno)
+     Section Header - Editorial Style with Line
      --------------------------------------------------------------------------- */
-  .glass-card {
-    @apply relative rounded-3xl overflow-hidden;
-    backdrop-filter: blur(40px) saturate(180%);
-    -webkit-backdrop-filter: blur(40px) saturate(180%);
-    background: hsl(var(--glass-bg));
-    border: 1px solid hsl(var(--glass-border));
-    /* Specular highlight - brilho interno de cima */
-    box-shadow:
-      inset 0 1px 1px 0 hsl(var(--glass-specular)),
-      0 0 0 1px hsl(0 0% 0% / 0.03);
+  .section-header {
+    @apply flex items-center gap-4 mb-16;
   }
 
-  .glass-card::before {
+  .section-header::before {
     content: "";
-    @apply absolute inset-0 pointer-events-none;
-    background: var(--gradient-glass-border);
-    mask:
-      linear-gradient(#fff 0 0) content-box,
-      linear-gradient(#fff 0 0);
-    mask-composite: exclude;
-    -webkit-mask-composite: xor;
-    padding: 1px;
-    border-radius: inherit;
-    opacity: 0.5;
+    @apply flex-1 h-px;
+    background: linear-gradient(90deg, transparent, hsl(var(--border)));
   }
 
-  /* Glass Card com hover - intensifica brilho */
-  .glass-card-interactive {
-    @apply glass-card cursor-pointer;
-    transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+  .section-header::after {
+    content: "";
+    @apply flex-1 h-px;
+    background: linear-gradient(90deg, hsl(var(--border)), transparent);
   }
 
-  .glass-card-interactive:hover {
-    background: hsl(0 0% 100% / 0.08);
-    box-shadow:
-      inset 0 1px 2px 0 hsl(0 0% 100% / 0.25),
-      0 8px 32px -8px hsl(var(--primary) / 0.15),
-      0 0 0 1px hsl(0 0% 100% / 0.1);
-    transform: translateY(-4px) scale(1.01);
+  .section-label {
+    @apply text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground;
   }
 
   /* ---------------------------------------------------------------------------
-     Gradient Text - Aurora style
+     Cards - Flat & Minimal
+     --------------------------------------------------------------------------- */
+  .card {
+    @apply relative rounded-2xl bg-card border border-border p-6;
+    @apply transition-all duration-300 ease-out;
+  }
+
+  .card-interactive {
+    @apply card cursor-pointer;
+    @apply hover:border-accent/40 hover:bg-surface-elevated;
+  }
+
+  .card-interactive:hover {
+    transform: translateY(-4px);
+  }
+
+  /* ---------------------------------------------------------------------------
+     Chips / Badges
+     --------------------------------------------------------------------------- */
+  .chip {
+    @apply inline-flex items-center px-3 py-1 rounded text-xs font-medium;
+    @apply bg-accent/10 text-accent;
+  }
+
+  .chip-outline {
+    @apply inline-flex items-center px-3 py-1 rounded text-xs font-medium;
+    @apply bg-transparent text-muted-foreground border border-border;
+  }
+
+  /* ---------------------------------------------------------------------------
+     Status Badge
+     --------------------------------------------------------------------------- */
+  .status-badge {
+    @apply inline-flex items-center gap-2 px-4 py-2 rounded-full;
+    @apply bg-surface-container border border-border;
+    @apply text-sm text-muted-foreground;
+  }
+
+  .status-dot {
+    @apply w-2 h-2 rounded-full bg-accent;
+    animation: pulse-dot 2s ease-in-out infinite;
+  }
+
+  @keyframes pulse-dot {
+    0%,
+    100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+    50% {
+      opacity: 0.5;
+      transform: scale(1.2);
+    }
+  }
+
+  /* ---------------------------------------------------------------------------
+     Display Text - Hero Typography
+     --------------------------------------------------------------------------- */
+  .text-display {
+    font-size: clamp(3rem, 12vw, 8rem);
+    line-height: 0.9;
+    letter-spacing: -0.04em;
+    @apply font-bold;
+  }
+
+  .text-display-sm {
+    font-size: clamp(2rem, 6vw, 4rem);
+    line-height: 1;
+    letter-spacing: -0.03em;
+    @apply font-bold;
+  }
+
+  /* ---------------------------------------------------------------------------
+     Gradient Text - Accent
      --------------------------------------------------------------------------- */
   .gradient-text {
     @apply bg-clip-text text-transparent;
     background-image: linear-gradient(
       135deg,
-      hsl(var(--primary)) 0%,
-      hsl(var(--secondary)) 50%,
-      hsl(var(--tertiary)) 100%
-    );
-  }
-
-  .gradient-text-expressive {
-    @apply bg-clip-text text-transparent;
-    background-image: linear-gradient(
-      135deg,
-      hsl(var(--primary)) 0%,
-      hsl(var(--tertiary)) 100%
+      hsl(var(--accent)) 0%,
+      hsl(175 70% 55%) 100%
     );
   }
 
   /* ---------------------------------------------------------------------------
-     Liquid Glass Chip/Badge
+     Icon Container
      --------------------------------------------------------------------------- */
-  .glass-chip {
-    @apply inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-sm font-medium;
-    backdrop-filter: blur(20px);
-    background: hsl(var(--glass-bg));
-    border: 1px solid hsl(var(--glass-border));
-    box-shadow: inset 0 1px 1px 0 hsl(var(--glass-specular));
-    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  .icon-container {
+    @apply w-12 h-12 rounded-xl flex items-center justify-center;
+    @apply bg-accent/10 text-accent;
   }
 
-  .glass-chip:hover {
-    background: hsl(0 0% 100% / 0.1);
-    box-shadow:
-      inset 0 1px 2px 0 hsl(0 0% 100% / 0.3),
-      0 4px 16px -4px hsl(var(--primary) / 0.2);
-  }
-
-  /* Colored chips */
-  .glass-chip-primary {
-    @apply glass-chip;
-    background: hsl(var(--primary) / 0.1);
-    border-color: hsl(var(--primary) / 0.2);
-    color: hsl(var(--primary));
-  }
-
-  .glass-chip-secondary {
-    @apply glass-chip;
-    background: hsl(var(--secondary) / 0.1);
-    border-color: hsl(var(--secondary) / 0.2);
-    color: hsl(var(--secondary));
-  }
-
-  .glass-chip-tertiary {
-    @apply glass-chip;
-    background: hsl(var(--tertiary) / 0.1);
-    border-color: hsl(var(--tertiary) / 0.2);
-    color: hsl(var(--tertiary));
+  .icon-container-sm {
+    @apply w-10 h-10 rounded-lg flex items-center justify-center;
+    @apply bg-accent/10 text-accent;
   }
 
   /* ---------------------------------------------------------------------------
-     Skill Bar - Liquid Glass style
+     Section Header Icon (Legacy support)
      --------------------------------------------------------------------------- */
-  .skill-bar {
-    @apply relative h-2 rounded-full overflow-hidden;
-    background: hsl(var(--glass-bg));
-    border: 1px solid hsl(var(--glass-border));
-  }
-
-  .skill-bar-fill {
-    @apply absolute left-0 top-0 h-full rounded-full;
-    background: linear-gradient(
-      90deg,
-      hsl(var(--primary)) 0%,
-      hsl(var(--secondary)) 100%
-    );
-    box-shadow: 0 0 12px hsl(var(--primary) / 0.5);
-  }
-
-  /* ---------------------------------------------------------------------------
-     Timeline - Aurora gradient
-     --------------------------------------------------------------------------- */
-  .timeline-line {
-    @apply absolute left-4 top-0 bottom-0 w-0.5;
-    background: linear-gradient(
-      to bottom,
-      hsl(var(--primary)),
-      hsl(var(--secondary)),
-      hsl(var(--tertiary))
-    );
-    box-shadow: 0 0 8px hsl(var(--primary) / 0.5);
-  }
-
-  .timeline-dot {
-    @apply absolute left-2.5 w-4 h-4 rounded-full;
-    background: hsl(var(--background));
-    border: 2px solid hsl(var(--primary));
-    box-shadow:
-      0 0 12px hsl(var(--primary) / 0.6),
-      inset 0 0 4px hsl(var(--primary) / 0.3);
-  }
-
-  /* ---------------------------------------------------------------------------
-     Section Header - Glass style
-     --------------------------------------------------------------------------- */
-  .section-header {
-    @apply flex items-center gap-3 mb-12;
-  }
-
   .section-header-icon {
-    @apply p-2.5 rounded-2xl;
-    backdrop-filter: blur(20px);
-    background: hsl(var(--primary) / 0.1);
-    border: 1px solid hsl(var(--primary) / 0.2);
-    box-shadow:
-      inset 0 1px 1px 0 hsl(0 0% 100% / 0.1),
-      0 0 16px hsl(var(--primary) / 0.2);
+    @apply p-2.5 rounded-xl;
+    @apply bg-accent/10 text-accent;
   }
 
   .section-header-icon svg {
     @apply w-5 h-5;
-    color: hsl(var(--primary));
   }
 
   /* ---------------------------------------------------------------------------
-     Aurora Background - Deep space with animated orbs
+     Scroll Indicator
      --------------------------------------------------------------------------- */
-  .aurora-background {
-    @apply fixed inset-0 -z-10 overflow-hidden;
+  .scroll-indicator {
+    @apply flex flex-col items-center gap-2 text-muted-foreground;
+  }
+
+  .scroll-indicator-line {
+    @apply w-px h-12 relative overflow-hidden;
+    background: hsl(var(--border));
+  }
+
+  .scroll-indicator-line::after {
+    content: "";
+    @apply absolute top-0 left-0 w-full h-1/2 bg-accent;
+    animation: scroll-line 2s ease-in-out infinite;
+  }
+
+  @keyframes scroll-line {
+    0% {
+      transform: translateY(-100%);
+    }
+    50% {
+      transform: translateY(200%);
+    }
+    100% {
+      transform: translateY(-100%);
+    }
+  }
+
+  /* ---------------------------------------------------------------------------
+     Link with Arrow
+     --------------------------------------------------------------------------- */
+  .link-arrow {
+    @apply inline-flex items-center gap-2 text-accent font-medium;
+    @apply transition-all duration-200;
+  }
+
+  .link-arrow:hover {
+    @apply gap-3;
+  }
+
+  .link-arrow svg {
+    @apply transition-transform duration-200;
+  }
+
+  .link-arrow:hover svg {
+    @apply translate-x-1;
+  }
+
+  /* ---------------------------------------------------------------------------
+     Minimal Background
+     --------------------------------------------------------------------------- */
+  .minimal-background {
+    @apply fixed inset-0 -z-10;
     background: hsl(var(--background));
   }
 
-  .aurora-orb {
-    @apply absolute rounded-full;
-    filter: blur(80px);
-  }
-
-  /* ---------------------------------------------------------------------------
-     Parallax Container
-     --------------------------------------------------------------------------- */
-  .parallax-container {
-    @apply relative;
-    transform-style: preserve-3d;
-    perspective: 1000px;
+  .minimal-background::before {
+    content: "";
+    @apply absolute inset-0;
+    background: radial-gradient(
+      ellipse 80% 50% at 50% -20%,
+      hsl(var(--accent) / 0.08),
+      transparent
+    );
   }
 }
 
 /* ===========================================================================
-   Utilities - iOS 26 Liquid Glass
+   Utilities
    =========================================================================== */
 @layer utilities {
   .text-balance {
     text-wrap: balance;
   }
 
-  /* Glow effects */
-  .glow-primary {
-    box-shadow: var(--glow-primary);
+  /* Tracking variants */
+  .tracking-display {
+    letter-spacing: -0.04em;
   }
 
-  .glow-secondary {
-    box-shadow: var(--glow-secondary);
+  .tracking-tighter {
+    letter-spacing: -0.03em;
   }
 
-  .glow-tertiary {
-    box-shadow: var(--glow-tertiary);
+  .tracking-wide {
+    letter-spacing: 0.025em;
   }
 
-  /* Glass blur utilities */
-  .backdrop-blur-glass {
-    backdrop-filter: blur(40px) saturate(180%);
-    -webkit-backdrop-filter: blur(40px) saturate(180%);
+  .tracking-wider {
+    letter-spacing: 0.1em;
+  }
+
+  .tracking-widest {
+    letter-spacing: 0.2em;
   }
 }
 
 /* ===========================================================================
-   Scrollbar Styling - Hidden
+   Scrollbar - Hidden
    =========================================================================== */
 * {
   scrollbar-width: none;

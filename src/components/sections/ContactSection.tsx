@@ -1,22 +1,24 @@
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
-import { Mail, Linkedin, Github, Send, MapPin, Phone } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import {
+  Mail,
+  Linkedin,
+  Github,
+  MapPin,
+  Phone,
+  ArrowUpRight,
+} from "lucide-react";
 import { GitLabIcon } from "@/components/icons/GitLabIcon";
 import { useTranslation } from "react-i18next";
 
 /* =============================================================================
-   ContactSection - Material 3 Expressive
+   ContactSection - Editorial High-End
    
    DESIGN:
-   - Cards de contato usando M3 filled card style
-   - Chips para informações de contato
-   - Gradientes expressivos nos ícones
-   
-   ACESSIBILIDADE:
-   - Links com labels descritivos
-   - Contraste adequado em todos os elementos
+   - Layout centralizado com tipografia elegante
+   - Cards de contato minimalistas com hover sutil
+   - Footer discreto integrado
    ============================================================================= */
 
 export const ContactSection = () => {
@@ -30,139 +32,121 @@ export const ContactSection = () => {
       href: "https://www.linkedin.com/in/ucgfilho/",
       icon: Linkedin,
       description: t("contact.linkedinDescription"),
-      color: "#0a66c2",
-      activeColor: "#004182",
     },
     {
       name: "GitHub",
       href: "https://github.com/ucgfilho",
       icon: Github,
       description: t("contact.githubDescription"),
-      color: "#333333",
-      activeColor: "#1a1a1a",
     },
     {
       name: "GitLab",
       href: "https://gitlab.com/ucgfilho",
       icon: GitLabIcon,
       description: t("contact.gitlabDescription"),
-      color: "#fc6d26",
-      activeColor: "#e24329",
     },
     {
       name: "Email",
       href: "mailto:ucgf.profissional@gmail.com",
       icon: Mail,
       description: t("contact.emailDescription"),
-      color: "#EA4335", // Gmail Red
-      activeColor: "#C5221F",
     },
   ];
 
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: { staggerChildren: 0.08 },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] },
+    },
+  };
+
   return (
-    <section id="contact" className="py-24 relative" ref={ref}>
+    <section id="contact" className="py-24 md:py-32 relative" ref={ref}>
       <div className="container mx-auto px-6">
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.4 }}
+          variants={containerVariants}
+          initial="hidden"
+          animate={isInView ? "visible" : "hidden"}
           className="max-w-4xl mx-auto text-center"
         >
-          {/* Section header - M3 style */}
-          <div className="flex items-center justify-center gap-3 mb-6">
-            <div className="section-header-icon">
-              <Send className="w-5 h-5" />
-            </div>
-            <h2 className="text-3xl md:text-4xl font-bold text-foreground">
-              {t("contact.title")}
-            </h2>
-          </div>
-
-          <p className="text-lg text-muted-foreground mb-12 max-w-2xl mx-auto leading-relaxed">
-            {t("contact.description")}
-          </p>
-
-          {/* Contact info - M3 Chips */}
+          {/* Section header */}
           <motion.div
-            initial={{ opacity: 0, y: 15 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.3, delay: 0.1 }}
-            className="flex flex-wrap justify-center gap-4 mb-12"
+            variants={itemVariants}
+            className="section-header justify-center"
           >
-            <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-surface-container-high border border-border/30">
-              <Phone className="w-4 h-4 text-primary" />
-              <span className="text-sm text-foreground">
-                {t("contact.phone")}
-              </span>
+            <span className="section-label">{t("contact.title")}</span>
+          </motion.div>
+
+          <motion.p
+            variants={itemVariants}
+            className="text-lg text-muted-foreground mb-12 max-w-2xl mx-auto leading-relaxed"
+          >
+            {t("contact.description")}
+          </motion.p>
+
+          {/* Contact info chips */}
+          <motion.div
+            variants={itemVariants}
+            className="flex flex-wrap justify-center gap-3 mb-14"
+          >
+            <div className="chip-outline inline-flex items-center gap-2">
+              <Phone className="w-4 h-4 text-accent" />
+              <span>{t("contact.phone")}</span>
             </div>
-            <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-surface-container-high border border-border/30">
-              <MapPin className="w-4 h-4 text-secondary" />
-              <span className="text-sm text-foreground">
-                {t("contact.location")}
-              </span>
+            <div className="chip-outline inline-flex items-center gap-2">
+              <MapPin className="w-4 h-4 text-accent" />
+              <span>{t("contact.location")}</span>
             </div>
           </motion.div>
 
-          {/* Contact links grid - M3 Cards */}
+          {/* Contact links grid */}
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
-            {contactLinks.map((link, index) => (
-              <motion.div
+            {contactLinks.map((link) => (
+              <motion.a
                 key={link.name}
-                initial={{ opacity: 0, y: 20 }}
-                animate={isInView ? { opacity: 1, y: 0 } : {}}
-                transition={{
-                  duration: 0.3,
-                  delay: 0.05 * index,
-                }}
+                href={link.href}
+                target={link.href.startsWith("mailto") ? undefined : "_blank"}
+                rel="noopener noreferrer"
+                aria-label={t("contact.openLink", { platform: link.name })}
+                variants={itemVariants}
+                className="card-interactive p-6 text-center group"
               >
-                <motion.a
-                  href={link.href}
-                  target={link.href.startsWith("mailto") ? undefined : "_blank"}
-                  rel="noopener noreferrer"
-                  aria-label={t("contact.openLink", { platform: link.name })}
-                  style={{
-                    backgroundColor: "hsl(var(--surface-container))",
-                    borderColor: "hsl(var(--border) / 0.3)",
-                  }}
-                  className="rounded-2xl p-6 border transition-all duration-200 group block h-full"
-                  transition={{ duration: 0.15 }}
-                  whileHover={{
-                    scale: 1.03,
-                    y: -3,
-                    backgroundColor: link.color,
-                    borderColor: link.color,
-                    color: "#ffffff",
-                    boxShadow: `inset 0 1px 2px 0 hsl(0 0% 100% / 0.2), 0 8px 25px -5px ${link.color}80`,
-                  }}
-                  whileTap={{
-                    scale: 0.95,
-                    backgroundColor: link.activeColor,
-                    borderColor: link.activeColor,
-                  }}
-                >
-                  {/* Icon container - M3 style with primary tonal */}
-                  <div className="w-12 h-12 rounded-xl bg-primary/12 flex items-center justify-center mb-4 mx-auto group-hover:bg-white/20 group-hover:scale-105 transition-all duration-200">
-                    <link.icon className="w-6 h-6 text-primary group-hover:text-white transition-colors duration-200" />
-                  </div>
-                  <h3 className="font-semibold text-foreground mb-1 group-hover:text-white transition-colors duration-200">
-                    {link.name}
-                  </h3>
-                  <p className="text-xs text-muted-foreground truncate group-hover:text-white/90 transition-colors duration-200">
-                    {link.description}
-                  </p>
-                </motion.a>
-              </motion.div>
+                {/* Icon */}
+                <div className="icon-container mx-auto mb-4 group-hover:bg-accent/15 group-hover:border-accent/30 transition-colors duration-200">
+                  <link.icon className="w-5 h-5 text-muted-foreground group-hover:text-accent transition-colors duration-200" />
+                </div>
+
+                <h3 className="font-medium text-foreground mb-1 group-hover:text-accent transition-colors duration-200">
+                  {link.name}
+                </h3>
+                <p className="text-xs text-muted-foreground truncate">
+                  {link.description}
+                </p>
+
+                {/* Arrow indicator */}
+                <ArrowUpRight className="w-4 h-4 text-muted-foreground mx-auto mt-3 opacity-0 translate-y-1 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-200" />
+              </motion.a>
             ))}
           </div>
         </motion.div>
       </div>
 
-      {/* Footer - M3 minimal */}
+      {/* Footer */}
       <motion.footer
-        initial={{ opacity: 0 }}
-        animate={isInView ? { opacity: 1 } : {}}
-        transition={{ duration: 0.8, delay: 0.8 }}
-        className="mt-24 pt-8 border-t border-border/30"
+        variants={itemVariants}
+        initial="hidden"
+        animate={isInView ? "visible" : "hidden"}
+        className="mt-24 pt-8 border-t border-border"
       >
         <div className="container mx-auto px-6 text-center">
           <p className="text-sm text-muted-foreground">

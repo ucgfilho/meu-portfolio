@@ -8,17 +8,18 @@ import {
   Wrench,
   FileText,
   BarChart3,
+  Smartphone,
 } from "lucide-react";
 import { useTranslation } from "react-i18next";
 
 /* =============================================================================
-   SkillsSection - iOS 26 Liquid Glass
+   SkillsSection - Editorial High-End
    
    DESIGN:
-   - Cards Liquid Glass com bordas de luz
-   - Progress bars com glow aurora
-   - Chips com glassmorphism
-   - Animações spring
+   - Cards flat com borda sutil
+   - Chips minimalistas
+   - Grid responsivo 3 colunas
+   - Animações stagger suaves
    ============================================================================= */
 
 export const SkillsSection = () => {
@@ -39,13 +40,13 @@ export const SkillsSection = () => {
     },
     {
       title: t("skills.mobileTests"),
-      icon: TestTube,
+      icon: Smartphone,
       skills: ["Appium", "Robot Framework", "BrowserStack"],
     },
     {
       title: t("skills.automatedReports"),
       icon: BarChart3,
-      skills: ["Mochawesome", "JUnit", "Allure Report"],
+      skills: ["Mochawesome", "JUnit", "Allure"],
     },
     {
       title: t("skills.languages"),
@@ -55,7 +56,7 @@ export const SkillsSection = () => {
     {
       title: t("skills.devops"),
       icon: GitBranch,
-      skills: ["Git", "GitHub Actions", "GitLab CI/CD", "Docker"],
+      skills: ["Git", "GitHub Actions", "Docker"],
     },
     {
       title: t("skills.documentation"),
@@ -64,131 +65,97 @@ export const SkillsSection = () => {
     },
   ];
 
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: { staggerChildren: 0.08 },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] },
+    },
+  };
+
   return (
-    <section id="skills" className="py-24 relative" ref={ref}>
+    <section id="skills" className="py-24 md:py-32 relative" ref={ref}>
       <div className="container mx-auto px-6">
         <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{
-            duration: 0.4,
-          }}
+          variants={containerVariants}
+          initial="hidden"
+          animate={isInView ? "visible" : "hidden"}
           className="max-w-6xl mx-auto"
         >
           {/* Section header */}
-          <div className="section-header">
-            <div className="section-header-icon">
-              <Code2 className="w-5 h-5" />
-            </div>
-            <h2 className="text-3xl md:text-4xl font-semibold text-foreground tracking-tight">
-              {t("skills.title")}
-            </h2>
-          </div>
+          <motion.div
+            variants={itemVariants}
+            className="section-header justify-center"
+          >
+            <span className="section-label">{t("skills.title")}</span>
+          </motion.div>
 
-          {/* Skills Grid - Liquid Glass Cards */}
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {skillCategories.map((category, categoryIndex) => (
+          {/* Skills Grid */}
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+            {skillCategories.map((category) => (
               <motion.div
                 key={category.title}
-                initial={{ opacity: 0, y: 30 }}
-                animate={isInView ? { opacity: 1, y: 0 } : {}}
-                transition={{
-                  duration: 0.4,
-                  delay: 0.05 + categoryIndex * 0.05,
-                }}
-                whileHover={{
-                  y: -6,
-                  scale: 1.01,
-                }}
-                className="glass-card-interactive rounded-3xl p-6"
+                variants={itemVariants}
+                className="card p-6 group hover:border-accent/30 transition-colors duration-200"
               >
                 {/* Category header */}
-                <div className="flex items-center gap-3 mb-6">
-                  <div
-                    className="p-2.5 rounded-2xl"
-                    style={{
-                      background: "hsl(var(--primary) / 0.1)",
-                      border: "1px solid hsl(var(--primary) / 0.15)",
-                      boxShadow:
-                        "inset 0 1px 1px 0 hsl(0 0% 100% / 0.1), 0 0 12px hsl(var(--primary) / 0.15)",
-                    }}
-                  >
-                    <category.icon className="w-5 h-5 text-primary" />
+                <div className="flex items-center gap-3 mb-5">
+                  <div className="icon-container-sm">
+                    <category.icon className="w-4 h-4 text-accent" />
                   </div>
-                  <h3 className="font-medium text-foreground tracking-wide">
+                  <h3 className="font-medium text-foreground">
                     {category.title}
                   </h3>
                 </div>
 
                 {/* Skills list */}
                 <div className="flex flex-wrap gap-2">
-                  {category.skills.map((skill, skillIndex) => (
-                    <motion.span
-                      key={skill}
-                      initial={{ opacity: 0, scale: 0.9 }}
-                      animate={isInView ? { opacity: 1, scale: 1 } : {}}
-                      transition={{
-                        duration: 0.3,
-                        delay: 0.1 + categoryIndex * 0.05 + skillIndex * 0.03,
-                      }}
-                      className="px-3 py-1.5 rounded-full text-sm font-medium text-foreground bg-primary/10 border border-primary/20"
-                    >
+                  {category.skills.map((skill) => (
+                    <span key={skill} className="chip">
                       {skill}
-                    </motion.span>
+                    </span>
                   ))}
                 </div>
               </motion.div>
             ))}
           </div>
 
-          {/* Tags cloud - Glass Chips */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{
-              duration: 0.4,
-              delay: 0.3,
-            }}
-            className="mt-14 text-center"
-          >
-            <h3 className="text-lg font-light text-muted-foreground mb-6 tracking-wide">
+          {/* All technologies */}
+          <motion.div variants={itemVariants} className="mt-16 text-center">
+            <p className="text-sm text-muted-foreground mb-6">
               Todas as tecnologias
-            </h3>
-            <div className="flex flex-wrap justify-center gap-3">
+            </p>
+            <div className="flex flex-wrap justify-center gap-2">
               {[
                 "Cypress",
                 "Git",
                 "Docker",
                 "CodeceptJS",
                 "GitHub Actions",
-                "GitLab CI/CD",
                 "BDD",
                 "Gherkin",
                 "Postman",
-                "Allure Report",
+                "Allure",
                 "Jira",
-                "Mochawesome",
                 "JUnit",
                 "Insomnia",
                 "Appium",
                 "Robot Framework",
                 "BrowserStack",
                 "Python",
-              ].map((tech, index) => (
-                <motion.span
-                  key={tech}
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  animate={isInView ? { opacity: 1, scale: 1 } : {}}
-                  transition={{
-                    duration: 0.3,
-                    delay: 0.4 + index * 0.02,
-                  }}
-                  whileHover={{ scale: 1.05, y: -2 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="glass-chip cursor-default"
-                >
+              ].map((tech) => (
+                <span key={tech} className="chip-outline">
                   {tech}
-                </motion.span>
+                </span>
               ))}
             </div>
           </motion.div>

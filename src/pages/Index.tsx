@@ -50,6 +50,11 @@ const ContactSection = lazy(() =>
 );
 
 const Index = () => {
+  // Aplicar tema dark
+  if (typeof document !== "undefined") {
+    document.documentElement.classList.add("dark");
+  }
+
   return (
     <div className="min-h-screen relative">
       <AnimatedBackground />
