@@ -21,12 +21,6 @@ export const ProjectsSection = () => {
 
   const projects = [
     {
-      name: t("projects.sgdoctor.name"),
-      description: t("projects.sgdoctor.description"),
-      technologies: ["Testes Manuais", "API", "Bug Tracking"],
-      link: "https://gitlab.com/cpdsjq/sgdoctor_academico",
-    },
-    {
       name: t("projects.saucedemo.name"),
       description: t("projects.saucedemo.description"),
       technologies: ["Cypress", "CI/CD", "GitHub Actions"],
@@ -53,7 +47,7 @@ export const ProjectsSection = () => {
     {
       name: t("projects.mobileAutomation.name"),
       description: t("projects.mobileAutomation.description"),
-      technologies: ["Appium", "Robot Framework"],
+      technologies: ["Appium", "Robot Framework", "BrowserStack"],
       link: "https://github.com/ucgfilho/robot-appium",
     },
   ];
