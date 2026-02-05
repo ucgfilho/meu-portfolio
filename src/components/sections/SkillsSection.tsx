@@ -56,7 +56,7 @@ export const SkillsSection = () => {
     {
       title: t("skills.devops"),
       icon: GitBranch,
-      skills: ["Git", "GitHub Actions", "Docker"],
+      skills: ["Git", "GitHub Actions", "Docker", "GitLab CI/CD"],
     },
     {
       title: t("skills.documentation"),
@@ -152,6 +152,7 @@ export const SkillsSection = () => {
                 "Robot Framework",
                 "BrowserStack",
                 "Python",
+                "GitLab CI/CD",
               ].map((tech) => (
                 <span key={tech} className="chip-outline">
                   {tech}
