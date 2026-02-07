@@ -14,7 +14,7 @@
     "greeting": "¡Hola! Soy",
     "name": "Ubirajara Filho",
     "title": "Analista de QA",
-    "description": "Experto en automatización de pruebas, prácticas DevOps y cultura de calidad. Construyendo arquitecturas de pruebas escalables e implementando shift-left testing en entornos ágiles con entrega continua.",
+    "description": "Trabajo con automatización de pruebas y prácticas DevOps para garantizar calidad desde el inicio. Me gusta crear soluciones que facilitan el trabajo de los equipos y hacen las pruebas más eficientes.",
     "viewProjects": "Ver Proyectos",
     "contact": "Contactar",
     "scrollDown": "Desplazar hacia abajo",
@@ -22,22 +22,18 @@
   },
   "about": {
     "title": "Sobre Mí",
-    "bio1": "Soy un profesional apasionado por la calidad del software, con enfoque en",
-    "bio1Highlight1": "automatización de pruebas",
-    "bio1Highlight2": "prácticas de DevOps",
-    "bio1Highlight3": "cultura de calidad",
-    "bio1End": "desde la planificación.",
-    "bio2Start": "Actualmente cursando",
-    "bio2Course": "Sistemas de Información",
-    "bio2End": "en la UESB, busco constantemente mejorar mis habilidades y contribuir a proyectos que valoren la excelencia técnica y la entrega continua.",
+    "bio1": "Soy Analista de QA con enfoque en automatización de pruebas Web, Mobile y API, actuando directamente para reducir riesgos en producción y acelerar el ciclo de entrega con calidad medible. Trabajo la calidad como parte estratégica del producto, garantizando que reglas de negocio, integraciones y flujos críticos sean validados de forma consistente y confiable.",
+    "bio2": "En la práctica, desarrollo y mantengo suites de pruebas automatizadas utilizando Cypress, Appium y Robot Framework, con integración en pipelines de CI/CD para ejecución continua de pruebas de regresión. Actúo fuertemente en la validación de APIs REST, cubriendo códigos de estado, payloads, reglas de negocio y escenarios negativos, siempre con foco en prevención de defectos.",
+    "bio3": "Poseo base sólida en fundamentos y metodologías de prueba, aplicando técnicas adecuadas para garantizar alta cobertura funcional y estabilidad del sistema. Utilizo este conocimiento para estructurar arquitecturas de automatización escalables, eficientes y de fácil mantenimiento, alineadas a las necesidades del equipo y a los objetivos del negocio.",
     "goalTitle": "Objetivo",
-    "goalDescription": "Actuar como Analista de QA valorando la automatización, DevOps y calidad desde la planificación.",
+    "goalDescription": "Trabajar como Analista de QA aplicando automatización y buenas prácticas desde la planificación.",
     "differentialTitle": "Diferencial",
-    "differentialDescription": "Identificación técnica de fallas, arquitecturas de pruebas escalables y shift-left testing.",
+    "differentialDescription": "Análisis técnico de problemas, diseño de pruebas escalables y enfoque en prevención de bugs.",
     "imageAlt": "Foto de Ubirajara Filho - Analista de QA"
   },
   "skills": {
     "title": "Competencias Técnicas",
+    "allTechnologies": "Todas las tecnologías",
     "functionalTests": "Pruebas Funcionales",
     "apiTests": "Pruebas de API",
     "mobileTests": "Pruebas Móviles",
@@ -50,35 +46,37 @@
   },
   "projects": {
     "title": "Proyectos",
+    "viewMoreGithub": "Ve más proyectos en mi GitHub",
+    "viewGithubButton": "Ver GitHub",
     "sgdoctor": {
       "name": "SGDoctor Académico",
-      "description": "Actuación como QA en SGDoctor Académico, con pruebas manuales y automatizadas, validación de requisitos y documentación de bugs."
+      "description": "Trabajé como QA en SGDoctor, realizando pruebas manuales y automatizadas, validando requisitos y documentando bugs encontrados."
     },
     "saucedemo": {
       "name": "Automatización E2E en SauceDemo",
-      "description": "Suite completa de pruebas E2E automatizadas con Cypress, incluyendo informes con JUnit y Mochawesome e integración continua con GitHub Actions."
+      "description": "Suite de pruebas E2E con Cypress, incluyendo reportes automatizados e integración con GitHub Actions."
     },
     "codeceptjs": {
       "name": "Automatización de API con CodeceptJS",
-      "description": "Proyecto de automatización de pruebas de API utilizando CodeceptJS con framework Mocha e informes detallados con Allure."
+      "description": "Automatización de pruebas de API con CodeceptJS y reportes detallados usando Allure."
     },
     "automationPractice": {
       "name": "Automatización E2E en Automation Practice",
-      "description": "Pruebas E2E automatizadas para el e-commerce Automation Practice, utilizando datos dinámicos con FakerJS para escenarios realistas."
+      "description": "Pruebas E2E para e-commerce, utilizando datos dinámicos con FakerJS para escenarios más realistas."
     },
     "restfulApi": {
       "name": "Automatización de API en Restful API Dev",
-      "description": "Pruebas automatizadas de API REST utilizando Cypress, validando endpoints, respuestas y flujos de datos."
+      "description": "Pruebas de API REST con Cypress, validando endpoints y respuestas."
     },
     "mobileAutomation": {
       "name": "Automatización Mobile en QAzando Food",
-      "description": "Pruebas automatizadas E2E en la app QAzando Food, utilizando Robot Framework + Appium con ejecución en BrowserStack como Device Farm."
+      "description": "Pruebas E2E en app mobile usando Robot Framework y Appium, con ejecución en BrowserStack."
     },
     "openRepository": "Abrir repositorio del proyecto {{projectName}}"
   },
   "contact": {
     "title": "¿Hablamos?",
-    "description": "Siempre estoy abierto a nuevas oportunidades, colaboraciones y proyectos interesantes. ¡No dudes en ponerte en contacto!",
+    "description": "Siempre estoy abierto a nuevas oportunidades y proyectos interesantes. ¡Hablemos!",
     "phone": "+55 (73) 99847-8938",
     "location": "Bahia, Brasil",
     "linkedinDescription": "Conéctate conmigo",
@@ -86,5 +84,93 @@
     "gitlabDescription": "Más repositorios",
     "emailDescription": "ucgf.profissional@gmail.com",
     "openLink": "Abrir enlace a {{platform}}"
+  },
+  "education": {
+    "title": "Formación Académica",
+    "degree": "Sistemas de Información",
+    "institution": "Universidad Estatal del Sudoeste de Bahia - UESB",
+    "period": "2022 - 2026",
+    "status": "En Curso"
+  },
+  "experience": {
+    "title": "Experiencia Profesional",
+    "current": "Actual",
+    "company": "CPDS",
+    "role": "Analista de QA",
+    "period": "Jul/2025 – Actual",
+    "responsibilities": [
+      "Automaticé pruebas Web y API en 2 módulos críticos (Pacientes e Inventario) del sistema SGDoctor, cubriendo el 100% de los flujos de negocio previstos, con validación de códigos de estado, contratos de API e integridad de los datos retornados.",
+      "La automatización redujo en un 40% el tiempo de validación de los módulos y permitió la anticipación de la entrega del proyecto, garantizando la liberación de 2 módulos en producción sin bugs críticos o regresiones reportadas por usuarios.",
+      "Para lograr estos resultados, analicé reglas de negocio junto al equipo, modelé escenarios de prueba funcionales y negativos, automaticé flujos críticos Web y API y ejecuté pruebas recurrentes en pipelines, identificando fallas de forma preventiva antes de la fase de homologación."
+    ]
+  },
+  "certifications": {
+    "title": "Certificaciones",
+    "viewCertificate": "Ver certificado",
+    "list": [
+      {
+        "name": "JavaScript para Testers",
+        "issuer": "Qazando"
+      },
+      {
+        "name": "Automatización de Pruebas de API con JavaScript",
+        "issuer": "Qazando"
+      },
+      {
+        "name": "Automatización de Pruebas Web con Cypress",
+        "issuer": "Qazando"
+      },
+      {
+        "name": "Fundamentos de Pruebas de Software",
+        "issuer": "Qazando"
+      },
+      {
+        "name": "Automatización Mobile con Appium y Robot",
+        "issuer": "Qazando"
+      },
+      {
+        "name": "Jornada QA 2025",
+        "issuer": "EBAC"
+      },
+      {
+        "name": "Introducción al Bootcamp - Java y QA",
+        "issuer": "DIO"
+      },
+      {
+        "name": "Estructuras de Control en Java",
+        "issuer": "DIO"
+      },
+      {
+        "name": "Fundamentos de Java",
+        "issuer": "DIO"
+      },
+      {
+        "name": "Olimpiada Brasileña de Informática",
+        "issuer": "UNICAMP"
+      },
+      {
+        "name": "Control de Versiones con Git y GitHub",
+        "issuer": "DIO"
+      },
+      {
+        "name": "Curso de Oratoria",
+        "issuer": "Escola Moscoso"
+      }
+    ]
+  },
+  "languagesSection": {
+    "title": "Idiomas",
+    "portuguese": {
+      "name": "Portugués",
+      "level": "Nativo"
+    },
+    "spanish": {
+      "name": "Español",
+      "level": "Avanzado"
+    },
+    "english": {
+      "name": "Inglés",
+      "level": "Intermedio"
+    }
   }
 }

@@ -22,14 +22,9 @@
   },
   "about": {
     "title": "Sobre Mim",
-    "bio1": "Sou apaixonado por qualidade de software, com foco em",
-    "bio1Highlight1": "automação de testes",
-    "bio1Highlight2": "DevOps",
-    "bio1Highlight3": "cultura de qualidade",
-    "bio1End": "desde o início do projeto.",
-    "bio2Start": "Atualmente cursando",
-    "bio2Course": "Sistemas de Informação",
-    "bio2End": "na UESB, estou sempre buscando aprender mais e contribuir em projetos que valorizam qualidade e boas práticas.",
+    "bio1": "Sou Analista de QA com foco em automação de testes Web, Mobile e API, atuando diretamente para reduzir riscos em produção e acelerar o ciclo de entrega com qualidade mensurável. Trabalho a qualidade como parte estratégica do produto, garantindo que regras de negócio, integrações e fluxos críticos sejam validados de forma consistente e confiável.",
+    "bio2": "Na prática, desenvolvo e mantenho suítes de testes automatizados utilizando Cypress, Appium e Robot Framework, com integração em pipelines de CI/CD para execução contínua de testes de regressão. Atuo fortemente na validação de APIs REST, cobrindo status codes, payloads, regras de negócio e cenários negativos, sempre com foco em prevenção de defeitos.",
+    "bio3": "Possuo base sólida em fundamentos e metodologias de teste, aplicando técnicas adequadas para garantir alta cobertura funcional e estabilidade do sistema. Utilizo esse conhecimento para estruturar arquiteturas de automação escaláveis, eficientes e de fácil manutenção, alinhadas às necessidades do time e aos objetivos do negócio.",
     "goalTitle": "Objetivo",
     "goalDescription": "Trabalhar como Analista de QA aplicando automação e boas práticas desde o planejamento.",
     "differentialTitle": "Diferencial",
@@ -38,6 +33,7 @@
   },
   "skills": {
     "title": "Tecnologias e Habilidades",
+    "allTechnologies": "Todas as tecnologias",
     "functionalTests": "Testes Funcionais",
     "apiTests": "Testes de API",
     "mobileTests": "Testes Mobile",
@@ -50,6 +46,8 @@
   },
   "projects": {
     "title": "Projetos",
+    "viewMoreGithub": "Veja mais projetos no meu GitHub",
+    "viewGithubButton": "Ver GitHub",
     "sgdoctor": {
       "name": "SGDoctor Acadêmico",
       "description": "Trabalhei como QA no SGDoctor, fazendo testes manuais e automatizados, validando requisitos e documentando bugs encontrados."
@@ -86,5 +84,93 @@
     "gitlabDescription": "Mais repositórios",
     "emailDescription": "ucgf.profissional@gmail.com",
     "openLink": "Abrir link para {{platform}}"
+  },
+  "education": {
+    "title": "Formação Acadêmica",
+    "degree": "Sistemas de Informação",
+    "institution": "Universidade Estadual do Sudoeste da Bahia - UESB",
+    "period": "2022 - 2026",
+    "status": "Cursando"
+  },
+  "experience": {
+    "title": "Experiência Profissional",
+    "current": "Atual",
+    "company": "CPDS",
+    "role": "Analista de QA",
+    "period": "Jul/2025 – Atual",
+    "responsibilities": [
+      "Automatizei testes Web e API em 2 módulos críticos (Pacientes e Estoque) do sistema SGDoctor, cobrindo 100% dos fluxos de negócio previstos, com validação de status codes, contratos de API e integridade dos dados retornados.",
+      "A automação reduziu em 40% o tempo de validação dos módulos e permitiu a antecipação da entrega do projeto, garantindo a liberação de 2 módulos em produção sem bugs críticos ou regressões reportadas por usuários.",
+      "Para alcançar esses resultados, analisei regras de negócio junto ao time, modelei cenários de teste funcionais e negativos, automatizei fluxos críticos Web e API e executei testes recorrentes em pipelines, identificando falhas de forma preventiva antes da fase de homologação."
+    ]
+  },
+  "certifications": {
+    "title": "Certificações",
+    "viewCertificate": "Ver certificado",
+    "list": [
+      {
+        "name": "JavaScript para Testers",
+        "issuer": "Qazando"
+      },
+      {
+        "name": "Automação de Testes de API com JavaScript",
+        "issuer": "Qazando"
+      },
+      {
+        "name": "Automação de Testes Web com Cypress",
+        "issuer": "Qazando"
+      },
+      {
+        "name": "Conceitos de Testes de Software",
+        "issuer": "Qazando"
+      },
+      {
+        "name": "Automação Mobile com Appium e Robot",
+        "issuer": "Qazando"
+      },
+      {
+        "name": "Jornada QA 2025",
+        "issuer": "EBAC"
+      },
+      {
+        "name": "Introdução ao Bootcamp - Java e QA",
+        "issuer": "DIO"
+      },
+      {
+        "name": "Estruturas de Controle em Java",
+        "issuer": "DIO"
+      },
+      {
+        "name": "Fundamentos de Java",
+        "issuer": "DIO"
+      },
+      {
+        "name": "Olimpíada Brasileira de Informática",
+        "issuer": "UNICAMP"
+      },
+      {
+        "name": "Versionamento com Git e GitHub",
+        "issuer": "DIO"
+      },
+      {
+        "name": "Curso de Oratória",
+        "issuer": "Escola Moscoso"
+      }
+    ]
+  },
+  "languagesSection": {
+    "title": "Idiomas",
+    "portuguese": {
+      "name": "Português",
+      "level": "Nativo"
+    },
+    "spanish": {
+      "name": "Espanhol",
+      "level": "Avançado"
+    },
+    "english": {
+      "name": "Inglês",
+      "level": "Intermediário"
+    }
   }
 }

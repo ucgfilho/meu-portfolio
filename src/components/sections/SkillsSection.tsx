@@ -132,7 +132,7 @@ export const SkillsSection = () => {
           {/* All technologies */}
           <motion.div variants={itemVariants} className="mt-16 text-center">
             <p className="text-sm text-muted-foreground mb-6">
-              Todas as tecnologias
+              {t("skills.allTechnologies")}
             </p>
             <div className="flex flex-wrap justify-center gap-2">
               {[

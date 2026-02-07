@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
+import { useTranslation } from "react-i18next";
 
 /* =============================================================================
    LanguagesSection - Editorial High-End
@@ -11,30 +12,31 @@ import { useRef } from "react";
    - Tipografia limpa e hierárquica
    ============================================================================= */
 
-const languages = [
-  {
-    name: "Português",
-    level: "Nativo",
-    proficiency: 100,
-    flag: "🇧🇷",
-  },
-  {
-    name: "Espanhol",
-    level: "Avançado",
-    proficiency: 85,
-    flag: "🇪🇸",
-  },
-  {
-    name: "Inglês",
-    level: "Intermediário",
-    proficiency: 60,
-    flag: "🇺🇸",
-  },
-];
-
 export const LanguagesSection = () => {
+  const { t } = useTranslation();
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
+
+  const languages = [
+    {
+      name: t("languagesSection.portuguese.name"),
+      level: t("languagesSection.portuguese.level"),
+      proficiency: 100,
+      flag: "🇧🇷",
+    },
+    {
+      name: t("languagesSection.spanish.name"),
+      level: t("languagesSection.spanish.level"),
+      proficiency: 85,
+      flag: "🇪🇸",
+    },
+    {
+      name: t("languagesSection.english.name"),
+      level: t("languagesSection.english.level"),
+      proficiency: 60,
+      flag: "🇺🇸",
+    },
+  ];
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -67,7 +69,7 @@ export const LanguagesSection = () => {
             variants={itemVariants}
             className="section-header justify-center"
           >
-            <span className="section-label">Idiomas</span>
+            <span className="section-label">{t("languagesSection.title")}</span>
           </motion.div>
 
           {/* Languages grid */}

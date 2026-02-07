@@ -13,7 +13,7 @@
    - Minimalismo sofisticado
    - Animações sutis e elegantes
    
-   PALETA: Monocromático escuro com accent cyan
+   PALETA: Monocromático escuro minimalista
    ============================================================================= */
 
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap");
@@ -49,7 +49,7 @@
     --accent-foreground: 0 0% 4%;
 
     /* Tertiary */
-    --tertiary: 175 70% 35%;
+    --tertiary: 0 0% 20%;
     --tertiary-foreground: 0 0% 98%;
 
     /* Muted */
@@ -105,7 +105,7 @@
     --accent-foreground: 0 0% 4%;
 
     /* Tertiary */
-    --tertiary: 175 70% 38%;
+    --tertiary: 0 0% 85%;
     --tertiary-foreground: 0 0% 4%;
 
     /* Muted */
@@ -126,7 +126,7 @@
     /* Borders */
     --border: 0 0% 16%;
     --input: 0 0% 16%;
-    --ring: 175 84% 42%;
+    --ring: 0 0% 96%;
   }
 }
 
@@ -320,7 +320,7 @@
     background-image: linear-gradient(
       135deg,
       hsl(var(--accent)) 0%,
-      hsl(175 70% 55%) 100%
+      hsl(0 0% 85%) 100%
     );
   }
 

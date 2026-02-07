@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
 import { Award, BadgeCheck, Trophy, BookOpen } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 /* =============================================================================
    CertificationsSection - Editorial High-End
@@ -12,84 +13,88 @@ import { Award, BadgeCheck, Trophy, BookOpen } from "lucide-react";
    - Badge de verificação no hover
    ============================================================================= */
 
-const certifications = [
-  {
-    name: "JavaScript para Testers",
-    issuer: "Qazando",
-    icon: Award,
-    link: "https://drive.google.com/file/d/1SMeGIPXYZP6oh8SpnSLeGCWohVbs_t-T/view?usp=sharing",
-  },
-  {
-    name: "Automação de Testes de API com JavaScript",
-    issuer: "Qazando",
-    icon: Award,
-    link: "https://drive.google.com/file/d/1zzldKSmnzYpmRlMwfoMsLWVZ1reW7YI6/view?usp=sharing",
-  },
-  {
-    name: "Automação de Testes Web com Cypress",
-    issuer: "Qazando",
-    icon: Award,
-    link: "https://drive.google.com/file/d/1S0nTY65t5CUNDdyY2CoRAvckwJZQjxQ1/view?usp=sharing",
-  },
-  {
-    name: "Conceitos de Testes de Software",
-    issuer: "Qazando",
-    icon: Award,
-    link: "https://drive.google.com/file/d/1p9FAC8J214H5ju4S1QeBd7OYudK0pJdz/view?usp=sharing",
-  },
-  {
-    name: "Automação Mobile com Appium e Robot",
-    issuer: "Qazando",
-    icon: Award,
-    link: "https://drive.google.com/file/d/1M6rHLPVWspNrQnOKeYTnVx1d-iKKGHlk/view?usp=sharing",
-  },
-  {
-    name: "Jornada QA 2025",
-    issuer: "EBAC",
-    icon: Award,
-    link: "https://drive.google.com/file/d/1bLFgUDzLqMDnNqAh9xLMxxKPWCLzEZIh/view?usp=sharing",
-  },
-  {
-    name: "Introdução ao Bootcamp - Java e QA",
-    issuer: "DIO",
-    icon: Award,
-    link: "https://drive.google.com/file/d/1bEZYTjOdl503_JG9hqZaH3oWhsD-XwaM/view?usp=sharing",
-  },
-  {
-    name: "Estruturas de Controle em Java",
-    issuer: "DIO",
-    icon: Award,
-    link: "https://drive.google.com/file/d/1jGf_jDHtM7T25RckbEBEuyhcV3-ooY_a/view?usp=sharing",
-  },
-  {
-    name: "Fundamentos de Java",
-    issuer: "DIO",
-    icon: Award,
-    link: "https://drive.google.com/file/d/1kgliMsclVQNqfjWVZrorU9Afxpj3fQYN/view?usp=sharing",
-  },
-  {
-    name: "Olimpíada Brasileira de Informática",
-    issuer: "UNICAMP",
-    icon: Award,
-    link: "https://drive.google.com/file/d/1nlrAHCCcXxTfNRW4heLJzAlKAyOya0Io/view?usp=sharing",
-  },
-  {
-    name: "Versionamento com Git e GitHub",
-    issuer: "DIO",
-    icon: Award,
-    link: "https://drive.google.com/file/d/1L_v-brBLNZBfHGQe6QeH9th2LjlzP9mJ/view?usp=sharing",
-  },
-  {
-    name: "Curso de Oratória",
-    issuer: "Escola Moscoso",
-    icon: Award,
-    link: "https://drive.google.com/file/d/1Zica5n5aI4SepIaPsvosXu8nACgvVf2J/view?usp=sharing",
-  },
+const certificationLinks = [
+  "https://drive.google.com/file/d/1SMeGIPXYZP6oh8SpnSLeGCWohVbs_t-T/view?usp=sharing",
+  "https://drive.google.com/file/d/1zzldKSmnzYpmRlMwfoMsLWVZ1reW7YI6/view?usp=sharing",
+  "https://drive.google.com/file/d/1S0nTY65t5CUNDdyY2CoRAvckwJZQjxQ1/view?usp=sharing",
+  "https://drive.google.com/file/d/1p9FAC8J214H5ju4S1QeBd7OYudK0pJdz/view?usp=sharing",
+  "https://drive.google.com/file/d/1M6rHLPVWspNrQnOKeYTnVx1d-iKKGHlk/view?usp=sharing",
+  "https://drive.google.com/file/d/1bLFgUDzLqMDnNqAh9xLMxxKPWCLzEZIh/view?usp=sharing",
+  "https://drive.google.com/file/d/1bEZYTjOdl503_JG9hqZaH3oWhsD-XwaM/view?usp=sharing",
+  "https://drive.google.com/file/d/1jGf_jDHtM7T25RckbEBEuyhcV3-ooY_a/view?usp=sharing",
+  "https://drive.google.com/file/d/1kgliMsclVQNqfjWVZrorU9Afxpj3fQYN/view?usp=sharing",
+  "https://drive.google.com/file/d/1nlrAHCCcXxTfNRW4heLJzAlKAyOya0Io/view?usp=sharing",
+  "https://drive.google.com/file/d/1L_v-brBLNZBfHGQe6QeH9th2LjlzP9mJ/view?usp=sharing",
+  "https://drive.google.com/file/d/1Zica5n5aI4SepIaPsvosXu8nACgvVf2J/view?usp=sharing",
 ];
 
 export const CertificationsSection = () => {
+  const { t } = useTranslation();
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
+
+  const certifications = [
+    {
+      ...t("certifications.list.0", { returnObjects: true }),
+      icon: Award,
+      link: certificationLinks[0],
+    },
+    {
+      ...t("certifications.list.1", { returnObjects: true }),
+      icon: Award,
+      link: certificationLinks[1],
+    },
+    {
+      ...t("certifications.list.2", { returnObjects: true }),
+      icon: Award,
+      link: certificationLinks[2],
+    },
+    {
+      ...t("certifications.list.3", { returnObjects: true }),
+      icon: Award,
+      link: certificationLinks[3],
+    },
+    {
+      ...t("certifications.list.4", { returnObjects: true }),
+      icon: Award,
+      link: certificationLinks[4],
+    },
+    {
+      ...t("certifications.list.5", { returnObjects: true }),
+      icon: Award,
+      link: certificationLinks[5],
+    },
+    {
+      ...t("certifications.list.6", { returnObjects: true }),
+      icon: Award,
+      link: certificationLinks[6],
+    },
+    {
+      ...t("certifications.list.7", { returnObjects: true }),
+      icon: Award,
+      link: certificationLinks[7],
+    },
+    {
+      ...t("certifications.list.8", { returnObjects: true }),
+      icon: Award,
+      link: certificationLinks[8],
+    },
+    {
+      ...t("certifications.list.9", { returnObjects: true }),
+      icon: Award,
+      link: certificationLinks[9],
+    },
+    {
+      ...t("certifications.list.10", { returnObjects: true }),
+      icon: Award,
+      link: certificationLinks[10],
+    },
+    {
+      ...t("certifications.list.11", { returnObjects: true }),
+      icon: Award,
+      link: certificationLinks[11],
+    },
+  ];
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -122,7 +127,7 @@ export const CertificationsSection = () => {
             variants={itemVariants}
             className="section-header justify-center"
           >
-            <span className="section-label">Certificações</span>
+            <span className="section-label">{t("certifications.title")}</span>
           </motion.div>
 
           {/* Grid */}
@@ -134,7 +139,7 @@ export const CertificationsSection = () => {
                     href: cert.link,
                     target: "_blank",
                     rel: "noopener noreferrer",
-                    "aria-label": `Ver certificado: ${cert.name}`,
+                    "aria-label": `${t("certifications.viewCertificate")}: ${cert.name}`,
                   }
                 : {};
 

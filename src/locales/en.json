@@ -14,7 +14,7 @@
     "greeting": "Hello! I'm",
     "name": "Ubirajara Filho",
     "title": "QA Analyst",
-    "description": "Expert in test automation, DevOps practices, and quality culture. Building scalable test architectures and implementing shift-left testing in agile environments with continuous delivery.",
+    "description": "I work with test automation and DevOps practices to ensure quality from the start. I enjoy building solutions that help teams work better and make testing more efficient.",
     "viewProjects": "View Projects",
     "contact": "Get in Touch",
     "scrollDown": "Scroll down",
@@ -22,22 +22,18 @@
   },
   "about": {
     "title": "About Me",
-    "bio1": "I'm a professional passionate about software quality, focusing on",
-    "bio1Highlight1": "test automation",
-    "bio1Highlight2": "DevOps practices",
-    "bio1Highlight3": "quality culture",
-    "bio1End": "from planning.",
-    "bio2Start": "Currently studying",
-    "bio2Course": "Information Systems",
-    "bio2End": "at UESB, I constantly seek to improve my skills and contribute to projects that value technical excellence and continuous delivery.",
+    "bio1": "I'm a QA Analyst focused on Web, Mobile, and API test automation, working directly to reduce production risks and accelerate the delivery cycle with measurable quality. I approach quality as a strategic part of the product, ensuring that business rules, integrations, and critical flows are validated consistently and reliably.",
+    "bio2": "In practice, I develop and maintain automated test suites using Cypress, Appium, and Robot Framework, with integration into CI/CD pipelines for continuous regression testing. I work extensively on REST API validation, covering status codes, payloads, business rules, and negative scenarios, always focusing on defect prevention.",
+    "bio3": "I have a solid foundation in testing fundamentals and methodologies, applying appropriate techniques to ensure high functional coverage and system stability. I use this knowledge to structure scalable, efficient, and maintainable automation architectures, aligned with team needs and business objectives.",
     "goalTitle": "Goal",
-    "goalDescription": "Work as a QA Analyst valuing automation, DevOps, and quality from planning.",
+    "goalDescription": "Work as a QA Analyst applying automation and best practices from planning.",
     "differentialTitle": "Differential",
-    "differentialDescription": "Technical identification of failures, scalable test architectures, and shift-left testing.",
+    "differentialDescription": "Technical problem analysis, scalable test design, and focus on bug prevention.",
     "imageAlt": "Photo of Ubirajara Filho - QA Analyst"
   },
   "skills": {
     "title": "Technical Skills",
+    "allTechnologies": "All technologies",
     "functionalTests": "Functional Tests",
     "apiTests": "API Tests",
     "mobileTests": "Mobile Tests",
@@ -50,35 +46,37 @@
   },
   "projects": {
     "title": "Projects",
+    "viewMoreGithub": "See more projects on my GitHub",
+    "viewGithubButton": "View GitHub",
     "sgdoctor": {
       "name": "SGDoctor Academic",
-      "description": "Acting as QA in SGDoctor Academic, with manual and automated tests, requirements validation, and bug documentation."
+      "description": "I worked as QA on SGDoctor, performing manual and automated tests, validating requirements, and documenting bugs found."
     },
     "saucedemo": {
       "name": "E2E Automation on SauceDemo",
-      "description": "Complete suite of automated E2E tests with Cypress, including reports with JUnit and Mochawesome and continuous integration with GitHub Actions."
+      "description": "E2E test suite with Cypress, including automated reports and GitHub Actions integration."
     },
     "codeceptjs": {
       "name": "API Automation with CodeceptJS",
-      "description": "API test automation project using CodeceptJS with Mocha framework and detailed reports with Allure."
+      "description": "API test automation with CodeceptJS and detailed reports using Allure."
     },
     "automationPractice": {
       "name": "E2E Automation on Automation Practice",
-      "description": "Automated E2E tests for Automation Practice e-commerce, using dynamic data with FakerJS for realistic scenarios."
+      "description": "E2E tests for e-commerce, using dynamic data with FakerJS for more realistic scenarios."
     },
     "restfulApi": {
       "name": "API Automation on Restful API Dev",
-      "description": "Automated REST API tests using Cypress, validating endpoints, responses, and data flows."
+      "description": "REST API tests with Cypress, validating endpoints and responses."
     },
     "mobileAutomation": {
       "name": "Mobile Automation on QAzando Food",
-      "description": "Automated E2E tests on QAzando Food app, using Robot Framework + Appium with execution on BrowserStack as Device Farm."
+      "description": "E2E tests on mobile app using Robot Framework and Appium, with execution on BrowserStack."
     },
     "openRepository": "Open {{projectName}} project repository"
   },
   "contact": {
     "title": "Let's Talk?",
-    "description": "I'm always open to new opportunities, collaborations, and interesting projects. Don't hesitate to get in touch!",
+    "description": "I'm always open to new opportunities and interesting projects. Let's talk!",
     "phone": "+55 (73) 99847-8938",
     "location": "Bahia, Brazil",
     "linkedinDescription": "Connect with me",
@@ -86,5 +84,93 @@
     "gitlabDescription": "More repositories",
     "emailDescription": "ucgf.profissional@gmail.com",
     "openLink": "Open link to {{platform}}"
+  },
+  "education": {
+    "title": "Academic Education",
+    "degree": "Information Systems",
+    "institution": "State University of Southwest Bahia - UESB",
+    "period": "2022 - 2026",
+    "status": "In Progress"
+  },
+  "experience": {
+    "title": "Professional Experience",
+    "current": "Current",
+    "company": "CPDS",
+    "role": "QA Analyst",
+    "period": "Jul/2025 – Present",
+    "responsibilities": [
+      "Automated Web and API tests for 2 critical modules (Patients and Inventory) of the SGDoctor system, covering 100% of expected business flows, with validation of status codes, API contracts, and data integrity.",
+      "The automation reduced module validation time by 40% and enabled early project delivery, ensuring the release of 2 modules to production without critical bugs or regressions reported by users.",
+      "To achieve these results, I analyzed business rules with the team, modeled functional and negative test scenarios, automated critical Web and API flows, and executed recurring tests in pipelines, identifying failures preventively before the approval phase."
+    ]
+  },
+  "certifications": {
+    "title": "Certifications",
+    "viewCertificate": "View certificate",
+    "list": [
+      {
+        "name": "JavaScript for Testers",
+        "issuer": "Qazando"
+      },
+      {
+        "name": "API Test Automation with JavaScript",
+        "issuer": "Qazando"
+      },
+      {
+        "name": "Web Test Automation with Cypress",
+        "issuer": "Qazando"
+      },
+      {
+        "name": "Software Testing Fundamentals",
+        "issuer": "Qazando"
+      },
+      {
+        "name": "Mobile Automation with Appium and Robot",
+        "issuer": "Qazando"
+      },
+      {
+        "name": "QA Journey 2025",
+        "issuer": "EBAC"
+      },
+      {
+        "name": "Introduction to Bootcamp - Java and QA",
+        "issuer": "DIO"
+      },
+      {
+        "name": "Control Structures in Java",
+        "issuer": "DIO"
+      },
+      {
+        "name": "Java Fundamentals",
+        "issuer": "DIO"
+      },
+      {
+        "name": "Brazilian Computer Science Olympiad",
+        "issuer": "UNICAMP"
+      },
+      {
+        "name": "Version Control with Git and GitHub",
+        "issuer": "DIO"
+      },
+      {
+        "name": "Public Speaking Course",
+        "issuer": "Escola Moscoso"
+      }
+    ]
+  },
+  "languagesSection": {
+    "title": "Languages",
+    "portuguese": {
+      "name": "Portuguese",
+      "level": "Native"
+    },
+    "spanish": {
+      "name": "Spanish",
+      "level": "Advanced"
+    },
+    "english": {
+      "name": "English",
+      "level": "Intermediate"
+    }
   }
 }

@@ -128,7 +128,7 @@ export const ProjectsSection = () => {
           {/* GitHub CTA */}
           <motion.div variants={itemVariants} className="text-center mt-16">
             <p className="text-sm text-muted-foreground mb-6">
-              Veja mais projetos no meu GitHub
+              {t("projects.viewMoreGithub")}
             </p>
             <a
               href="https://github.com/ucgfilho"
@@ -137,7 +137,7 @@ export const ProjectsSection = () => {
               className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-foreground text-background text-sm font-medium hover:bg-foreground/90 transition-colors duration-200 group"
             >
               <Github className="w-4 h-4" />
-              Ver GitHub
+              {t("projects.viewGithubButton")}
               <ArrowUpRight className="w-4 h-4 opacity-0 -translate-y-0.5 translate-x-0.5 group-hover:opacity-100 group-hover:translate-y-0 group-hover:translate-x-0 transition-all duration-200" />
             </a>
           </motion.div>

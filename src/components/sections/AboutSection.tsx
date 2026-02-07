@@ -71,13 +71,13 @@ export const AboutSection = () => {
             {/* Bio */}
             <motion.div variants={itemVariants} className="space-y-4">
               <p className="text-lg text-muted-foreground leading-relaxed">
-                {t("about.bio1")} {t("about.bio1Highlight1")},{" "}
-                {t("about.bio1Highlight2")} e implementação da{" "}
-                {t("about.bio1Highlight3")} {t("about.bio1End")}
+                {t("about.bio1")}
               </p>
               <p className="text-lg text-muted-foreground leading-relaxed">
-                {t("about.bio2Start")} {t("about.bio2Course")}{" "}
-                {t("about.bio2End")}
+                {t("about.bio2")}
+              </p>
+              <p className="text-lg text-muted-foreground leading-relaxed">
+                {t("about.bio3")}
               </p>
             </motion.div>
 
