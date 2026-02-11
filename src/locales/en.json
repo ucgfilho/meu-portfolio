@@ -99,9 +99,9 @@
     "role": "QA Analyst",
     "period": "Jul/2025 – Present",
     "responsibilities": [
-      "Automated Web and API tests for 2 critical modules (Patients and Inventory) of the SGDoctor system, covering 100% of expected business flows, with validation of status codes, API contracts, and data integrity.",
-      "The automation reduced module validation time by 40% and enabled early project delivery, ensuring the release of 2 modules to production without critical bugs or regressions reported by users.",
-      "To achieve these results, I analyzed business rules with the team, modeled functional and negative test scenarios, automated critical Web and API flows, and executed recurring tests in pipelines, identifying failures preventively before the approval phase."
+      "Executed functional, regression, and exploratory tests on 2 main modules of the SGDoctor system, validating critical features based on requirements, user stories, and acceptance criteria.",
+      "Created and maintained 30+ manual and automated test scenarios per development cycle, using Postman for API tests and JIRA for bug logging, prioritization, and tracking throughout sprints.",
+      "Actively participated in pre-release validations, working with the development team in an agile environment to reduce rework and prevent the release of critical production issues."
     ]
   },
   "certifications": {
