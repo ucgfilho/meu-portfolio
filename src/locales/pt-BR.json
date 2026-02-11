@@ -99,9 +99,9 @@
     "role": "Analista de QA",
     "period": "Jul/2025 – Atual",
     "responsibilities": [
-      "Executei testes funcionais, regressivos e exploratórios em 2 módulos principais do sistema SGDoctor, validando funcionalidades críticas com base em requisitos, histórias de usuário e critérios de aceite.",
-      "Criei e mantive mais de 30 cenários de teste manuais e automatizados por ciclo de desenvolvimento, utilizando Postman para testes de API e JIRA para registro, priorização e acompanhamento de bugs ao longo dos sprints.",
-      "Participei ativamente das validações de releases antes da publicação, atuando junto ao time de desenvolvimento em ambiente ágil, contribuindo para a redução de retrabalho e evitando a liberação de falhas críticas em produção."
+      "Elaborei testes automatizados de Web e API em 2 módulos (pacientes e estoque) do sistema do SGDoctor, no qual tive que validar todas as funcionalidades e respostas da API previstas nas regras de negócio.",
+      "Resultou na agilização e antecipação da finalização do projeto, possibilitando a entrega de 2 módulos completos e sem bugs que impactassem negativamente a experiência do usuário.",
+      "Para atingir esses resultados, analisei as regras de negócio, defini cenários de teste, automatizei fluxos críticos de Web e API, validei status code e dados retornados e executei testes recorrentes para identificar e reportar inconsistências de forma preventiva."
     ]
   },
   "certifications": {
