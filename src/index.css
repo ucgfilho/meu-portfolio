@@ -17,443 +17,442 @@
    ============================================================================= */
 
 @layer base {
-  /* ===========================================================================
-     Light Theme
-     =========================================================================== */
-  :root {
-    /* Background */
-    --background: 0 0% 98%;
-    --background-elevated: 0 0% 100%;
-    --foreground: 0 0% 4%;
+    /* ===========================================================================
+       Light Theme
+       =========================================================================== */
+    :root {
+        /* Background */
+        --background: 0 0% 98%;
+        --background-elevated: 0 0% 100%;
+        --foreground: 0 0% 4%;
 
-    /* Card */
-    --card: 0 0% 100%;
-    --card-foreground: 0 0% 4%;
+        /* Card */
+        --card: 0 0% 100%;
+        --card-foreground: 0 0% 4%;
 
-    /* Popover */
-    --popover: 0 0% 100%;
-    --popover-foreground: 0 0% 4%;
+        /* Popover */
+        --popover: 0 0% 100%;
+        --popover-foreground: 0 0% 4%;
 
-    /* Primary */
-    --primary: 0 0% 9%;
-    --primary-foreground: 0 0% 98%;
+        /* Primary */
+        --primary: 0 0% 9%;
+        --primary-foreground: 0 0% 98%;
 
-    /* Secondary */
-    --secondary: 0 0% 96%;
-    --secondary-foreground: 0 0% 9%;
+        /* Secondary */
+        --secondary: 0 0% 96%;
+        --secondary-foreground: 0 0% 9%;
 
-    /* Accent: White */
-    --accent: 0 0% 98%;
-    --accent-foreground: 0 0% 4%;
+        /* Accent: White */
+        --accent: 0 0% 98%;
+        --accent-foreground: 0 0% 4%;
 
-    /* Tertiary */
-    --tertiary: 0 0% 20%;
-    --tertiary-foreground: 0 0% 98%;
+        /* Tertiary */
+        --tertiary: 0 0% 20%;
+        --tertiary-foreground: 0 0% 98%;
 
-    /* Muted */
-    --muted: 0 0% 96%;
-    --muted-foreground: 0 0% 45%;
+        /* Muted */
+        --muted: 0 0% 96%;
+        --muted-foreground: 0 0% 45%;
 
-    /* Destructive */
-    --destructive: 0 84% 60%;
-    --destructive-foreground: 0 0% 98%;
+        /* Destructive */
+        --destructive: 0 84% 60%;
+        --destructive-foreground: 0 0% 98%;
 
-    /* Surface */
-    --surface: 0 0% 100%;
-    --surface-elevated: 0 0% 100%;
-    --surface-container: 0 0% 96%;
-    --surface-container-high: 0 0% 93%;
+        /* Surface */
+        --surface: 0 0% 100%;
+        --surface-elevated: 0 0% 100%;
+        --surface-container: 0 0% 96%;
+        --surface-container-high: 0 0% 93%;
 
-    /* Borders */
-    --border: 0 0% 90%;
-    --input: 0 0% 90%;
-    --ring: 0 0% 98%;
+        /* Borders */
+        --border: 0 0% 90%;
+        --input: 0 0% 90%;
+        --ring: 0 0% 98%;
 
-    /* Radius */
-    --radius: 0.5rem;
-  }
+        /* Radius */
+        --radius: 0.5rem;
+    }
 
-  /* ===========================================================================
-     Dark Theme (Principal - Editorial High-End)
-     =========================================================================== */
-  .dark {
-    /* Background: Charcoal Profundo */
-    --background: 0 0% 4%;
-    --background-elevated: 0 0% 7%;
-    --foreground: 0 0% 96%;
+    /* ===========================================================================
+       Dark Theme (Principal - Editorial High-End)
+       =========================================================================== */
+    .dark {
+        /* Background: Charcoal Profundo */
+        --background: 0 0% 4%;
+        --background-elevated: 0 0% 7%;
+        --foreground: 0 0% 96%;
 
-    /* Card */
-    --card: 0 0% 7%;
-    --card-foreground: 0 0% 96%;
+        /* Card */
+        --card: 0 0% 7%;
+        --card-foreground: 0 0% 96%;
 
-    /* Popover */
-    --popover: 0 0% 7%;
-    --popover-foreground: 0 0% 96%;
+        /* Popover */
+        --popover: 0 0% 7%;
+        --popover-foreground: 0 0% 96%;
 
-    /* Primary: Off-White */
-    --primary: 0 0% 96%;
-    --primary-foreground: 0 0% 4%;
+        /* Primary: Off-White */
+        --primary: 0 0% 96%;
+        --primary-foreground: 0 0% 4%;
 
-    /* Secondary */
-    --secondary: 0 0% 12%;
-    --secondary-foreground: 0 0% 96%;
+        /* Secondary */
+        --secondary: 0 0% 12%;
+        --secondary-foreground: 0 0% 96%;
 
-    /* Accent: White */
-    --accent: 0 0% 96%;
-    --accent-foreground: 0 0% 4%;
+        /* Accent: White */
+        --accent: 0 0% 96%;
+        --accent-foreground: 0 0% 4%;
 
-    /* Tertiary */
-    --tertiary: 0 0% 85%;
-    --tertiary-foreground: 0 0% 4%;
+        /* Tertiary */
+        --tertiary: 0 0% 85%;
+        --tertiary-foreground: 0 0% 4%;
 
-    /* Muted */
-    --muted: 0 0% 12%;
-    --muted-foreground: 0 0% 50%;
+        /* Muted */
+        --muted: 0 0% 12%;
+        --muted-foreground: 0 0% 50%;
 
-    /* Destructive */
-    --destructive: 0 72% 55%;
-    --destructive-foreground: 0 0% 98%;
+        /* Destructive */
+        --destructive: 0 72% 55%;
+        --destructive-foreground: 0 0% 98%;
 
-    /* Surface Hierarchy */
-    --surface: 0 0% 7%;
-    --surface-elevated: 0 0% 10%;
-    --surface-container: 0 0% 9%;
-    --surface-container-high: 0 0% 12%;
-    --surface-container-highest: 0 0% 15%;
+        /* Surface Hierarchy */
+        --surface: 0 0% 7%;
+        --surface-elevated: 0 0% 10%;
+        --surface-container: 0 0% 9%;
+        --surface-container-high: 0 0% 12%;
+        --surface-container-highest: 0 0% 15%;
 
-    /* Borders */
-    --border: 0 0% 16%;
-    --input: 0 0% 16%;
-    --ring: 0 0% 96%;
-  }
+        /* Borders */
+        --border: 0 0% 16%;
+        --input: 0 0% 16%;
+        --ring: 0 0% 96%;
+    }
 }
 
 /* ===========================================================================
    Base Styles
    =========================================================================== */
 @layer base {
-  * {
-    @apply border-border;
-  }
+    * {
+        @apply border-border;
+    }
 
-  html {
-    scroll-behavior: smooth;
-    font-size: 16px;
-  }
-
-  @media (prefers-reduced-motion: reduce) {
     html {
-      scroll-behavior: auto;
+        scroll-behavior: smooth;
+        font-size: 16px;
     }
 
-    *,
-    *::before,
-    *::after {
-      animation-duration: 0.01ms !important;
-      animation-iteration-count: 1 !important;
-      transition-duration: 0.01ms !important;
+    @media (prefers-reduced-motion: reduce) {
+        html {
+            scroll-behavior: auto;
+        }
+
+        *,
+        *::before,
+        *::after {
+            animation-duration: 0.01ms !important;
+            animation-iteration-count: 1 !important;
+            transition-duration: 0.01ms !important;
+        }
     }
-  }
 
-  body {
-    @apply bg-background text-foreground antialiased;
-    font-family:
-      -apple-system,
-      BlinkMacSystemFont,
-      "Segoe UI",
-      "Helvetica Neue",
-      Arial,
-      sans-serif;
-    text-rendering: optimizeLegibility;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-  }
+    body {
+        @apply bg-background text-foreground antialiased;
+        font-family: -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        "Helvetica Neue",
+        Arial,
+        sans-serif;
+        text-rendering: optimizeLegibility;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
 
-  /* Tipografia Editorial */
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    @apply font-bold tracking-tight text-foreground;
-    letter-spacing: -0.03em;
-  }
+    /* Tipografia Editorial */
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        @apply font-bold tracking-tight text-foreground;
+        letter-spacing: -0.03em;
+    }
 
-  h1 {
-    @apply text-5xl md:text-6xl lg:text-7xl;
-  }
+    h1 {
+        @apply text-5xl md:text-6xl lg:text-7xl;
+    }
 
-  h2 {
-    @apply text-3xl md:text-4xl lg:text-5xl;
-  }
+    h2 {
+        @apply text-3xl md:text-4xl lg:text-5xl;
+    }
 
-  h3 {
-    @apply text-2xl md:text-3xl;
-  }
+    h3 {
+        @apply text-2xl md:text-3xl;
+    }
 
-  h4 {
-    @apply text-xl md:text-2xl;
-  }
+    h4 {
+        @apply text-xl md:text-2xl;
+    }
 
-  p {
-    @apply leading-relaxed text-muted-foreground;
-  }
+    p {
+        @apply leading-relaxed text-muted-foreground;
+    }
 
-  /* Focus visible melhorado */
-  :focus-visible {
-    @apply outline-none ring-2 ring-accent ring-offset-2 ring-offset-background;
-  }
+    /* Focus visible melhorado */
+    :focus-visible {
+        @apply outline-none ring-2 ring-accent ring-offset-2 ring-offset-background;
+    }
 
-  ::selection {
-    @apply bg-accent/30 text-foreground;
-  }
+    ::selection {
+        @apply bg-accent/30 text-foreground;
+    }
 }
 
 /* ===========================================================================
    Component Classes
    =========================================================================== */
 @layer components {
-  /* ---------------------------------------------------------------------------
-     Section Header - Editorial Style with Line
-     --------------------------------------------------------------------------- */
-  .section-header {
-    @apply flex items-center gap-4 mb-16;
-  }
-
-  .section-header::before {
-    content: "";
-    @apply flex-1 h-px;
-    background: linear-gradient(90deg, transparent, hsl(var(--border)));
-  }
-
-  .section-header::after {
-    content: "";
-    @apply flex-1 h-px;
-    background: linear-gradient(90deg, hsl(var(--border)), transparent);
-  }
-
-  .section-label {
-    @apply text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground;
-  }
-
-  /* ---------------------------------------------------------------------------
-     Cards - Flat & Minimal
-     --------------------------------------------------------------------------- */
-  .card {
-    @apply relative rounded-2xl bg-card border border-border p-6;
-    @apply transition-all duration-300 ease-out;
-  }
-
-  .card-interactive {
-    @apply card cursor-pointer;
-    @apply hover:border-accent/40 hover:bg-surface-elevated;
-  }
-
-  .card-interactive:hover {
-    transform: translateY(-4px);
-  }
-
-  /* ---------------------------------------------------------------------------
-     Chips / Badges
-     --------------------------------------------------------------------------- */
-  .chip {
-    @apply inline-flex items-center px-3 py-1 rounded text-xs font-medium;
-    @apply bg-accent/10 text-accent;
-  }
-
-  .chip-outline {
-    @apply inline-flex items-center px-3 py-1 rounded text-xs font-medium;
-    @apply bg-transparent text-muted-foreground border border-border;
-  }
-
-  /* ---------------------------------------------------------------------------
-     Status Badge
-     --------------------------------------------------------------------------- */
-  .status-badge {
-    @apply inline-flex items-center gap-2 px-4 py-2 rounded-full;
-    @apply bg-surface-container border border-border;
-    @apply text-sm text-muted-foreground;
-  }
-
-  .status-dot {
-    @apply w-2 h-2 rounded-full bg-accent;
-    animation: pulse-dot 2s ease-in-out infinite;
-  }
-
-  @keyframes pulse-dot {
-    0%,
-    100% {
-      opacity: 1;
-      transform: scale(1);
+    /* ---------------------------------------------------------------------------
+       Section Header - Editorial Style with Line
+       --------------------------------------------------------------------------- */
+    .section-header {
+        @apply flex items-center gap-4 mb-16;
     }
-    50% {
-      opacity: 0.5;
-      transform: scale(1.2);
+
+    .section-header::before {
+        content: "";
+        @apply flex-1 h-px;
+        background: linear-gradient(90deg, transparent, hsl(var(--border)));
     }
-  }
 
-  /* ---------------------------------------------------------------------------
-     Display Text - Hero Typography
-     --------------------------------------------------------------------------- */
-  .text-display {
-    font-size: clamp(2.5rem, 10vw, 6rem);
-    line-height: 0.9;
-    letter-spacing: -0.04em;
-    @apply font-bold;
-  }
-
-  .text-display-sm {
-    font-size: clamp(1.5rem, 5vw, 3rem);
-    line-height: 1;
-    letter-spacing: -0.03em;
-    @apply font-bold;
-  }
-
-  /* ---------------------------------------------------------------------------
-     Gradient Text - Accent
-     --------------------------------------------------------------------------- */
-  .gradient-text {
-    @apply bg-clip-text text-transparent;
-    background-image: linear-gradient(
-      135deg,
-      hsl(var(--accent)) 0%,
-      hsl(0 0% 85%) 100%
-    );
-  }
-
-  /* ---------------------------------------------------------------------------
-     Icon Container
-     --------------------------------------------------------------------------- */
-  .icon-container {
-    @apply w-12 h-12 rounded-xl flex items-center justify-center;
-    @apply bg-accent/10 text-accent;
-  }
-
-  .icon-container-sm {
-    @apply w-10 h-10 rounded-lg flex items-center justify-center;
-    @apply bg-accent/10 text-accent;
-  }
-
-  /* ---------------------------------------------------------------------------
-     Section Header Icon (Legacy support)
-     --------------------------------------------------------------------------- */
-  .section-header-icon {
-    @apply p-2.5 rounded-xl;
-    @apply bg-accent/10 text-accent;
-  }
-
-  .section-header-icon svg {
-    @apply w-5 h-5;
-  }
-
-  /* ---------------------------------------------------------------------------
-     Scroll Indicator
-     --------------------------------------------------------------------------- */
-  .scroll-indicator {
-    @apply flex flex-col items-center gap-2 text-muted-foreground;
-  }
-
-  .scroll-indicator-line {
-    @apply w-px h-12 relative overflow-hidden;
-    background: hsl(var(--border));
-  }
-
-  .scroll-indicator-line::after {
-    content: "";
-    @apply absolute top-0 left-0 w-full h-1/2 bg-accent;
-    animation: scroll-line 2s ease-in-out infinite;
-  }
-
-  @keyframes scroll-line {
-    0% {
-      transform: translateY(-100%);
+    .section-header::after {
+        content: "";
+        @apply flex-1 h-px;
+        background: linear-gradient(90deg, hsl(var(--border)), transparent);
     }
-    50% {
-      transform: translateY(200%);
+
+    .section-label {
+        @apply text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground;
     }
-    100% {
-      transform: translateY(-100%);
+
+    /* ---------------------------------------------------------------------------
+       Cards - Flat & Minimal
+       --------------------------------------------------------------------------- */
+    .card {
+        @apply relative rounded-2xl bg-card border border-border p-6;
+        @apply transition-all duration-300 ease-out;
     }
-  }
 
-  /* ---------------------------------------------------------------------------
-     Link with Arrow
-     --------------------------------------------------------------------------- */
-  .link-arrow {
-    @apply inline-flex items-center gap-2 text-accent font-medium;
-    @apply transition-all duration-200;
-  }
+    .card-interactive {
+        @apply card cursor-pointer;
+        @apply hover:border-accent/40 hover:bg-surface-elevated;
+    }
 
-  .link-arrow:hover {
-    @apply gap-3;
-  }
+    .card-interactive:hover {
+        transform: translateY(-4px);
+    }
 
-  .link-arrow svg {
-    @apply transition-transform duration-200;
-  }
+    /* ---------------------------------------------------------------------------
+       Chips / Badges
+       --------------------------------------------------------------------------- */
+    .chip {
+        @apply inline-flex items-center px-3 py-1 rounded text-xs font-medium;
+        @apply bg-accent/10 text-accent;
+    }
 
-  .link-arrow:hover svg {
-    @apply translate-x-1;
-  }
+    .chip-outline {
+        @apply inline-flex items-center px-3 py-1 rounded text-xs font-medium;
+        @apply bg-transparent text-muted-foreground border border-border;
+    }
 
-  /* ---------------------------------------------------------------------------
-     Minimal Background
-     --------------------------------------------------------------------------- */
-  .minimal-background {
-    @apply fixed inset-0 -z-10;
-    background: hsl(var(--background));
-  }
+    /* ---------------------------------------------------------------------------
+       Status Badge
+       --------------------------------------------------------------------------- */
+    .status-badge {
+        @apply inline-flex items-center gap-2 px-4 py-2 rounded-full;
+        @apply bg-surface-container border border-border;
+        @apply text-sm text-muted-foreground;
+    }
 
-  .minimal-background::before {
-    content: "";
-    @apply absolute inset-0;
-    background: radial-gradient(
-      ellipse 80% 50% at 50% -20%,
-      hsl(var(--accent) / 0.08),
-      transparent
-    );
-  }
+    .status-dot {
+        @apply w-2 h-2 rounded-full bg-accent;
+        animation: pulse-dot 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse-dot {
+        0%,
+        100% {
+            opacity: 1;
+            transform: scale(1);
+        }
+        50% {
+            opacity: 0.5;
+            transform: scale(1.2);
+        }
+    }
+
+    /* ---------------------------------------------------------------------------
+       Display Text - Hero Typography
+       --------------------------------------------------------------------------- */
+    .text-display {
+        font-size: clamp(2.5rem, 10vw, 6rem);
+        line-height: 0.9;
+        letter-spacing: -0.04em;
+        @apply font-bold;
+    }
+
+    .text-display-sm {
+        font-size: clamp(1.5rem, 5vw, 3rem);
+        line-height: 1;
+        letter-spacing: -0.03em;
+        @apply font-bold;
+    }
+
+    /* ---------------------------------------------------------------------------
+       Gradient Text - Accent
+       --------------------------------------------------------------------------- */
+    .gradient-text {
+        @apply bg-clip-text text-transparent;
+        background-image: linear-gradient(
+                135deg,
+                hsl(var(--accent)) 0%,
+                hsl(0 0% 85%) 100%
+        );
+    }
+
+    /* ---------------------------------------------------------------------------
+       Icon Container
+       --------------------------------------------------------------------------- */
+    .icon-container {
+        @apply w-12 h-12 rounded-xl flex items-center justify-center;
+        @apply bg-accent/10 text-accent;
+    }
+
+    .icon-container-sm {
+        @apply w-10 h-10 rounded-lg flex items-center justify-center;
+        @apply bg-accent/10 text-accent;
+    }
+
+    /* ---------------------------------------------------------------------------
+       Section Header Icon (Legacy support)
+       --------------------------------------------------------------------------- */
+    .section-header-icon {
+        @apply p-2.5 rounded-xl;
+        @apply bg-accent/10 text-accent;
+    }
+
+    .section-header-icon svg {
+        @apply w-5 h-5;
+    }
+
+    /* ---------------------------------------------------------------------------
+       Scroll Indicator
+       --------------------------------------------------------------------------- */
+    .scroll-indicator {
+        @apply flex flex-col items-center gap-2 text-muted-foreground;
+    }
+
+    .scroll-indicator-line {
+        @apply w-px h-12 relative overflow-hidden;
+        background: hsl(var(--border));
+    }
+
+    .scroll-indicator-line::after {
+        content: "";
+        @apply absolute top-0 left-0 w-full h-1/2 bg-accent;
+        animation: scroll-line 2s ease-in-out infinite;
+    }
+
+    @keyframes scroll-line {
+        0% {
+            transform: translateY(-100%);
+        }
+        50% {
+            transform: translateY(200%);
+        }
+        100% {
+            transform: translateY(-100%);
+        }
+    }
+
+    /* ---------------------------------------------------------------------------
+       Link with Arrow
+       --------------------------------------------------------------------------- */
+    .link-arrow {
+        @apply inline-flex items-center gap-2 text-accent font-medium;
+        @apply transition-all duration-200;
+    }
+
+    .link-arrow:hover {
+        @apply gap-3;
+    }
+
+    .link-arrow svg {
+        @apply transition-transform duration-200;
+    }
+
+    .link-arrow:hover svg {
+        @apply translate-x-1;
+    }
+
+    /* ---------------------------------------------------------------------------
+       Minimal Background
+       --------------------------------------------------------------------------- */
+    .minimal-background {
+        @apply fixed inset-0 -z-10;
+        background: hsl(var(--background));
+    }
+
+    .minimal-background::before {
+        content: "";
+        @apply absolute inset-0;
+        background: radial-gradient(
+                ellipse 80% 50% at 50% -20%,
+                hsl(var(--accent) / 0.08),
+                transparent
+        );
+    }
 }
 
 /* ===========================================================================
    Utilities
    =========================================================================== */
 @layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
+    .text-balance {
+        text-wrap: balance;
+    }
 
-  /* Tracking variants */
-  .tracking-display {
-    letter-spacing: -0.04em;
-  }
+    /* Tracking variants */
+    .tracking-display {
+        letter-spacing: -0.04em;
+    }
 
-  .tracking-tighter {
-    letter-spacing: -0.03em;
-  }
+    .tracking-tighter {
+        letter-spacing: -0.03em;
+    }
 
-  .tracking-wide {
-    letter-spacing: 0.025em;
-  }
+    .tracking-wide {
+        letter-spacing: 0.025em;
+    }
 
-  .tracking-wider {
-    letter-spacing: 0.1em;
-  }
+    .tracking-wider {
+        letter-spacing: 0.1em;
+    }
 
-  .tracking-widest {
-    letter-spacing: 0.2em;
-  }
+    .tracking-widest {
+        letter-spacing: 0.2em;
+    }
 }
 
 /* ===========================================================================
    Scrollbar - Hidden
    =========================================================================== */
 * {
-  scrollbar-width: none;
-  -ms-overflow-style: none;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
 }
 
 *::-webkit-scrollbar {
-  display: none;
+    display: none;
 }
