@@ -3,6 +3,7 @@ import { useInView } from "framer-motion";
 import { useRef } from "react";
 import { Award, BadgeCheck, Trophy, BookOpen } from "lucide-react";
 import { useTranslation } from "react-i18next";
+import { TypewriterText } from "@/components/TypewriterText";
 
 /* =============================================================================
    CertificationsSection - Editorial High-End
@@ -127,7 +128,9 @@ export const CertificationsSection = () => {
             variants={itemVariants}
             className="section-header justify-center"
           >
-            <span className="section-label">{t("certifications.title")}</span>
+            <span className="section-label">
+                <TypewriterText text={t("certifications.title")} speed={20} enabled={isInView} />
+              </span>
           </motion.div>
 
           {/* Grid */}

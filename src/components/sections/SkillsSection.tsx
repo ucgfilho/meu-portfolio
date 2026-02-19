@@ -9,8 +9,10 @@ import {
   FileText,
   BarChart3,
   Smartphone,
+  ClipboardList,
 } from "lucide-react";
 import { useTranslation } from "react-i18next";
+import { TypewriterText } from "@/components/TypewriterText";
 
 /* =============================================================================
    SkillsSection - Editorial High-End
@@ -63,6 +65,11 @@ export const SkillsSection = () => {
       icon: FileText,
       skills: [t("skills.testDocumentation"), t("skills.bugDocumentation")],
     },
+    {
+      title: t("skills.testManagement"),
+      icon: ClipboardList,
+      skills: ["Jira", "Xray"],
+    },
   ];
 
   const containerVariants = {
@@ -96,7 +103,9 @@ export const SkillsSection = () => {
             variants={itemVariants}
             className="section-header justify-center"
           >
-            <span className="section-label">{t("skills.title")}</span>
+            <span className="section-label">
+                <TypewriterText text={t("skills.title")} speed={20} enabled={isInView} />
+              </span>
           </motion.div>
 
           {/* Skills Grid */}
@@ -153,6 +162,7 @@ export const SkillsSection = () => {
                 "BrowserStack",
                 "Python",
                 "GitLab CI/CD",
+                "Xray",
               ].map((tech) => (
                 <span key={tech} className="chip-outline">
                   {tech}

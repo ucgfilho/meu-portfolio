@@ -102,11 +102,11 @@ export default {
          ----------------------------------------------------------------------- */
       fontFamily: {
         sans: [
-          '"Inter"',
           "-apple-system",
           "BlinkMacSystemFont",
           '"Segoe UI"',
-          "Roboto",
+          '"Helvetica Neue"',
+          "Arial",
           "sans-serif",
         ],
         mono: ['"JetBrains Mono"', '"Fira Code"', "monospace"],
@@ -114,11 +114,11 @@ export default {
 
       fontSize: {
         display: [
-          "clamp(3rem, 12vw, 8rem)",
+          "clamp(2.5rem, 10vw, 6rem)",
           { lineHeight: "0.9", letterSpacing: "-0.04em" },
         ],
         "display-sm": [
-          "clamp(2rem, 6vw, 4rem)",
+          "clamp(1.5rem, 5vw, 3rem)",
           { lineHeight: "1", letterSpacing: "-0.03em" },
         ],
       },
@@ -168,6 +168,10 @@ export default {
           "0%, 100%": { opacity: "1" },
           "50%": { opacity: "0.5" },
         },
+        "cursor-blink": {
+          "0%, 100%": { opacity: "1" },
+          "50%": { opacity: "0" },
+        },
       },
 
       /* -----------------------------------------------------------------------
@@ -182,6 +186,7 @@ export default {
         "scale-in": "scale-in 0.3s ease-out forwards",
         "slide-in-right": "slide-in-right 0.4s ease-out forwards",
         "pulse-soft": "pulse-soft 2s ease-in-out infinite",
+        "cursor-blink": "cursor-blink 1s step-end infinite",
       },
 
       /* -----------------------------------------------------------------------

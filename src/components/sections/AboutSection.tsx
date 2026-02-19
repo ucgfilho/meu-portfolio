@@ -3,6 +3,7 @@ import { useInView } from "framer-motion";
 import { useRef } from "react";
 import { Target, Sparkles } from "lucide-react";
 import { useTranslation } from "react-i18next";
+import { TypewriterText } from "@/components/TypewriterText";
 
 /* =============================================================================
    AboutSection - Editorial High-End
@@ -65,19 +66,21 @@ export const AboutSection = () => {
               variants={itemVariants}
               className="section-header justify-center"
             >
-              <span className="section-label">{t("about.title")}</span>
+              <span className="section-label">
+                <TypewriterText text={t("about.title")} speed={20} enabled={isInView} />
+              </span>
             </motion.div>
 
             {/* Bio */}
             <motion.div variants={itemVariants} className="space-y-4">
               <p className="text-lg text-muted-foreground leading-relaxed">
-                {t("about.bio1")}
+                <TypewriterText text={t("about.bio1")} speed={8} startDelay={200} enabled={isInView} />
               </p>
               <p className="text-lg text-muted-foreground leading-relaxed">
-                {t("about.bio2")}
+                <TypewriterText text={t("about.bio2")} speed={8} startDelay={400} enabled={isInView} />
               </p>
               <p className="text-lg text-muted-foreground leading-relaxed">
-                {t("about.bio3")}
+                <TypewriterText text={t("about.bio3")} speed={8} startDelay={600} enabled={isInView} />
               </p>
             </motion.div>
 

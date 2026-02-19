@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { ArrowDown, Github, Linkedin, Mail, ArrowRight } from "lucide-react";
 import { GitLabIcon } from "@/components/icons/GitLabIcon";
 import { useTranslation } from "react-i18next";
+import { TypewriterText } from "@/components/TypewriterText";
 
 /* =============================================================================
    HeroSection - Editorial High-End
@@ -62,9 +63,11 @@ export const HeroSection = () => {
           {/* Nome - Display Typography */}
           <motion.div variants={itemVariants} className="mb-6">
             <span className="block text-muted-foreground text-lg md:text-xl tracking-wide mb-2">
-              {t("hero.greeting")}
+              <TypewriterText text={t("hero.greeting")} speed={25} startDelay={200} />
             </span>
-            <h1 className="text-display text-foreground">{t("hero.name")}</h1>
+            <h1 className="text-display text-foreground">
+              <TypewriterText text={t("hero.name")} speed={30} startDelay={600} />
+            </h1>
           </motion.div>
 
           {/* Título */}
@@ -72,7 +75,7 @@ export const HeroSection = () => {
             variants={itemVariants}
             className="text-2xl md:text-3xl lg:text-4xl font-medium text-accent mb-6 tracking-tight"
           >
-            {t("hero.title")}
+            <TypewriterText text={t("hero.title")} speed={20} startDelay={1200} />
           </motion.h2>
 
           {/* Descrição */}
@@ -80,7 +83,7 @@ export const HeroSection = () => {
             variants={itemVariants}
             className="text-lg md:text-xl text-muted-foreground max-w-2xl leading-relaxed mb-10"
           >
-            {t("hero.description")}
+            <TypewriterText text={t("hero.description")} speed={10} startDelay={1600} />
           </motion.p>
 
           {/* CTA Buttons */}

@@ -42,7 +42,8 @@
     "devops": "DevOps & CI/CD",
     "documentation": "Documentación",
     "testDocumentation": "Documentación de pruebas",
-    "bugDocumentation": "Documentación de bugs"
+    "bugDocumentation": "Documentación de bugs",
+    "testManagement": "Gestión de Pruebas & ALM"
   },
   "projects": {
     "title": "Proyectos",

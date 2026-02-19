@@ -3,6 +3,7 @@ import { useInView } from "framer-motion";
 import { useRef } from "react";
 import { ArrowUpRight, Github } from "lucide-react";
 import { useTranslation } from "react-i18next";
+import { TypewriterText } from "@/components/TypewriterText";
 
 /* =============================================================================
    ProjectsSection - Editorial High-End
@@ -83,7 +84,9 @@ export const ProjectsSection = () => {
             variants={itemVariants}
             className="section-header justify-center"
           >
-            <span className="section-label">{t("projects.title")}</span>
+            <span className="section-label">
+                <TypewriterText text={t("projects.title")} speed={20} enabled={isInView} />
+              </span>
           </motion.div>
 
           {/* Projects Grid */}

@@ -16,8 +16,6 @@
    PALETA: Monocromático escuro minimalista
    ============================================================================= */
 
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap");
-
 @layer base {
   /* ===========================================================================
      Light Theme
@@ -160,11 +158,11 @@
   body {
     @apply bg-background text-foreground antialiased;
     font-family:
-      "Inter",
       -apple-system,
       BlinkMacSystemFont,
       "Segoe UI",
-      Roboto,
+      "Helvetica Neue",
+      Arial,
       sans-serif;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
@@ -299,14 +297,14 @@
      Display Text - Hero Typography
      --------------------------------------------------------------------------- */
   .text-display {
-    font-size: clamp(3rem, 12vw, 8rem);
+    font-size: clamp(2.5rem, 10vw, 6rem);
     line-height: 0.9;
     letter-spacing: -0.04em;
     @apply font-bold;
   }
 
   .text-display-sm {
-    font-size: clamp(2rem, 6vw, 4rem);
+    font-size: clamp(1.5rem, 5vw, 3rem);
     line-height: 1;
     letter-spacing: -0.03em;
     @apply font-bold;

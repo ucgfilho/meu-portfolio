@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
 import { useTranslation } from "react-i18next";
+import { TypewriterText } from "@/components/TypewriterText";
 
 /* =============================================================================
    LanguagesSection - Editorial High-End
@@ -69,7 +70,9 @@ export const LanguagesSection = () => {
             variants={itemVariants}
             className="section-header justify-center"
           >
-            <span className="section-label">{t("languagesSection.title")}</span>
+            <span className="section-label">
+                <TypewriterText text={t("languagesSection.title")} speed={20} enabled={isInView} />
+              </span>
           </motion.div>
 
           {/* Languages grid */}
