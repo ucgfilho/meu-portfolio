@@ -1,11 +1,10 @@
 import {motion, useInView} from "framer-motion";
 import {useRef} from "react";
 import {useTranslation} from "react-i18next";
-import {TypewriterText} from "@/components/TypewriterText";
 
 /* =============================================================================
    LanguagesSection - Editorial High-End
-   
+
    DESIGN:
    - Grid de cards de idiomas minimalistas
    - Barra de proficiência horizontal simples
@@ -70,7 +69,7 @@ export const LanguagesSection = () => {
                         className="section-header justify-center"
                     >
             <span className="section-label">
-                <TypewriterText text={t("languagesSection.title")} speed={20} enabled={isInView}/>
+                {t("languagesSection.title")}
               </span>
                     </motion.div>
 

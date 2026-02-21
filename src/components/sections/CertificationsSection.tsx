@@ -2,11 +2,10 @@ import {motion, useInView} from "framer-motion";
 import {useRef} from "react";
 import {Award, BadgeCheck} from "lucide-react";
 import {useTranslation} from "react-i18next";
-import {TypewriterText} from "@/components/TypewriterText";
 
 /* =============================================================================
    CertificationsSection - Editorial High-End
-   
+
    DESIGN:
    - Grid compacto de certificações
    - Cards minimalistas com hover sutil
@@ -128,7 +127,7 @@ export const CertificationsSection = () => {
                         className="section-header justify-center"
                     >
             <span className="section-label">
-                <TypewriterText text={t("certifications.title")} speed={20} enabled={isInView}/>
+                {t("certifications.title")}
               </span>
                     </motion.div>
 

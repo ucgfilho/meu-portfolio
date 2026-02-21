@@ -2,11 +2,10 @@ import {motion, useInView} from "framer-motion";
 import {useRef} from "react";
 import {BarChart3, ClipboardList, Code2, FileText, GitBranch, Smartphone, TestTube, Wrench,} from "lucide-react";
 import {useTranslation} from "react-i18next";
-import {TypewriterText} from "@/components/TypewriterText";
 
 /* =============================================================================
    SkillsSection - Editorial High-End
-   
+
    DESIGN:
    - Cards flat com borda sutil
    - Chips minimalistas
@@ -94,7 +93,7 @@ export const SkillsSection = () => {
                         className="section-header justify-center"
                     >
             <span className="section-label">
-                <TypewriterText text={t("skills.title")} speed={20} enabled={isInView}/>
+                {t("skills.title")}
               </span>
                     </motion.div>
 

@@ -2,11 +2,10 @@ import {motion, useInView} from "framer-motion";
 import {useRef} from "react";
 import {Calendar} from "lucide-react";
 import {useTranslation} from "react-i18next";
-import {TypewriterText} from "@/components/TypewriterText";
 
 /* =============================================================================
    ExperienceSection - Editorial High-End
-   
+
    DESIGN:
    - Card único com layout limpo
    - Badge de status para período atual
@@ -57,7 +56,7 @@ export const ExperienceSection = () => {
                         className="section-header justify-center"
                     >
             <span className="section-label">
-                <TypewriterText text={t("experience.title")} speed={20} enabled={isInView}/>
+                {t("experience.title")}
               </span>
                     </motion.div>
 
@@ -67,8 +66,7 @@ export const ExperienceSection = () => {
                         <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4 mb-8">
                             <div>
                                 <h3 className="text-2xl font-medium text-foreground mb-1">
-                                    <TypewriterText text={t("experience.role")} speed={15} startDelay={200}
-                                                    enabled={isInView}/>
+                                    {t("experience.role")}
                                 </h3>
                                 <p className="text-accent font-medium">
                                     {t("experience.company")}

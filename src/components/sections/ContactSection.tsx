@@ -3,11 +3,10 @@ import {useRef} from "react";
 import {ArrowUpRight, Github, Linkedin, Mail, MapPin, Phone,} from "lucide-react";
 import {GitLabIcon} from "@/components/icons/GitLabIcon";
 import {useTranslation} from "react-i18next";
-import {TypewriterText} from "@/components/TypewriterText";
 
 /* =============================================================================
    ContactSection - Editorial High-End
-   
+
    DESIGN:
    - Layout centralizado com tipografia elegante
    - Cards de contato minimalistas com hover sutil
@@ -78,7 +77,7 @@ export const ContactSection = () => {
                         className="section-header justify-center"
                     >
             <span className="section-label">
-                <TypewriterText text={t("contact.title")} speed={20} enabled={isInView}/>
+                {t("contact.title")}
               </span>
                     </motion.div>
 
@@ -86,7 +85,7 @@ export const ContactSection = () => {
                         variants={itemVariants}
                         className="text-lg text-muted-foreground mb-12 max-w-2xl mx-auto leading-relaxed"
                     >
-                        <TypewriterText text={t("contact.description")} speed={8} startDelay={200} enabled={isInView}/>
+                        {t("contact.description")}
                     </motion.p>
 
                     {/* Contact info chips */}

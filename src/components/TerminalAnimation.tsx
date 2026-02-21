@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback, useRef } from "react";
+import { useState, useEffect, useCallback, useRef, CSSProperties } from "react";
 
 /* =============================================================================
    TerminalAnimation — Monochromatic Test Runner
@@ -45,6 +45,29 @@ export const TerminalAnimation = () => {
   const [showCursor, setShowCursor] = useState(true);
   const terminalBodyRef = useRef<HTMLDivElement>(null);
   const animationRef = useRef<{ cancelled: boolean }>({ cancelled: false });
+  const wrapperRef = useRef<HTMLDivElement>(null);
+
+  // Parallax tilt state
+  const [tilt, setTilt] = useState({ rotateX: 0, rotateY: 0, glowX: 50, glowY: 50, isHovered: false });
+
+  const handleMouseMove = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
+    const el = wrapperRef.current;
+    if (!el) return;
+    const rect = el.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    const cx = rect.width / 2;
+    const cy = rect.height / 2;
+    const rotateX = ((y - cy) / cy) * -8;   // max ±8deg
+    const rotateY = ((x - cx) / cx) * 10;   // max ±10deg
+    const glowX = (x / rect.width) * 100;
+    const glowY = (y / rect.height) * 100;
+    setTilt({ rotateX, rotateY, glowX, glowY, isHovered: true });
+  }, []);
+
+  const handleMouseLeave = useCallback(() => {
+    setTilt({ rotateX: 0, rotateY: 0, glowX: 50, glowY: 50, isHovered: false });
+  }, []);
 
   // Auto-scroll terminal body
   useEffect(() => {
@@ -66,43 +89,32 @@ export const TerminalAnimation = () => {
     animationRef.current = token;
     const isCancelled = () => token.cancelled;
 
-    while (true) {
+    // Phase 1: Type command
+    setPhase("typing");
+    setTypedCommand("");
+    setVisibleLines([]);
+
+    for (let i = 0; i <= COMMAND.length; i++) {
       if (isCancelled()) return;
-
-      // Phase 1: Type command
-      setPhase("typing");
-      setTypedCommand("");
-      setVisibleLines([]);
-
-      for (let i = 0; i <= COMMAND.length; i++) {
-        if (isCancelled()) return;
-        setTypedCommand(COMMAND.slice(0, i));
-        await sleep(30 + Math.random() * 30);
-      }
-
-      await sleep(350);
-      if (isCancelled()) return;
-
-      // Phase 2: Show test output
-      setPhase("running");
-
-      for (const line of TEST_SEQUENCE) {
-        if (isCancelled()) return;
-        await sleep(line.delay + Math.random() * 60);
-        if (isCancelled()) return;
-        setVisibleLines((prev) => [...prev, line]);
-      }
-
-      // Phase 3: Done — hold
-      setPhase("done");
-      await sleep(2500);
-      if (isCancelled()) return;
-
-      // Phase 4: Clear
-      setPhase("clearing");
-      await sleep(500);
-      if (isCancelled()) return;
+      setTypedCommand(COMMAND.slice(0, i));
+      await sleep(30 + Math.random() * 30);
     }
+
+    await sleep(350);
+    if (isCancelled()) return;
+
+    // Phase 2: Show test output
+    setPhase("running");
+
+    for (const line of TEST_SEQUENCE) {
+      if (isCancelled()) return;
+      await sleep(line.delay + Math.random() * 60);
+      if (isCancelled()) return;
+      setVisibleLines((prev) => [...prev, line]);
+    }
+
+    // Phase 3: Done — stay here
+    setPhase("done");
   }, []);
 
   useEffect(() => {
@@ -137,8 +149,18 @@ export const TerminalAnimation = () => {
     }
 
     if (line.type === "fail") {
+      const crossIdx = line.text.indexOf("✕");
+      if (crossIdx !== -1) {
+        return (
+          <div key={index} className="text-[#666666] terminal-line-enter">
+            {line.text.slice(0, crossIdx)}
+            <span style={{ color: "#ef4444" }}>✕</span>
+            {line.text.slice(crossIdx + 1)}
+          </div>
+        );
+      }
       return (
-        <div key={index} className="text-[#444444] terminal-line-enter">
+        <div key={index} className="text-[#666666] terminal-line-enter">
           {line.text}
         </div>
       );
@@ -158,7 +180,7 @@ export const TerminalAnimation = () => {
       return (
         <div key={index} className="text-[#888888] terminal-line-enter">
           {line.text.slice(0, checkIdx)}
-          <span className="text-[#ffffff]">✓</span>
+          <span style={{ color: "#22c55e" }}>✓</span>
           {line.text.slice(checkIdx + 1)}
         </div>
       );
@@ -181,17 +203,65 @@ export const TerminalAnimation = () => {
   );
 
   return (
-    <div className="terminal-float" aria-hidden="true">
-      <div className={`terminal-container ${phase === "clearing" ? "terminal-fade-out" : ""}`}>
+    <div
+      ref={wrapperRef}
+      className="terminal-float"
+      aria-hidden="true"
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+      style={{
+        perspective: "900px",
+        animationPlayState: tilt.isHovered ? "paused" : "running",
+      }}
+    >
+      <div
+        className={`terminal-container ${phase === "clearing" ? "terminal-fade-out" : ""}`}
+        style={{
+          transform: tilt.isHovered
+            ? `rotateX(${tilt.rotateX}deg) rotateY(${tilt.rotateY}deg) scale(1.02)`
+            : "rotateX(0deg) rotateY(0deg) scale(1)",
+          transition: tilt.isHovered
+            ? "transform 0.08s ease-out, box-shadow 0.2s ease-out"
+            : "transform 0.55s cubic-bezier(0.23,1,0.32,1), box-shadow 0.55s ease-out",
+          boxShadow: tilt.isHovered
+            ? `0 0 0 1px #3a3a3a, 0 20px 60px rgba(0,0,0,0.6), 0 0 80px rgba(255,255,255,0.04), inset 0 0 60px rgba(255,255,255,0.01)`
+            : "0 0 60px rgba(255,255,255,0.03)",
+          transformStyle: "preserve-3d" as CSSProperties["transformStyle"],
+          position: "relative" as CSSProperties["position"],
+        }}
+      >
+        {/* Spotlight overlay */}
+        {tilt.isHovered && (
+          <div
+            aria-hidden="true"
+            style={{
+              position: "absolute",
+              inset: 0,
+              borderRadius: "12px",
+              pointerEvents: "none",
+              zIndex: 10,
+              background: `radial-gradient(circle at ${tilt.glowX}% ${tilt.glowY}%, rgba(255,255,255,0.055) 0%, rgba(255,255,255,0.01) 45%, transparent 70%)`,
+              transition: "background 0.05s ease-out",
+            }}
+          />
+        )}
         {/* Title bar */}
         <div className="terminal-titlebar">
-          <div className="flex items-center gap-[6px]">
-            <span className="w-[12px] h-[12px] rounded-full bg-[#ff5f57]" />
-            <span className="w-[12px] h-[12px] rounded-full bg-[#febc2e]" />
-            <span className="w-[12px] h-[12px] rounded-full bg-[#28c840]" />
-          </div>
+          {/* Left spacer to balance the right buttons */}
+          <div style={{ width: 138 }} />
           <span className="terminal-title">cypress — tests</span>
-          <div className="w-[54px]" />
+          {/* Windows-style action buttons */}
+          <div className="flex items-center">
+            <button className="terminal-win-btn" aria-label="Minimize" tabIndex={-1}>
+              &#x2014;
+            </button>
+            <button className="terminal-win-btn" aria-label="Maximize" tabIndex={-1}>
+              &#x2610;
+            </button>
+            <button className="terminal-win-btn close" aria-label="Close" tabIndex={-1}>
+              ✕
+            </button>
+          </div>
         </div>
 
         {/* Body */}

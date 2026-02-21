@@ -2,11 +2,10 @@ import {motion, useInView} from "framer-motion";
 import {useRef} from "react";
 import {Calendar, MapPin} from "lucide-react";
 import {useTranslation} from "react-i18next";
-import {TypewriterText} from "@/components/TypewriterText";
 
 /* =============================================================================
    EducationSection - Editorial High-End
-   
+
    DESIGN:
    - Card único com layout limpo
    - Badge de status para cursando
@@ -50,7 +49,7 @@ export const EducationSection = () => {
                         className="section-header justify-center"
                     >
             <span className="section-label">
-                <TypewriterText text={t("education.title")} speed={20} enabled={isInView}/>
+                {t("education.title")}
               </span>
                     </motion.div>
 
@@ -60,8 +59,7 @@ export const EducationSection = () => {
                         <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4 mb-6">
                             <div>
                                 <h3 className="text-xl font-medium text-foreground mb-1">
-                                    <TypewriterText text={t("education.degree")} speed={15} startDelay={200}
-                                                    enabled={isInView}/>
+                                    {t("education.degree")}
                                 </h3>
                                 <div className="flex items-center gap-2 text-muted-foreground">
                                     <MapPin className="w-4 h-4"/>

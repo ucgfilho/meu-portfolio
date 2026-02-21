@@ -3,12 +3,11 @@ import {Button} from "@/components/ui/button";
 import {ArrowRight, Github, Linkedin, Mail} from "lucide-react";
 import {GitLabIcon} from "@/components/icons/GitLabIcon";
 import {useTranslation} from "react-i18next";
-import {TypewriterText} from "@/components/TypewriterText";
 import {TerminalAnimation} from "@/components/TerminalAnimation";
 
 /* =============================================================================
    HeroSection - Editorial High-End
-   
+
    DESIGN:
    - Tipografia display gigante e impactante
    - Layout minimalista com muito respiro
@@ -54,23 +53,13 @@ export const HeroSection = () => {
                         animate="visible"
                         className="max-w-2xl md:max-w-none"
                     >
-                        {/* Status badge */}
-                        <motion.div variants={itemVariants} className="mb-8">
-                            <div className="status-badge">
-                                <span className="status-dot"/>
-                                <span className="text-sm tracking-wide">
-                                    {t("hero.availableStatus")}
-                                </span>
-                            </div>
-                        </motion.div>
-
                         {/* Nome - Display Typography */}
                         <motion.div variants={itemVariants} className="mb-6">
                             <span className="block text-muted-foreground text-lg md:text-xl tracking-wide mb-2">
-                                <TypewriterText text={t("hero.greeting")} speed={25} startDelay={200}/>
+                                {t("hero.greeting")}
                             </span>
                             <h1 className="text-display text-foreground">
-                                <TypewriterText text={t("hero.name")} speed={30} startDelay={600}/>
+                                {t("hero.name")}
                             </h1>
                         </motion.div>
 
@@ -79,7 +68,7 @@ export const HeroSection = () => {
                             variants={itemVariants}
                             className="text-2xl md:text-3xl lg:text-4xl font-medium text-accent mb-6 tracking-tight"
                         >
-                            <TypewriterText text={t("hero.title")} speed={20} startDelay={1200}/>
+                            {t("hero.title")}
                         </motion.h2>
 
                         {/* Descrição */}
@@ -87,7 +76,7 @@ export const HeroSection = () => {
                             variants={itemVariants}
                             className="text-lg md:text-xl text-muted-foreground max-w-2xl leading-relaxed mb-10"
                         >
-                            <TypewriterText text={t("hero.description")} speed={10} startDelay={1600}/>
+                            {t("hero.description")}
                         </motion.p>
 
                         {/* CTA Buttons */}
@@ -157,21 +146,7 @@ export const HeroSection = () => {
                 </div>
             </div>
 
-            {/* Scroll indicator */}
-            <motion.div
-                initial={{opacity: 0}}
-                animate={{opacity: 1}}
-                transition={{delay: 1.5, duration: 0.8}}
-                className="absolute bottom-8 left-1/2 -translate-x-1/2"
-            >
-                <a href="#about" className="scroll-indicator group">
-                    <span
-                        className="text-xs font-medium tracking-widest uppercase text-muted-foreground group-hover:text-foreground transition-colors">
-                        {t("hero.scrollDown")}
-                    </span>
-                    <div className="scroll-indicator-line"/>
-                </a>
-            </motion.div>
+
         </section>
     );
 };
