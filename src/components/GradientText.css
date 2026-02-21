@@ -1,55 +1,55 @@
 .animated-gradient-text {
-  position: relative;
-  display: inline-flex;
-  max-width: 100%;
-  flex-direction: row;
-  align-items: baseline;
-  justify-content: flex-start;
-  font-weight: 500;
-  overflow: visible;
-  cursor: pointer;
+    position: relative;
+    display: inline-flex;
+    max-width: 100%;
+    flex-direction: row;
+    align-items: baseline;
+    justify-content: flex-start;
+    font-weight: 500;
+    overflow: visible;
+    cursor: pointer;
 }
 
 .animated-gradient-text.with-border {
-  border-radius: 1.25rem;
-  backdrop-filter: blur(10px);
-  transition: box-shadow 0.5s ease-out;
-  padding: 0.1em 0.4em 0.3em;
+    border-radius: 1.25rem;
+    backdrop-filter: blur(10px);
+    transition: box-shadow 0.5s ease-out;
+    padding: 0.1em 0.4em 0.3em;
 }
 
 .gradient-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  border-radius: inherit;
-  z-index: 0;
-  pointer-events: none;
-  overflow: hidden;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: inherit;
+    z-index: 0;
+    pointer-events: none;
+    overflow: hidden;
 }
 
 .gradient-overlay::before {
-  content: '';
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  border-radius: inherit;
-  width: calc(100% - 2px);
-  height: calc(100% - 2px);
-  background-color: #0a0a0a;
-  z-index: -1;
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: inherit;
+    width: calc(100% - 2px);
+    height: calc(100% - 2px);
+    background-color: #0a0a0a;
+    z-index: -1;
 }
 
 .text-content {
-  display: inline-block;
-  position: relative;
-  z-index: 2;
-  background-clip: text;
-  -webkit-background-clip: text;
-  color: transparent;
-  overflow: visible;
+    display: inline-block;
+    position: relative;
+    z-index: 2;
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    overflow: visible;
 }
 
 
