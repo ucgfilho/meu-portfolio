@@ -66,6 +66,7 @@ const Index = () => {
                     fallback={<div className="sr-only">Carregando seções...</div>}
                 >
                     <HeroSection/>
+
                     <AboutSection/>
                     <EducationSection/>
                     <ExperienceSection/>

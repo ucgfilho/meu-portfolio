@@ -8,7 +8,7 @@ import ES from "country-flag-icons/react/3x2/ES";
 
 /* =============================================================================
    LanguageSwitcher - Editorial High-End
-   
+
    DESIGN:
    - Dropdown menu minimalista
    - Transições suaves
@@ -37,13 +37,13 @@ export const LanguageSwitcher = () => {
             <DropdownMenuTrigger asChild>
                 <Button
                     variant="ghost"
-                    className="relative h-10 px-3 rounded-lg gap-2 transition-colors flex items-center hover:bg-foreground hover:text-background group"
+                    className="relative h-10 px-3 gap-2 transition-colors flex items-center hover:bg-foreground hover:text-background group"
                 >
                     <motion.div
                         key={currentLanguage.code}
                         initial={{opacity: 0}}
                         animate={{opacity: 1}}
-                        className="flex items-center justify-center w-6 h-4 rounded overflow-hidden flex-shrink-0 border border-border"
+                        className="flex items-center justify-center w-6 h-4 overflow-hidden flex-shrink-0 border-0"
                     >
                         <currentLanguage.FlagIcon
                             style={{width: "100%", height: "100%", display: "block"}}
@@ -71,7 +71,7 @@ export const LanguageSwitcher = () => {
                         }`}
                     >
                         <div
-                            className="mr-3 w-7 h-5 rounded overflow-hidden flex items-center justify-center flex-shrink-0 border border-border">
+                            className="mr-3 w-7 h-5 overflow-hidden flex items-center justify-center flex-shrink-0 border-0">
                             <lang.FlagIcon
                                 style={{width: "100%", height: "100%", display: "block"}}
                             />

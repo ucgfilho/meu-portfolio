@@ -4,12 +4,12 @@ import {cn} from "@/lib/utils";
 
 /* =============================================================================
    Card Component - Material 3 Expressive
-   
+
    Três variantes de card seguindo M3:
    - Filled (default): Background sólido com surface-container
    - Outlined: Borda visível, fundo transparente
    - Elevated: Com sombra sutil para maior destaque
-   
+
    DESIGN:
    - rounded-2xl: Cantos expressivos M3
    - Transições suaves com easing M3 emphasized
@@ -23,8 +23,8 @@ const Card = React.forwardRef<
     <div
         ref={ref}
         className={cn(
-            /* M3 Filled Card: Surface container com borda sutil */
-            "rounded-2xl border border-border/50 bg-card text-card-foreground",
+            /* M3 Filled Card: Surface container */
+            "bg-card text-card-foreground",
             /* Transição M3 emphasized para hover states */
             "transition-all duration-300 ease-m3-emphasized",
             className,

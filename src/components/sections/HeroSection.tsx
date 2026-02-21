@@ -43,7 +43,7 @@ export const HeroSection = () => {
     };
 
     return (
-        <section className="min-h-[100svh] flex flex-col justify-center relative overflow-hidden">
+        <section className="min-h-[100svh] flex flex-col justify-center relative overflow-visible">
             <div className="container mx-auto px-6 py-20">
                 <div className="grid grid-cols-1 md:grid-cols-[1fr_auto] gap-12 lg:gap-16 items-center">
                     {/* Left column — text content */}
@@ -126,7 +126,7 @@ export const HeroSection = () => {
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     aria-label={t("hero.visitProfile", {platform: social.label})}
-                                    className="p-3 rounded-xl text-muted-foreground hover:text-background hover:bg-foreground transition-all duration-200"
+                                    className="p-3 text-muted-foreground hover:text-background hover:bg-foreground transition-all duration-200"
                                 >
                                     <social.icon className="w-5 h-5"/>
                                 </a>

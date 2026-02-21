@@ -6,7 +6,7 @@ import {LanguageSwitcher} from "./LanguageSwitcher";
 
 /* =============================================================================
    Navigation - Editorial High-End
-   
+
    DESIGN:
    - Navbar minimalista e clean
    - Backdrop blur sutil quando scrollado
@@ -64,7 +64,7 @@ export const Navigation = () => {
                             <motion.a
                                 key={item.href}
                                 href={item.href}
-                                className="px-4 py-2 text-sm font-medium text-muted-foreground hover:text-background transition-colors duration-200 rounded-lg hover:bg-foreground"
+                                className="px-4 py-2 text-sm font-medium text-muted-foreground hover:text-background transition-colors duration-200 hover:bg-foreground"
                                 initial={{opacity: 0, y: -10}}
                                 animate={{opacity: 1, y: 0}}
                                 transition={{
@@ -84,7 +84,7 @@ export const Navigation = () => {
 
                     {/* Mobile Menu Button */}
                     <button
-                        className="md:hidden absolute right-6 p-2 rounded-lg text-foreground hover:bg-foreground hover:text-background transition-colors"
+                        className="md:hidden absolute right-6 p-2 text-foreground hover:bg-foreground hover:text-background transition-colors"
                         onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
                         aria-label={isMobileMenuOpen ? "Fechar menu" : "Abrir menu"}
                         aria-expanded={isMobileMenuOpen}
@@ -127,7 +127,7 @@ export const Navigation = () => {
                             <motion.a
                                 key={item.href}
                                 href={item.href}
-                                className="px-4 py-4 text-lg font-medium text-foreground rounded-xl hover:bg-foreground hover:text-background transition-colors"
+                                className="px-4 py-4 text-lg font-medium text-foreground hover:bg-foreground hover:text-background transition-colors"
                                 onClick={() => setIsMobileMenuOpen(false)}
                                 initial={{opacity: 0, x: -20}}
                                 animate={{

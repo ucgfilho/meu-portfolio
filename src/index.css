@@ -139,6 +139,7 @@
     html {
         scroll-behavior: smooth;
         font-size: 16px;
+        scroll-padding-top: 80px; /* offset for fixed nav */
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -240,13 +241,13 @@
        Cards - Flat & Minimal
        --------------------------------------------------------------------------- */
     .card {
-        @apply relative rounded-2xl bg-card border border-border p-6;
+        @apply relative bg-card border-0 p-6;
         @apply transition-all duration-300 ease-out;
     }
 
     .card-interactive {
         @apply card cursor-pointer;
-        @apply hover:border-accent/40 hover:bg-surface-elevated;
+        @apply hover:bg-surface-elevated;
     }
 
     .card-interactive:hover {
@@ -257,21 +258,21 @@
        Chips / Badges
        --------------------------------------------------------------------------- */
     .chip {
-        @apply inline-flex items-center px-3 py-1 rounded text-xs font-medium;
+        @apply inline-flex items-center px-3 py-1 text-xs font-medium;
         @apply bg-accent/10 text-accent;
     }
 
     .chip-outline {
-        @apply inline-flex items-center px-3 py-1 rounded text-xs font-medium;
-        @apply bg-transparent text-muted-foreground border border-border;
+        @apply inline-flex items-center px-3 py-1 text-xs font-medium;
+        @apply bg-transparent text-muted-foreground;
     }
 
     /* ---------------------------------------------------------------------------
        Status Badge
        --------------------------------------------------------------------------- */
     .status-badge {
-        @apply inline-flex items-center gap-2 px-4 py-2 rounded-full;
-        @apply bg-surface-container border border-border;
+        @apply inline-flex items-center gap-2 px-4 py-2;
+        @apply bg-surface-container;
         @apply text-sm text-muted-foreground;
     }
 
@@ -325,12 +326,12 @@
        Icon Container
        --------------------------------------------------------------------------- */
     .icon-container {
-        @apply w-12 h-12 rounded-xl flex items-center justify-center;
+        @apply w-12 h-12 flex items-center justify-center;
         @apply bg-accent/10 text-accent;
     }
 
     .icon-container-sm {
-        @apply w-10 h-10 rounded-lg flex items-center justify-center;
+        @apply w-10 h-10 flex items-center justify-center;
         @apply bg-accent/10 text-accent;
     }
 
@@ -338,7 +339,7 @@
        Section Header Icon (Legacy support)
        --------------------------------------------------------------------------- */
     .section-header-icon {
-        @apply p-2.5 rounded-xl;
+        @apply p-2.5;
         @apply bg-accent/10 text-accent;
     }
 

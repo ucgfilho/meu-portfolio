@@ -148,7 +148,7 @@ export const CertificationsSection = () => {
                                 <CardWrapper
                                     key={index}
                                     variants={itemVariants}
-                                    className={`card p-5 group hover:border-accent/30 transition-colors duration-200 ${
+                                    className={`card p-5 group transition-colors duration-200 ${
                                         cert.link ? "cursor-pointer" : ""
                                     }`}
                                     {...cardProps}

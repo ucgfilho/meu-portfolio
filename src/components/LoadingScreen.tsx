@@ -3,12 +3,12 @@ import {useEffect, useState} from "react";
 
 /* =============================================================================
    LoadingScreen - Material 3 Expressive
-   
+
    DESIGN:
    - Background usando a cor de fundo M3 dark
    - Spinner com cores primary, secondary e tertiary
    - Animações suaves seguindo M3 motion guidelines
-   
+
    ACESSIBILIDADE:
    - Texto de carregamento para screen readers
    ============================================================================= */
@@ -64,13 +64,13 @@ export const LoadingScreen = ({onComplete}: { onComplete: () => void }) => {
 
                             {/* Outer ring */}
                             <motion.div
-                                className="w-24 h-24 rounded-full border-4 border-surface-container-highest flex items-center justify-center"
+                                className="w-24 h-24 border-4 border-surface-container-highest flex items-center justify-center"
                                 animate={{rotate: 360}}
                                 transition={{duration: 2, repeat: Infinity, ease: "linear"}}
                             >
                                 {/* Inner spinner with M3 colors */}
                                 <motion.div
-                                    className="w-16 h-16 rounded-full border-4 border-t-primary border-r-secondary border-b-tertiary border-l-transparent"
+                                    className="w-16 h-16 border-4 border-t-primary border-r-secondary border-b-tertiary border-l-transparent"
                                     animate={{rotate: -360}}
                                     transition={{
                                         duration: 1.2,
@@ -100,7 +100,7 @@ export const LoadingScreen = ({onComplete}: { onComplete: () => void }) => {
                                 {[0, 1, 2].map((i) => (
                                     <motion.span
                                         key={i}
-                                        className="w-2 h-2 rounded-full bg-primary"
+                                        className="w-2 h-2 bg-primary"
                                         animate={{scale: [1, 1.3, 1], opacity: [0.5, 1, 0.5]}}
                                         transition={{
                                             duration: 0.6,

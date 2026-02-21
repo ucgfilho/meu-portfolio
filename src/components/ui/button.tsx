@@ -6,7 +6,7 @@ import {cn} from "@/lib/utils";
 
 /* =============================================================================
    Button Component - Editorial High-End
-   
+
    DESIGN:
    - Botões minimalistas e elegantes
    - Variantes: default (filled), outline, ghost
@@ -23,7 +23,6 @@ const buttonVariants = cva(
                 /* Default - Filled with accent */
                 default: [
                     "bg-accent text-accent-foreground",
-                    "rounded-full",
                     "hover:bg-foreground hover:text-background",
                     "active:scale-[0.98]",
                 ].join(" "),
@@ -31,16 +30,13 @@ const buttonVariants = cva(
                 /* Outline */
                 outline: [
                     "bg-transparent text-foreground",
-                    "border border-border",
-                    "rounded-full",
-                    "hover:bg-foreground hover:text-background hover:border-foreground",
+                    "hover:bg-foreground hover:text-background",
                     "active:scale-[0.98]",
                 ].join(" "),
 
                 /* Ghost */
                 ghost: [
                     "bg-transparent text-foreground",
-                    "rounded-lg",
                     "hover:bg-foreground hover:text-background",
                     "active:scale-[0.98]",
                 ].join(" "),
@@ -48,7 +44,6 @@ const buttonVariants = cva(
                 /* Secondary */
                 secondary: [
                     "bg-surface-container text-foreground",
-                    "rounded-full",
                     "hover:bg-foreground hover:text-background",
                     "active:scale-[0.98]",
                 ].join(" "),
@@ -56,7 +51,6 @@ const buttonVariants = cva(
                 /* Destructive */
                 destructive: [
                     "bg-destructive text-destructive-foreground",
-                    "rounded-full",
                     "hover:bg-destructive/90",
                     "active:scale-[0.98]",
                 ].join(" "),
@@ -69,7 +63,7 @@ const buttonVariants = cva(
                 sm: "h-9 px-4 text-xs",
                 lg: "h-12 px-8 text-base",
                 xl: "h-14 px-10 text-lg",
-                icon: "h-10 w-10 rounded-lg",
+                icon: "h-10 w-10",
             },
         },
         defaultVariants: {

@@ -79,7 +79,7 @@ export const LanguagesSection = () => {
                             <motion.div
                                 key={lang.name}
                                 variants={itemVariants}
-                                className="card p-6 text-center group hover:border-accent/30 transition-colors duration-200"
+                                className="card p-6 text-center group transition-colors duration-200"
                             >
                                 {/* Flag */}
                                 <div className="text-4xl mb-4">{lang.flag}</div>
@@ -93,9 +93,9 @@ export const LanguagesSection = () => {
                                 </p>
 
                                 {/* Proficiency bar */}
-                                <div className="h-1.5 bg-border rounded-full overflow-hidden">
+                                <div className="h-1.5 bg-border overflow-hidden">
                                     <motion.div
-                                        className="h-full bg-accent rounded-full"
+                                        className="h-full bg-accent"
                                         initial={{width: 0}}
                                         animate={isInView ? {width: `${lang.proficiency}%`} : {}}
                                         transition={{

@@ -118,9 +118,13 @@ export const ProjectsSection = () => {
                                 {/* Technologies */}
                                 <div className="flex flex-wrap gap-2">
                                     {project.technologies.map((tech, techIndex) => (
-                                        <span key={techIndex} className="chip-outline">
-                      {tech}
-                    </span>
+                                        <span
+                                            key={techIndex}
+                                            className="inline-flex items-center px-3 py-1 text-xs font-medium text-muted-foreground"
+                                            style={{backgroundColor: "#282828"}}
+                                        >
+                                            {tech}
+                                        </span>
                                     ))}
                                 </div>
                             </motion.a>
@@ -136,7 +140,7 @@ export const ProjectsSection = () => {
                             href="https://github.com/ucgfilho"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-foreground text-background text-sm font-medium hover:bg-foreground/90 transition-colors duration-200 group"
+                            className="inline-flex items-center gap-2 px-5 py-2.5 bg-foreground text-background text-sm font-medium hover:bg-foreground/90 transition-colors duration-200 group"
                         >
                             <Github className="w-4 h-4"/>
                             {t("projects.viewGithubButton")}

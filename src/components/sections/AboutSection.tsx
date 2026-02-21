@@ -47,7 +47,7 @@ export const AboutSection = () => {
                     {/* Profile Image */}
                     <motion.div variants={itemVariants} className="order-first">
                         <div
-                            className="relative rounded-2xl overflow-hidden aspect-[3/4] max-w-sm mx-auto lg:mx-0 bg-surface-container">
+                            className="relative overflow-hidden aspect-[3/4] max-w-sm mx-auto lg:mx-0 bg-surface-container">
                             <img
                                 src="/images/profile-photo.png"
                                 alt={t("about.imageAlt")}

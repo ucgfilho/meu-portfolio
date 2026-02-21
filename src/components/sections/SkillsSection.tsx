@@ -103,7 +103,7 @@ export const SkillsSection = () => {
                             <motion.div
                                 key={category.title}
                                 variants={itemVariants}
-                                className="card p-6 group hover:border-accent/30 transition-colors duration-200"
+                                className="card p-6 group transition-colors duration-200"
                             >
                                 {/* Category header */}
                                 <div className="flex items-center gap-3 mb-5">
