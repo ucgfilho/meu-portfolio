@@ -70,7 +70,7 @@
       "description": "Testes de API REST com Cypress, validando endpoints e respostas."
     },
     "mobileAutomation": {
-      "name": "Automação Mobile no QAzando Food",
+      "name": "Automação Mobile no qaFood",
       "description": "Testes E2E em app mobile usando Robot Framework e Appium, com execução no BrowserStack."
     },
     "openRepository": "Abrir repositório do projeto {{projectName}}"
@@ -97,7 +97,7 @@
     "title": "Experiência Profissional",
     "current": "Atual",
     "company": "CPDS - Centro de Pesquisa e Desenvolvimento de Software",
-    "role": "Analista de QA",
+    "role": "Analista de QA - Júnior",
     "period": "Jul/2025 – Atual",
     "responsibilities": [
       "Elaborei testes automatizados de Web e API em 2 módulos (pacientes e estoque) do sistema do SGDoctor, no qual tive que validar todas as funcionalidades e respostas da API previstas nas regras de negócio.",
