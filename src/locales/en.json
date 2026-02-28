@@ -97,7 +97,7 @@
     "title": "Professional Experience",
     "current": "Current",
     "company": "CPDS - Centro de Pesquisa e Desenvolvimento de Software",
-    "role": "QA Analyst - Junior",
+    "role": "Volunteer QA Analyst",
     "period": "Jul/2025 – Present",
     "responsibilities": [
       "Built automated Web and API tests for 2 modules (patients and inventory) of the SGDoctor system, validating all functionalities and API responses required by business rules.",
