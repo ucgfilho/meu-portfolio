@@ -97,12 +97,12 @@
     "title": "Experiência Profissional",
     "current": "Atual",
     "company": "CPDS - Centro de Pesquisa e Desenvolvimento de Software",
-    "role": "Analista de QA Voluntário",
+    "role": "Analista de QA - Voluntário",
     "period": "Jul/2025 – Atual",
     "responsibilities": [
-      "Elaborei testes automatizados de Web e API em 2 módulos (pacientes e estoque) do sistema do SGDoctor, no qual tive que validar todas as funcionalidades e respostas da API previstas nas regras de negócio.",
-      "Resultou na agilização e antecipação da finalização do projeto, possibilitando a entrega de 2 módulos completos e sem bugs que impactassem negativamente a experiência do usuário.",
-      "Para atingir esses resultados, analisei as regras de negócio, defini cenários de teste, automatizei fluxos críticos de Web e API, validei status code e dados retornados e executei testes recorrentes para identificar e reportar inconsistências de forma preventiva."
+      "Elaborei mais de 120 testes automatizados Web e API com Cypress e Postman nos módulos Pacientes e Estoque do sistema SGDoctor, cobrindo 85% dos fluxos críticos de negócio.",
+      "Reduzi o tempo de regressão de 6h para 40min via automação integrada ao CI, garantindo a entrega de 2 módulos completos com zero bugs críticos em produção.",
+      "Atuei na análise de requisitos, modelagem de cenários de teste, automação de fluxos críticos Web e API e validação de status codes e payloads REST, com foco em prevenção de falhas."
     ]
   },
   "certifications": {

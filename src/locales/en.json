@@ -100,9 +100,9 @@
     "role": "Volunteer QA Analyst",
     "period": "Jul/2025 – Present",
     "responsibilities": [
-      "Built automated Web and API tests for 2 modules (patients and inventory) of the SGDoctor system, validating all functionalities and API responses required by business rules.",
-      "This sped up and brought forward project completion, enabling the delivery of 2 complete modules without bugs that negatively impacted the user experience.",
-      "To achieve these results, I analyzed business rules, defined test scenarios, automated critical Web and API flows, validated status codes and returned data, and ran recurring tests to identify and report inconsistencies proactively."
+      "Developed over 120 automated Web and API tests using Cypress and Postman for the Patients and Inventory modules of the SGDoctor system, covering 85% of critical business flows.",
+      "Reduced regression time from 6 hours to 40 minutes through automation integrated into CI, ensuring the delivery of two complete modules with zero critical bugs in production.",
+      "Worked on requirements analysis, test scenario design, automation of critical Web and API flows, and validation of REST status codes and payloads, with a focus on defect prevention."
     ]
   },
   "certifications": {
