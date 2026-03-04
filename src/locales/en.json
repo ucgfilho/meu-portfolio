@@ -34,9 +34,10 @@
   "skills": {
     "title": "Technical Skills",
     "allTechnologies": "All technologies",
-    "functionalTests": "Functional Tests",
+    "webTests": "Web Tests",
     "apiTests": "API Tests",
     "mobileTests": "Mobile Tests",
+    "performanceTests": "Performance Tests",
     "automatedReports": "Automated Reports",
     "languages": "Languages",
     "devops": "DevOps & CI/CD",
@@ -108,54 +109,38 @@
   "certifications": {
     "title": "Certifications",
     "viewCertificate": "View certificate",
-    "list": [
+    "groups": [
       {
-        "name": "JavaScript for Testers",
-        "issuer": "Qazando"
+        "key": "qazando",
+        "institution": "Qazando",
+        "certs": [
+          "JavaScript for Testers",
+          "API Test Automation with JavaScript",
+          "Web Test Automation with Cypress",
+          "Software Testing Fundamentals",
+          "Mobile Automation with Appium and Robot",
+          "Performance Testing with Postman"
+        ]
       },
       {
-        "name": "API Test Automation with JavaScript",
-        "issuer": "Qazando"
+        "key": "ebac",
+        "institution": "EBAC",
+        "certs": ["QA Journey 2025"]
       },
       {
-        "name": "Web Test Automation with Cypress",
-        "issuer": "Qazando"
+        "key": "dio",
+        "institution": "DIO",
+        "certs": [
+          "Introduction to Bootcamp - Java and QA",
+          "Java Fundamentals",
+          "Control Structures in Java",
+          "Version Control with Git and GitHub"
+        ]
       },
       {
-        "name": "Software Testing Fundamentals",
-        "issuer": "Qazando"
-      },
-      {
-        "name": "Mobile Automation with Appium and Robot",
-        "issuer": "Qazando"
-      },
-      {
-        "name": "QA Journey 2025",
-        "issuer": "EBAC"
-      },
-      {
-        "name": "Introduction to Bootcamp - Java and QA",
-        "issuer": "DIO"
-      },
-      {
-        "name": "Control Structures in Java",
-        "issuer": "DIO"
-      },
-      {
-        "name": "Java Fundamentals",
-        "issuer": "DIO"
-      },
-      {
-        "name": "Brazilian Computer Science Olympiad",
-        "issuer": "UNICAMP"
-      },
-      {
-        "name": "Version Control with Git and GitHub",
-        "issuer": "DIO"
-      },
-      {
-        "name": "Public Speaking Course",
-        "issuer": "Escola Moscoso"
+        "key": "unicamp",
+        "institution": "UNICAMP",
+        "certs": ["Brazilian Computer Science Olympiad"]
       }
     ]
   },

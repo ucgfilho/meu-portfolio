@@ -34,9 +34,10 @@
   "skills": {
     "title": "Competencias Técnicas",
     "allTechnologies": "Todas las tecnologías",
-    "functionalTests": "Pruebas Funcionales",
+    "webTests": "Pruebas Web",
     "apiTests": "Pruebas de API",
     "mobileTests": "Pruebas Móviles",
+    "performanceTests": "Pruebas de Performance",
     "automatedReports": "Informes Automatizados",
     "languages": "Lenguajes",
     "devops": "DevOps & CI/CD",
@@ -108,54 +109,38 @@
   "certifications": {
     "title": "Certificaciones",
     "viewCertificate": "Ver certificado",
-    "list": [
+    "groups": [
       {
-        "name": "JavaScript para Testers",
-        "issuer": "Qazando"
+        "key": "qazando",
+        "institution": "Qazando",
+        "certs": [
+          "JavaScript para Testers",
+          "Automatización de Pruebas de API con JavaScript",
+          "Automatización de Pruebas Web con Cypress",
+          "Fundamentos de Pruebas de Software",
+          "Automatización Mobile con Appium y Robot",
+          "Pruebas de Performance con Postman"
+        ]
       },
       {
-        "name": "Automatización de Pruebas de API con JavaScript",
-        "issuer": "Qazando"
+        "key": "ebac",
+        "institution": "EBAC",
+        "certs": ["Jornada QA 2025"]
       },
       {
-        "name": "Automatización de Pruebas Web con Cypress",
-        "issuer": "Qazando"
+        "key": "dio",
+        "institution": "DIO",
+        "certs": [
+          "Introducción al Bootcamp - Java y QA",
+          "Fundamentos de Java",
+          "Estructuras de Control en Java",
+          "Control de Versiones con Git y GitHub"
+        ]
       },
       {
-        "name": "Fundamentos de Pruebas de Software",
-        "issuer": "Qazando"
-      },
-      {
-        "name": "Automatización Mobile con Appium y Robot",
-        "issuer": "Qazando"
-      },
-      {
-        "name": "Jornada QA 2025",
-        "issuer": "EBAC"
-      },
-      {
-        "name": "Introducción al Bootcamp - Java y QA",
-        "issuer": "DIO"
-      },
-      {
-        "name": "Estructuras de Control en Java",
-        "issuer": "DIO"
-      },
-      {
-        "name": "Fundamentos de Java",
-        "issuer": "DIO"
-      },
-      {
-        "name": "Olimpiada Brasileña de Informática",
-        "issuer": "UNICAMP"
-      },
-      {
-        "name": "Control de Versiones con Git y GitHub",
-        "issuer": "DIO"
-      },
-      {
-        "name": "Curso de Oratoria",
-        "issuer": "Escola Moscoso"
+        "key": "unicamp",
+        "institution": "UNICAMP",
+        "certs": ["Olimpiada Brasileña de Informática"]
       }
     ]
   },
