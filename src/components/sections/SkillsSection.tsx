@@ -169,9 +169,15 @@ export const SkillsSection = () => {
                   { node: <SiInsomnia />, title: "Insomnia" },
                   { node: <SiAppium />, title: "Appium" },
                   { node: <SiRobotframework />, title: "Robot Framework" },
-                  { 
-                    node: <img src="/images/k6-logo.svg" alt="k6" style={{ filter: 'brightness(0) invert(1)', height: '36px', width: 'auto' }} />, 
-                    title: "Grafana k6" 
+                  {
+                    node: (
+                      <img
+                        src="/images/k6-logo.svg"
+                        alt="k6"
+                        style={{ filter: "brightness(0) invert(1)", height: "36px", width: "auto" }}
+                      />
+                    ),
+                    title: "Grafana k6",
                   },
                   { node: <SiPython />, title: "Python" },
                   { node: <SiGitlab />, title: "GitLab CI/CD" },
