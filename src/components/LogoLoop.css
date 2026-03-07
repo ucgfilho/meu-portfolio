@@ -72,6 +72,22 @@
   align-items: center;
 }
 
+.logoloop__brand-node,
+.logoloop__brand-image {
+  opacity: 1;
+  filter: brightness(0) invert(1);
+  transition:
+    filter 0.25s ease,
+    opacity 0.25s ease,
+    transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.logoloop__item:hover .logoloop__brand-node,
+.logoloop__item:hover .logoloop__brand-image {
+  opacity: 1;
+  filter: none;
+}
+
 .logoloop__item img {
   height: var(--logoloop-logoHeight);
   width: auto;

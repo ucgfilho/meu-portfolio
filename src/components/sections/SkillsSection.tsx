@@ -15,6 +15,7 @@ import { useTranslation } from "react-i18next";
 import {
   SiCypress,
   SiGit,
+  SiGithub,
   SiDocker,
   SiGithubactions,
   SiPostman,
@@ -106,7 +107,7 @@ export const SkillsSection = () => {
     visible: {
       opacity: 1,
       y: 0,
-      transition: { duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] },
+      transition: { duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] as const },
     },
   };
 
@@ -158,30 +159,77 @@ export const SkillsSection = () => {
             <div style={{ position: "relative", overflow: "hidden" }}>
               <LogoLoop
                 logos={[
-                  { node: <SiCypress />, title: "Cypress" },
-                  { node: <SiGit />, title: "Git" },
-                  { node: <SiDocker />, title: "Docker" },
-                  { node: <SiJavascript />, title: "JavaScript" },
-                  { node: <SiCodeceptjs />, title: "CodeceptJS" },
-                  { node: <SiGithubactions />, title: "GitHub Actions" },
-                  { node: <SiPostman />, title: "Postman" },
-                  { node: <SiJunit5 />, title: "JUnit" },
-                  { node: <SiInsomnia />, title: "Insomnia" },
-                  { node: <SiAppium />, title: "Appium" },
-                  { node: <SiRobotframework />, title: "Robot Framework" },
+                  {
+                    node: <SiCypress className="logoloop__brand-node" color="#a3e7cb" />,
+                    title: "Cypress",
+                  },
+                  {
+                    node: <SiGit className="logoloop__brand-node" color="#F05032" />,
+                    title: "Git",
+                  },
+                  {
+                    node: <SiDocker className="logoloop__brand-node" color="#2496ED" />,
+                    title: "Docker",
+                  },
+                  {
+                    node: <SiJavascript className="logoloop__brand-node" color="#F7DF1E" />,
+                    title: "JavaScript",
+                  },
+                  {
+                    node: <SiCodeceptjs className="logoloop__brand-node" color="#F6E05E" />,
+                    title: "CodeceptJS",
+                  },
+                  {
+                    node: <SiGithubactions className="logoloop__brand-node" color="#2088FF" />,
+                    title: "GitHub Actions",
+                  },
+                  {
+                    node: <SiPostman className="logoloop__brand-node" color="#FF6C37" />,
+                    title: "Postman",
+                  },
+                  {
+                    node: <SiJunit5 className="logoloop__brand-node" color="#25A162" />,
+                    title: "JUnit",
+                  },
+                  {
+                    node: <SiInsomnia className="logoloop__brand-node" color="#4000BF" />,
+                    title: "Insomnia",
+                  },
+                  {
+                    node: <SiAppium className="logoloop__brand-node" color="#EE376D" />,
+                    title: "Appium",
+                  },
+                  {
+                    node: <SiRobotframework className="logoloop__brand-node" color="#00c0b5" />,
+                    title: "Robot Framework",
+                  },
                   {
                     node: (
                       <img
                         src="/images/k6-logo.svg"
                         alt="k6"
-                        style={{ filter: "brightness(0) invert(1)", height: "36px", width: "auto" }}
+                        className="logoloop__brand-image"
+                        style={{ height: "36px", width: "auto" }}
                       />
                     ),
                     title: "Grafana k6",
                   },
-                  { node: <SiPython />, title: "Python" },
-                  { node: <SiGitlab />, title: "GitLab CI/CD" },
-                  { node: <SiJira />, title: "Jira" },
+                  {
+                    node: <SiPython className="logoloop__brand-node" color="#f7ba13" />,
+                    title: "Python",
+                  },
+                  {
+                    node: <SiGithub className="logoloop__brand-node" color="#3e75c3" />,
+                    title: "GitHub",
+                  },
+                  {
+                    node: <SiGitlab className="logoloop__brand-node" color="#FC6D26" />,
+                    title: "GitLab CI/CD",
+                  },
+                  {
+                    node: <SiJira className="logoloop__brand-node" color="#0052CC" />,
+                    title: "Jira",
+                  },
                 ]}
                 speed={80}
                 direction="left"
