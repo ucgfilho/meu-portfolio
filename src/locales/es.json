@@ -74,6 +74,10 @@
       "name": "Automatización Mobile en qaFood",
       "description": "Pruebas E2E en app mobile usando Robot Framework y Appium, con ejecución en BrowserStack."
     },
+    "k6Performance": {
+      "name": "Pruebas de Performance de API con k6",
+      "description": "Suite de pruebas de performance de API para un servicio de vehículos mockeado con WireMock, utilizando k6 como framework de pruebas de carga."
+    },
     "openRepository": "Abrir repositorio del proyecto {{projectName}}"
   },
   "contact": {
@@ -119,7 +123,8 @@
           "Automatización de Pruebas Web con Cypress",
           "Fundamentos de Pruebas de Software",
           "Automatización Mobile con Appium y Robot",
-          "Pruebas de Performance con Postman"
+          "Pruebas de Performance con Postman",
+          "Pruebas de Performance con k6"
         ]
       },
       {
