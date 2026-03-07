@@ -44,7 +44,7 @@
     "documentation": "Documentação",
     "testDocumentation": "Documentação de testes",
     "bugDocumentation": "Documentação de bugs",
-    "testManagement": "Gestão de Testes & ALM"
+    "testManagement": "Gestão de Testes"
   },
   "projects": {
     "title": "Projetos",

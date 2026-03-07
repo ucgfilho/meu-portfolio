@@ -44,7 +44,7 @@
     "documentation": "Documentation",
     "testDocumentation": "Test documentation",
     "bugDocumentation": "Bug documentation",
-    "testManagement": "Test Management & ALM"
+    "testManagement": "Test Management"
   },
   "projects": {
     "title": "Projects",

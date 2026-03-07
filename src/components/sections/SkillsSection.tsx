@@ -12,6 +12,23 @@ import {
   Wrench,
 } from "lucide-react";
 import { useTranslation } from "react-i18next";
+import {
+  SiCypress,
+  SiGit,
+  SiDocker,
+  SiGithubactions,
+  SiPostman,
+  SiJunit5,
+  SiAppium,
+  SiRobotframework,
+  SiPython,
+  SiGitlab,
+  SiJira,
+  SiJavascript,
+  SiInsomnia,
+  SiCodeceptjs,
+} from "react-icons/si";
+import { LogoLoop } from "../LogoLoop";
 
 /* =============================================================================
    SkillsSection - Editorial High-End
@@ -47,7 +64,7 @@ export const SkillsSection = () => {
     {
       title: t("skills.performanceTests"),
       icon: Gauge,
-      skills: ["Grafana K6"],
+      skills: ["Grafana k6"],
     },
     {
       title: t("skills.automatedReports"),
@@ -138,32 +155,37 @@ export const SkillsSection = () => {
           {/* All technologies */}
           <motion.div variants={itemVariants} className="mt-16 text-center">
             <p className="text-sm text-muted-foreground mb-6">{t("skills.allTechnologies")}</p>
-            <div className="flex flex-wrap justify-center gap-2">
-              {[
-                "Cypress",
-                "Git",
-                "Docker",
-                "CodeceptJS",
-                "GitHub Actions",
-                "BDD",
-                "Gherkin",
-                "Postman",
-                "Allure",
-                "Jira",
-                "JUnit",
-                "Insomnia",
-                "Appium",
-                "Robot Framework",
-                "BrowserStack",
-                "Grafana K6",
-                "Python",
-                "GitLab CI/CD",
-                "Xray",
-              ].map((tech) => (
-                <span key={tech} className="chip-outline">
-                  {tech}
-                </span>
-              ))}
+            <div style={{ position: "relative", overflow: "hidden" }}>
+              <LogoLoop
+                logos={[
+                  { node: <SiCypress />, title: "Cypress" },
+                  { node: <SiGit />, title: "Git" },
+                  { node: <SiDocker />, title: "Docker" },
+                  { node: <SiJavascript />, title: "JavaScript" },
+                  { node: <SiCodeceptjs />, title: "CodeceptJS" },
+                  { node: <SiGithubactions />, title: "GitHub Actions" },
+                  { node: <SiPostman />, title: "Postman" },
+                  { node: <SiJunit5 />, title: "JUnit" },
+                  { node: <SiInsomnia />, title: "Insomnia" },
+                  { node: <SiAppium />, title: "Appium" },
+                  { node: <SiRobotframework />, title: "Robot Framework" },
+                  { 
+                    node: <img src="/images/k6-logo.svg" alt="k6" style={{ filter: 'brightness(0) invert(1)', height: '36px', width: 'auto' }} />, 
+                    title: "Grafana k6" 
+                  },
+                  { node: <SiPython />, title: "Python" },
+                  { node: <SiGitlab />, title: "GitLab CI/CD" },
+                  { node: <SiJira />, title: "Jira" },
+                ]}
+                speed={80}
+                direction="left"
+                logoHeight={36}
+                gap={48}
+                hoverSpeed={0}
+                scaleOnHover
+                fadeOut
+                ariaLabel="Todas as tecnologias"
+              />
             </div>
           </motion.div>
         </motion.div>
