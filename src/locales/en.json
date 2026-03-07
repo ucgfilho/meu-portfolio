@@ -102,7 +102,7 @@
     "title": "Professional Experience",
     "current": "Current",
     "company": "CPDS - Centro de Pesquisa e Desenvolvimento de Software",
-    "role": "Volunteer QA Analyst",
+    "role": "QA Analyst - Internship",
     "period": "Jul/2025 – Present",
     "responsibilities": [
       "Developed over 120 automated Web and API tests using Cypress and Postman for the Patients and Inventory modules of the SGDoctor system, covering 85% of critical business flows.",

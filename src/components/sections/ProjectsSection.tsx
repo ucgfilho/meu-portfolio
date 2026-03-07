@@ -53,7 +53,7 @@ export const ProjectsSection = () => {
       name: t("projects.k6Performance.name"),
       description: t("projects.k6Performance.description"),
       technologies: ["Grafana k6", "WireMock"],
-      link: "https://github.com/ucgfilho/k6-performance-tests",
+      link: "https://github.com/ucgfilho/k6-performance-test",
     },
   ];
 

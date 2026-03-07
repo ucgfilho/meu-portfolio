@@ -20,6 +20,7 @@ const certGroupLinks: Record<string, string[]> = {
     "https://drive.google.com/file/d/1p9FAC8J214H5ju4S1QeBd7OYudK0pJdz/view?usp=sharing",
     "https://drive.google.com/file/d/1M6rHLPVWspNrQnOKeYTnVx1d-iKKGHlk/view?usp=sharing",
     "https://drive.google.com/file/d/1yPrAE-rwiZH_qi-iHTA0Pymyjj_21sI1/view?usp=sharing",
+    "https://drive.google.com/file/d/1pJmI4fQ0JuahG4HQKBkBLd1RnN9AgAAE/view?usp=sharing",
   ],
   ebac: ["https://drive.google.com/file/d/1bLFgUDzLqMDnNqAh9xLMxxKPWCLzEZIh/view?usp=sharing"],
   dio: [
