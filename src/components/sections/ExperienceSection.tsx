@@ -1,7 +1,7 @@
-import {motion, useInView} from "framer-motion";
-import {useRef} from "react";
-import {Calendar} from "lucide-react";
-import {useTranslation} from "react-i18next";
+import { motion, useInView } from "framer-motion";
+import { useRef } from "react";
+import { Calendar } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 /* =============================================================================
    ExperienceSection - Editorial High-End
@@ -14,95 +14,82 @@ import {useTranslation} from "react-i18next";
    ============================================================================= */
 
 export const ExperienceSection = () => {
-    const {t} = useTranslation();
-    const ref = useRef(null);
-    const isInView = useInView(ref, {once: true, margin: "-100px"});
+  const { t } = useTranslation();
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-100px" });
 
-    const responsibilities = [
-        t("experience.responsibilities.0"),
-        t("experience.responsibilities.1"),
-        t("experience.responsibilities.2"),
-    ];
+  const responsibilities = [
+    t("experience.responsibilities.0"),
+    t("experience.responsibilities.1"),
+    t("experience.responsibilities.2"),
+  ];
 
-    const containerVariants = {
-        hidden: {opacity: 0},
-        visible: {
-            opacity: 1,
-            transition: {staggerChildren: 0.1},
-        },
-    };
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: { staggerChildren: 0.1 },
+    },
+  };
 
-    const itemVariants = {
-        hidden: {opacity: 0, y: 20},
-        visible: {
-            opacity: 1,
-            y: 0,
-            transition: {duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94]},
-        },
-    };
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] },
+    },
+  };
 
-    return (
-        <section id="experience" className="py-24 md:py-32 relative" ref={ref}>
-            <div className="container mx-auto px-6">
-                <motion.div
-                    variants={containerVariants}
-                    initial="hidden"
-                    animate={isInView ? "visible" : "hidden"}
-                    className="max-w-4xl mx-auto"
-                >
-                    {/* Section header */}
-                    <motion.div
-                        variants={itemVariants}
-                        className="section-header justify-center"
-                    >
-            <span className="section-label">
-                {t("experience.title")}
-              </span>
-                    </motion.div>
+  return (
+    <section id="experience" className="py-24 md:py-32 relative" ref={ref}>
+      <div className="container mx-auto px-6">
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          animate={isInView ? "visible" : "hidden"}
+          className="max-w-4xl mx-auto"
+        >
+          {/* Section header */}
+          <motion.div variants={itemVariants} className="section-header justify-center">
+            <span className="section-label">{t("experience.title")}</span>
+          </motion.div>
 
-                    {/* Experience card */}
-                    <motion.div variants={itemVariants} className="card p-8">
-                        {/* Header */}
-                        <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4 mb-8">
-                            <div>
-                                <h3 className="text-2xl font-medium text-foreground mb-1">
-                                    {t("experience.role")}
-                                </h3>
-                                <p className="text-accent font-medium">
-                                    {t("experience.company")}
-                                </p>
-                            </div>
+          {/* Experience card */}
+          <motion.div variants={itemVariants} className="card p-8">
+            {/* Header */}
+            <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4 mb-8">
+              <div>
+                <h3 className="text-2xl font-medium text-foreground mb-1">
+                  {t("experience.role")}
+                </h3>
+                <p className="text-accent font-medium">{t("experience.company")}</p>
+              </div>
 
-                            <div className="flex items-center gap-3">
+              <div className="flex items-center gap-3">
                 <span className="status-badge">
-                  <span className="status-dot"/>
-                    {t("experience.current")}
+                  <span className="status-dot" />
+                  {t("experience.current")}
                 </span>
-                                <span className="inline-flex items-center gap-2 text-sm text-muted-foreground">
-                  <Calendar className="w-4 h-4"/>
-                                    {t("experience.period")}
+                <span className="inline-flex items-center gap-2 text-sm text-muted-foreground">
+                  <Calendar className="w-4 h-4" />
+                  {t("experience.period")}
                 </span>
-                            </div>
-                        </div>
-
-                        {/* Responsibilities */}
-                        <ul className="space-y-4">
-                            {responsibilities.map((responsibility, index) => (
-                                <motion.li
-                                    key={index}
-                                    variants={itemVariants}
-                                    className="flex gap-4"
-                                >
-                                    <span className="mt-2 w-1.5 h-1.5 rounded-full bg-accent shrink-0"/>
-                                    <p className="text-muted-foreground leading-relaxed">
-                                        {responsibility}
-                                    </p>
-                                </motion.li>
-                            ))}
-                        </ul>
-                    </motion.div>
-                </motion.div>
+              </div>
             </div>
-        </section>
-    );
+
+            {/* Responsibilities */}
+            <ul className="space-y-4">
+              {responsibilities.map((responsibility, index) => (
+                <motion.li key={index} variants={itemVariants} className="flex gap-4">
+                  <span className="mt-2 w-1.5 h-1.5 rounded-full bg-accent shrink-0" />
+                  <p className="text-foreground/90 leading-relaxed">{responsibility}</p>
+                </motion.li>
+              ))}
+            </ul>
+          </motion.div>
+        </motion.div>
+      </div>
+    </section>
+  );
 };

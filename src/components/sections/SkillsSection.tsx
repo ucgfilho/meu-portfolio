@@ -23,6 +23,7 @@ import {
   SiAppium,
   SiRobotframework,
   SiPython,
+  SiMysql,
   SiGitlab,
   SiJira,
   SiJavascript,
@@ -160,36 +161,28 @@ export const SkillsSection = () => {
               <LogoLoop
                 logos={[
                   {
-                    node: <SiCypress className="logoloop__brand-node" color="#a3e7cb" />,
-                    title: "Cypress",
-                  },
-                  {
-                    node: <SiGit className="logoloop__brand-node" color="#F05032" />,
-                    title: "Git",
-                  },
-                  {
-                    node: <SiDocker className="logoloop__brand-node" color="#2496ED" />,
-                    title: "Docker",
-                  },
-                  {
                     node: <SiJavascript className="logoloop__brand-node" color="#F7DF1E" />,
                     title: "JavaScript",
+                  },
+                  {
+                    node: <SiMysql className="logoloop__brand-node" color="#4479A1" />,
+                    title: "SQL",
+                  },
+                  {
+                    node: <SiPython className="logoloop__brand-node" color="#f7ba13" />,
+                    title: "Python",
+                  },
+                  {
+                    node: <SiCypress className="logoloop__brand-node" color="#a3e7cb" />,
+                    title: "Cypress",
                   },
                   {
                     node: <SiCodeceptjs className="logoloop__brand-node" color="#F6E05E" />,
                     title: "CodeceptJS",
                   },
                   {
-                    node: <SiGithubactions className="logoloop__brand-node" color="#2088FF" />,
-                    title: "GitHub Actions",
-                  },
-                  {
                     node: <SiPostman className="logoloop__brand-node" color="#FF6C37" />,
                     title: "Postman",
-                  },
-                  {
-                    node: <SiJunit5 className="logoloop__brand-node" color="#25A162" />,
-                    title: "JUnit",
                   },
                   {
                     node: <SiInsomnia className="logoloop__brand-node" color="#4000BF" />,
@@ -204,6 +197,10 @@ export const SkillsSection = () => {
                     title: "Robot Framework",
                   },
                   {
+                    node: <SiJunit5 className="logoloop__brand-node" color="#25A162" />,
+                    title: "JUnit",
+                  },
+                  {
                     node: (
                       <img
                         src="/images/k6-logo.svg"
@@ -215,8 +212,8 @@ export const SkillsSection = () => {
                     title: "Grafana k6",
                   },
                   {
-                    node: <SiPython className="logoloop__brand-node" color="#f7ba13" />,
-                    title: "Python",
+                    node: <SiGit className="logoloop__brand-node" color="#F05032" />,
+                    title: "Git",
                   },
                   {
                     node: <SiGithub className="logoloop__brand-node" color="#3e75c3" />,
@@ -225,6 +222,14 @@ export const SkillsSection = () => {
                   {
                     node: <SiGitlab className="logoloop__brand-node" color="#FC6D26" />,
                     title: "GitLab CI/CD",
+                  },
+                  {
+                    node: <SiGithubactions className="logoloop__brand-node" color="#2088FF" />,
+                    title: "GitHub Actions",
+                  },
+                  {
+                    node: <SiDocker className="logoloop__brand-node" color="#2496ED" />,
+                    title: "Docker",
                   },
                   {
                     node: <SiJira className="logoloop__brand-node" color="#0052CC" />,

@@ -53,7 +53,7 @@ export const Navigation = () => {
           className={`absolute inset-0 transition-all duration-300 ${
             isScrolled
               ? "bg-background/55 backdrop-blur-xl border-b border-border/70 shadow-[0_10px_30px_rgba(0,0,0,0.22)]"
-              : "bg-transparent"
+              : "bg-background/30 backdrop-blur-md border-b border-border/40"
           }`}
         />
 
@@ -64,7 +64,7 @@ export const Navigation = () => {
               <motion.a
                 key={item.href}
                 href={item.href}
-                className="px-4 py-2 text-sm font-medium text-muted-foreground hover:text-background transition-colors duration-200 hover:bg-foreground"
+                className="px-4 py-2 text-sm font-medium text-foreground/80 hover:text-background transition-colors duration-200 hover:bg-foreground"
                 initial={{ opacity: 0, y: -10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{

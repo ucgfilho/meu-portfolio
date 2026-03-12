@@ -33,7 +33,7 @@
   },
   "skills": {
     "title": "Competencias Técnicas",
-    "allTechnologies": "Todas las tecnologías",
+    "allTechnologies": "Mi stack",
     "webTests": "Pruebas Web",
     "apiTests": "Pruebas de API",
     "mobileTests": "Pruebas Móviles",
