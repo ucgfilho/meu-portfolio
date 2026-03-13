@@ -105,9 +105,9 @@
     "role": "Analista de QA - Pasantía",
     "period": "Jul/2025 – Actual",
     "responsibilities": [
-      "Elaboré más de 120 pruebas automatizadas Web y API utilizando Cypress y Postman en los módulos de Pacientes e Inventario del sistema SGDoctor, cubriendo el 85% de los flujos críticos del negocio.",
-      "Reduje el tiempo de regresión de 6 horas a 40 minutos mediante automatización integrada al CI, garantizando la entrega de dos módulos completos con cero bugs críticos en producción.",
-      "Trabajé en el análisis de requisitos, diseño de escenarios de prueba, automatización de flujos críticos Web y API y validación de status codes y payloads REST, con enfoque en la prevención de fallos."
+      "Aumenté la confiabilidad de los módulos de \"Pacientes\" e \"Inventario\" de un sistema de gestión de salud al alcanzar un 85% de cobertura de flujos críticos, mediante la creación de más de 120 pruebas automatizadas Web y API utilizando Cypress y Postman.",
+      "Optimicé el ciclo de entrega en un 89%, reduciendo el tiempo de pruebas regresivas de 6 horas a solo 40 minutos mediante la implementación de automatización integrada al pipeline de CI/CD, garantizando el despliegue de 2 módulos complejos con cero bugs críticos en producción.",
+      "Mitigué riesgos técnicos y fallos de integración mediante el análisis anticipado de requisitos y la modelación de escenarios, asegurando la integridad del 100% de los payloads y status codes antes del inicio del desarrollo."
     ]
   },
   "certifications": {

@@ -105,9 +105,9 @@
     "role": "Analista de QA - Estágio",
     "period": "Jul/2025 – Atual",
     "responsibilities": [
-      "Elaborei mais de 120 testes automatizados Web e API com Cypress e Postman nos módulos Pacientes e Estoque do sistema SGDoctor, cobrindo 85% dos fluxos críticos de negócio.",
-      "Reduzi o tempo de regressão de 6h para 40min via automação integrada ao CI, garantindo a entrega de 2 módulos completos com zero bugs críticos em produção.",
-      "Atuei na análise de requisitos, modelagem de cenários de teste, automação de fluxos críticos Web e API e validação de status codes e payloads REST, com foco em prevenção de falhas."
+      "Aumentei a confiabilidade dos módulos de \"Pacientes\" e \"Estoque\" de um sistema de gerenciamento de saúde ao atingir 85% de cobertura de fluxos críticos, através da criação de mais de 120 testes automatizados Web e API utilizando Cypress e Postman.",
+      "Otimizei o ciclo de entrega em 89%, reduzindo o tempo de testes regressivos de 6h para apenas 40 minutos por meio da implementação de automação integrada ao pipeline de CI/CD, garantindo o deploy de 2 módulos complexos com zero bugs críticos em produção.",
+      "Mitiguei riscos técnicos e falhas de integração via análise antecipada de requisitos e modelagem de cenários, assegurando a integridade de 100% dos payloads e status codes antes do início do desenvolvimento."
     ]
   },
   "certifications": {

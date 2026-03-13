@@ -105,9 +105,9 @@
     "role": "QA Analyst - Internship",
     "period": "Jul/2025 – Present",
     "responsibilities": [
-      "Developed over 120 automated Web and API tests using Cypress and Postman for the Patients and Inventory modules of the SGDoctor system, covering 85% of critical business flows.",
-      "Reduced regression time from 6 hours to 40 minutes through automation integrated into CI, ensuring the delivery of two complete modules with zero critical bugs in production.",
-      "Worked on requirements analysis, test scenario design, automation of critical Web and API flows, and validation of REST status codes and payloads, with a focus on defect prevention."
+      "I increased the reliability of the \"Patients\" and \"Inventory\" modules in a healthcare management system by reaching 85% coverage of critical flows through the creation of more than 120 automated Web and API tests using Cypress and Postman.",
+      "I optimized the delivery cycle by 89%, reducing regression testing time from 6 hours to just 40 minutes by implementing automation integrated into the CI/CD pipeline, ensuring the deployment of 2 complex modules with zero critical bugs in production.",
+      "I mitigated technical risks and integration failures through early requirements analysis and scenario modeling, ensuring the integrity of 100% of payloads and status codes before development started."
     ]
   },
   "certifications": {
