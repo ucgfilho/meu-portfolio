@@ -101,13 +101,31 @@
   "experience": {
     "title": "Experiência Profissional",
     "current": "Atual",
-    "company": "CPDS - Centro de Pesquisa e Desenvolvimento de Software",
-    "role": "Analista de QA - Estágio",
-    "period": "Jul/2025 – Atual",
-    "responsibilities": [
-      "Aumentei a confiabilidade dos módulos de \"Pacientes\" e \"Estoque\" de um sistema de gerenciamento de saúde ao atingir 85% de cobertura de fluxos críticos, através da criação de mais de 120 testes automatizados Web e API utilizando Cypress e Postman.",
-      "Otimizei o ciclo de entrega em 89%, reduzindo o tempo de testes regressivos de 6h para apenas 40 minutos por meio da implementação de automação integrada ao pipeline de CI/CD, garantindo o deploy de 2 módulos complexos com zero bugs críticos em produção.",
-      "Mitiguei riscos técnicos e falhas de integração via análise antecipada de requisitos e modelagem de cenários, assegurando a integridade de 100% dos payloads e status codes antes do início do desenvolvimento."
+    "items": [
+      {
+        "company": "CPDS - Centro de Pesquisa e Desenvolvimento de Software",
+        "role": "Analista de QA - Pleno",
+        "location": "Jequié, BA (Híbrido)",
+        "period": "Jul/2025 – Atual",
+        "isCurrent": true,
+        "responsibilities": [
+          "Estruturei e executei testes manuais funcionais, exploratórios e regressivos para um sistema web de gestão para clínicas acadêmicas, o SGDoctor, validando fluxos críticos dos módulos de Pacientes, Atendimento, Agenda e Estoque, garantindo 95% de cobertura funcional e aderência aos requisitos.",
+          "Validei integrações e APIs REST responsáveis pela comunicação entre módulos clínicos e administrativos, assegurando integridade de dados sensíveis (prontuários, documentos e movimentações), reduzindo bugs em produção em 40% e aumentando a confiabilidade do sistema.",
+          "Implementei rastreabilidade ponta a ponta alinhada aos requisitos funcionais do sistema, conectando usuários, operações e dados clínicos via Jira e Xray, reduzindo o tempo de diagnóstico de falhas em 35%, evitando retrabalho operacional e gerando ganho direto de eficiência e redução de custos em ambientes críticos de saúde."
+        ]
+      },
+      {
+        "company": "4blue",
+        "role": "Analista de QA - Júnior",
+        "location": "Remoto",
+        "period": "Jan/2023 – Jun/2025",
+        "isCurrent": false,
+        "responsibilities": [
+          "Planejei e executei testes manuais funcionais, exploratórios e regressivos em sistemas web e APIs REST, utilizando Postman, garantindo estabilidade e aderência aos requisitos.",
+          "Identifiquei, documentei e acompanhei falhas críticas via testes exploratórios e validação de integrações, reduzindo retrabalho em 30% e aumentando a confiabilidade dos releases.",
+          "Estruturei casos de teste baseados em fluxos reais de usuários e implementei rastreabilidade entre requisitos e testes, elevando a cobertura funcional para 92% e reduzindo incidentes em produção em 38%, gerando ganho direto de eficiência operacional e redução de custos com correções emergenciais."
+        ]
+      }
     ]
   },
   "certifications": {

@@ -100,14 +100,32 @@
   },
   "experience": {
     "title": "Professional Experience",
-    "current": "Current",
-    "company": "CPDS - Centro de Pesquisa e Desenvolvimento de Software",
-    "role": "QA Analyst - Internship",
-    "period": "Jul/2025 – Present",
-    "responsibilities": [
-      "I increased the reliability of the \"Patients\" and \"Inventory\" modules in a healthcare management system by reaching 85% coverage of critical flows through the creation of more than 120 automated Web and API tests using Cypress and Postman.",
-      "I optimized the delivery cycle by 89%, reducing regression testing time from 6 hours to just 40 minutes by implementing automation integrated into the CI/CD pipeline, ensuring the deployment of 2 complex modules with zero critical bugs in production.",
-      "I mitigated technical risks and integration failures through early requirements analysis and scenario modeling, ensuring the integrity of 100% of payloads and status codes before development started."
+    "current": "Present",
+    "items": [
+      {
+        "company": "CPDS - Centro de Pesquisa e Desenvolvimento de Software",
+        "role": "Mid-level QA Analyst",
+        "location": "Jequié, BA (Hybrid)",
+        "period": "Jul/2025 – Present",
+        "isCurrent": true,
+        "responsibilities": [
+          "Structured and executed manual functional, exploratory, and regression tests for a web management system for academic clinics, SGDoctor, validating critical flows of the Patients, Service, Schedule, and Inventory modules, ensuring 95% functional coverage and adherence to requirements.",
+          "Validated integrations and REST APIs responsible for communication between clinical and administrative modules, ensuring the integrity of sensitive data (medical records, documents, and movements), reducing production bugs by 40% and increasing system reliability.",
+          "Implemented end-to-end traceability aligned with the system's functional requirements, connecting users, operations, and clinical data via Jira and Xray, reducing failure diagnosis time by 35%, avoiding operational rework, and generating direct efficiency gains and cost reduction in critical health environments."
+        ]
+      },
+      {
+        "company": "4blue",
+        "role": "Junior QA Analyst",
+        "location": "Remote",
+        "period": "Jan/2023 – Jun/2025",
+        "isCurrent": false,
+        "responsibilities": [
+          "Planned and executed manual functional, exploratory, and regression tests on web systems and REST APIs using Postman, ensuring stability and adherence to requirements.",
+          "Identified, documented, and tracked critical failures via exploratory testing and integration validation, reducing rework by 30% and increasing release reliability.",
+          "Structured test cases based on real user flows and implemented traceability between requirements and tests, raising functional coverage to 92% and reducing production incidents by 38%, generating direct operational efficiency gains and reducing costs with emergency fixes."
+        ]
+      }
     ]
   },
   "certifications": {
