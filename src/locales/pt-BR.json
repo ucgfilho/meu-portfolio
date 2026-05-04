@@ -104,26 +104,26 @@
     "items": [
       {
         "company": "CPDS - Centro de Pesquisa e Desenvolvimento de Software",
-        "role": "Analista de QA - Pleno",
-        "location": "Jequié, BA (Híbrido)",
+        "role": "Analista de QA - Júnior",
+        "location": "Jequié, Bahia, Brasil · Híbrido",
         "period": "Jul/2025 – Atual",
         "isCurrent": true,
         "responsibilities": [
-          "Estruturei e executei testes manuais funcionais, exploratórios e regressivos para um sistema web de gestão para clínicas acadêmicas, o SGDoctor, validando fluxos críticos dos módulos de Pacientes, Atendimento, Agenda e Estoque, garantindo 95% de cobertura funcional e aderência aos requisitos.",
-          "Validei integrações e APIs REST responsáveis pela comunicação entre módulos clínicos e administrativos, assegurando integridade de dados sensíveis (prontuários, documentos e movimentações), reduzindo bugs em produção em 40% e aumentando a confiabilidade do sistema.",
-          "Implementei rastreabilidade ponta a ponta alinhada aos requisitos funcionais do sistema, conectando usuários, operações e dados clínicos via Jira e Xray, reduzindo o tempo de diagnóstico de falhas em 35%, evitando retrabalho operacional e gerando ganho direto de eficiência e redução de custos em ambientes críticos de saúde."
+          "Estruturei e executei testes manuais funcionais, exploratórios e regressivos para um sistema web de gestão para clínicas acadêmicas, o SGDoctor, validando fluxos críticos dos módulos de Pacientes, Atendimento, Agenda e Estoque e garantindo 95% de cobertura funcional.",
+          "Validei integrações e APIs REST responsáveis pela comunicação entre módulos clínicos e administrativos, assegurando a integridade de dados sensíveis como prontuários, documentos e movimentações.",
+          "Reduzi bugs em produção em 40%, reduzi o tempo de diagnóstico de falhas em 35%, evitei retrabalho operacional e gerei ganho direto de eficiência e redução de 18% dos custos em ambientes críticos de saúde."
         ]
       },
       {
-        "company": "4blue",
-        "role": "Analista de QA - Júnior",
+        "company": "CI&T",
+        "role": "Analista de teste/QA - Estágio",
         "location": "Remoto",
-        "period": "Jan/2023 – Jun/2025",
+        "period": "Abr/2024 – Mar/2025",
         "isCurrent": false,
         "responsibilities": [
-          "Planejei e executei testes manuais funcionais, exploratórios e regressivos em sistemas web e APIs REST, utilizando Postman, garantindo estabilidade e aderência aos requisitos.",
-          "Identifiquei, documentei e acompanhei falhas críticas via testes exploratórios e validação de integrações, reduzindo retrabalho em 30% e aumentando a confiabilidade dos releases.",
-          "Estruturei casos de teste baseados em fluxos reais de usuários e implementei rastreabilidade entre requisitos e testes, elevando a cobertura funcional para 92% e reduzindo incidentes em produção em 38%, gerando ganho direto de eficiência operacional e redução de custos com correções emergenciais."
+          "Mapeei cenários críticos de web e APIs REST e executei testes funcionais, exploratórios e regressivos usando Postman, Jira e Xray para registrar evidências, acompanhar o status e padronizar a execução, ajudando a antecipar falhas e manter a estabilidade dos releases.",
+          "Documentei os defeitos em integrações e fluxos de negócio, reproduzindo os passos com clareza, classificando o impacto e alinhando a priorização com o time de desenvolvimento.",
+          "Reduzi o retrabalho de validação em 20% e acelerei a triagem das falhas, com a cobertura funcional chegando a cerca de 85% e os incidentes em produção caindo em 15%."
         ]
       }
     ]

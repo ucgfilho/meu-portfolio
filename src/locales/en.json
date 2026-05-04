@@ -104,26 +104,26 @@
     "items": [
       {
         "company": "CPDS - Centro de Pesquisa e Desenvolvimento de Software",
-        "role": "Mid-level QA Analyst",
-        "location": "Jequié, BA (Hybrid)",
+        "role": "Junior QA Analyst",
+        "location": "Jequié, Bahia, Brazil · Hybrid",
         "period": "Jul/2025 – Present",
         "isCurrent": true,
         "responsibilities": [
-          "Structured and executed manual functional, exploratory, and regression tests for a web management system for academic clinics, SGDoctor, validating critical flows of the Patients, Service, Schedule, and Inventory modules, ensuring 95% functional coverage and adherence to requirements.",
-          "Validated integrations and REST APIs responsible for communication between clinical and administrative modules, ensuring the integrity of sensitive data (medical records, documents, and movements), reducing production bugs by 40% and increasing system reliability.",
-          "Implemented end-to-end traceability aligned with the system's functional requirements, connecting users, operations, and clinical data via Jira and Xray, reducing failure diagnosis time by 35%, avoiding operational rework, and generating direct efficiency gains and cost reduction in critical health environments."
+          "Structured and executed manual functional, exploratory, and regression tests for a web management system for academic clinics, SGDoctor, validating critical flows in the Patients, Service, Schedule, and Inventory modules and ensuring 95% functional coverage.",
+          "Validated integrations and REST APIs responsible for communication between clinical and administrative modules, ensuring the integrity of sensitive data such as medical records, documents, and movements.",
+          "Reduced production bugs by 40%, reduced failure diagnosis time by 35%, avoided operational rework, and generated direct efficiency gains with 18% cost reduction in critical health environments."
         ]
       },
       {
-        "company": "4blue",
-        "role": "Junior QA Analyst",
+        "company": "CI&T",
+        "role": "QA/Test Intern",
         "location": "Remote",
-        "period": "Jan/2023 – Jun/2025",
+        "period": "Apr/2024 – Mar/2025",
         "isCurrent": false,
         "responsibilities": [
-          "Planned and executed manual functional, exploratory, and regression tests on web systems and REST APIs using Postman, ensuring stability and adherence to requirements.",
-          "Identified, documented, and tracked critical failures via exploratory testing and integration validation, reducing rework by 30% and increasing release reliability.",
-          "Structured test cases based on real user flows and implemented traceability between requirements and tests, raising functional coverage to 92% and reducing production incidents by 38%, generating direct operational efficiency gains and reducing costs with emergency fixes."
+          "Mapped critical web and REST API scenarios and executed functional, exploratory, and regression tests using Postman, Jira, and Xray to record evidence, track status, and standardize execution, helping surface issues earlier and maintain release stability.",
+          "Documented defects in integrations and business flows, reproducing steps clearly, classifying their impact, and aligning priorities with the development team.",
+          "Reduced validation rework by 20% and sped up defect triage, with functional coverage reaching about 85% and production incidents dropping by 15%."
         ]
       }
     ]
