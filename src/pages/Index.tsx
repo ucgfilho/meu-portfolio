@@ -2,6 +2,7 @@ import {lazy, Suspense} from "react";
 import {AnimatedBackground} from "@/components/AnimatedBackground";
 import {Navigation} from "@/components/Navigation";
 import {ScrollToTop} from "@/components/ScrollToTop";
+import {useTranslation} from "react-i18next";
 
 const HeroSection = lazy(() =>
     import("@/components/sections/HeroSection").then((module) => ({
@@ -50,6 +51,8 @@ const ContactSection = lazy(() =>
 );
 
 const Index = () => {
+    const {t} = useTranslation();
+
     // Aplicar tema dark
     if (typeof document !== "undefined") {
         document.documentElement.classList.add("dark");
@@ -63,7 +66,7 @@ const Index = () => {
 
             <main>
                 <Suspense
-                    fallback={<div className="sr-only">Carregando seções...</div>}
+                    fallback={<div className="sr-only">{t("common.loadingSections")}</div>}
                 >
                     <HeroSection/>
 

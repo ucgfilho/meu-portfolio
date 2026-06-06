@@ -22,7 +22,7 @@ const languages = [
 ];
 
 export const LanguageSwitcher = () => {
-    const {i18n} = useTranslation();
+    const {t, i18n} = useTranslation();
 
     const currentLanguage =
         languages.find((lang) => lang.code === i18n.language) || languages[0];
@@ -53,7 +53,7 @@ export const LanguageSwitcher = () => {
                         className="text-sm font-medium text-foreground group-hover:text-background hidden sm:inline whitespace-nowrap">
             {currentLanguage.label}
           </span>
-                    <span className="sr-only">Alternar idioma</span>
+                    <span className="sr-only">{t("languageSwitcher.label")}</span>
                 </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent

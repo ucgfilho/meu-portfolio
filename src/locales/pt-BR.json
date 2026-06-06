@@ -1,4 +1,7 @@
 {
+  "common": {
+    "loadingSections": "Carregando seções..."
+  },
   "nav": {
     "title": "Meu Portfólio",
     "about": "Sobre",
@@ -7,7 +10,16 @@
     "certifications": "Certificações",
     "skills": "Skills",
     "projects": "Projetos",
-    "contact": "Contato"
+    "contact": "Contato",
+    "openMenu": "Abrir menu",
+    "closeMenu": "Fechar menu"
+  },
+  "languageSwitcher": {
+    "label": "Alternar idioma"
+  },
+  "notFound": {
+    "message": "Ops! Página não encontrada",
+    "returnHome": "Voltar para o início"
   },
   "hero": {
     "availableStatus": "Disponível para novas oportunidades",
@@ -103,27 +115,23 @@
     "current": "Atual",
     "items": [
       {
+        "company": "Port Louis",
+        "role": "Desenvolvedor Back-End Júnior I",
+        "location": "Remoto",
+        "period": "Jun/2026-Atual",
+        "isCurrent": true,
+        "responsibilities": []
+      },
+      {
         "company": "CPDS - Centro de Pesquisa e Desenvolvimento de Software",
         "role": "Analista de QA - Júnior",
         "location": "Jequié, Bahia, Brasil · Híbrido",
-        "period": "Jul/2025 – Atual",
-        "isCurrent": true,
+        "period": "Jul/2025-Jun/2026",
+        "isCurrent": false,
         "responsibilities": [
           "Estruturei e executei testes manuais funcionais, exploratórios e regressivos para um sistema web de gestão para clínicas acadêmicas, o SGDoctor, validando fluxos críticos dos módulos de Pacientes, Atendimento, Agenda e Estoque e garantindo 95% de cobertura funcional.",
           "Validei integrações e APIs REST responsáveis pela comunicação entre módulos clínicos e administrativos, assegurando a integridade de dados sensíveis como prontuários, documentos e movimentações.",
           "Reduzi bugs em produção em 40%, reduzi o tempo de diagnóstico de falhas em 35%, evitei retrabalho operacional e gerei ganho direto de eficiência e redução de 18% dos custos em ambientes críticos de saúde."
-        ]
-      },
-      {
-        "company": "CI&T",
-        "role": "Analista de teste/QA - Estágio",
-        "location": "Remoto",
-        "period": "Abr/2024 – Mar/2025",
-        "isCurrent": false,
-        "responsibilities": [
-          "Mapeei cenários críticos de web e APIs REST e executei testes funcionais, exploratórios e regressivos usando Postman, Jira e Xray para registrar evidências, acompanhar o status e padronizar a execução, ajudando a antecipar falhas e manter a estabilidade dos releases.",
-          "Documentei os defeitos em integrações e fluxos de negócio, reproduzindo os passos com clareza, classificando o impacto e alinhando a priorização com o time de desenvolvimento.",
-          "Reduzi o retrabalho de validação em 20% e acelerei a triagem das falhas, com a cobertura funcional chegando a cerca de 85% e os incidentes em produção caindo em 15%."
         ]
       }
     ]

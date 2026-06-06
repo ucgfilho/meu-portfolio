@@ -1,4 +1,7 @@
 {
+  "common": {
+    "loadingSections": "Loading sections..."
+  },
   "nav": {
     "title": "My Portfolio",
     "about": "About",
@@ -7,7 +10,16 @@
     "certifications": "Certifications",
     "skills": "Skills",
     "projects": "Projects",
-    "contact": "Contact"
+    "contact": "Contact",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu"
+  },
+  "languageSwitcher": {
+    "label": "Switch language"
+  },
+  "notFound": {
+    "message": "Oops! Page not found",
+    "returnHome": "Return to home"
   },
   "hero": {
     "availableStatus": "Available for new opportunities",
@@ -103,27 +115,23 @@
     "current": "Present",
     "items": [
       {
+        "company": "Port Louis",
+        "role": "Junior Backend Developer I",
+        "location": "Remote",
+        "period": "Jun/2026-Present",
+        "isCurrent": true,
+        "responsibilities": []
+      },
+      {
         "company": "CPDS - Centro de Pesquisa e Desenvolvimento de Software",
         "role": "Junior QA Analyst",
         "location": "Jequié, Bahia, Brazil · Hybrid",
-        "period": "Jul/2025 – Present",
-        "isCurrent": true,
+        "period": "Jul/2025-Jun/2026",
+        "isCurrent": false,
         "responsibilities": [
           "Structured and executed manual functional, exploratory, and regression tests for a web management system for academic clinics, SGDoctor, validating critical flows in the Patients, Service, Schedule, and Inventory modules and ensuring 95% functional coverage.",
           "Validated integrations and REST APIs responsible for communication between clinical and administrative modules, ensuring the integrity of sensitive data such as medical records, documents, and movements.",
           "Reduced production bugs by 40%, reduced failure diagnosis time by 35%, avoided operational rework, and generated direct efficiency gains with 18% cost reduction in critical health environments."
-        ]
-      },
-      {
-        "company": "CI&T",
-        "role": "QA/Test Intern",
-        "location": "Remote",
-        "period": "Apr/2024 – Mar/2025",
-        "isCurrent": false,
-        "responsibilities": [
-          "Mapped critical web and REST API scenarios and executed functional, exploratory, and regression tests using Postman, Jira, and Xray to record evidence, track status, and standardize execution, helping surface issues earlier and maintain release stability.",
-          "Documented defects in integrations and business flows, reproducing steps clearly, classifying their impact, and aligning priorities with the development team.",
-          "Reduced validation rework by 20% and sped up defect triage, with functional coverage reaching about 85% and production incidents dropping by 15%."
         ]
       }
     ]
