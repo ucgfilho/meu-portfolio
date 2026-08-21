@@ -25,8 +25,8 @@
     "availableStatus": "Available for new opportunities",
     "greeting": "Hello! I'm",
     "name": "Ubirajara Filho",
-    "title": "QA Analyst",
-    "description": "I work with test automation and DevOps practices to ensure quality from the start. I enjoy building solutions that help teams work better and make testing more efficient.",
+    "title": "Backend Developer",
+    "description": "I build end-to-end document automation: navigating public portals, issuing and capturing certificates and payment slips, persisting files to S3, and extracting structured data from PDFs.",
     "viewProjects": "View Projects",
     "contact": "Get in Touch",
     "scrollDown": "Scroll down",
@@ -34,14 +34,14 @@
   },
   "about": {
     "title": "About Me",
-    "bio1": "I'm a QA Analyst focused on Web, Mobile, and API test automation, working directly to reduce production risks and accelerate the delivery cycle with measurable quality. I approach quality as a strategic part of the product, ensuring that business rules, integrations, and critical flows are validated consistently and reliably.",
-    "bio2": "In practice, I develop and maintain automated test suites using Cypress, Appium, and Robot Framework, with integration into CI/CD pipelines for continuous regression testing. I work extensively on REST API validation, covering status codes, payloads, business rules, and negative scenarios, always focusing on defect prevention.",
-    "bio3": "I have a solid foundation in testing fundamentals and methodologies, applying appropriate techniques to ensure high functional coverage and system stability. I use this knowledge to structure scalable, efficient, and maintainable automation architectures, aligned with team needs and business objectives.",
-    "goalTitle": "Goal",
-    "goalDescription": "Work as a QA Analyst applying automation and best practices from planning.",
-    "differentialTitle": "Differential",
-    "differentialDescription": "Technical problem analysis, scalable test design, and focus on bug prevention.",
-    "imageAlt": "Photo of Ubirajara Filho - QA Analyst"
+    "bio1": "I'm a Backend Developer at Port Louis, working on a serverless audit automation ecosystem. I develop and maintain crawlers that interact with court portals, boards of trade, public agencies, and municipal services to issue certificates, track requests, and capture payment slips and case records.",
+    "bio2": "I work across the full technical lifecycle with JSON workflows executed by Puppeteer, REST integrations, CAPTCHA, and proxies. The pipeline includes downloading and persisting artifacts in Amazon S3, document identification, and TypeScript readers that extract and validate PDF data through regex, OCR, and business rules.",
+    "bio3": "I also troubleshoot production issues by correlating rendered DOM state, logs, payloads, and relationships among audits, certificates, entities, and tasks. I validate fixes with Jest, focused staging runs, and persisted-file evidence, applying the QA discipline I developed while working on SGDoctor.",
+    "goalTitle": "Professional focus",
+    "goalDescription": "Backend development applied to integrations, document automation, and process reliability.",
+    "differentialTitle": "Quality mindset",
+    "differentialDescription": "Combined experience in development, testing, requirements analysis, and production troubleshooting.",
+    "imageAlt": "Photo of Ubirajara Filho - Backend Developer"
   },
   "skills": {
     "title": "Technical Skills",
@@ -51,6 +51,14 @@
     "mobileTests": "Mobile Tests",
     "performanceTests": "Performance Tests",
     "automatedReports": "Automated Reports",
+    "backendDevelopment": "Backend Development",
+    "automationIntegration": "Automation & Integrations",
+    "browserAutomation": "Browser Automation",
+    "cloudPersistence": "Cloud & Persistence",
+    "documentProcessing": "Document Processing",
+    "dataOrchestration": "Data & Orchestration",
+    "observabilityTesting": "Observability & Validation",
+    "qualityEngineering": "Quality Engineering",
     "languages": "Languages",
     "devops": "DevOps & CI/CD",
     "documentation": "Documentation",
@@ -68,23 +76,23 @@
     },
     "saucedemo": {
       "name": "E2E Automation on SauceDemo",
-      "description": "E2E test suite with Cypress, including automated reports and GitHub Actions integration."
+      "description": "Cypress E2E suite for authentication, catalog, cart, and checkout, with JUnit/Mochawesome evidence and continuous execution in GitHub Actions."
     },
     "codeceptjs": {
       "name": "API Automation with CodeceptJS",
-      "description": "API test automation with CodeceptJS and detailed reports using Allure."
+      "description": "Automated REST API tests with CodeceptJS and Mocha, contract validation, and traceable Allure reporting."
     },
     "automationPractice": {
       "name": "E2E Automation on Automation Practice",
-      "description": "E2E tests for e-commerce, using dynamic data with FakerJS for more realistic scenarios."
+      "description": "E-commerce E2E automation with Cypress and dynamic FakerJS data to broaden scenario coverage."
     },
     "restfulApi": {
       "name": "API Automation on Restful API Dev",
-      "description": "REST API tests with Cypress, validating endpoints and responses."
+      "description": "Automated validation of endpoints, HTTP status codes, schemas, responses, and data flows in a REST API using Cypress."
     },
     "mobileAutomation": {
       "name": "Mobile Automation on qaFood",
-      "description": "E2E tests on mobile app using Robot Framework and Appium, with execution on BrowserStack."
+      "description": "Mobile E2E automation with Robot Framework and Appium, executed on remote devices through BrowserStack."
     },
     "k6Performance": {
       "name": "API Performance Testing using k6",
@@ -96,7 +104,7 @@
     "title": "Let's Talk?",
     "description": "I'm always open to new opportunities and interesting projects. Let's talk!",
     "phone": "+55 (73) 99847-8938",
-    "location": "Bahia, Brazil",
+    "location": "Jequié, BA, Brazil",
     "linkedinDescription": "Connect with me",
     "githubDescription": "See my projects",
     "gitlabDescription": "More repositories",
@@ -120,11 +128,15 @@
         "location": "Remote",
         "period": "Jun/2026-Present",
         "isCurrent": true,
-        "responsibilities": []
+        "responsibilities": [
+          "Developed and enhanced more than 15 automation workflows for issuing and reading certificates, querying court cases, tracking requests, and capturing payment slips, delivering over 40 production improvements across more than 20 platform components.",
+          "Implemented JSON-parameterized crawlers and TypeScript readers using Puppeteer, REST APIs, XPath/CSS, regex, CAPTCHA, proxies, OCR, and PDF processing, integrating the emission, Amazon S3 persistence, document identification, and result-reading pipeline.",
+          "Improved product reliability and operational coverage by adding new issuing authorities and handling outages, modals, downloads, rescheduling, and multiple certificate states. These optimizations reduced execution time by up to 23% in specific workflows and decreased failures and manual intervention by 20% to 30%."
+        ]
       },
       {
         "company": "CPDS - Centro de Pesquisa e Desenvolvimento de Software",
-        "role": "Junior QA Analyst",
+        "role": "QA Analyst Intern",
         "location": "Jequié, Bahia, Brazil · Hybrid",
         "period": "Jul/2025-Jun/2026",
         "isCurrent": false,

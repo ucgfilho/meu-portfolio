@@ -4,10 +4,11 @@ import {
   BarChart3,
   ClipboardList,
   Code2,
-  FileText,
   Gauge,
   GitBranch,
-  Smartphone,
+  Cloud,
+  Database,
+  FileSearch,
   TestTube,
   Wrench,
 } from "lucide-react";
@@ -29,6 +30,10 @@ import {
   SiJavascript,
   SiInsomnia,
   SiCodeceptjs,
+  SiTypescript,
+  SiNodedotjs,
+  SiPuppeteer,
+  SiDotnet,
 } from "react-icons/si";
 import { LogoLoop } from "../LogoLoop";
 
@@ -49,34 +54,39 @@ export const SkillsSection = () => {
 
   const skillCategories = [
     {
-      title: t("skills.webTests"),
-      icon: TestTube,
-      skills: ["Cypress", "CodeceptJS", "Gherkin", "BDD"],
-    },
-    {
-      title: t("skills.apiTests"),
-      icon: Wrench,
-      skills: ["Postman", "Insomnia"],
-    },
-    {
-      title: t("skills.mobileTests"),
-      icon: Smartphone,
-      skills: ["Appium", "Robot Framework", "BrowserStack"],
-    },
-    {
-      title: t("skills.performanceTests"),
-      icon: Gauge,
-      skills: ["Grafana k6"],
-    },
-    {
-      title: t("skills.automatedReports"),
-      icon: BarChart3,
-      skills: ["Mochawesome", "JUnit", "Allure"],
-    },
-    {
-      title: t("skills.languages"),
+      title: t("skills.backendDevelopment"),
       icon: Code2,
-      skills: ["JavaScript", "Python", "SQL"],
+      skills: ["TypeScript", "Node.js", "C#", "REST APIs", "JSON", "Regex"],
+    },
+    {
+      title: t("skills.browserAutomation"),
+      icon: Wrench,
+      skills: ["Puppeteer", "DOM", "XPath", "CSS Selectors", "CAPTCHA", "Proxy"],
+    },
+    {
+      title: t("skills.cloudPersistence"),
+      icon: Cloud,
+      skills: ["AWS Lambda", "Amazon S3", "Amazon SQS", "CloudWatch", "Serverless"],
+    },
+    {
+      title: t("skills.documentProcessing"),
+      icon: FileSearch,
+      skills: ["PDF", "OCR", "AWS Textract", "PyTesseract", "ZIP", "XLSX"],
+    },
+    {
+      title: t("skills.dataOrchestration"),
+      icon: Database,
+      skills: ["SQL", "Knex", "Tasks", "Auditorias", "Certidões", "Payloads"],
+    },
+    {
+      title: t("skills.observabilityTesting"),
+      icon: TestTube,
+      skills: ["Jest", "Integration Tests", "Homologation", "Logs", "PRINT_STEPS", "Git"],
+    },
+    {
+      title: t("skills.qualityEngineering"),
+      icon: Gauge,
+      skills: ["Cypress", "CodeceptJS", "Appium", "Robot Framework", "Postman", "k6"],
     },
     {
       title: t("skills.devops"),
@@ -84,9 +94,9 @@ export const SkillsSection = () => {
       skills: ["Git", "GitHub Actions", "Docker", "GitLab CI/CD"],
     },
     {
-      title: t("skills.documentation"),
-      icon: FileText,
-      skills: [t("skills.testDocumentation"), t("skills.bugDocumentation")],
+      title: t("skills.automatedReports"),
+      icon: BarChart3,
+      skills: ["Mochawesome", "JUnit", "Allure"],
     },
     {
       title: t("skills.testManagement"),
@@ -160,6 +170,22 @@ export const SkillsSection = () => {
             <div style={{ position: "relative", overflow: "hidden" }}>
               <LogoLoop
                 logos={[
+                  {
+                    node: <SiTypescript className="logoloop__brand-node" color="#3178C6" />,
+                    title: "TypeScript",
+                  },
+                  {
+                    node: <SiNodedotjs className="logoloop__brand-node" color="#5FA04E" />,
+                    title: "Node.js",
+                  },
+                  {
+                    node: <SiDotnet className="logoloop__brand-node" color="#512BD4" />,
+                    title: "C# / .NET",
+                  },
+                  {
+                    node: <SiPuppeteer className="logoloop__brand-node" color="#40B5A4" />,
+                    title: "Puppeteer",
+                  },
                   {
                     node: <SiJavascript className="logoloop__brand-node" color="#F7DF1E" />,
                     title: "JavaScript",

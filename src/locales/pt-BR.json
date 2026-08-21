@@ -25,8 +25,8 @@
     "availableStatus": "Disponível para novas oportunidades",
     "greeting": "Olá! Eu me chamo",
     "name": "Ubirajara Filho",
-    "title": "Analista de QA",
-    "description": "Trabalho com automação de testes e práticas DevOps para garantir qualidade desde o início. Gosto de construir soluções que facilitam o trabalho das equipes e tornam os testes mais eficientes.",
+    "title": "Desenvolvedor Back-End",
+    "description": "Desenvolvo automações documentais de ponta a ponta: navegação em portais públicos, emissão e captura de certidões e boletos, persistência em S3 e leitura estruturada de PDFs.",
     "viewProjects": "Ver Projetos",
     "contact": "Entrar em Contato",
     "scrollDown": "Role para baixo",
@@ -34,14 +34,14 @@
   },
   "about": {
     "title": "Sobre Mim",
-    "bio1": "Sou Analista de QA com foco em automação de testes Web, Mobile e API, atuando diretamente para reduzir riscos em produção e acelerar o ciclo de entrega com qualidade mensurável. Trabalho a qualidade como parte estratégica do produto, garantindo que regras de negócio, integrações e fluxos críticos sejam validados de forma consistente e confiável.",
-    "bio2": "Na prática, desenvolvo e mantenho suítes de testes automatizados utilizando Cypress, Appium e Robot Framework, com integração em pipelines de CI/CD para execução contínua de testes de regressão. Atuo fortemente na validação de APIs REST, cobrindo status codes, payloads, regras de negócio e cenários negativos, sempre com foco em prevenção de defeitos.",
-    "bio3": "Possuo base sólida em fundamentos e metodologias de teste, aplicando técnicas adequadas para garantir alta cobertura funcional e estabilidade do sistema. Utilizo esse conhecimento para estruturar arquiteturas de automação escaláveis, eficientes e de fácil manutenção, alinhadas às necessidades do time e aos objetivos do negócio.",
-    "goalTitle": "Objetivo",
-    "goalDescription": "Trabalhar como Analista de QA aplicando automação e boas práticas desde o planejamento.",
-    "differentialTitle": "Diferencial",
-    "differentialDescription": "Análise técnica de problemas, criação de testes escaláveis e foco em prevenção de bugs.",
-    "imageAlt": "Foto de Ubirajara Filho - Analista de QA"
+    "bio1": "Sou Desenvolvedor Back-End na Port Louis, atuando em um ecossistema serverless de automação de auditorias. Desenvolvo e mantenho crawlers que consultam portais judiciais, juntas comerciais, órgãos públicos e serviços municipais para emitir certidões, acompanhar pedidos e capturar boletos e processos.",
+    "bio2": "Trabalho no ciclo técnico completo com parametrizações JSON executadas pelo Puppeteer, integrações REST, CAPTCHA e proxy. O fluxo inclui download e persistência de artefatos no Amazon S3, identificação documental e leitores TypeScript que extraem e validam dados de PDFs com regex, OCR e regras de negócio.",
+    "bio3": "Também investigo falhas de produção cruzando DOM renderizado, logs, payloads e relacionamentos entre auditoria, certidão, elemento e task. Valido correções com Jest, execução focada em homologação e evidência do arquivo persistido, aplicando a disciplina de QA que desenvolvi no SGDoctor.",
+    "goalTitle": "Foco profissional",
+    "goalDescription": "Desenvolvimento back-end aplicado a integrações, automação documental e confiabilidade de processos.",
+    "differentialTitle": "Visão de qualidade",
+    "differentialDescription": "Experiência combinada em desenvolvimento, testes, análise de requisitos e diagnóstico de falhas em produção.",
+    "imageAlt": "Foto de Ubirajara Filho - Desenvolvedor Back-End"
   },
   "skills": {
     "title": "Tecnologias e Habilidades",
@@ -51,6 +51,14 @@
     "mobileTests": "Testes Mobile",
     "performanceTests": "Testes de Performance",
     "automatedReports": "Relatórios Automatizados",
+    "backendDevelopment": "Desenvolvimento Back-End",
+    "automationIntegration": "Automação e Integrações",
+    "browserAutomation": "Automação de Navegador",
+    "cloudPersistence": "Cloud e Persistência",
+    "documentProcessing": "Processamento Documental",
+    "dataOrchestration": "Dados e Orquestração",
+    "observabilityTesting": "Observabilidade e Validação",
+    "qualityEngineering": "Engenharia de Qualidade",
     "languages": "Linguagens",
     "devops": "DevOps & CI/CD",
     "documentation": "Documentação",
@@ -68,23 +76,23 @@
     },
     "saucedemo": {
       "name": "Automação E2E no SauceDemo",
-      "description": "Suite de testes E2E com Cypress, incluindo relatórios automáticos e integração com GitHub Actions."
+      "description": "Suíte E2E em Cypress para autenticação, catálogo, carrinho e checkout, com evidências JUnit/Mochawesome e execução contínua no GitHub Actions."
     },
     "codeceptjs": {
       "name": "Automação de API com CodeceptJS",
-      "description": "Automação de testes de API com CodeceptJS e relatórios detalhados usando Allure."
+      "description": "Testes automatizados de API REST com CodeceptJS e Mocha, validação de contratos e geração de relatórios rastreáveis no Allure."
     },
     "automationPractice": {
       "name": "Automação E2E no Automation Practice",
-      "description": "Testes E2E para e-commerce, usando dados dinâmicos com FakerJS para cenários mais realistas."
+      "description": "Automação E2E de e-commerce com Cypress e massas dinâmicas geradas por FakerJS para ampliar a cobertura dos cenários."
     },
     "restfulApi": {
       "name": "Automação de API no Restful API Dev",
-      "description": "Testes de API REST com Cypress, validando endpoints e respostas."
+      "description": "Validação automatizada de endpoints, status HTTP, schemas, respostas e fluxos de dados de uma API REST usando Cypress."
     },
     "mobileAutomation": {
       "name": "Automação Mobile no qaFood",
-      "description": "Testes E2E em app mobile usando Robot Framework e Appium, com execução no BrowserStack."
+      "description": "Automação E2E mobile com Robot Framework e Appium, executada em dispositivos remotos no BrowserStack."
     },
     "k6Performance": {
       "name": "Testes de Performance em API utilizando k6",
@@ -96,7 +104,7 @@
     "title": "Vamos Conversar?",
     "description": "Estou sempre aberto a novas oportunidades e projetos interessantes. Vamos conversar!",
     "phone": "(73) 99847-8938",
-    "location": "Bahia, Brasil",
+    "location": "Jequié, BA",
     "linkedinDescription": "Conecte-se comigo",
     "githubDescription": "Veja meus projetos",
     "gitlabDescription": "Mais repositórios",
@@ -120,11 +128,15 @@
         "location": "Remoto",
         "period": "Jun/2026-Atual",
         "isCurrent": true,
-        "responsibilities": []
+        "responsibilities": [
+          "Desenvolvi e evoluí mais de 15 fluxos de automação para emissão e leitura de certidões, consulta de processos, acompanhamento de pedidos e captura de boletos, entregando mais de 40 melhorias em produção distribuídas por mais de 20 componentes da plataforma.",
+          "Implementei crawlers parametrizados em JSON e leitores em TypeScript com Puppeteer, APIs REST, XPath/CSS, regex, CAPTCHA, proxy, OCR e processamento de PDFs, integrando o pipeline de emissão, persistência no Amazon S3, identificação documental e leitura do resultado.",
+          "Aumentei a confiabilidade e a cobertura operacional do produto ao incorporar novos emissores e tratar indisponibilidades, modais, downloads, reagendamentos e diferentes estados de certidão. As otimizações reduziram em até 23% o tempo de execução de fluxos específicos e entre 20% e 30% as falhas e intervenções manuais."
+        ]
       },
       {
         "company": "CPDS - Centro de Pesquisa e Desenvolvimento de Software",
-        "role": "Analista de QA - Júnior",
+        "role": "Analista de QA - Estágio",
         "location": "Jequié, Bahia, Brasil · Híbrido",
         "period": "Jul/2025-Jun/2026",
         "isCurrent": false,

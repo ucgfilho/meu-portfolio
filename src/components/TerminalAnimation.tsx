@@ -17,26 +17,26 @@ interface TestLine {
 }
 
 const TEST_SEQUENCE: TestLine[] = [
-    {text: "  PASS  src/auth/login.spec.ts", type: "pass", delay: 380},
-    {text: "    ✓ should authenticate with valid credentials (142ms)", type: "pass", delay: 190},
-    {text: "    ✓ should reject invalid password (89ms)", type: "pass", delay: 170},
-    {text: "    ✓ should lock after 5 failed attempts (201ms)", type: "pass", delay: 220},
+    {text: "  RUN   target: GetCertificate", type: "pass", delay: 380},
+    {text: "    ✓ task and audit context loaded", type: "pass", delay: 190},
+    {text: "    ✓ browser session initialized", type: "pass", delay: 170},
+    {text: "    ✓ portal flow completed", type: "pass", delay: 220},
     {text: "", type: "blank", delay: 80},
-    {text: "  PASS  src/api/patients.spec.ts", type: "pass", delay: 340},
-    {text: "    ✓ GET /patients returns 200 (67ms)", type: "pass", delay: 180},
-    {text: "    ✓ POST /patients validates required fields (112ms)", type: "pass", delay: 200},
-    {text: "    ✕ PUT /patients/:id rejects malformed payload", type: "fail", delay: 280},
-    {text: "    ✓ DELETE /patients/:id returns 204 (54ms)", type: "pass", delay: 170},
+    {text: "  STORE artifact", type: "pass", delay: 340},
+    {text: "    ✓ PDF download captured", type: "pass", delay: 180},
+    {text: "    ✓ artifact persisted to Amazon S3", type: "pass", delay: 200},
+    {text: "    ✓ input file registered", type: "pass", delay: 280},
+    {text: "    ✓ response.s3id confirmed", type: "pass", delay: 170},
     {text: "", type: "blank", delay: 80},
-    {text: "  PASS  src/e2e/inventory.spec.ts", type: "pass", delay: 360},
-    {text: "    ✓ should list inventory items (234ms)", type: "pass", delay: 210},
-    {text: "    ✓ should filter by category (156ms)", type: "pass", delay: 190},
-    {text: "    ✓ should export report as PDF (312ms)", type: "pass", delay: 230},
+    {text: "  READ  readContentFile", type: "pass", delay: 360},
+    {text: "    ✓ document target identified", type: "pass", delay: 210},
+    {text: "    ✓ PDF content extracted", type: "pass", delay: 190},
+    {text: "    ✓ business payload validated", type: "pass", delay: 230},
     {text: "", type: "blank", delay: 120},
-    {text: "Tests: 9 passed, 1 failed, 10 total — Time: 2.341s", type: "summary", delay: 300},
+    {text: "Emission verified with persisted artifact", type: "summary", delay: 300},
 ];
 
-const COMMAND = "npx cypress run --spec 'src/**/*.spec.ts'";
+const COMMAND = "PRINT_STEPS=1 jest crawler.test.ts";
 
 export const TerminalAnimation = () => {
     const [phase, setPhase] = useState<"typing" | "running" | "done" | "clearing">("typing");
@@ -166,7 +166,7 @@ export const TerminalAnimation = () => {
             );
         }
 
-        const isHeader = line.text.includes("PASS");
+        const isHeader = /\b(RUN|STORE|READ)\b/.test(line.text);
         if (isHeader) {
             return (
                 <div key={index} className="text-[#ffffff] font-bold terminal-line-enter">

@@ -25,8 +25,8 @@
     "availableStatus": "Disponible para nuevas oportunidades",
     "greeting": "¡Hola! Me llamo",
     "name": "Ubirajara Filho",
-    "title": "Analista de QA",
-    "description": "Trabajo con automatización de pruebas y prácticas DevOps para garantizar calidad desde el inicio. Me gusta crear soluciones que facilitan el trabajo de los equipos y hacen las pruebas más eficientes.",
+    "title": "Desarrollador Back-End",
+    "description": "Desarrollo automatizaciones documentales de extremo a extremo: navegación en portales públicos, emisión y captura de certificados y comprobantes, persistencia en S3 y lectura estructurada de PDFs.",
     "viewProjects": "Ver Proyectos",
     "contact": "Contactar",
     "scrollDown": "Desplazar hacia abajo",
@@ -34,14 +34,14 @@
   },
   "about": {
     "title": "Sobre Mí",
-    "bio1": "Soy Analista de QA con enfoque en automatización de pruebas Web, Mobile y API, actuando directamente para reducir riesgos en producción y acelerar el ciclo de entrega con calidad medible. Trabajo la calidad como parte estratégica del producto, garantizando que reglas de negocio, integraciones y flujos críticos sean validados de forma consistente y confiable.",
-    "bio2": "En la práctica, desarrollo y mantengo suites de pruebas automatizadas utilizando Cypress, Appium y Robot Framework, con integración en pipelines de CI/CD para ejecución continua de pruebas de regresión. Actúo fuertemente en la validación de APIs REST, cubriendo códigos de estado, payloads, reglas de negocio y escenarios negativos, siempre con foco en prevención de defectos.",
-    "bio3": "Poseo base sólida en fundamentos y metodologías de prueba, aplicando técnicas adecuadas para garantizar alta cobertura funcional y estabilidad del sistema. Utilizo este conocimiento para estructurar arquitecturas de automatización escalables, eficientes y de fácil mantenimiento, alineadas a las necesidades del equipo y a los objetivos del negocio.",
-    "goalTitle": "Objetivo",
-    "goalDescription": "Trabajar como Analista de QA aplicando automatización y buenas prácticas desde la planificación.",
-    "differentialTitle": "Diferencial",
-    "differentialDescription": "Análisis técnico de problemas, diseño de pruebas escalables y enfoque en prevención de bugs.",
-    "imageAlt": "Foto de Ubirajara Filho - Analista de QA"
+    "bio1": "Soy Desarrollador Back-End en Port Louis y trabajo en un ecosistema serverless de automatización de auditorías. Desarrollo y mantengo crawlers que consultan portales judiciales, juntas comerciales, organismos públicos y servicios municipales para emitir certificados, acompañar solicitudes y capturar comprobantes y procesos.",
+    "bio2": "Trabajo en todo el ciclo técnico con flujos JSON ejecutados mediante Puppeteer, integraciones REST, CAPTCHA y proxies. El pipeline incluye la descarga y persistencia de artefactos en Amazon S3, la identificación documental y lectores TypeScript que extraen y validan datos de PDFs mediante regex, OCR y reglas de negocio.",
+    "bio3": "También investigo fallas de producción correlacionando el DOM renderizado, logs, payloads y relaciones entre auditoría, certificado, entidad y task. Valido correcciones con Jest, ejecuciones enfocadas en homologación y evidencia del archivo persistido, aplicando la disciplina de QA desarrollada en SGDoctor.",
+    "goalTitle": "Enfoque profesional",
+    "goalDescription": "Desarrollo back-end aplicado a integraciones, automatización documental y confiabilidad de procesos.",
+    "differentialTitle": "Visión de calidad",
+    "differentialDescription": "Experiencia combinada en desarrollo, pruebas, análisis de requisitos y diagnóstico de fallas en producción.",
+    "imageAlt": "Foto de Ubirajara Filho - Desarrollador Back-End"
   },
   "skills": {
     "title": "Competencias Técnicas",
@@ -51,6 +51,14 @@
     "mobileTests": "Pruebas Móviles",
     "performanceTests": "Pruebas de Performance",
     "automatedReports": "Informes Automatizados",
+    "backendDevelopment": "Desarrollo Back-End",
+    "automationIntegration": "Automatización e Integraciones",
+    "browserAutomation": "Automatización de Navegador",
+    "cloudPersistence": "Cloud y Persistencia",
+    "documentProcessing": "Procesamiento Documental",
+    "dataOrchestration": "Datos y Orquestación",
+    "observabilityTesting": "Observabilidad y Validación",
+    "qualityEngineering": "Ingeniería de Calidad",
     "languages": "Lenguajes",
     "devops": "DevOps & CI/CD",
     "documentation": "Documentación",
@@ -68,23 +76,23 @@
     },
     "saucedemo": {
       "name": "Automatización E2E en SauceDemo",
-      "description": "Suite de pruebas E2E con Cypress, incluyendo reportes automatizados e integración con GitHub Actions."
+      "description": "Suite E2E en Cypress para autenticación, catálogo, carrito y checkout, con evidencias JUnit/Mochawesome y ejecución continua en GitHub Actions."
     },
     "codeceptjs": {
       "name": "Automatización de API con CodeceptJS",
-      "description": "Automatización de pruebas de API con CodeceptJS y reportes detallados usando Allure."
+      "description": "Pruebas automatizadas de API REST con CodeceptJS y Mocha, validación de contratos e informes rastreables en Allure."
     },
     "automationPractice": {
       "name": "Automatización E2E en Automation Practice",
-      "description": "Pruebas E2E para e-commerce, utilizando datos dinámicos con FakerJS para escenarios más realistas."
+      "description": "Automatización E2E de e-commerce con Cypress y datos dinámicos generados por FakerJS para ampliar la cobertura."
     },
     "restfulApi": {
       "name": "Automatización de API en Restful API Dev",
-      "description": "Pruebas de API REST con Cypress, validando endpoints y respuestas."
+      "description": "Validación automatizada de endpoints, estados HTTP, schemas, respuestas y flujos de datos de una API REST con Cypress."
     },
     "mobileAutomation": {
       "name": "Automatización Mobile en qaFood",
-      "description": "Pruebas E2E en app mobile usando Robot Framework y Appium, con ejecución en BrowserStack."
+      "description": "Automatización E2E mobile con Robot Framework y Appium, ejecutada en dispositivos remotos mediante BrowserStack."
     },
     "k6Performance": {
       "name": "Pruebas de Performance de API con k6",
@@ -96,7 +104,7 @@
     "title": "¿Hablamos?",
     "description": "Siempre estoy abierto a nuevas oportunidades y proyectos interesantes. ¡Hablemos!",
     "phone": "+55 (73) 99847-8938",
-    "location": "Bahia, Brasil",
+    "location": "Jequié, BA, Brasil",
     "linkedinDescription": "Conéctate conmigo",
     "githubDescription": "Ve mis proyectos",
     "gitlabDescription": "Más repositorios",
@@ -120,11 +128,15 @@
         "location": "Remoto",
         "period": "Jun/2026-Actual",
         "isCurrent": true,
-        "responsibilities": []
+        "responsibilities": [
+          "Desarrollé y evolucioné más de 15 flujos de automatización para emitir y leer certificados, consultar procesos, acompañar solicitudes y capturar comprobantes, entregando más de 40 mejoras en producción distribuidas en más de 20 componentes de la plataforma.",
+          "Implementé crawlers parametrizados en JSON y lectores en TypeScript con Puppeteer, APIs REST, XPath/CSS, regex, CAPTCHA, proxies, OCR y procesamiento de PDFs, integrando el pipeline de emisión, persistencia en Amazon S3, identificación documental y lectura de resultados.",
+          "Aumenté la confiabilidad y la cobertura operativa del producto al incorporar nuevos emisores y tratar indisponibilidades, modales, descargas, reprogramaciones y diferentes estados de certificado. Las optimizaciones redujeron hasta un 23% el tiempo de ejecución de flujos específicos y entre un 20% y un 30% las fallas e intervenciones manuales."
+        ]
       },
       {
         "company": "CPDS - Centro de Pesquisa e Desenvolvimento de Software",
-        "role": "Analista de QA - Júnior",
+        "role": "Analista de QA - Prácticas",
         "location": "Jequié, Bahía, Brasil · Híbrido",
         "period": "Jul/2025-Jun/2026",
         "isCurrent": false,
