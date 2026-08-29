@@ -126,24 +126,24 @@
         "company": "Port Louis",
         "role": "Desarrollador Back-End Junior I",
         "location": "Remoto",
-        "period": "Jun/2026-Actual",
+        "period": "Jun/2025-Actual",
         "isCurrent": true,
         "responsibilities": [
-          "Desarrollé y evolucioné más de 15 flujos de automatización para emitir y leer certificados, consultar procesos, acompañar solicitudes y capturar comprobantes, entregando más de 40 mejoras en producción distribuidas en más de 20 componentes de la plataforma.",
-          "Implementé crawlers parametrizados en JSON y lectores en TypeScript con Puppeteer, APIs REST, XPath/CSS, regex, CAPTCHA, proxies, OCR y procesamiento de PDFs, integrando el pipeline de emisión, persistencia en Amazon S3, identificación documental y lectura de resultados.",
-          "Aumenté la confiabilidad y la cobertura operativa del producto al incorporar nuevos emisores y tratar indisponibilidades, modales, descargas, reprogramaciones y diferentes estados de certificado. Las optimizaciones redujeron hasta un 23% el tiempo de ejecución de flujos específicos y entre un 20% y un 30% las fallas e intervenciones manuales."
+          "Desarrollé y mejoré más de 15 flujos de automatización para la emisión, captura y lectura de certificados, comprobantes de pago y consultas públicas, incluidas integraciones con TURS, TRF1, TRF5, MPT, MPMT, TCU, CETESB, SEMAE y SAESA SCS, entre otros.",
+          "Implementé crawlers parametrizados en JSON y lectores en TypeScript utilizando Puppeteer, APIs REST, regex, resolución de CAPTCHA, manipulación de PDFs, tratamiento de modales e indisponibilidades, reprogramación de tareas y pruebas integradas en entornos locales y de homologación mediante AWS Lambda.",
+          "Entregué más de 40 mejoras en producción durante los primeros meses, abarcando más de 20 componentes del proyecto. Las optimizaciones redujeron hasta un 23% el tiempo de ejecución de flujos específicos y disminuyeron entre un 20% y un 30% las fallas e intervenciones manuales en las automatizaciones atendidas."
         ]
       },
       {
         "company": "CPDS - Centro de Pesquisa e Desenvolvimento de Software",
-        "role": "Analista de QA - Prácticas",
+        "role": "Desarrollador Back-End - Prácticas",
         "location": "Jequié, Bahía, Brasil · Híbrido",
-        "period": "Jul/2025-Jun/2026",
+        "period": "Jul/2024-Jun/2025",
         "isCurrent": false,
         "responsibilities": [
-          "Estructuré y ejecuté pruebas manuales funcionales, exploratorias y regresivas para un sistema web de gestión para clínicas académicas, el SGDoctor, validando flujos críticos de los módulos de Pacientes, Atención, Agenda y Stock y garantizando un 95% de cobertura funcional.",
-          "Validé integraciones y APIs REST responsables de la comunicación entre módulos clínicos y administrativos, asegurando la integridad de datos sensibles como historias clínicas, documentos y movimientos.",
-          "Reduje errores en producción en un 40%, reduje el tiempo de diagnóstico de fallas en un 35%, evité el retrabajo operativo y generé ganancias directas de eficiencia y reducción del 18% de los costos en entornos críticos de salud."
+          "Desarrollé el back-end de una plataforma clínica y académica, estructurando el flujo completo de atención, como agenda, ficha del paciente, evolución clínica, procedimientos, documentos, validación y firma digital con historial y trazabilidad.",
+          "Implementé los flujos utilizando Laravel, PHP, Eloquent y PostgreSQL, aplicando arquitectura Controller-Service-Repository, migraciones, relaciones entre entidades clínicas, middleware de permisos por perfil, transacciones con lockForUpdate, tratamiento de concurrencia, notificaciones e integración entre módulos de atención, usuarios y stock.",
+          "Esto redujo entre un 70% y un 90% el tiempo de aprovisionamiento de usuarios, entre un 30% y un 50% el retrabajo durante la validación de historias clínicas y bloqueó el 100% de los movimientos de stock superiores al saldo disponible previstos en las reglas del sistema, además de garantizar la trazabilidad integral de las firmas y modificaciones clínicas."
         ]
       }
     ]

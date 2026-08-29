@@ -249,7 +249,7 @@ export const TerminalAnimation = () => {
                 <div className="terminal-titlebar">
                     {/* Left spacer to balance the right buttons */}
                     <div style={{width: 138}}/>
-                    <span className="terminal-title">cypress — tests</span>
+                    <span className="terminal-title"></span>
                     {/* Windows-style action buttons */}
                     <div className="flex items-center">
                         <button className="terminal-win-btn" aria-label="Minimize" tabIndex={-1}>

@@ -126,24 +126,24 @@
         "company": "Port Louis",
         "role": "Desenvolvedor Back-End Júnior I",
         "location": "Remoto",
-        "period": "Jun/2026-Atual",
+        "period": "Jun/2025-Atual",
         "isCurrent": true,
         "responsibilities": [
-          "Desenvolvi e evoluí mais de 15 fluxos de automação para emissão e leitura de certidões, consulta de processos, acompanhamento de pedidos e captura de boletos, entregando mais de 40 melhorias em produção distribuídas por mais de 20 componentes da plataforma.",
-          "Implementei crawlers parametrizados em JSON e leitores em TypeScript com Puppeteer, APIs REST, XPath/CSS, regex, CAPTCHA, proxy, OCR e processamento de PDFs, integrando o pipeline de emissão, persistência no Amazon S3, identificação documental e leitura do resultado.",
-          "Aumentei a confiabilidade e a cobertura operacional do produto ao incorporar novos emissores e tratar indisponibilidades, modais, downloads, reagendamentos e diferentes estados de certidão. As otimizações reduziram em até 23% o tempo de execução de fluxos específicos e entre 20% e 30% as falhas e intervenções manuais."
+          "Desenvolvi e aprimorei mais de 15 fluxos de automação para emissão, captura e leitura de certidões, boletos e consultas públicas, incluindo integrações com TURS, TRF1, TRF5, MPT, MPMT, TCU, CETESB, SEMAE e SAESA SCS, entre outros.",
+          "Implementei crawlers parametrizados em JSON e leitores em TypeScript, utilizando Puppeteer, APIs REST, regex, resolução de CAPTCHA, manipulação de PDFs, tratamento de modais e indisponibilidades, reagendamento de tarefas e testes integrados em ambientes locais e de homologação através do AWS Lambda.",
+          "Entreguei mais de 40 melhorias em produção durante os primeiros meses, abrangendo mais de 20 componentes do projeto. As otimizações reduziram em até 23% o tempo de execução de fluxos específicos e diminuíram entre 20% e 30% as falhas e intervenções manuais nas automações atendidas."
         ]
       },
       {
         "company": "CPDS - Centro de Pesquisa e Desenvolvimento de Software",
-        "role": "Analista de QA - Estágio",
+        "role": "Desenvolvedor Back-End - Estágio",
         "location": "Jequié, Bahia, Brasil · Híbrido",
-        "period": "Jul/2025-Jun/2026",
+        "period": "Jul/2024-Jun/2025",
         "isCurrent": false,
         "responsibilities": [
-          "Estruturei e executei testes manuais funcionais, exploratórios e regressivos para um sistema web de gestão para clínicas acadêmicas, o SGDoctor, validando fluxos críticos dos módulos de Pacientes, Atendimento, Agenda e Estoque e garantindo 95% de cobertura funcional.",
-          "Validei integrações e APIs REST responsáveis pela comunicação entre módulos clínicos e administrativos, assegurando a integridade de dados sensíveis como prontuários, documentos e movimentações.",
-          "Reduzi bugs em produção em 40%, reduzi o tempo de diagnóstico de falhas em 35%, evitei retrabalho operacional e gerei ganho direto de eficiência e redução de 18% dos custos em ambientes críticos de saúde."
+          "Desenvolvi o back-end de uma plataforma clínica e acadêmica, estruturando o fluxo completo de atendimento, como agenda, ficha do paciente, evolução clínica, procedimentos, documentos, validação e assinatura digital com histórico e rastreabilidade.",
+          "Implementei os fluxos utilizando Laravel, PHP, Eloquent e PostgreSQL, aplicando arquitetura Controller-Service-Repository, migrations, relacionamentos entre entidades clínicas, middleware de permissões por perfil, transações com lockForUpdate, tratamento de concorrência, notificações e integração entre módulos de atendimento, usuários e estoque.",
+          "Isso resultou na redução de 70% a 90% no tempo de provisionamento de usuários, de 30% a 50% no retrabalho durante a validação de prontuários e no bloqueio de 100% das movimentações de estoque acima do saldo disponível previstas nas regras do sistema, além de garantir rastreabilidade integral das assinaturas e alterações clínicas."
         ]
       }
     ]

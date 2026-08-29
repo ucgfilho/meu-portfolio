@@ -126,24 +126,24 @@
         "company": "Port Louis",
         "role": "Junior Backend Developer I",
         "location": "Remote",
-        "period": "Jun/2026-Present",
+        "period": "Jun/2025-Present",
         "isCurrent": true,
         "responsibilities": [
-          "Developed and enhanced more than 15 automation workflows for issuing and reading certificates, querying court cases, tracking requests, and capturing payment slips, delivering over 40 production improvements across more than 20 platform components.",
-          "Implemented JSON-parameterized crawlers and TypeScript readers using Puppeteer, REST APIs, XPath/CSS, regex, CAPTCHA, proxies, OCR, and PDF processing, integrating the emission, Amazon S3 persistence, document identification, and result-reading pipeline.",
-          "Improved product reliability and operational coverage by adding new issuing authorities and handling outages, modals, downloads, rescheduling, and multiple certificate states. These optimizations reduced execution time by up to 23% in specific workflows and decreased failures and manual intervention by 20% to 30%."
+          "Developed and enhanced more than 15 automation workflows for issuing, capturing, and reading certificates, payment slips, and public records, including integrations with TURS, TRF1, TRF5, MPT, MPMT, TCU, CETESB, SEMAE, and SAESA SCS, among others.",
+          "Implemented JSON-parameterized crawlers and TypeScript readers using Puppeteer, REST APIs, regex, CAPTCHA solving, PDF manipulation, modal and outage handling, task rescheduling, and integrated tests in local and staging environments through AWS Lambda.",
+          "Delivered more than 40 production improvements during the first few months, spanning more than 20 project components. The optimizations reduced execution time by up to 23% in specific workflows and decreased failures and manual interventions by 20% to 30% across the supported automations."
         ]
       },
       {
         "company": "CPDS - Centro de Pesquisa e Desenvolvimento de Software",
-        "role": "QA Analyst Intern",
+        "role": "Backend Developer Intern",
         "location": "Jequié, Bahia, Brazil · Hybrid",
-        "period": "Jul/2025-Jun/2026",
+        "period": "Jul/2024-Jun/2025",
         "isCurrent": false,
         "responsibilities": [
-          "Structured and executed manual functional, exploratory, and regression tests for a web management system for academic clinics, SGDoctor, validating critical flows in the Patients, Service, Schedule, and Inventory modules and ensuring 95% functional coverage.",
-          "Validated integrations and REST APIs responsible for communication between clinical and administrative modules, ensuring the integrity of sensitive data such as medical records, documents, and movements.",
-          "Reduced production bugs by 40%, reduced failure diagnosis time by 35%, avoided operational rework, and generated direct efficiency gains with 18% cost reduction in critical health environments."
+          "Developed the back end of a clinical and academic platform, structuring the complete patient-care workflow, including scheduling, patient records, clinical notes, procedures, documents, validation, and digital signatures with history and traceability.",
+          "Implemented the workflows using Laravel, PHP, Eloquent, and PostgreSQL, applying Controller-Service-Repository architecture, migrations, relationships between clinical entities, role-based permission middleware, transactions with lockForUpdate, concurrency handling, notifications, and integration across care, user, and inventory modules.",
+          "This reduced user provisioning time by 70% to 90%, cut rework during medical-record validation by 30% to 50%, and blocked 100% of inventory movements above the available balance covered by the system rules, while ensuring full traceability of signatures and clinical changes."
         ]
       }
     ]
