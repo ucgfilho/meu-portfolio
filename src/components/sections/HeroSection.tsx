@@ -71,14 +71,6 @@ export const HeroSection = () => {
                             {t("hero.title")}
                         </motion.h2>
 
-                        {/* Descrição */}
-                        <motion.p
-                            variants={itemVariants}
-                            className="text-lg md:text-xl text-muted-foreground max-w-2xl leading-relaxed mb-10"
-                        >
-                            {t("hero.description")}
-                        </motion.p>
-
                         {/* CTA Buttons */}
                         <motion.div
                             variants={itemVariants}
