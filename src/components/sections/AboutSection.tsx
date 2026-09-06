@@ -84,43 +84,7 @@ export const AboutSection = () => {
                             </p>
                         </motion.div>
 
-                        {/* Feature Cards */}
-                        <motion.div
-                            variants={itemVariants}
-                            className="grid sm:grid-cols-2 gap-4 pt-4"
-                        >
-                            <div className="card group">
-                                <div className="flex flex-col gap-3">
-                                    <div className="icon-container-sm group-hover:bg-accent/20 transition-colors">
-                                        <Target className="w-5 h-5"/>
-                                    </div>
-                                    <div>
-                                        <h3 className="font-medium text-foreground mb-1">
-                                            {t("about.goalTitle")}
-                                        </h3>
-                                        <p className="text-muted-foreground text-sm leading-relaxed">
-                                            {t("about.goalDescription")}
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
 
-                            <div className="card group">
-                                <div className="flex flex-col gap-3">
-                                    <div className="icon-container-sm group-hover:bg-accent/20 transition-colors">
-                                        <Sparkles className="w-5 h-5"/>
-                                    </div>
-                                    <div>
-                                        <h3 className="font-medium text-foreground mb-1">
-                                            {t("about.differentialTitle")}
-                                        </h3>
-                                        <p className="text-muted-foreground text-sm leading-relaxed">
-                                            {t("about.differentialDescription")}
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                        </motion.div>
                     </motion.div>
                 </motion.div>
             </div>
