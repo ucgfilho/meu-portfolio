@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
-import { Menu, X } from "lucide-react";
+import { Download, Menu, X } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { LanguageSwitcher } from "./LanguageSwitcher";
 
@@ -64,7 +64,7 @@ export const Navigation = () => {
               <motion.a
                 key={item.href}
                 href={item.href}
-                className="px-4 py-2 text-sm font-medium text-foreground/80 hover:text-background transition-colors duration-200 hover:bg-foreground"
+                className="px-2.5 lg:px-3 xl:px-4 py-2 text-sm font-medium text-foreground/80 hover:text-background transition-colors duration-200 hover:bg-foreground"
                 initial={{ opacity: 0, y: -10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{
@@ -82,15 +82,29 @@ export const Navigation = () => {
             </div>
           </div>
 
-          {/* Mobile Menu Button */}
-          <button
-            className="md:hidden absolute right-6 p-2 text-foreground hover:bg-foreground hover:text-background transition-colors"
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            aria-label={isMobileMenuOpen ? t("nav.closeMenu") : t("nav.openMenu")}
-            aria-expanded={isMobileMenuOpen}
-          >
-            {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
+          {/* Right actions: Download CV & Mobile Menu Button */}
+          <div className="absolute right-6 flex items-center gap-3">
+            <a
+              href="https://drive.google.com/file/d/1xCiolo4vc35d92N6LmUeDl9VOH6U4TWS/view?usp=sharing"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 px-3.5 py-1.5 md:px-4 md:py-2 bg-white text-black text-xs md:text-sm font-semibold hover:bg-white/90 transition-all duration-200 shadow-sm"
+              aria-label={t("nav.downloadCv")}
+            >
+              <Download className="w-3.5 h-3.5 md:w-4 md:h-4" />
+              <span>{t("nav.downloadCv")}</span>
+            </a>
+
+            {/* Mobile Menu Button */}
+            <button
+              className="md:hidden p-2 text-foreground hover:bg-foreground hover:text-background transition-colors"
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              aria-label={isMobileMenuOpen ? t("nav.closeMenu") : t("nav.openMenu")}
+              aria-expanded={isMobileMenuOpen}
+            >
+              {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            </button>
+          </div>
         </div>
       </motion.nav>
 
@@ -143,8 +157,23 @@ export const Navigation = () => {
               </motion.a>
             ))}
 
-            {/* Language Switcher for Mobile */}
+            {/* Download CV Button for Mobile */}
             <div className="mt-4 px-4">
+              <a
+                href="https://drive.google.com/file/d/1xCiolo4vc35d92N6LmUeDl9VOH6U4TWS/view?usp=sharing"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full inline-flex items-center justify-center gap-2 px-4 py-3 bg-white text-black text-sm font-semibold hover:bg-white/90 transition-all duration-200 shadow-sm"
+                aria-label={t("nav.downloadCv")}
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                <Download className="w-4 h-4" />
+                <span>{t("nav.downloadCv")}</span>
+              </a>
+            </div>
+
+            {/* Language Switcher for Mobile */}
+            <div className="mt-2 px-4">
               <LanguageSwitcher />
             </div>
           </nav>
