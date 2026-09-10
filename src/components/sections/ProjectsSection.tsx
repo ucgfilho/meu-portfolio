@@ -20,16 +20,16 @@ export const ProjectsSection = () => {
 
   const projects = [
     {
-      name: t("projects.saucedemo.name"),
-      description: t("projects.saucedemo.description"),
-      technologies: ["Cypress", "CI/CD", "GitHub Actions"],
-      link: "https://github.com/ucgfilho/ProjetoCY",
+      name: t("projects.portdata.name"),
+      description: t("projects.portdata.description"),
+      technologies: ["C#", "TypeScript", "Puppeteer"],
+      link: "https://www.portdata.tech/",
     },
     {
-      name: t("projects.codeceptjs.name"),
-      description: t("projects.codeceptjs.description"),
-      technologies: ["CodeceptJS", "Allure", "API Testing"],
-      link: "https://github.com/ucgfilho/ProjetoCodeceptJS",
+      name: t("projects.sgdoctor.name"),
+      description: t("projects.sgdoctor.description"),
+      technologies: ["Laravel", "Vue", "Inertia"],
+      link: "https://gitlab.com/cpdsjq/sgdoctor_academico",
     },
     {
       name: t("projects.automationPractice.name"),

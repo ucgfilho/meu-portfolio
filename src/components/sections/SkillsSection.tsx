@@ -9,7 +9,6 @@ import {
   Cloud,
   Database,
   FileSearch,
-  TestTube,
   Wrench,
 } from "lucide-react";
 import { useTranslation } from "react-i18next";
@@ -56,37 +55,32 @@ export const SkillsSection = () => {
     {
       title: t("skills.backendDevelopment"),
       icon: Code2,
-      skills: ["TypeScript", "Node.js", "C#", "REST APIs", "JSON", "Regex"],
+      skills: ["TypeScript", "Node.js", "C#", ".NET", "PHP", "Laravel"],
     },
     {
       title: t("skills.browserAutomation"),
       icon: Wrench,
-      skills: ["Puppeteer", "DOM", "XPath", "CSS Selectors", "CAPTCHA", "Proxy"],
+      skills: ["Puppeteer", "Playwright", "Selenium"],
     },
     {
       title: t("skills.cloudPersistence"),
       icon: Cloud,
-      skills: ["AWS Lambda", "Amazon S3", "Amazon SQS", "CloudWatch", "Serverless"],
+      skills: ["AWS Lambda", "Amazon S3", "Amazon SQS", "CloudWatch"],
     },
     {
       title: t("skills.documentProcessing"),
       icon: FileSearch,
-      skills: ["PDF", "OCR", "AWS Textract", "PyTesseract", "ZIP", "XLSX"],
+      skills: ["AWS Textract", "PyTesseract", "Tesseract OCR"],
     },
     {
       title: t("skills.dataOrchestration"),
       icon: Database,
-      skills: ["SQL", "Knex", "Tasks", "Auditorias", "Certidões", "Payloads"],
-    },
-    {
-      title: t("skills.observabilityTesting"),
-      icon: TestTube,
-      skills: ["Jest", "Integration Tests", "Homologation", "Logs", "PRINT_STEPS", "Git"],
+      skills: ["PostgreSQL", "MySQL", "SQL", "Knex.js"],
     },
     {
       title: t("skills.qualityEngineering"),
       icon: Gauge,
-      skills: ["Cypress", "CodeceptJS", "Appium", "Robot Framework", "Postman", "k6"],
+      skills: ["Cypress", "CodeceptJS", "Appium", "Robot Framework", "Jest", "k6", "Postman", "Insomnia"],
     },
     {
       title: t("skills.devops"),

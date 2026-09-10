@@ -56,8 +56,7 @@
     "browserAutomation": "Browser Automation",
     "cloudPersistence": "Cloud & Persistence",
     "documentProcessing": "Document Processing",
-    "dataOrchestration": "Data & Orchestration",
-    "observabilityTesting": "Observability & Validation",
+    "dataOrchestration": "Databases",
     "qualityEngineering": "Quality Engineering",
     "languages": "Languages",
     "devops": "DevOps & CI/CD",
@@ -72,7 +71,11 @@
     "viewGithubButton": "View GitHub",
     "sgdoctor": {
       "name": "SGDoctor Academic",
-      "description": "I worked as QA on SGDoctor, performing manual and automated tests, validating requirements, and documenting bugs found."
+      "description": "Clinical platform for managing internal and external university patients, medical record signatures, appointment tracking, and medical reports."
+    },
+    "portdata": {
+      "name": "PortData",
+      "description": "Development of crawlers and readers for automated issuance, querying, and data extraction of public certificates and invoices."
     },
     "saucedemo": {
       "name": "E2E Automation on SauceDemo",
