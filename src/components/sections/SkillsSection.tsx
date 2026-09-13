@@ -22,18 +22,14 @@ import {
   SiJunit5,
   SiAppium,
   SiRobotframework,
-  SiPython,
   SiMysql,
   SiGitlab,
-  SiJira,
   SiJavascript,
-  SiInsomnia,
-  SiCodeceptjs,
   SiTypescript,
-  SiNodedotjs,
   SiPuppeteer,
   SiDotnet,
 } from "react-icons/si";
+import { FaAws } from "react-icons/fa6";
 import { LogoLoop } from "../LogoLoop";
 
 /* =============================================================================
@@ -55,17 +51,17 @@ export const SkillsSection = () => {
     {
       title: t("skills.backendDevelopment"),
       icon: Code2,
-      skills: ["TypeScript", "Node.js", "C#", ".NET", "PHP", "Laravel"],
+      skills: ["C#", ".NET", "TypeScript"],
     },
     {
       title: t("skills.browserAutomation"),
       icon: Wrench,
-      skills: ["Puppeteer", "Playwright", "Selenium"],
+      skills: ["Puppeteer", "Playwright"],
     },
     {
       title: t("skills.cloudPersistence"),
       icon: Cloud,
-      skills: ["AWS Lambda", "Amazon S3", "Amazon SQS", "CloudWatch"],
+      skills: ["Amazon Web Services"],
     },
     {
       title: t("skills.documentProcessing"),
@@ -75,12 +71,12 @@ export const SkillsSection = () => {
     {
       title: t("skills.dataOrchestration"),
       icon: Database,
-      skills: ["PostgreSQL", "MySQL", "SQL", "Knex.js"],
+      skills: ["PostgreSQL", "MySQL"],
     },
     {
       title: t("skills.qualityEngineering"),
       icon: Gauge,
-      skills: ["Cypress", "CodeceptJS", "Appium", "Robot Framework", "Jest", "k6", "Postman", "Insomnia"],
+      skills: ["Cypress", "Selenium", "Appium", "Robot Framework", "Jest", "k6", "Postman"],
     },
     {
       title: t("skills.devops"),
@@ -95,7 +91,7 @@ export const SkillsSection = () => {
     {
       title: t("skills.testManagement"),
       icon: ClipboardList,
-      skills: ["Jira", "Xray"],
+      skills: ["Xray"],
     },
   ];
 
@@ -165,16 +161,12 @@ export const SkillsSection = () => {
               <LogoLoop
                 logos={[
                   {
-                    node: <SiTypescript className="logoloop__brand-node" color="#3178C6" />,
-                    title: "TypeScript",
-                  },
-                  {
-                    node: <SiNodedotjs className="logoloop__brand-node" color="#5FA04E" />,
-                    title: "Node.js",
-                  },
-                  {
                     node: <SiDotnet className="logoloop__brand-node" color="#512BD4" />,
                     title: "C# / .NET",
+                  },
+                  {
+                    node: <SiTypescript className="logoloop__brand-node" color="#3178C6" />,
+                    title: "TypeScript",
                   },
                   {
                     node: <SiPuppeteer className="logoloop__brand-node" color="#40B5A4" />,
@@ -186,27 +178,15 @@ export const SkillsSection = () => {
                   },
                   {
                     node: <SiMysql className="logoloop__brand-node" color="#4479A1" />,
-                    title: "SQL",
-                  },
-                  {
-                    node: <SiPython className="logoloop__brand-node" color="#f7ba13" />,
-                    title: "Python",
+                    title: "MySQL",
                   },
                   {
                     node: <SiCypress className="logoloop__brand-node" color="#a3e7cb" />,
                     title: "Cypress",
                   },
                   {
-                    node: <SiCodeceptjs className="logoloop__brand-node" color="#F6E05E" />,
-                    title: "CodeceptJS",
-                  },
-                  {
                     node: <SiPostman className="logoloop__brand-node" color="#FF6C37" />,
                     title: "Postman",
-                  },
-                  {
-                    node: <SiInsomnia className="logoloop__brand-node" color="#4000BF" />,
-                    title: "Insomnia",
                   },
                   {
                     node: <SiAppium className="logoloop__brand-node" color="#EE376D" />,
@@ -252,8 +232,8 @@ export const SkillsSection = () => {
                     title: "Docker",
                   },
                   {
-                    node: <SiJira className="logoloop__brand-node" color="#0052CC" />,
-                    title: "Jira",
+                    node: <FaAws className="logoloop__brand-node" color="#FF9900" />,
+                    title: "AWS",
                   },
                 ]}
                 speed={80}

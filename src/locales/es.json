@@ -82,10 +82,6 @@
       "name": "Automatización E2E en SauceDemo",
       "description": "Suite E2E en Cypress para autenticación, catálogo, carrito y checkout, con evidencias JUnit/Mochawesome y ejecución continua en GitHub Actions."
     },
-    "codeceptjs": {
-      "name": "Automatización de API con CodeceptJS",
-      "description": "Pruebas automatizadas de API REST con CodeceptJS y Mocha, validación de contratos e informes rastreables en Allure."
-    },
     "automationPractice": {
       "name": "Automatización E2E en Automation Practice",
       "description": "Automatización E2E de e-commerce con Cypress y datos dinámicos generados por FakerJS para ampliar la cobertura."
@@ -130,24 +126,24 @@
         "company": "Port Louis",
         "role": "Desarrollador Back-End Junior I",
         "location": "Remoto",
-        "period": "Jul/2025-Actual",
+        "period": "Jul/2025 – Actual",
         "isCurrent": true,
         "responsibilities": [
-          "Desarrollé y mejoré más de 15 flujos de automatización para la emisión, captura y lectura de certificados, comprobantes de pago y consultas públicas, incluidas integraciones con TURS, TRF1, TRF5, MPT, MPMT, TCU, CETESB, SEMAE y SAESA SCS, entre otros.",
-          "Implementé crawlers parametrizados en JSON y lectores en TypeScript utilizando Puppeteer, APIs REST, regex, resolución de CAPTCHA, manipulación de PDFs, tratamiento de modales e indisponibilidades, reprogramación de tareas y pruebas integradas en entornos locales y de homologación mediante AWS Lambda.",
-          "Entregué más de 40 mejoras en producción durante los primeros meses, abarcando más de 20 componentes del proyecto. Las optimizaciones redujeron hasta un 23% el tiempo de ejecución de flujos específicos y disminuyeron entre un 20% y un 30% las fallas e intervenciones manuales en las automatizaciones atendidas."
+          "Amplié en aproximadamente un 35% la cobertura automatizada de organismos públicos al desarrollar y mejorar más de 15 flujos de automatización para la emisión, captura y lectura de certificados, comprobantes de pago, facturas y consultas en un ecosistema C#, .NET y TypeScript, integrando portales como TJRS, TRF1, TRF5, MPT, MPMT, TCU, CETESB, SEMAE y SAESA SCS.",
+          "Estructuré la capa de orquestación en C# responsable de la distribución de auditorías y del ciclo de vida de las tasks, implementando control de reintentos, gestión de colas SQS y persistencia en SQL Server, con crawlers parametrizados en JSON y lectores en TypeScript (Puppeteer, APIs REST, regex, resolución de CAPTCHA, manipulación de PDFs y tratamiento de modales), validados mediante pruebas integradas en entornos locales y de homologación ejecutados a través de AWS Lambda.",
+          "Reduje hasta en un 23% el tiempo de ejecución de flujos específicos y disminuí entre un 20% y un 30% las fallas e intervenciones manuales en las automatizaciones, entregando más de 40 mejoras en producción en los primeros meses de proyecto, distribuidas en más de 20 componentes (servicios C# de backend, crawlers TypeScript y lectores de notas fiscales), generando un ahorro estimado en decenas de horas mensuales de operación y retrabajo para el equipo."
         ]
       },
       {
-        "company": "CPDS - Centro de Pesquisa e Desenvolvimento de Software",
-        "role": "Desarrollador Back-End - Prácticas",
-        "location": "Jequié, Bahía, Brasil · Híbrido",
-        "period": "Jul/2024-Jun/2025",
+        "company": "CPDS – Centro de Pesquisa e Desenvolvimento de Software",
+        "role": "Desarrollador Back-End – Prácticas",
+        "location": "Híbrido",
+        "period": "Jul/2024 – Jun/2025",
         "isCurrent": false,
         "responsibilities": [
-          "Desarrollé el back-end de una plataforma clínica y académica, estructurando el flujo completo de atención, como agenda, ficha del paciente, evolución clínica, procedimientos, documentos, validación y firma digital con historial y trazabilidad.",
-          "Implementé los flujos utilizando Laravel, PHP, Eloquent y PostgreSQL, aplicando arquitectura Controller-Service-Repository, migraciones, relaciones entre entidades clínicas, middleware de permisos por perfil, transacciones con lockForUpdate, tratamiento de concurrencia, notificaciones e integración entre módulos de atención, usuarios y stock.",
-          "Esto redujo entre un 70% y un 90% el tiempo de aprovisionamiento de usuarios, entre un 30% y un 50% el retrabajo durante la validación de historias clínicas y bloqueó el 100% de los movimientos de stock superiores al saldo disponible previstos en las reglas del sistema, además de garantizar la trazabilidad integral de las firmas y modificaciones clínicas."
+          "Reduje entre un 70% y un 90% el tiempo de aprovisionamiento de usuarios y entre un 30% y un 50% el retrabajo en la validación de historias clínicas, desarrollando el back-end de una plataforma clínica y académica con el flujo completo de atención: agenda, ficha del paciente, evolución clínica, procedimientos, documentos, validación y firma digital con historial y trazabilidad.",
+          "Bloqueé el 100% de los movimientos de stock superiores al saldo disponible y garanticé la trazabilidad integral de firmas y modificaciones clínicas, implementando los flujos en Laravel, PHP, Eloquent y PostgreSQL bajo arquitectura Controller–Service–Repository, con migraciones, relaciones entre entidades clínicas, middleware de permisos por perfil, transacciones con lockForUpdate y tratamiento de concurrencia.",
+          "Integré los módulos de atención, usuarios y stock, implementando notificaciones y reglas de negocio entre ellos para sustentar el control de stock y la validación de historias clínicas descritas anteriormente."
         ]
       }
     ]
