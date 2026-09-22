@@ -32,28 +32,16 @@ export const ProjectsSection = () => {
       link: "https://gitlab.com/cpdsjq/sgdoctor_academico",
     },
     {
-      name: t("projects.automationPractice.name"),
-      description: t("projects.automationPractice.description"),
-      technologies: ["Cypress", "FakerJS", "E2E"],
-      link: "https://github.com/ucgfilho/cypress-qazando",
+      name: t("projects.microsservico.name"),
+      description: t("projects.microsservico.description"),
+      technologies: ["C#", "ASP.NET Core", "Entity Framework", "MariaDB", "JWT", "SOLID"],
+      link: "https://github.com/ucgfilho/microservice-cs",
     },
     {
-      name: t("projects.restfulApi.name"),
-      description: t("projects.restfulApi.description"),
-      technologies: ["Cypress", "API Testing", "REST"],
-      link: "https://github.com/ucgfilho/cypress-api-test",
-    },
-    {
-      name: t("projects.mobileAutomation.name"),
-      description: t("projects.mobileAutomation.description"),
-      technologies: ["Appium", "Robot Framework", "BrowserStack"],
-      link: "https://github.com/ucgfilho/robot-appium",
-    },
-    {
-      name: t("projects.k6Performance.name"),
-      description: t("projects.k6Performance.description"),
-      technologies: ["Grafana k6", "WireMock"],
-      link: "https://github.com/ucgfilho/k6-performance-test",
+      name: t("projects.xpathCatcher.name"),
+      description: t("projects.xpathCatcher.description"),
+      technologies: ["JavaScript", "XPath"],
+      link: "https://addons.mozilla.org/pt-BR/firefox/addon/xpath-catcher/",
     },
   ];
 

@@ -78,25 +78,13 @@
       "name": "PortData",
       "description": "Desenvolvimento de crawlers e leitores para emissão, consulta e extração automatizada de certidões e notas fiscais em órgãos públicos."
     },
-    "saucedemo": {
-      "name": "Automação E2E no SauceDemo",
-      "description": "Suíte E2E em Cypress para autenticação, catálogo, carrinho e checkout, com evidências JUnit/Mochawesome e execução contínua no GitHub Actions."
+    "microsservico": {
+      "name": "Microsserviço de Gestão com ASP.NET Core",
+      "description": "Web API em C# com ASP.NET Core, EF Core e MariaDB. Autenticação JWT+Bearer, criptografia BCrypt e documentação com Scalar."
     },
-    "automationPractice": {
-      "name": "Automação E2E no Automation Practice",
-      "description": "Automação E2E de e-commerce com Cypress e massas dinâmicas geradas por FakerJS para ampliar a cobertura dos cenários."
-    },
-    "restfulApi": {
-      "name": "Automação de API no Restful API Dev",
-      "description": "Validação automatizada de endpoints, status HTTP, schemas, respostas e fluxos de dados de uma API REST usando Cypress."
-    },
-    "mobileAutomation": {
-      "name": "Automação Mobile no qaFood",
-      "description": "Automação E2E mobile com Robot Framework e Appium, executada em dispositivos remotos no BrowserStack."
-    },
-    "k6Performance": {
-      "name": "Testes de Performance em API utilizando k6",
-      "description": "Suite de testes de performance em API para um serviço de veículos mockado com WireMock, utilizando o k6 como framework de testes de carga."
+    "xpathCatcher": {
+      "name": "XPath Catcher",
+      "description": "Extensão para Firefox que gera seletores XPath reutilizáveis a partir de elementos selecionados, agilizando crawlers e testes automatizados."
     },
     "openRepository": "Abrir repositório do projeto {{projectName}}"
   },
