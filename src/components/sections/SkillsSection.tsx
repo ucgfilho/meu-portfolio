@@ -51,7 +51,7 @@ export const SkillsSection = () => {
     {
       title: t("skills.backendDevelopment"),
       icon: Code2,
-      skills: ["C#", ".NET", "TypeScript"],
+      skills: ["C#", ".NET", "ASP.NET", "TypeScript"],
     },
     {
       title: t("skills.browserAutomation"),
@@ -81,7 +81,7 @@ export const SkillsSection = () => {
     {
       title: t("skills.devops"),
       icon: GitBranch,
-      skills: ["Git", "GitHub Actions", "Docker", "GitLab CI/CD"],
+      skills: ["Git", "GitHub Actions", "GitLab CI/CD", "Docker"],
     },
     {
       title: t("skills.automatedReports"),

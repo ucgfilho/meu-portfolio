@@ -80,7 +80,7 @@
     },
     "microsservico": {
       "name": "Microsserviço de Gestão com ASP.NET Core",
-      "description": "Web API em C# com ASP.NET Core, EF Core e MariaDB. Autenticação JWT+Bearer, criptografia BCrypt e documentação com Scalar."
+      "description": "Microsserviço de gestão de produtos com registro e autenticação de usuários utilizando JWT+Bearer, se baseando nos princípios SOLID para um design de projeto desacoplado."
     },
     "xpathCatcher": {
       "name": "XPath Catcher",

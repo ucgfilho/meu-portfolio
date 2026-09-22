@@ -34,7 +34,7 @@ export const ProjectsSection = () => {
     {
       name: t("projects.microsservico.name"),
       description: t("projects.microsservico.description"),
-      technologies: ["C#", "ASP.NET Core", "Entity Framework", "MariaDB", "JWT", "SOLID"],
+      technologies: ["C#", "ASP.NET", "Entity Framework", "MariaDB", "JWT", "SOLID", "Scalar"],
       link: "https://github.com/ucgfilho/microservice-cs",
     },
     {
@@ -99,7 +99,7 @@ export const ProjectsSection = () => {
                 </div>
 
                 {/* Description */}
-                <p className="text-muted-foreground text-sm mb-5 leading-relaxed line-clamp-2">
+                <p className="text-muted-foreground text-sm mb-5 leading-relaxed">
                   {project.description}
                 </p>
 
