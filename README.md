@@ -1,6 +1,6 @@
 # Meu Portfólio
 
-Bem-vindo(a) ao repositório do meu portfólio pessoal! Este projeto apresenta minhas habilidades, certificações e
+Bem-vindo(a) ao repositório do meu portfólio pessoal! Este projeto apresenta minhas habilidades e
 projetos na área de desenvolvimento e QA.
 
 ## Informações do Projeto

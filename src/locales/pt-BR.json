@@ -7,7 +7,6 @@
     "about": "Sobre",
     "education": "Formação",
     "experience": "Experiência",
-    "certifications": "Certificações",
     "skills": "Skills",
     "projects": "Projetos",
     "contact": "Contato",
@@ -133,45 +132,6 @@
           "Bloqueei 100% das movimentações de estoque acima do saldo disponível e garanti rastreabilidade integral de assinaturas e alterações clínicas, implementando os fluxos em Laravel, PHP, Eloquent e PostgreSQL sob arquitetura Controller–Service–Repository, com migrations, relacionamentos entre entidades clínicas, middleware de permissões por perfil, transações com lockForUpdate e tratamento de concorrência.",
           "Integrei os módulos de atendimento, usuários e estoque, implementando notificações e regras de negócio entre eles para sustentar o controle de estoque e a validação de prontuários descritos acima."
         ]
-      }
-    ]
-  },
-  "certifications": {
-    "title": "Certificações",
-    "viewCertificate": "Ver certificado",
-    "groups": [
-      {
-        "key": "qazando",
-        "institution": "Qazando",
-        "certs": [
-          "JavaScript para Testers",
-          "Automação de Testes de API com JavaScript",
-          "Automação de Testes Web com Cypress",
-          "Conceitos de Testes de Software",
-          "Automação Mobile com Appium e Robot",
-          "Testes de Performance com Postman",
-          "Testes de Performance com k6"
-        ]
-      },
-      {
-        "key": "ebac",
-        "institution": "EBAC",
-        "certs": ["Jornada QA 2025"]
-      },
-      {
-        "key": "dio",
-        "institution": "DIO",
-        "certs": [
-          "Introdução ao Bootcamp - Java e QA",
-          "Fundamentos de Java",
-          "Estruturas de Controle em Java",
-          "Versionamento com Git e GitHub"
-        ]
-      },
-      {
-        "key": "unicamp",
-        "institution": "UNICAMP",
-        "certs": ["Olimpíada Brasileira de Informática"]
       }
     ]
   },

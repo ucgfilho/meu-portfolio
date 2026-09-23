@@ -7,7 +7,6 @@
     "about": "About",
     "education": "Education",
     "experience": "Experience",
-    "certifications": "Certifications",
     "skills": "Skills",
     "projects": "Projects",
     "contact": "Contact",
@@ -133,45 +132,6 @@
           "Blocked 100% of inventory movements above available balance and ensured full traceability of signatures and clinical changes, implementing workflows in Laravel, PHP, Eloquent, and PostgreSQL under Controller–Service–Repository architecture, with migrations, relationships between clinical entities, role-based permission middleware, transactions with lockForUpdate, and concurrency handling.",
           "Integrated care, user, and inventory modules, implementing notifications and business rules among them to sustain inventory control and the patient record validation described above."
         ]
-      }
-    ]
-  },
-  "certifications": {
-    "title": "Certifications",
-    "viewCertificate": "View certificate",
-    "groups": [
-      {
-        "key": "qazando",
-        "institution": "Qazando",
-        "certs": [
-          "JavaScript for Testers",
-          "API Test Automation with JavaScript",
-          "Web Test Automation with Cypress",
-          "Software Testing Fundamentals",
-          "Mobile Automation with Appium and Robot",
-          "Performance Testing with Postman",
-          "Performance Testing with k6"
-        ]
-      },
-      {
-        "key": "ebac",
-        "institution": "EBAC",
-        "certs": ["QA Journey 2025"]
-      },
-      {
-        "key": "dio",
-        "institution": "DIO",
-        "certs": [
-          "Introduction to Bootcamp - Java and QA",
-          "Java Fundamentals",
-          "Control Structures in Java",
-          "Version Control with Git and GitHub"
-        ]
-      },
-      {
-        "key": "unicamp",
-        "institution": "UNICAMP",
-        "certs": ["Brazilian Computer Science Olympiad"]
       }
     ]
   },

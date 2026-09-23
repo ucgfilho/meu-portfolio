@@ -7,7 +7,6 @@
     "about": "Acerca",
     "education": "Formación",
     "experience": "Experiencia",
-    "certifications": "Certificaciones",
     "skills": "Habilidades",
     "projects": "Proyectos",
     "contact": "Contacto",
@@ -133,45 +132,6 @@
           "Bloqueé el 100% de los movimientos de stock superiores al saldo disponible y garanticé la trazabilidad integral de firmas y modificaciones clínicas, implementando los flujos en Laravel, PHP, Eloquent y PostgreSQL bajo arquitectura Controller–Service–Repository, con migraciones, relaciones entre entidades clínicas, middleware de permisos por perfil, transacciones con lockForUpdate y tratamiento de concurrencia.",
           "Integré los módulos de atención, usuarios y stock, implementando notificaciones y reglas de negocio entre ellos para sustentar el control de stock y la validación de historias clínicas descritas anteriormente."
         ]
-      }
-    ]
-  },
-  "certifications": {
-    "title": "Certificaciones",
-    "viewCertificate": "Ver certificado",
-    "groups": [
-      {
-        "key": "qazando",
-        "institution": "Qazando",
-        "certs": [
-          "JavaScript para Testers",
-          "Automatización de Pruebas de API con JavaScript",
-          "Automatización de Pruebas Web con Cypress",
-          "Fundamentos de Pruebas de Software",
-          "Automatización Mobile con Appium y Robot",
-          "Pruebas de Performance con Postman",
-          "Pruebas de Performance con k6"
-        ]
-      },
-      {
-        "key": "ebac",
-        "institution": "EBAC",
-        "certs": ["Jornada QA 2025"]
-      },
-      {
-        "key": "dio",
-        "institution": "DIO",
-        "certs": [
-          "Introducción al Bootcamp - Java y QA",
-          "Fundamentos de Java",
-          "Estructuras de Control en Java",
-          "Control de Versiones con Git y GitHub"
-        ]
-      },
-      {
-        "key": "unicamp",
-        "institution": "UNICAMP",
-        "certs": ["Olimpiada Brasileña de Informática"]
       }
     ]
   },

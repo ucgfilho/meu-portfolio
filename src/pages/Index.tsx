@@ -24,11 +24,6 @@ const ExperienceSection = lazy(() =>
         default: module.ExperienceSection,
     })),
 );
-const CertificationsSection = lazy(() =>
-    import("@/components/sections/CertificationsSection").then((module) => ({
-        default: module.CertificationsSection,
-    })),
-);
 const SkillsSection = lazy(() =>
     import("@/components/sections/SkillsSection").then((module) => ({
         default: module.SkillsSection,
@@ -75,7 +70,6 @@ const Index = () => {
                     <SkillsSection/>
                     <ProjectsSection/>
                     <EducationSection/>
-                    <CertificationsSection/>
                     <LanguagesSection/>
                     <ContactSection/>
                 </Suspense>
