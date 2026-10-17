@@ -1,22 +1,15 @@
-import {motion, useInView} from "framer-motion";
-import {useRef} from "react";
-import {ArrowUpRight, Github, Linkedin, Mail, MapPin, Phone,} from "lucide-react";
+import {ArrowUpRight, Github, Linkedin, Mail, MapPin, Phone} from "lucide-react";
 import {GitLabIcon} from "@/components/icons/GitLabIcon";
 import {useTranslation} from "react-i18next";
 
 /* =============================================================================
-   ContactSection - Editorial High-End
-
-   DESIGN:
-   - Layout centralizado com tipografia elegante
-   - Cards de contato minimalistas com hover sutil
-   - Footer discreto integrado
+   ContactSection - Swiss Editorial Technical Design System
+   - Asymmetric 12-column closing layout (5-col prompt & coordinates + 7-col channel directory)
+   - Full untruncated email/descriptions & visible interactive indicators
    ============================================================================= */
 
 export const ContactSection = () => {
     const {t} = useTranslation();
-    const ref = useRef(null);
-    const isInView = useInView(ref, {once: true, margin: "-100px"});
 
     const contactLinks = [
         {
@@ -45,112 +38,85 @@ export const ContactSection = () => {
         },
     ];
 
-    const containerVariants = {
-        hidden: {opacity: 0},
-        visible: {
-            opacity: 1,
-            transition: {staggerChildren: 0.08},
-        },
-    };
-
-    const itemVariants = {
-        hidden: {opacity: 0, y: 20},
-        visible: {
-            opacity: 1,
-            y: 0,
-            transition: {duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94]},
-        },
-    };
-
     return (
-        <section id="contact" className="py-24 md:py-32 relative" ref={ref}>
-            <div className="container mx-auto px-6">
-                <motion.div
-                    variants={containerVariants}
-                    initial="hidden"
-                    animate={isInView ? "visible" : "hidden"}
-                    className="max-w-4xl mx-auto text-center"
-                >
-                    {/* Section header */}
-                    <motion.div
-                        variants={itemVariants}
-                        className="section-header justify-center"
-                    >
-            <span className="section-label">
-                {t("contact.title")}
-              </span>
-                    </motion.div>
-
-                    <motion.p
-                        variants={itemVariants}
-                        className="text-lg text-muted-foreground mb-12 max-w-2xl mx-auto leading-relaxed"
-                    >
-                        {t("contact.description")}
-                    </motion.p>
-
-                    {/* Contact info chips */}
-                    <motion.div
-                        variants={itemVariants}
-                        className="flex flex-wrap justify-center gap-3 mb-14"
-                    >
-                        <div className="chip-outline inline-flex items-center gap-2">
-                            <Phone className="w-4 h-4 text-accent"/>
-                            <span>{t("contact.phone")}</span>
-                        </div>
-                        <div className="chip-outline inline-flex items-center gap-2">
-                            <MapPin className="w-4 h-4 text-accent"/>
-                            <span>{t("contact.location")}</span>
-                        </div>
-                    </motion.div>
-
-                    {/* Contact links grid */}
-                    <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
-                        {contactLinks.map((link) => (
-                            <motion.a
-                                key={link.name}
-                                href={link.href}
-                                target={link.href.startsWith("mailto") ? undefined : "_blank"}
-                                rel="noopener noreferrer"
-                                aria-label={t("contact.openLink", {platform: link.name})}
-                                variants={itemVariants}
-                                className="card-interactive p-6 text-center group"
-                            >
-                                {/* Icon */}
-                                <div
-                                    className="icon-container mx-auto mb-4 group-hover:bg-accent/15 group-hover:border-accent/30 transition-colors duration-200">
-                                    <link.icon
-                                        className="w-5 h-5 text-muted-foreground group-hover:text-accent transition-colors duration-200"/>
-                                </div>
-
-                                <h3 className="font-medium text-foreground mb-1 group-hover:text-accent transition-colors duration-200">
-                                    {link.name}
-                                </h3>
-                                <p className="text-xs text-muted-foreground truncate">
-                                    {link.description}
-                                </p>
-
-                                {/* Arrow indicator */}
-                                <ArrowUpRight
-                                    className="w-4 h-4 text-muted-foreground mx-auto mt-3 opacity-0 translate-y-1 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-200"/>
-                            </motion.a>
-                        ))}
+        <section id="contact" className="pt-20 md:pt-28 pb-12 relative">
+            <div className="container mx-auto">
+                <div className="max-w-6xl mx-auto">
+                    {/* Editorial Section Header */}
+                    <div className="section-header-editorial">
+                        <span className="section-index" aria-hidden="true">07 // CONTACT</span>
+                        <h2 className="section-title">
+                            {t("contact.title")}
+                        </h2>
                     </div>
-                </motion.div>
+
+                    <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start">
+                        {/* Left Column — Editorial Prompt & Direct Coordinates */}
+                        <div className="lg:col-span-5 space-y-8">
+                            <p className="text-lg text-foreground/90 leading-[1.7]">
+                                {t("contact.description")}
+                            </p>
+
+                            <div className="space-y-3 pt-4 border-t border-border">
+                                <div className="flex items-center gap-3 font-mono text-sm text-muted-foreground">
+                                    <span className="icon-container-sm shrink-0" aria-hidden="true">
+                                        <Phone className="w-3.5 h-3.5 text-foreground"/>
+                                    </span>
+                                    <span>{t("contact.phone")}</span>
+                                </div>
+                                <div className="flex items-center gap-3 font-mono text-sm text-muted-foreground">
+                                    <span className="icon-container-sm shrink-0" aria-hidden="true">
+                                        <MapPin className="w-3.5 h-3.5 text-foreground"/>
+                                    </span>
+                                    <span>{t("contact.location")}</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Right Column — 2x2 Channel Directory */}
+                        <div className="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 border-t border-l border-border">
+                            {contactLinks.map((link) => (
+                                <a
+                                    key={link.name}
+                                    href={link.href}
+                                    target={link.href.startsWith("mailto") ? undefined : "_blank"}
+                                    rel={link.href.startsWith("mailto") ? undefined : "noopener noreferrer"}
+                                    aria-label={t("contact.openLink", {platform: link.name})}
+                                    className="border-r border-b border-border p-6 bg-surface-container hover:bg-surface-elevated transition-colors duration-200 group flex flex-col justify-between gap-6 cursor-pointer"
+                                >
+                                    <div className="flex items-center justify-between gap-4">
+                                        <div className="icon-container group-hover:bg-foreground group-hover:text-background group-hover:border-foreground transition-colors duration-200">
+                                            <link.icon className="w-4 h-4"/>
+                                        </div>
+                                        <ArrowUpRight className="w-4 h-4 text-muted-foreground group-hover:text-foreground transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"/>
+                                    </div>
+
+                                    <div>
+                                        <h3 className="text-lg font-display font-semibold text-foreground mb-1">
+                                            {link.name}
+                                        </h3>
+                                        <p className="font-mono text-xs text-muted-foreground break-all sm:break-normal">
+                                            {link.description}
+                                        </p>
+                                    </div>
+                                </a>
+                            ))}
+                        </div>
+                    </div>
+                </div>
             </div>
 
-            {/* Footer */}
-            <motion.footer
-                variants={itemVariants}
-                initial="hidden"
-                animate={isInView ? "visible" : "hidden"}
-                className="mt-24 pt-8 border-t border-border"
-            >
-                <div className="container mx-auto px-6 text-center">
-                    <p className="text-sm text-muted-foreground">
-                        © {new Date().getFullYear()} Ubirajara Filho
-                    </p>
+            {/* Footer Colophon */}
+            <footer className="mt-20 pt-8 border-t border-border">
+                <div className="container mx-auto">
+                    <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+                        <p className="font-mono text-xs text-muted-foreground">
+                            © {new Date().getFullYear()} Ubirajara Filho
+                        </p>
+                    </div>
                 </div>
-            </motion.footer>
+            </footer>
         </section>
     );
 };
+

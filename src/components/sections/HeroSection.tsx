@@ -1,4 +1,3 @@
-import {motion} from "framer-motion";
 import {Button} from "@/components/ui/button";
 import {ArrowRight, Github, Linkedin, Mail} from "lucide-react";
 import {GitLabIcon} from "@/components/icons/GitLabIcon";
@@ -6,139 +5,97 @@ import {useTranslation} from "react-i18next";
 import {TerminalAnimation} from "@/components/TerminalAnimation";
 
 /* =============================================================================
-   HeroSection - Editorial High-End
-
-   DESIGN:
-   - Tipografia display gigante e impactante
-   - Layout minimalista com muito respiro
-   - Animações sutis de fade-in
-   - Contraste forte entre texto e fundo
-   - Terminal animation on the right for visual impact
+   HeroSection - Swiss Editorial Technical Design System
+   - Balanced 12-column composition (7:5 ratio on desktop, clean stack on tablet/mobile)
+   - Immediate visibility of critical identity and CTAs (no content hidden behind scroll/delay)
+   - Accessible 44x44px social links and primary/secondary CTAs
    ============================================================================= */
 
 export const HeroSection = () => {
     const {t} = useTranslation();
 
-    const containerVariants = {
-        hidden: {opacity: 0},
-        visible: {
-            opacity: 1,
-            transition: {
-                staggerChildren: 0.15,
-                delayChildren: 0.2,
-            },
+    const socialLinks = [
+        {
+            icon: Linkedin,
+            href: "https://www.linkedin.com/in/ucgfilho/",
+            label: "LinkedIn",
         },
-    };
-
-    const itemVariants = {
-        hidden: {opacity: 0, y: 30},
-        visible: {
-            opacity: 1,
-            y: 0,
-            transition: {
-                duration: 0.8,
-                ease: [0.25, 0.46, 0.45, 0.94],
-            },
+        {
+            icon: Github,
+            href: "https://github.com/ucgfilho",
+            label: "GitHub",
         },
-    };
+        {
+            icon: GitLabIcon,
+            href: "https://gitlab.com/ucgfilho",
+            label: "GitLab",
+        },
+    ];
 
     return (
-        <section className="min-h-[100svh] flex flex-col justify-center relative overflow-visible">
-            <div className="container mx-auto px-6 py-20">
-                <div className="grid grid-cols-1 md:grid-cols-[1fr_auto] gap-12 lg:gap-16 items-center">
-                    {/* Left column — text content */}
-                    <motion.div
-                        variants={containerVariants}
-                        initial="hidden"
-                        animate="visible"
-                        className="max-w-2xl md:max-w-none"
-                    >
-                        {/* Nome - Display Typography */}
-                        <motion.div variants={itemVariants} className="mb-6">
-                            <span className="block text-muted-foreground text-lg md:text-xl tracking-wide mb-2">
-                                {t("hero.greeting")}
-                            </span>
-                            <h1 className="text-display text-foreground">
-                                {t("hero.name")}
-                            </h1>
-                        </motion.div>
+        <section className="min-h-[calc(100svh-4rem)] pt-28 pb-16 md:pt-36 md:pb-24 flex flex-col justify-center relative border-b border-border">
+            <div className="container mx-auto">
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center max-w-6xl mx-auto">
+                    {/* Left column — Identity & Actions */}
+                    <div className="lg:col-span-7 flex flex-col items-start">
+                        {/* Greeting */}
+                        <span className="font-mono text-xs sm:text-sm uppercase tracking-[0.18em] text-muted-foreground mb-3">
+                            {t("hero.greeting")}
+                        </span>
 
-                        {/* Título */}
-                        <motion.h2
-                            variants={itemVariants}
-                            className="text-2xl md:text-3xl lg:text-4xl font-medium text-accent mb-6 tracking-tight"
-                        >
-                            {t("hero.title")}
-                        </motion.h2>
+                        {/* Name - Display Typography */}
+                        <h1 className="text-display text-foreground mb-4">
+                            {t("hero.name")}
+                        </h1>
+
+                        {/* Role Subtitle */}
+                        <div className="flex items-center gap-3 mb-8">
+                            <span aria-hidden="true" className="w-6 h-[2px] bg-foreground shrink-0"/>
+                            <p className="font-display text-xl sm:text-2xl md:text-3xl font-medium text-foreground/90 tracking-tight">
+                                {t("hero.title")}
+                            </p>
+                        </div>
 
                         {/* CTA Buttons */}
-                        <motion.div
-                            variants={itemVariants}
-                            className="flex flex-col sm:flex-row items-start gap-4 mb-16"
-                        >
-                            <Button variant="default" size="lg" asChild>
+                        <div className="flex flex-wrap items-center gap-3.5 mb-10 w-full sm:w-auto">
+                            <Button variant="default" size="lg" className="w-full sm:w-auto" asChild>
                                 <a href="#projects" className="group">
-                                    {t("hero.viewProjects")}
-                                    <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1"/>
+                                    <span>{t("hero.viewProjects")}</span>
+                                    <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1"/>
                                 </a>
                             </Button>
-                            <Button variant="outline" size="lg" asChild>
+                            <Button variant="outline" size="lg" className="w-full sm:w-auto" asChild>
                                 <a href="#contact">
-                                    {t("hero.contact")}
+                                    <span>{t("hero.contact")}</span>
                                     <Mail className="w-4 h-4"/>
                                 </a>
                             </Button>
-                        </motion.div>
+                        </div>
 
                         {/* Social Links */}
-                        <motion.div
-                            variants={itemVariants}
-                            className="flex items-center gap-3"
-                        >
-                            {[
-                                {
-                                    icon: Linkedin,
-                                    href: "https://www.linkedin.com/in/ucgfilho/",
-                                    label: "LinkedIn",
-                                },
-                                {
-                                    icon: Github,
-                                    href: "https://github.com/ucgfilho",
-                                    label: "GitHub",
-                                },
-                                {
-                                    icon: GitLabIcon,
-                                    href: "https://gitlab.com/ucgfilho",
-                                    label: "GitLab",
-                                },
-                            ].map((social) => (
+                        <div className="flex items-center gap-2.5 pt-6 border-t border-border w-full sm:w-auto">
+                            {socialLinks.map((social) => (
                                 <a
                                     key={social.label}
                                     href={social.href}
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     aria-label={t("hero.visitProfile", {platform: social.label})}
-                                    className="p-3 text-muted-foreground hover:text-background hover:bg-foreground transition-all duration-200"
+                                    className="min-w-[44px] min-h-[44px] inline-flex items-center justify-center rounded-sm border border-border bg-surface-container text-muted-foreground hover:text-background hover:bg-foreground hover:border-foreground transition-colors duration-200 cursor-pointer"
                                 >
-                                    <social.icon className="w-5 h-5"/>
+                                    <social.icon className="w-4 h-4"/>
                                 </a>
                             ))}
-                        </motion.div>
-                    </motion.div>
+                        </div>
+                    </div>
 
-                    {/* Right column — Terminal */}
-                    <motion.div
-                        initial={{opacity: 0, x: 40}}
-                        animate={{opacity: 1, x: 0}}
-                        transition={{duration: 1, delay: 0.6, ease: [0.25, 0.46, 0.45, 0.94]}}
-                        className="hidden md:flex self-center w-full max-w-[480px]"
-                    >
+                    {/* Right column — Architectural Test Runner Console */}
+                    <div className="lg:col-span-5 w-full max-w-lg lg:max-w-none mx-auto">
                         <TerminalAnimation/>
-                    </motion.div>
+                    </div>
                 </div>
             </div>
-
-
         </section>
     );
 };
+

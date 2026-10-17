@@ -1,28 +1,34 @@
-import Aurora from "./Aurora";
-
 /* =============================================================================
-   AnimatedBackground — Aurora (ReactBits)
-   - Uses ogl-powered WebGL aurora shader
-   - Dark-palette color stops to match #0a0a0a background
+   AnimatedBackground — Architectural Grid & Subtle Luminance
+   - Zero-JS CSS rendering for optimal LCP/INP and zero GPU overhead
+   - Subtle architectural coordinate grid with smooth radial vignette
    ============================================================================= */
 
 export const AnimatedBackground = () => {
   return (
-    <div className="fixed inset-0 -z-10" aria-hidden="true">
-      <Aurora
-        colorStops={["#1c1c1c", "#212121", "#1c1c1c"]}
-        blend={0.55}
-        amplitude={0.55}
-        speed={0.5}
-      />
-      <div className="absolute inset-0 bg-background/45 pointer-events-none" />
-      {/* Noise texture for depth */}
+    <div className="fixed inset-0 -z-10 pointer-events-none overflow-hidden bg-background" aria-hidden="true">
+      {/* Subtle architectural grid */}
       <div
-        className="absolute inset-0 opacity-[0.012] pointer-events-none"
+        className="absolute inset-0 opacity-[0.16]"
         style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E")`,
+          backgroundImage: `
+            linear-gradient(to right, hsl(var(--border)) 1px, transparent 1px),
+            linear-gradient(to bottom, hsl(var(--border)) 1px, transparent 1px)
+          `,
+          backgroundSize: "64px 64px",
+          maskImage: "radial-gradient(ellipse 80% 55% at 50% 0%, #000 20%, transparent 100%)",
+          WebkitMaskImage: "radial-gradient(ellipse 80% 55% at 50% 0%, #000 20%, transparent 100%)",
+        }}
+      />
+      {/* Top ambient luminance */}
+      <div
+        className="absolute inset-x-0 top-0 h-[520px]"
+        style={{
+          background:
+            "radial-gradient(ellipse 70% 50% at 50% -10%, hsl(var(--foreground) / 0.045), transparent 75%)",
         }}
       />
     </div>
   );
 };
+

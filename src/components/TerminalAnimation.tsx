@@ -1,13 +1,10 @@
-import {CSSProperties, useCallback, useEffect, useRef, useState} from "react";
+import {useCallback, useEffect, useRef, useState} from "react";
 
 /* =============================================================================
-   TerminalAnimation — Monochromatic Test Runner
-
-   Strictly follows the editorial design system:
-   - Background #111111, border #2a2a2a, border-radius 12px
-   - No color except macOS dots (red, yellow, green)
-   - All terminal text is monochromatic grayscale
-   - Typewriter command → progressive output → summary → fade → loop
+   TerminalAnimation — Architectural Test Runner Console
+   - Flat, razor-sharp technical surface (no 3D parallax tilt or floating levitation)
+   - Respects prefers-reduced-motion by rendering output immediately
+   - Fully responsive width across all breakpoints
    ============================================================================= */
 
 interface TestLine {
@@ -17,57 +14,34 @@ interface TestLine {
 }
 
 const TEST_SEQUENCE: TestLine[] = [
-    {text: "  RUN   target: GetCertificate", type: "pass", delay: 380},
-    {text: "    ✓ task and audit context loaded", type: "pass", delay: 190},
-    {text: "    ✓ browser session initialized", type: "pass", delay: 170},
-    {text: "    ✓ portal flow completed", type: "pass", delay: 220},
-    {text: "", type: "blank", delay: 80},
-    {text: "  STORE artifact", type: "pass", delay: 340},
-    {text: "    ✓ PDF download captured", type: "pass", delay: 180},
-    {text: "    ✓ artifact persisted to Amazon S3", type: "pass", delay: 200},
-    {text: "    ✓ input file registered", type: "pass", delay: 280},
-    {text: "    ✓ response.s3id confirmed", type: "pass", delay: 170},
-    {text: "", type: "blank", delay: 80},
-    {text: "  READ  readContentFile", type: "pass", delay: 360},
-    {text: "    ✓ document target identified", type: "pass", delay: 210},
-    {text: "    ✓ PDF content extracted", type: "pass", delay: 190},
-    {text: "    ✓ business payload validated", type: "pass", delay: 230},
-    {text: "", type: "blank", delay: 120},
-    {text: "Emission verified with persisted artifact", type: "summary", delay: 300},
+    {text: "  RUN   target: GetCertificate", type: "pass", delay: 320},
+    {text: "    ✓ task and audit context loaded", type: "pass", delay: 160},
+    {text: "    ✓ browser session initialized", type: "pass", delay: 150},
+    {text: "    ✓ portal flow completed", type: "pass", delay: 190},
+    {text: "", type: "blank", delay: 60},
+    {text: "  STORE artifact", type: "pass", delay: 280},
+    {text: "    ✓ PDF download captured", type: "pass", delay: 150},
+    {text: "    ✓ artifact persisted to Amazon S3", type: "pass", delay: 170},
+    {text: "    ✓ input file registered", type: "pass", delay: 220},
+    {text: "    ✓ response.s3id confirmed", type: "pass", delay: 150},
+    {text: "", type: "blank", delay: 60},
+    {text: "  READ  readContentFile", type: "pass", delay: 300},
+    {text: "    ✓ document target identified", type: "pass", delay: 180},
+    {text: "    ✓ PDF content extracted", type: "pass", delay: 160},
+    {text: "    ✓ business payload validated", type: "pass", delay: 190},
+    {text: "", type: "blank", delay: 90},
+    {text: "Emission verified with persisted artifact", type: "summary", delay: 240},
 ];
 
 const COMMAND = "PRINT_STEPS=1 jest crawler.test.ts";
 
 export const TerminalAnimation = () => {
-    const [phase, setPhase] = useState<"typing" | "running" | "done" | "clearing">("typing");
+    const [phase, setPhase] = useState<"typing" | "running" | "done">("typing");
     const [typedCommand, setTypedCommand] = useState("");
     const [visibleLines, setVisibleLines] = useState<TestLine[]>([]);
     const [showCursor, setShowCursor] = useState(true);
     const terminalBodyRef = useRef<HTMLDivElement>(null);
     const animationRef = useRef<{ cancelled: boolean }>({cancelled: false});
-    const wrapperRef = useRef<HTMLDivElement>(null);
-
-    // Parallax tilt state
-    const [tilt, setTilt] = useState({rotateX: 0, rotateY: 0, glowX: 50, glowY: 50, isHovered: false});
-
-    const handleMouseMove = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
-        const el = wrapperRef.current;
-        if (!el) return;
-        const rect = el.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
-        const cx = rect.width / 2;
-        const cy = rect.height / 2;
-        const rotateX = ((y - cy) / cy) * -8;   // max ±8deg
-        const rotateY = ((x - cx) / cx) * 10;   // max ±10deg
-        const glowX = (x / rect.width) * 100;
-        const glowY = (y / rect.height) * 100;
-        setTilt({rotateX, rotateY, glowX, glowY, isHovered: true});
-    }, []);
-
-    const handleMouseLeave = useCallback(() => {
-        setTilt({rotateX: 0, rotateY: 0, glowX: 50, glowY: 50, isHovered: false});
-    }, []);
 
     // Auto-scroll terminal body
     useEffect(() => {
@@ -78,7 +52,7 @@ export const TerminalAnimation = () => {
 
     // Cursor blink
     useEffect(() => {
-        const interval = setInterval(() => setShowCursor((c) => !c), 500);
+        const interval = setInterval(() => setShowCursor((c) => !c), 530);
         return () => clearInterval(interval);
     }, []);
 
@@ -89,6 +63,18 @@ export const TerminalAnimation = () => {
         animationRef.current = token;
         const isCancelled = () => token.cancelled;
 
+        const prefersReducedMotion =
+            typeof window !== "undefined" &&
+            typeof window.matchMedia === "function" &&
+            window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+        if (prefersReducedMotion) {
+            setTypedCommand(COMMAND);
+            setVisibleLines(TEST_SEQUENCE);
+            setPhase("done");
+            return;
+        }
+
         // Phase 1: Type command
         setPhase("typing");
         setTypedCommand("");
@@ -97,10 +83,10 @@ export const TerminalAnimation = () => {
         for (let i = 0; i <= COMMAND.length; i++) {
             if (isCancelled()) return;
             setTypedCommand(COMMAND.slice(0, i));
-            await sleep(30 + Math.random() * 30);
+            await sleep(25 + Math.random() * 20);
         }
 
-        await sleep(350);
+        await sleep(280);
         if (isCancelled()) return;
 
         // Phase 2: Show test output
@@ -108,12 +94,12 @@ export const TerminalAnimation = () => {
 
         for (const line of TEST_SEQUENCE) {
             if (isCancelled()) return;
-            await sleep(line.delay + Math.random() * 60);
+            await sleep(line.delay);
             if (isCancelled()) return;
             setVisibleLines((prev) => [...prev, line]);
         }
 
-        // Phase 3: Done — stay here
+        // Phase 3: Done
         setPhase("done");
     }, []);
 
@@ -128,7 +114,7 @@ export const TerminalAnimation = () => {
         const parts = text.split(/(\d+)/g);
         return parts.map((part, i) =>
             /^\d+$/.test(part) ? (
-                <span key={i} className="text-[#ffffff]">{part}</span>
+                <span key={i} className="text-foreground font-semibold">{part}</span>
             ) : (
                 <span key={i}>{part}</span>
             )
@@ -142,7 +128,7 @@ export const TerminalAnimation = () => {
 
         if (line.type === "summary") {
             return (
-                <div key={index} className="text-[#666666] terminal-line-enter">
+                <div key={index} className="text-muted-foreground pt-1 border-t border-border/60 terminal-line-enter">
                     {renderSummaryLine(line.text)}
                 </div>
             );
@@ -152,15 +138,15 @@ export const TerminalAnimation = () => {
             const crossIdx = line.text.indexOf("✕");
             if (crossIdx !== -1) {
                 return (
-                    <div key={index} className="text-[#666666] terminal-line-enter">
+                    <div key={index} className="text-muted-foreground terminal-line-enter">
                         {line.text.slice(0, crossIdx)}
-                        <span style={{color: "#ef4444"}}>✕</span>
+                        <span className="text-destructive">✕</span>
                         {line.text.slice(crossIdx + 1)}
                     </div>
                 );
             }
             return (
-                <div key={index} className="text-[#666666] terminal-line-enter">
+                <div key={index} className="text-muted-foreground terminal-line-enter">
                     {line.text}
                 </div>
             );
@@ -169,7 +155,7 @@ export const TerminalAnimation = () => {
         const isHeader = /\b(RUN|STORE|READ)\b/.test(line.text);
         if (isHeader) {
             return (
-                <div key={index} className="text-[#ffffff] font-bold terminal-line-enter">
+                <div key={index} className="text-foreground font-semibold terminal-line-enter">
                     {line.text}
                 </div>
             );
@@ -178,16 +164,16 @@ export const TerminalAnimation = () => {
         const checkIdx = line.text.indexOf("✓");
         if (checkIdx !== -1) {
             return (
-                <div key={index} className="text-[#888888] terminal-line-enter">
+                <div key={index} className="text-muted-foreground terminal-line-enter">
                     {line.text.slice(0, checkIdx)}
-                    <span style={{color: "#22c55e"}}>✓</span>
+                    <span className="text-status-online">✓</span>
                     {line.text.slice(checkIdx + 1)}
                 </div>
             );
         }
 
         return (
-            <div key={index} className="text-[#888888] terminal-line-enter">
+            <div key={index} className="text-muted-foreground terminal-line-enter">
                 {line.text}
             </div>
         );
@@ -195,7 +181,7 @@ export const TerminalAnimation = () => {
 
     const cursorBlock = (
         <span
-            className={`inline-block w-[7px] h-[14px] bg-[#ffffff] align-middle ml-px ${
+            className={`inline-block w-[7px] h-[14px] bg-foreground align-middle ml-1 ${
                 showCursor ? "opacity-100" : "opacity-0"
             }`}
             style={{transform: "translateY(1px)"}}
@@ -203,82 +189,34 @@ export const TerminalAnimation = () => {
     );
 
     return (
-        <div
-            ref={wrapperRef}
-            className="terminal-float"
-            aria-hidden="true"
-            onMouseMove={handleMouseMove}
-            onMouseLeave={handleMouseLeave}
-            style={{
-                perspective: "900px",
-                animationPlayState: tilt.isHovered ? "paused" : "running",
-            }}
-        >
-            <div
-                className={`terminal-container ${phase === "clearing" ? "terminal-fade-out" : ""}`}
-                style={{
-                    transform: tilt.isHovered
-                        ? `rotateX(${tilt.rotateX}deg) rotateY(${tilt.rotateY}deg) scale(1.02)`
-                        : "rotateX(0deg) rotateY(0deg) scale(1)",
-                    transition: tilt.isHovered
-                        ? "transform 0.08s ease-out, box-shadow 0.2s ease-out"
-                        : "transform 0.55s cubic-bezier(0.23,1,0.32,1), box-shadow 0.55s ease-out",
-                    boxShadow: tilt.isHovered
-                        ? `0 0 0 1px #3a3a3a, 0 20px 60px rgba(0,0,0,0.6), 0 0 80px rgba(255,255,255,0.04), inset 0 0 60px rgba(255,255,255,0.01)`
-                        : "0 0 60px rgba(255,255,255,0.03)",
-                    transformStyle: "preserve-3d" as CSSProperties["transformStyle"],
-                    position: "relative" as CSSProperties["position"],
-                }}
-            >
-                {/* Spotlight overlay */}
-                {tilt.isHovered && (
-                    <div
-                        aria-hidden="true"
-                        style={{
-                            position: "absolute",
-                            inset: 0,
-                            borderRadius: "12px",
-                            pointerEvents: "none",
-                            zIndex: 10,
-                            background: `radial-gradient(circle at ${tilt.glowX}% ${tilt.glowY}%, rgba(255,255,255,0.055) 0%, rgba(255,255,255,0.01) 45%, transparent 70%)`,
-                            transition: "background 0.05s ease-out",
-                        }}
-                    />
-                )}
-                {/* Title bar */}
+        <div className="terminal-wrapper" aria-hidden="true">
+            <div className="terminal-container">
+                {/* Architectural Console Header */}
                 <div className="terminal-titlebar">
-                    {/* Left spacer to balance the right buttons */}
-                    <div style={{width: 138}}/>
-                    <span className="terminal-title"></span>
-                    {/* Windows-style action buttons */}
-                    <div className="flex items-center">
-                        <button className="terminal-win-btn" aria-label="Minimize" tabIndex={-1}>
-                            &#x2014;
-                        </button>
-                        <button className="terminal-win-btn" aria-label="Maximize" tabIndex={-1}>
-                            &#x2610;
-                        </button>
-                        <button className="terminal-win-btn close" aria-label="Close" tabIndex={-1}>
-                            ✕
-                        </button>
+                    <div className="flex items-center gap-2">
+                        <span className="w-2 h-2 rounded-full bg-status-online"/>
+                        <span className="terminal-title">crawler.test.ts</span>
                     </div>
+                    <span className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground">
+                        {phase === "done" ? "PASS" : "EXEC"}
+                    </span>
                 </div>
 
                 {/* Body */}
                 <div className="terminal-body" ref={terminalBodyRef}>
                     {/* Command line */}
                     <div className="terminal-prompt">
-                        <span className="text-[#888888]">~/portfolio</span>
-                        <span className="text-[#555555]">$</span>
-                        <span className="text-[#ffffff]">
-              {typedCommand}
+                        <span className="text-muted-foreground">~/portfolio</span>
+                        <span className="text-muted-foreground/60">$</span>
+                        <span className="text-foreground font-medium">
+                            {typedCommand}
                             {phase === "typing" && cursorBlock}
-            </span>
+                        </span>
                     </div>
 
                     {/* Test output */}
                     {visibleLines.length > 0 && (
-                        <div className="mt-3 space-y-px">
+                        <div className="mt-3 space-y-0.5">
                             {visibleLines.map((line, i) => renderLine(line, i))}
                             {phase === "running" && cursorBlock}
                         </div>
@@ -288,3 +226,4 @@ export const TerminalAnimation = () => {
         </div>
     );
 };
+

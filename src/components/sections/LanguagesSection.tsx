@@ -1,117 +1,99 @@
-import {motion, useInView} from "framer-motion";
-import {useRef} from "react";
 import {useTranslation} from "react-i18next";
+import BR from "country-flag-icons/react/3x2/BR";
+import ES from "country-flag-icons/react/3x2/ES";
+import US from "country-flag-icons/react/3x2/US";
 
 /* =============================================================================
-   LanguagesSection - Editorial High-End
-
-   DESIGN:
-   - Grid de cards de idiomas minimalistas
-   - Barra de proficiência horizontal simples
-   - Tipografia limpa e hierárquica
+   LanguagesSection - Swiss Editorial Technical Design System
+   - Replaces emoji flags with crisp SVG flag icons (country-flag-icons)
+   - Replaces arbitrary progress bars with an architectural specification strip
+   - Preserves all language names, levels, and metrics
    ============================================================================= */
 
 export const LanguagesSection = () => {
     const {t} = useTranslation();
-    const ref = useRef(null);
-    const isInView = useInView(ref, {once: true, margin: "-100px"});
 
     const languages = [
         {
             name: t("languagesSection.portuguese.name"),
             level: t("languagesSection.portuguese.level"),
             proficiency: 100,
-            flag: "🇧🇷",
+            code: "PT-BR",
+            FlagIcon: BR,
         },
         {
             name: t("languagesSection.spanish.name"),
             level: t("languagesSection.spanish.level"),
             proficiency: 85,
-            flag: "🇪🇸",
+            code: "ES",
+            FlagIcon: ES,
         },
         {
             name: t("languagesSection.english.name"),
             level: t("languagesSection.english.level"),
             proficiency: 60,
-            flag: "🇺🇸",
+            code: "EN",
+            FlagIcon: US,
         },
     ];
 
-    const containerVariants = {
-        hidden: {opacity: 0},
-        visible: {
-            opacity: 1,
-            transition: {staggerChildren: 0.1},
-        },
-    };
-
-    const itemVariants = {
-        hidden: {opacity: 0, y: 20},
-        visible: {
-            opacity: 1,
-            y: 0,
-            transition: {duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94]},
-        },
-    };
-
     return (
-        <section className="py-24 md:py-32 relative" ref={ref}>
-            <div className="container mx-auto px-6">
-                <motion.div
-                    variants={containerVariants}
-                    initial="hidden"
-                    animate={isInView ? "visible" : "hidden"}
-                    className="max-w-4xl mx-auto"
-                >
-                    {/* Section header */}
-                    <motion.div
-                        variants={itemVariants}
-                        className="section-header justify-center"
-                    >
-            <span className="section-label">
-                {t("languagesSection.title")}
-              </span>
-                    </motion.div>
+        <section id="languages" className="py-20 md:py-28 relative border-b border-border">
+            <div className="container mx-auto">
+                <div className="max-w-6xl mx-auto">
+                    {/* Editorial Section Header */}
+                    <div className="section-header-editorial">
+                        <span className="section-index" aria-hidden="true">06 // LANGUAGES</span>
+                        <h2 className="section-title">
+                            {t("languagesSection.title")}
+                        </h2>
+                    </div>
 
-                    {/* Languages grid */}
-                    <div className="grid sm:grid-cols-3 gap-5">
+                    {/* 3-Column Specification Strip */}
+                    <div className="grid grid-cols-1 sm:grid-cols-3 border-t border-l border-border">
                         {languages.map((lang) => (
-                            <motion.div
-                                key={lang.name}
-                                variants={itemVariants}
-                                className="card p-6 text-center group transition-colors duration-200"
+                            <div
+                                key={lang.code}
+                                className="border-r border-b border-border p-6 sm:p-8 bg-surface/50 hover:bg-surface-container transition-colors duration-200 flex flex-col justify-between gap-6"
                             >
-                                {/* Flag */}
-                                <div className="text-4xl mb-4">{lang.flag}</div>
-
-                                {/* Name and level */}
-                                <h3 className="text-lg font-medium text-foreground mb-1">
-                                    {lang.name}
-                                </h3>
-                                <p className="text-sm text-accent font-medium mb-5">
-                                    {lang.level}
-                                </p>
-
-                                {/* Proficiency bar */}
-                                <div className="h-1.5 bg-border overflow-hidden">
-                                    <motion.div
-                                        className="h-full bg-accent"
-                                        initial={{width: 0}}
-                                        animate={isInView ? {width: `${lang.proficiency}%`} : {}}
-                                        transition={{
-                                            duration: 0.8,
-                                            ease: [0.25, 0.46, 0.45, 0.94],
-                                        }}
-                                    />
+                                {/* Top bar: SVG Flag & ISO code */}
+                                <div className="flex items-center justify-between gap-3">
+                                    <span
+                                        aria-hidden="true"
+                                        className="w-7 h-5 overflow-hidden flex items-center justify-center border border-border shrink-0"
+                                    >
+                                        <lang.FlagIcon
+                                            style={{width: "100%", height: "100%", display: "block"}}
+                                        />
+                                    </span>
+                                    <span
+                                        aria-hidden="true"
+                                        className="font-mono text-xs text-muted-foreground tracking-wider"
+                                    >
+                                        {lang.code}
+                                    </span>
                                 </div>
-                                <p className="text-xs text-muted-foreground mt-2">
-                                    {lang.proficiency}%
-                                </p>
-                            </motion.div>
+
+                                {/* Name & Level */}
+                                <div className="pt-2 border-t border-border/60 flex items-baseline justify-between gap-4">
+                                    <div>
+                                        <h3 className="text-lg sm:text-xl font-display font-semibold text-foreground mb-1">
+                                            {lang.name}
+                                        </h3>
+                                        <p className="text-sm text-muted-foreground font-medium">
+                                            {lang.level}
+                                        </p>
+                                    </div>
+                                    <span className="font-mono text-xs text-muted-foreground">
+                                        {lang.proficiency}%
+                                    </span>
+                                </div>
+                            </div>
                         ))}
                     </div>
-                </motion.div>
+                </div>
             </div>
         </section>
     );
 };
+

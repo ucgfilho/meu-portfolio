@@ -1,81 +1,40 @@
-import {lazy, Suspense} from "react";
+import {useEffect} from "react";
 import {AnimatedBackground} from "@/components/AnimatedBackground";
 import {Navigation} from "@/components/Navigation";
 import {ScrollToTop} from "@/components/ScrollToTop";
-import {useTranslation} from "react-i18next";
-
-const HeroSection = lazy(() =>
-    import("@/components/sections/HeroSection").then((module) => ({
-        default: module.HeroSection,
-    })),
-);
-const AboutSection = lazy(() =>
-    import("@/components/sections/AboutSection").then((module) => ({
-        default: module.AboutSection,
-    })),
-);
-const EducationSection = lazy(() =>
-    import("@/components/sections/EducationSection").then((module) => ({
-        default: module.EducationSection,
-    })),
-);
-const ExperienceSection = lazy(() =>
-    import("@/components/sections/ExperienceSection").then((module) => ({
-        default: module.ExperienceSection,
-    })),
-);
-const SkillsSection = lazy(() =>
-    import("@/components/sections/SkillsSection").then((module) => ({
-        default: module.SkillsSection,
-    })),
-);
-const ProjectsSection = lazy(() =>
-    import("@/components/sections/ProjectsSection").then((module) => ({
-        default: module.ProjectsSection,
-    })),
-);
-const LanguagesSection = lazy(() =>
-    import("@/components/sections/LanguagesSection").then((module) => ({
-        default: module.LanguagesSection,
-    })),
-);
-const ContactSection = lazy(() =>
-    import("@/components/sections/ContactSection").then((module) => ({
-        default: module.ContactSection,
-    })),
-);
+import {HeroSection} from "@/components/sections/HeroSection";
+import {AboutSection} from "@/components/sections/AboutSection";
+import {ExperienceSection} from "@/components/sections/ExperienceSection";
+import {SkillsSection} from "@/components/sections/SkillsSection";
+import {ProjectsSection} from "@/components/sections/ProjectsSection";
+import {EducationSection} from "@/components/sections/EducationSection";
+import {LanguagesSection} from "@/components/sections/LanguagesSection";
+import {ContactSection} from "@/components/sections/ContactSection";
 
 const Index = () => {
-    const {t} = useTranslation();
-
-    // Aplicar tema dark
-    if (typeof document !== "undefined") {
+    useEffect(() => {
         document.documentElement.classList.add("dark");
-    }
+    }, []);
 
     return (
-        <div className="min-h-screen relative">
+        <div className="min-h-screen relative bg-background text-foreground">
             <AnimatedBackground/>
             <Navigation/>
             <ScrollToTop/>
 
-            <main>
-                <Suspense
-                    fallback={<div className="sr-only">{t("common.loadingSections")}</div>}
-                >
-                    <HeroSection/>
-
-                    <AboutSection/>
-                    <ExperienceSection/>
-                    <SkillsSection/>
-                    <ProjectsSection/>
-                    <EducationSection/>
-                    <LanguagesSection/>
-                    <ContactSection/>
-                </Suspense>
+            <main id="main-content">
+                <HeroSection/>
+                <AboutSection/>
+                <ExperienceSection/>
+                <SkillsSection/>
+                <ProjectsSection/>
+                <EducationSection/>
+                <LanguagesSection/>
+                <ContactSection/>
             </main>
         </div>
     );
 };
 
 export default Index;
+

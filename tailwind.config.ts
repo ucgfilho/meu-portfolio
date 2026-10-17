@@ -1,11 +1,13 @@
 import type {Config} from "tailwindcss";
+import tailwindcssAnimate from "tailwindcss-animate";
 
 /* =============================================================================
-   Tailwind Config - Editorial High-End Design System
+   Tailwind Config - Swiss Editorial Technical Design System
    
-   - Tipografia Inter com pesos variados
-   - Animações sutis e elegantes
-   - Tokens minimalistas
+   - Display/Headings: Space Grotesk
+   - Body/UI: IBM Plex Sans
+   - Technical/Metadata/Code: JetBrains Mono
+   - Architectural tokens & disciplined elevation
    ============================================================================= */
 
 export default {
@@ -20,20 +22,25 @@ export default {
     theme: {
         container: {
             center: true,
-            padding: "1.5rem",
+            padding: {
+                DEFAULT: "1.25rem",
+                sm: "1.5rem",
+                lg: "2rem",
+            },
             screens: {
                 "2xl": "1280px",
             },
         },
         extend: {
-            /* -----------------------------------------------------------------------
-               Cores - Editorial Design System
-               ----------------------------------------------------------------------- */
             colors: {
                 border: "hsl(var(--border))",
+                "border-strong": "hsl(var(--border-strong))",
                 input: "hsl(var(--input))",
                 ring: "hsl(var(--ring))",
-                background: "hsl(var(--background))",
+                background: {
+                    DEFAULT: "hsl(var(--background))",
+                    elevated: "hsl(var(--background-elevated))",
+                },
                 foreground: "hsl(var(--foreground))",
 
                 primary: {
@@ -66,6 +73,10 @@ export default {
                     foreground: "hsl(var(--accent-foreground))",
                 },
 
+                status: {
+                    online: "hsl(var(--status-online))",
+                },
+
                 popover: {
                     DEFAULT: "hsl(var(--popover))",
                     foreground: "hsl(var(--popover-foreground))",
@@ -84,57 +95,58 @@ export default {
                 },
             },
 
-            /* -----------------------------------------------------------------------
-               Border Radius - Mais conservador
-               ----------------------------------------------------------------------- */
             borderRadius: {
-                "4xl": "2rem",
-                "3xl": "1.5rem",
-                "2xl": "1rem",
-                xl: "0.75rem",
-                lg: "0.5rem",
-                md: "0.375rem",
-                sm: "0.25rem",
+                "2xl": "0.5rem",
+                xl: "0.375rem",
+                lg: "0.25rem",
+                md: "0.1875rem",
+                sm: "0.125rem",
             },
 
-            /* -----------------------------------------------------------------------
-               Tipografia - Inter
-               ----------------------------------------------------------------------- */
             fontFamily: {
-                sans: [
+                display: [
+                    '"Space Grotesk"',
                     "-apple-system",
                     "BlinkMacSystemFont",
                     '"Segoe UI"',
-                    '"Helvetica Neue"',
-                    "Arial",
                     "sans-serif",
                 ],
-                mono: ['"JetBrains Mono"', '"Fira Code"', "monospace"],
+                sans: [
+                    '"IBM Plex Sans"',
+                    "-apple-system",
+                    "BlinkMacSystemFont",
+                    '"Segoe UI"',
+                    "sans-serif",
+                ],
+                mono: [
+                    '"JetBrains Mono"',
+                    '"Fira Code"',
+                    "ui-monospace",
+                    "SFMono-Regular",
+                    "monospace",
+                ],
             },
 
             fontSize: {
                 display: [
-                    "clamp(2.5rem, 10vw, 6rem)",
-                    {lineHeight: "0.9", letterSpacing: "-0.04em"},
+                    "clamp(2.35rem, 5.5vw, 4.5rem)",
+                    {lineHeight: "1.02", letterSpacing: "-0.035em"},
                 ],
                 "display-sm": [
-                    "clamp(1.5rem, 5vw, 3rem)",
-                    {lineHeight: "1", letterSpacing: "-0.03em"},
+                    "clamp(1.75rem, 3.5vw, 2.75rem)",
+                    {lineHeight: "1.1", letterSpacing: "-0.025em"},
                 ],
             },
 
             letterSpacing: {
-                tighter: "-0.04em",
+                tighter: "-0.035em",
                 tight: "-0.02em",
                 normal: "0",
                 wide: "0.025em",
-                wider: "0.1em",
-                widest: "0.2em",
+                wider: "0.08em",
+                widest: "0.16em",
             },
 
-            /* -----------------------------------------------------------------------
-               Keyframes - Sutis e Elegantes
-               ----------------------------------------------------------------------- */
             keyframes: {
                 "accordion-down": {
                     from: {height: "0"},
@@ -148,71 +160,34 @@ export default {
                     "0%": {opacity: "0"},
                     "100%": {opacity: "1"},
                 },
-                "fade-in-up": {
-                    "0%": {opacity: "0", transform: "translateY(20px)"},
-                    "100%": {opacity: "1", transform: "translateY(0)"},
-                },
-                "fade-in-down": {
-                    "0%": {opacity: "0", transform: "translateY(-20px)"},
-                    "100%": {opacity: "1", transform: "translateY(0)"},
-                },
-                "scale-in": {
-                    "0%": {opacity: "0", transform: "scale(0.95)"},
-                    "100%": {opacity: "1", transform: "scale(1)"},
-                },
-                "slide-in-right": {
-                    "0%": {opacity: "0", transform: "translateX(20px)"},
-                    "100%": {opacity: "1", transform: "translateX(0)"},
-                },
                 "pulse-soft": {
                     "0%, 100%": {opacity: "1"},
-                    "50%": {opacity: "0.5"},
-                },
-                "cursor-blink": {
-                    "0%, 100%": {opacity: "1"},
-                    "50%": {opacity: "0"},
+                    "50%": {opacity: "0.45"},
                 },
             },
 
-            /* -----------------------------------------------------------------------
-               Animations
-               ----------------------------------------------------------------------- */
             animation: {
                 "accordion-down": "accordion-down 0.2s ease-out",
                 "accordion-up": "accordion-up 0.2s ease-out",
-                "fade-in": "fade-in 0.5s ease-out forwards",
-                "fade-in-up": "fade-in-up 0.6s ease-out forwards",
-                "fade-in-down": "fade-in-down 0.6s ease-out forwards",
-                "scale-in": "scale-in 0.3s ease-out forwards",
-                "slide-in-right": "slide-in-right 0.4s ease-out forwards",
-                "pulse-soft": "pulse-soft 2s ease-in-out infinite",
-                "cursor-blink": "cursor-blink 1s step-end infinite",
+                "fade-in": "fade-in 0.3s ease-out forwards",
+                "pulse-soft": "pulse-soft 2.5s ease-in-out infinite",
             },
 
-            /* -----------------------------------------------------------------------
-               Box Shadow
-               ----------------------------------------------------------------------- */
             boxShadow: {
-                "glow-sm": "0 0 20px -5px hsl(var(--accent) / 0.3)",
-                "glow-md": "0 0 40px -10px hsl(var(--accent) / 0.4)",
-                "glow-lg": "0 0 60px -15px hsl(var(--accent) / 0.5)",
-                card: "0 4px 20px -5px hsl(0 0% 0% / 0.1)",
-                "card-hover": "0 20px 40px -20px hsl(var(--accent) / 0.2)",
+                panel: "0 1px 0 0 hsl(var(--border)), 0 12px 32px -12px rgba(0, 0, 0, 0.5)",
+                elevated: "0 16px 40px -12px rgba(0, 0, 0, 0.65)",
             },
 
-            /* -----------------------------------------------------------------------
-               Transition
-               ----------------------------------------------------------------------- */
             transitionTimingFunction: {
-                smooth: "cubic-bezier(0.4, 0, 0.2, 1)",
+                smooth: "cubic-bezier(0.22, 1, 0.36, 1)",
                 "smooth-out": "cubic-bezier(0, 0, 0.2, 1)",
-                "smooth-in": "cubic-bezier(0.4, 0, 1, 1)",
             },
 
             transitionDuration: {
-                "400": "400ms",
+                "250": "250ms",
             },
         },
     },
-    plugins: [require("tailwindcss-animate")],
+    plugins: [tailwindcssAnimate],
 } satisfies Config;
+

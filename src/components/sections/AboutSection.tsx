@@ -1,93 +1,66 @@
-import {motion, useInView} from "framer-motion";
-import {useRef} from "react";
-import {Sparkles, Target} from "lucide-react";
 import {useTranslation} from "react-i18next";
 
 /* =============================================================================
-   AboutSection - Editorial High-End
-
-   DESIGN:
-   - Layout assimétrico com imagem e texto
-   - Cards minimalistas e flat
-   - Tipografia clara com hierarquia forte
-   - Animações sutis de entrada
+   AboutSection - Swiss Editorial Technical Design System
+   - Semantic h2 heading with editorial index
+   - Asymmetric 12-column layout (4-col portrait frame + 8-col structured prose)
+   - Lead paragraph differentiation + 2-column technical bio breakdown
    ============================================================================= */
 
 export const AboutSection = () => {
     const {t} = useTranslation();
-    const ref = useRef(null);
-    const isInView = useInView(ref, {once: true, margin: "-100px"});
-
-    const containerVariants = {
-        hidden: {opacity: 0},
-        visible: {
-            opacity: 1,
-            transition: {staggerChildren: 0.15},
-        },
-    };
-
-    const itemVariants = {
-        hidden: {opacity: 0, y: 20},
-        visible: {
-            opacity: 1,
-            y: 0,
-            transition: {duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94]},
-        },
-    };
 
     return (
-        <section id="about" className="py-24 md:py-32 relative" ref={ref}>
-            <div className="container mx-auto px-6">
-                <motion.div
-                    variants={containerVariants}
-                    initial="hidden"
-                    animate={isInView ? "visible" : "hidden"}
-                    className="grid lg:grid-cols-[1fr_1.2fr] gap-12 lg:gap-20 items-center max-w-6xl mx-auto"
-                >
-                    {/* Profile Image */}
-                    <motion.div variants={itemVariants} className="order-first">
-                        <div
-                            className="relative overflow-hidden aspect-[3/4] max-w-sm mx-auto lg:mx-0 bg-surface-container">
-                            <img
-                                src="/images/profile-photo.png"
-                                alt={t("about.imageAlt")}
-                                className="w-full h-full object-cover"
-                            />
-                            {/* Subtle gradient overlay */}
-                            <div
-                                className="absolute inset-0 bg-gradient-to-t from-background/30 via-transparent to-transparent"/>
+        <section id="about" className="py-20 md:py-28 relative border-b border-border">
+            <div className="container mx-auto">
+                <div className="max-w-6xl mx-auto">
+                    {/* Editorial Section Header */}
+                    <div className="section-header-editorial">
+                        <span className="section-index" aria-hidden="true">01 // PROFILE</span>
+                        <h2 className="section-title">
+                            {t("about.title")}
+                        </h2>
+                    </div>
+
+                    <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start">
+                        {/* Profile Image — 4 Columns */}
+                        <div className="lg:col-span-4">
+                            <div className="relative p-2 border border-border bg-surface-container max-w-xs sm:max-w-sm mx-auto lg:mx-0">
+                                <div className="relative overflow-hidden aspect-[3/4] bg-surface">
+                                    <img
+                                        src="/images/profile-photo.png"
+                                        alt={t("about.imageAlt")}
+                                        loading="lazy"
+                                        decoding="async"
+                                        width={600}
+                                        height={800}
+                                        className="w-full h-full object-cover"
+                                    />
+                                </div>
+                            </div>
                         </div>
-                    </motion.div>
 
-                    {/* Content */}
-                    <motion.div variants={containerVariants} className="space-y-8">
-                        {/* Section Header */}
-                        <motion.div
-                            variants={itemVariants}
-                            className="section-header justify-center"
-                        >
-              <span className="section-label">
-                {t("about.title")}
-              </span>
-                        </motion.div>
-
-                        {/* Bio */}
-                        <motion.div variants={itemVariants} className="space-y-4">
-                            <p className="text-lg text-muted-foreground leading-relaxed">
+                        {/* Editorial Bio Content — 8 Columns */}
+                        <div className="lg:col-span-8 flex flex-col justify-between space-y-8">
+                            {/* Lead Paragraph */}
+                            <p className="text-lg sm:text-xl text-foreground leading-[1.65] font-normal pb-8 border-b border-border max-w-[68ch]">
                                 {t("about.bio1")}
                             </p>
-                            <p className="text-lg text-muted-foreground leading-relaxed">
-                                {t("about.bio2")}
-                            </p>
-                            <p className="text-lg text-muted-foreground leading-relaxed">
-                                {t("about.bio3")}
-                            </p>
-                        </motion.div>
 
-
-                    </motion.div>
-                </motion.div>
+                            {/* Secondary Paragraphs in 2-Column Editorial Layout */}
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
+                                <p className="text-base text-muted-foreground leading-[1.75]">
+                                    {t("about.bio2")}
+                                </p>
+                                <p className="text-base text-muted-foreground leading-[1.75]">
+                                    {t("about.bio3")}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
     );
 };
+

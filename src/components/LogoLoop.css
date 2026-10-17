@@ -16,9 +16,14 @@
   padding-bottom: calc(var(--logoloop-logoHeight) * 0.1);
 }
 
+.logoloop--fade {
+  mask-image: linear-gradient(to right, transparent 0%, #000 8%, #000 92%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 8%, #000 92%, transparent 100%);
+}
+
 @media (prefers-color-scheme: dark) {
   .logoloop {
-    --logoloop-fadeColorAuto: #0b0b0b;
+    --logoloop-fadeColorAuto: #090a0c;
   }
 }
 
@@ -74,12 +79,12 @@
 
 .logoloop__brand-node,
 .logoloop__brand-image {
-  opacity: 1;
+  opacity: 0.72;
   filter: brightness(0) invert(1);
   transition:
-    filter 0.25s ease,
-    opacity 0.25s ease,
-    transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    filter 0.2s ease,
+    opacity 0.2s ease,
+    transform 0.25s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .logoloop__item:hover .logoloop__brand-node,

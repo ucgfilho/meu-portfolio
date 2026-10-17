@@ -1,5 +1,3 @@
-import { motion, useInView } from "framer-motion";
-import { useRef } from "react";
 import {
   BarChart3,
   ClipboardList,
@@ -33,19 +31,13 @@ import { FaAws } from "react-icons/fa6";
 import { LogoLoop } from "../LogoLoop";
 
 /* =============================================================================
-   SkillsSection - Editorial High-End
-
-   DESIGN:
-   - Cards flat com borda sutil
-   - Chips minimalistas
-   - Grid responsivo 3 colunas
-   - Animações stagger suaves
+   SkillsSection - Swiss Editorial Technical Design System
+   - Unified border-collapsed specification matrix instead of uneven floating cards
+   - Monospaced technical tags & framed technology marquee
    ============================================================================= */
 
 export const SkillsSection = () => {
   const { t } = useTranslation();
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   const skillCategories = [
     {
@@ -95,69 +87,62 @@ export const SkillsSection = () => {
     },
   ];
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: { staggerChildren: 0.08 },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] as const },
-    },
-  };
-
   return (
-    <section id="skills" className="py-24 md:py-32 relative" ref={ref}>
-      <div className="container mx-auto px-6">
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          animate={isInView ? "visible" : "hidden"}
-          className="max-w-6xl mx-auto"
-        >
-          {/* Section header */}
-          <motion.div variants={itemVariants} className="section-header justify-center">
-            <span className="section-label">{t("skills.title")}</span>
-          </motion.div>
+    <section id="skills" className="py-20 md:py-28 relative border-b border-border">
+      <div className="container mx-auto">
+        <div className="max-w-6xl mx-auto">
+          {/* Editorial Section Header */}
+          <div className="section-header-editorial">
+            <span className="section-index" aria-hidden="true">03 // CAPABILITIES</span>
+            <h2 className="section-title">{t("skills.title")}</h2>
+          </div>
 
-          {/* Skills Grid */}
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
-            {skillCategories.map((category) => (
-              <motion.div
+          {/* Unified Architectural Matrix */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 border-t border-l border-border">
+            {skillCategories.map((category, idx) => (
+              <div
                 key={category.title}
-                variants={itemVariants}
-                className="card p-6 group transition-colors duration-200"
+                className="border-r border-b border-border p-6 lg:p-7 bg-surface/50 hover:bg-surface-container transition-colors duration-200 flex flex-col justify-between gap-6"
               >
                 {/* Category header */}
-                <div className="flex items-center gap-3 mb-5">
-                  <div className="icon-container-sm">
-                    <category.icon className="w-4 h-4 text-accent" />
+                <div className="flex items-start justify-between gap-3">
+                  <div className="flex items-center gap-3">
+                    <div className="icon-container-sm shrink-0">
+                      <category.icon className="w-4 h-4 text-foreground" aria-hidden="true" />
+                    </div>
+                    <h3 className="text-base sm:text-lg font-display font-medium text-foreground leading-snug">
+                      {category.title}
+                    </h3>
                   </div>
-                  <h3 className="font-medium text-foreground">{category.title}</h3>
+                  <span
+                    aria-hidden="true"
+                    className="font-mono text-[11px] text-muted-foreground/70 select-none"
+                  >
+                    {String(idx + 1).padStart(2, "0")}
+                  </span>
                 </div>
 
                 {/* Skills list */}
                 <div className="flex flex-wrap gap-2">
                   {category.skills.map((skill) => (
-                    <span key={skill} className="chip">
+                    <span key={skill} className="tech-tag">
                       {skill}
                     </span>
                   ))}
                 </div>
-              </motion.div>
+              </div>
             ))}
           </div>
 
-          {/* All technologies */}
-          <motion.div variants={itemVariants} className="mt-16 text-center">
-            <p className="text-sm text-muted-foreground mb-6">{t("skills.allTechnologies")}</p>
-            <div style={{ position: "relative", overflow: "hidden" }}>
+          {/* All technologies strip */}
+          <div className="mt-14 pt-8 border-t border-border">
+            <div className="flex items-center justify-between gap-4 mb-6">
+              <p className="font-mono text-xs uppercase tracking-[0.16em] text-muted-foreground">
+                {t("skills.allTechnologies")}
+              </p>
+              <span aria-hidden="true" className="flex-1 h-px bg-border" />
+            </div>
+            <div className="relative overflow-hidden py-3">
               <LogoLoop
                 logos={[
                   {
@@ -205,8 +190,10 @@ export const SkillsSection = () => {
                       <img
                         src="/images/k6-logo.svg"
                         alt="k6"
+                        width={36}
+                        height={36}
                         className="logoloop__brand-image"
-                        style={{ height: "36px", width: "auto" }}
+                        style={{ height: "32px", width: "auto" }}
                       />
                     ),
                     title: "Grafana k6",
@@ -236,9 +223,9 @@ export const SkillsSection = () => {
                     title: "AWS",
                   },
                 ]}
-                speed={80}
+                speed={65}
                 direction="left"
-                logoHeight={36}
+                logoHeight={32}
                 gap={48}
                 hoverSpeed={0}
                 scaleOnHover
@@ -246,9 +233,10 @@ export const SkillsSection = () => {
                 ariaLabel="Todas as tecnologias"
               />
             </div>
-          </motion.div>
-        </motion.div>
+          </div>
+        </div>
       </div>
     </section>
   );
 };
+

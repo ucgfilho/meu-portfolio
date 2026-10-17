@@ -1,17 +1,10 @@
-import { motion, useInView } from "framer-motion";
-import { useRef } from "react";
 import { Calendar, MapPin } from "lucide-react";
 import { useTranslation } from "react-i18next";
 
 /* =============================================================================
-   ExperienceSection - Editorial High-End
-
-   DESIGN:
-   - Lista de cards com layout limpo
-   - Badge de status para período atual (condicional)
-   - Localização com ícone discreto
-   - Lista de responsabilidades com marcadores
-   - Tipografia hierárquica clara
+   ExperienceSection - Swiss Editorial Technical Design System
+   - Split-column career ledger (4-col metadata + 8-col engineering impact statements)
+   - Semantic h2 and h3 hierarchy
    ============================================================================= */
 
 interface ExperienceItem {
@@ -25,88 +18,80 @@ interface ExperienceItem {
 
 export const ExperienceSection = () => {
   const { t } = useTranslation();
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   const experienceItems = t("experience.items", { returnObjects: true }) as ExperienceItem[];
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: { staggerChildren: 0.1 },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] },
-    },
-  };
-
   return (
-    <section id="experience" className="py-24 md:py-32 relative" ref={ref}>
-      <div className="container mx-auto px-6">
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          animate={isInView ? "visible" : "hidden"}
-          className="max-w-4xl mx-auto"
-        >
-          {/* Section header */}
-          <motion.div variants={itemVariants} className="section-header justify-center mb-16">
-            <span className="section-label">{t("experience.title")}</span>
-          </motion.div>
+    <section id="experience" className="py-20 md:py-28 relative border-b border-border">
+      <div className="container mx-auto">
+        <div className="max-w-6xl mx-auto">
+          {/* Editorial Section Header */}
+          <div className="section-header-editorial">
+            <span className="section-index" aria-hidden="true">02 // EXPERIENCE</span>
+            <h2 className="section-title">{t("experience.title")}</h2>
+          </div>
 
-          <div className="space-y-12">
+          <div className="divide-y divide-border">
             {experienceItems.map((item, idx) => (
-              <motion.div key={idx} variants={itemVariants} className="card p-8">
-                {/* Header */}
-                <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4 mb-8">
-                  <div>
-                    <h3 className="text-2xl font-medium text-foreground mb-1">
-                      {item.role}
-                    </h3>
-                    <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
-                      <p className="text-accent font-medium">{item.company}</p>
-                      <span className="flex items-center gap-1.5 text-sm text-muted-foreground">
-                        <MapPin className="w-4 h-4" />
-                        {item.location}
+              <article
+                key={idx}
+                className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 py-10 first:pt-2 last:pb-2"
+              >
+                {/* Left Column — Metadata & Organization */}
+                <div className="lg:col-span-4 flex flex-col items-start justify-between gap-4">
+                  <div className="space-y-3 w-full">
+                    <div className="flex flex-wrap items-center gap-2.5">
+                      <span className="inline-flex items-center gap-1.5 font-mono text-xs text-muted-foreground">
+                        <Calendar className="w-3.5 h-3.5 shrink-0" aria-hidden="true" />
+                        {item.period}
                       </span>
+                      {item.isCurrent && (
+                        <span className="status-badge">
+                          <span className="status-dot" aria-hidden="true" />
+                          {t("experience.current") || "Atual"}
+                        </span>
+                      )}
                     </div>
-                  </div>
 
-                  <div className="flex items-center gap-3">
-                    {item.isCurrent && (
-                      <span className="status-badge">
-                        <span className="status-dot" />
-                        {t("experience.current") || "Atual"}
-                      </span>
-                    )}
-                    <span className="inline-flex items-center gap-2 text-sm text-muted-foreground whitespace-nowrap">
-                      <Calendar className="w-4 h-4" />
-                      {item.period}
+                    <p className="font-display text-lg font-semibold text-foreground leading-snug">
+                      {item.company}
+                    </p>
+
+                    <span className="inline-flex items-center gap-1.5 font-mono text-xs text-muted-foreground">
+                      <MapPin className="w-3.5 h-3.5 shrink-0" aria-hidden="true" />
+                      {item.location}
                     </span>
                   </div>
                 </div>
 
-                {/* Responsibilities */}
-                <ul className="space-y-4">
-                  {item.responsibilities.map((responsibility, index) => (
-                    <li key={index} className="flex gap-4">
-                      <span className="mt-2 w-1.5 h-1.5 rounded-full bg-accent shrink-0" />
-                      <p className="text-foreground/90 leading-relaxed">{responsibility}</p>
-                    </li>
-                  ))}
-                </ul>
-              </motion.div>
+                {/* Right Column — Role & Engineering Impact */}
+                <div className="lg:col-span-8">
+                  <h3 className="text-xl sm:text-2xl font-display font-semibold text-foreground mb-6 pb-4 border-b border-border/70">
+                    {item.role}
+                  </h3>
+
+                  <ul className="space-y-5">
+                    {item.responsibilities.map((responsibility, index) => (
+                      <li key={index} className="grid grid-cols-[auto_1fr] gap-4 items-baseline">
+                        <span
+                          aria-hidden="true"
+                          className="font-mono text-xs text-muted-foreground select-none"
+                        >
+                          {String(index + 1).padStart(2, "0")}
+                        </span>
+                        <p className="text-foreground/90 text-base leading-[1.75] max-w-[68ch]">
+                          {responsibility}
+                        </p>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </article>
             ))}
           </div>
-        </motion.div>
+        </div>
       </div>
     </section>
   );
 };
+

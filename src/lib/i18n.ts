@@ -16,9 +16,20 @@ const resources = {
     },
 };
 
+const getInitialLanguage = (): string => {
+    try {
+        if (typeof window !== "undefined" && typeof window.localStorage?.getItem === "function") {
+            return window.localStorage.getItem("language") || "pt-BR";
+        }
+    } catch {
+        // Fallback when localStorage is blocked or unavailable
+    }
+    return "pt-BR";
+};
+
 i18n.use(initReactI18next).init({
     resources,
-    lng: localStorage.getItem("language") || "pt-BR",
+    lng: getInitialLanguage(),
     fallbackLng: "pt-BR",
     interpolation: {
         escapeValue: false,
@@ -26,3 +37,4 @@ i18n.use(initReactI18next).init({
 });
 
 export default i18n;
+
