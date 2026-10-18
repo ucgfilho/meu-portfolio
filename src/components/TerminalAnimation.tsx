@@ -37,24 +37,9 @@ const COMMAND = "PRINT_STEPS=1 jest crawler.test.ts";
 
 export const TerminalAnimation = () => {
     const [phase, setPhase] = useState<"typing" | "running" | "done">("typing");
-    const [typedCommand, setTypedCommand] = useState("");
-    const [visibleLines, setVisibleLines] = useState<TestLine[]>([]);
-    const [showCursor, setShowCursor] = useState(true);
-    const terminalBodyRef = useRef<HTMLDivElement>(null);
+    const [typedLength, setTypedLength] = useState(0);
+    const [visibleCount, setVisibleCount] = useState(0);
     const animationRef = useRef<{ cancelled: boolean }>({cancelled: false});
-
-    // Auto-scroll terminal body
-    useEffect(() => {
-        if (terminalBodyRef.current) {
-            terminalBodyRef.current.scrollTop = terminalBodyRef.current.scrollHeight;
-        }
-    }, [visibleLines, typedCommand]);
-
-    // Cursor blink
-    useEffect(() => {
-        const interval = setInterval(() => setShowCursor((c) => !c), 530);
-        return () => clearInterval(interval);
-    }, []);
 
     const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
 
@@ -69,34 +54,34 @@ export const TerminalAnimation = () => {
             window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
         if (prefersReducedMotion) {
-            setTypedCommand(COMMAND);
-            setVisibleLines(TEST_SEQUENCE);
+            setTypedLength(COMMAND.length);
+            setVisibleCount(TEST_SEQUENCE.length);
             setPhase("done");
             return;
         }
 
-        // Phase 1: Type command
+        // Phase 1: Type command (pre-allocated width prevents layout shift)
         setPhase("typing");
-        setTypedCommand("");
-        setVisibleLines([]);
+        setTypedLength(0);
+        setVisibleCount(0);
 
-        for (let i = 0; i <= COMMAND.length; i++) {
+        for (let i = 1; i <= COMMAND.length; i++) {
             if (isCancelled()) return;
-            setTypedCommand(COMMAND.slice(0, i));
+            setTypedLength(i);
             await sleep(25 + Math.random() * 20);
         }
 
         await sleep(280);
         if (isCancelled()) return;
 
-        // Phase 2: Show test output
+        // Phase 2: Reveal test output lines in reserved slots (zero CLS, zero forced reflow)
         setPhase("running");
 
-        for (const line of TEST_SEQUENCE) {
+        for (let idx = 0; idx < TEST_SEQUENCE.length; idx++) {
             if (isCancelled()) return;
-            await sleep(line.delay);
+            await sleep(TEST_SEQUENCE[idx].delay);
             if (isCancelled()) return;
-            setVisibleLines((prev) => [...prev, line]);
+            setVisibleCount(idx + 1);
         }
 
         // Phase 3: Done
@@ -121,14 +106,16 @@ export const TerminalAnimation = () => {
         );
     };
 
-    const renderLine = (line: TestLine, index: number) => {
+    const renderLine = (line: TestLine, index: number, isVisible: boolean) => {
+        const visibilityClass = isVisible ? "visible" : "invisible select-none";
+
         if (line.type === "blank") {
-            return <div key={index} className="h-2.5"/>;
+            return <div key={index} className={`h-2.5 ${visibilityClass}`}/>;
         }
 
         if (line.type === "summary") {
             return (
-                <div key={index} className="text-muted-foreground pt-1 border-t border-border/60 terminal-line-enter">
+                <div key={index} className={`text-muted-foreground pt-1 border-t border-border/60 ${visibilityClass}`}>
                     {renderSummaryLine(line.text)}
                 </div>
             );
@@ -138,7 +125,7 @@ export const TerminalAnimation = () => {
             const crossIdx = line.text.indexOf("✕");
             if (crossIdx !== -1) {
                 return (
-                    <div key={index} className="text-muted-foreground terminal-line-enter">
+                    <div key={index} className={`text-muted-foreground ${visibilityClass}`}>
                         {line.text.slice(0, crossIdx)}
                         <span className="text-destructive">✕</span>
                         {line.text.slice(crossIdx + 1)}
@@ -146,7 +133,7 @@ export const TerminalAnimation = () => {
                 );
             }
             return (
-                <div key={index} className="text-muted-foreground terminal-line-enter">
+                <div key={index} className={`text-muted-foreground ${visibilityClass}`}>
                     {line.text}
                 </div>
             );
@@ -155,7 +142,7 @@ export const TerminalAnimation = () => {
         const isHeader = /\b(RUN|STORE|READ)\b/.test(line.text);
         if (isHeader) {
             return (
-                <div key={index} className="text-foreground font-semibold terminal-line-enter">
+                <div key={index} className={`text-foreground font-semibold ${visibilityClass}`}>
                     {line.text}
                 </div>
             );
@@ -164,7 +151,7 @@ export const TerminalAnimation = () => {
         const checkIdx = line.text.indexOf("✓");
         if (checkIdx !== -1) {
             return (
-                <div key={index} className="text-muted-foreground terminal-line-enter">
+                <div key={index} className={`text-muted-foreground ${visibilityClass}`}>
                     {line.text.slice(0, checkIdx)}
                     <span className="text-status-online">✓</span>
                     {line.text.slice(checkIdx + 1)}
@@ -173,20 +160,11 @@ export const TerminalAnimation = () => {
         }
 
         return (
-            <div key={index} className="text-muted-foreground terminal-line-enter">
+            <div key={index} className={`text-muted-foreground ${visibilityClass}`}>
                 {line.text}
             </div>
         );
     };
-
-    const cursorBlock = (
-        <span
-            className={`inline-block w-[7px] h-[14px] bg-foreground align-middle ml-1 ${
-                showCursor ? "opacity-100" : "opacity-0"
-            }`}
-            style={{transform: "translateY(1px)"}}
-        />
-    );
 
     return (
         <div className="terminal-wrapper" aria-hidden="true">
@@ -203,24 +181,21 @@ export const TerminalAnimation = () => {
                 </div>
 
                 {/* Body */}
-                <div className="terminal-body" ref={terminalBodyRef}>
-                    {/* Command line */}
+                <div className="terminal-body">
+                    {/* Command line with pre-reserved width to prevent layout shifts */}
                     <div className="terminal-prompt">
-                        <span className="text-muted-foreground">~/portfolio</span>
-                        <span className="text-muted-foreground/60">$</span>
-                        <span className="text-foreground font-medium">
-                            {typedCommand}
-                            {phase === "typing" && cursorBlock}
+                        <span className="text-muted-foreground shrink-0">~/portfolio</span>
+                        <span className="text-muted-foreground shrink-0">$</span>
+                        <span className="text-foreground font-medium truncate">
+                            <span>{COMMAND.slice(0, typedLength)}</span>
+                            <span className="invisible select-none">{COMMAND.slice(typedLength)}</span>
                         </span>
                     </div>
 
-                    {/* Test output */}
-                    {visibleLines.length > 0 && (
-                        <div className="mt-3 space-y-0.5">
-                            {visibleLines.map((line, i) => renderLine(line, i))}
-                            {phase === "running" && cursorBlock}
-                        </div>
-                    )}
+                    {/* Pre-allocated test output lines */}
+                    <div className="mt-3 space-y-0.5">
+                        {TEST_SEQUENCE.map((line, i) => renderLine(line, i, i < visibleCount))}
+                    </div>
                 </div>
             </div>
         </div>

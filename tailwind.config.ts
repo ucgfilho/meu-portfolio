@@ -13,10 +13,14 @@ import tailwindcssAnimate from "tailwindcss-animate";
 export default {
     darkMode: ["class"],
     content: [
-        "./pages/**/*.{ts,tsx}",
-        "./components/**/*.{ts,tsx}",
-        "./app/**/*.{ts,tsx}",
-        "./src/**/*.{ts,tsx}",
+        "./index.html",
+        "./src/App.tsx",
+        "./src/main.tsx",
+        "./src/pages/**/*.{ts,tsx}",
+        "./src/components/*.{ts,tsx}",
+        "./src/components/icons/**/*.{ts,tsx}",
+        "./src/components/sections/**/*.{ts,tsx}",
+        "./src/components/ui/button.tsx",
     ],
     prefix: "",
     theme: {

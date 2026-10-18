@@ -27,6 +27,24 @@
   }
 }
 
+@keyframes logoloop-scroll-x {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+@keyframes logoloop-scroll-y {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(0, -50%, 0);
+  }
+}
+
 .logoloop__track {
   display: flex;
   width: max-content;
@@ -34,17 +52,28 @@
   user-select: none;
   position: relative;
   z-index: 0;
+  animation: logoloop-scroll-x var(--logoloop-duration, 20s) linear infinite;
 }
 
 .logoloop--vertical .logoloop__track {
   flex-direction: column;
   height: max-content;
   width: 100%;
+  animation-name: logoloop-scroll-y;
+}
+
+.logoloop--reverse .logoloop__track {
+  animation-direction: reverse;
+}
+
+.logoloop--pause-hover:hover .logoloop__track {
+  animation-play-state: paused;
 }
 
 .logoloop__list {
   display: flex;
   align-items: center;
+  flex-shrink: 0;
 }
 
 .logoloop--vertical .logoloop__list {
@@ -137,6 +166,7 @@
 
 @media (prefers-reduced-motion: reduce) {
   .logoloop__track {
+    animation: none !important;
     transform: translate3d(0, 0, 0) !important;
   }
 

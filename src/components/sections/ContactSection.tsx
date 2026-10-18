@@ -81,10 +81,9 @@ export const ContactSection = () => {
                                     href={link.href}
                                     target={link.href.startsWith("mailto") ? undefined : "_blank"}
                                     rel={link.href.startsWith("mailto") ? undefined : "noopener noreferrer"}
-                                    aria-label={t("contact.openLink", {platform: link.name})}
                                     className="border-r border-b border-border p-6 bg-surface-container hover:bg-surface-elevated transition-colors duration-200 group flex flex-col justify-between gap-6 cursor-pointer"
                                 >
-                                    <div className="flex items-center justify-between gap-4">
+                                    <div className="flex items-center justify-between gap-4" aria-hidden="true">
                                         <div className="icon-container group-hover:bg-foreground group-hover:text-background group-hover:border-foreground transition-colors duration-200">
                                             <link.icon className="w-4 h-4"/>
                                         </div>

@@ -54,6 +54,7 @@ export const HeroSection = () => {
                             <p className="font-display text-xl sm:text-2xl md:text-3xl font-medium text-foreground/90 tracking-tight">
                                 {t("hero.title")}
                             </p>
+                            <span aria-hidden="true" className="w-6 h-[2px] bg-foreground shrink-0"/>
                         </div>
 
                         {/* CTA Buttons */}
@@ -61,13 +62,13 @@ export const HeroSection = () => {
                             <Button variant="default" size="lg" className="w-full sm:w-auto" asChild>
                                 <a href="#projects" className="group">
                                     <span>{t("hero.viewProjects")}</span>
-                                    <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1"/>
+                                    <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1" aria-hidden="true"/>
                                 </a>
                             </Button>
                             <Button variant="outline" size="lg" className="w-full sm:w-auto" asChild>
                                 <a href="#contact">
                                     <span>{t("hero.contact")}</span>
-                                    <Mail className="w-4 h-4"/>
+                                    <Mail className="w-4 h-4" aria-hidden="true"/>
                                 </a>
                             </Button>
                         </div>
@@ -83,7 +84,7 @@ export const HeroSection = () => {
                                     aria-label={t("hero.visitProfile", {platform: social.label})}
                                     className="min-w-[44px] min-h-[44px] inline-flex items-center justify-center rounded-sm border border-border bg-surface-container text-muted-foreground hover:text-background hover:bg-foreground hover:border-foreground transition-colors duration-200 cursor-pointer"
                                 >
-                                    <social.icon className="w-4 h-4"/>
+                                    <social.icon className="w-4 h-4" aria-hidden="true"/>
                                 </a>
                             ))}
                         </div>

@@ -116,7 +116,7 @@ export const SkillsSection = () => {
                   </div>
                   <span
                     aria-hidden="true"
-                    className="font-mono text-[11px] text-muted-foreground/70 select-none"
+                    className="font-mono text-[11px] text-muted-foreground select-none"
                   >
                     {String(idx + 1).padStart(2, "0")}
                   </span>
@@ -146,52 +146,114 @@ export const SkillsSection = () => {
               <LogoLoop
                 logos={[
                   {
-                    node: <SiDotnet className="logoloop__brand-node" color="#512BD4" />,
+                    node: (
+                      <SiDotnet
+                        className="logoloop__brand-node"
+                        color="#512BD4"
+                        aria-label="C# / .NET"
+                      />
+                    ),
                     title: "C# / .NET",
                   },
                   {
-                    node: <SiTypescript className="logoloop__brand-node" color="#3178C6" />,
+                    node: (
+                      <SiTypescript
+                        className="logoloop__brand-node"
+                        color="#3178C6"
+                        aria-label="TypeScript"
+                      />
+                    ),
                     title: "TypeScript",
                   },
                   {
-                    node: <SiPuppeteer className="logoloop__brand-node" color="#40B5A4" />,
+                    node: (
+                      <SiPuppeteer
+                        className="logoloop__brand-node"
+                        color="#40B5A4"
+                        aria-label="Puppeteer"
+                      />
+                    ),
                     title: "Puppeteer",
                   },
                   {
-                    node: <SiJavascript className="logoloop__brand-node" color="#F7DF1E" />,
+                    node: (
+                      <SiJavascript
+                        className="logoloop__brand-node"
+                        color="#F7DF1E"
+                        aria-label="JavaScript"
+                      />
+                    ),
                     title: "JavaScript",
                   },
                   {
-                    node: <SiMysql className="logoloop__brand-node" color="#4479A1" />,
+                    node: (
+                      <SiMysql
+                        className="logoloop__brand-node"
+                        color="#4479A1"
+                        aria-label="MySQL"
+                      />
+                    ),
                     title: "MySQL",
                   },
                   {
-                    node: <SiCypress className="logoloop__brand-node" color="#a3e7cb" />,
+                    node: (
+                      <SiCypress
+                        className="logoloop__brand-node"
+                        color="#a3e7cb"
+                        aria-label="Cypress"
+                      />
+                    ),
                     title: "Cypress",
                   },
                   {
-                    node: <SiPostman className="logoloop__brand-node" color="#FF6C37" />,
+                    node: (
+                      <SiPostman
+                        className="logoloop__brand-node"
+                        color="#FF6C37"
+                        aria-label="Postman"
+                      />
+                    ),
                     title: "Postman",
                   },
                   {
-                    node: <SiAppium className="logoloop__brand-node" color="#EE376D" />,
+                    node: (
+                      <SiAppium
+                        className="logoloop__brand-node"
+                        color="#EE376D"
+                        aria-label="Appium"
+                      />
+                    ),
                     title: "Appium",
                   },
                   {
-                    node: <SiRobotframework className="logoloop__brand-node" color="#00c0b5" />,
+                    node: (
+                      <SiRobotframework
+                        className="logoloop__brand-node"
+                        color="#00c0b5"
+                        aria-label="Robot Framework"
+                      />
+                    ),
                     title: "Robot Framework",
                   },
                   {
-                    node: <SiJunit5 className="logoloop__brand-node" color="#25A162" />,
+                    node: (
+                      <SiJunit5
+                        className="logoloop__brand-node"
+                        color="#25A162"
+                        aria-label="JUnit"
+                      />
+                    ),
                     title: "JUnit",
                   },
                   {
                     node: (
                       <img
                         src="/images/k6-logo.svg"
-                        alt="k6"
+                        alt="Grafana k6"
                         width={36}
                         height={36}
+                        loading="lazy"
+                        decoding="async"
                         className="logoloop__brand-image"
                         style={{ height: "32px", width: "auto" }}
                       />
@@ -199,27 +261,63 @@ export const SkillsSection = () => {
                     title: "Grafana k6",
                   },
                   {
-                    node: <SiGit className="logoloop__brand-node" color="#F05032" />,
+                    node: (
+                      <SiGit
+                        className="logoloop__brand-node"
+                        color="#F05032"
+                        aria-label="Git"
+                      />
+                    ),
                     title: "Git",
                   },
                   {
-                    node: <SiGithub className="logoloop__brand-node" color="#3e75c3" />,
+                    node: (
+                      <SiGithub
+                        className="logoloop__brand-node"
+                        color="#3e75c3"
+                        aria-label="GitHub"
+                      />
+                    ),
                     title: "GitHub",
                   },
                   {
-                    node: <SiGitlab className="logoloop__brand-node" color="#FC6D26" />,
+                    node: (
+                      <SiGitlab
+                        className="logoloop__brand-node"
+                        color="#FC6D26"
+                        aria-label="GitLab CI/CD"
+                      />
+                    ),
                     title: "GitLab CI/CD",
                   },
                   {
-                    node: <SiGithubactions className="logoloop__brand-node" color="#2088FF" />,
+                    node: (
+                      <SiGithubactions
+                        className="logoloop__brand-node"
+                        color="#2088FF"
+                        aria-label="GitHub Actions"
+                      />
+                    ),
                     title: "GitHub Actions",
                   },
                   {
-                    node: <SiDocker className="logoloop__brand-node" color="#2496ED" />,
+                    node: (
+                      <SiDocker
+                        className="logoloop__brand-node"
+                        color="#2496ED"
+                        aria-label="Docker"
+                      />
+                    ),
                     title: "Docker",
                   },
                   {
-                    node: <FaAws className="logoloop__brand-node" color="#FF9900" />,
+                    node: (
+                      <FaAws
+                        className="logoloop__brand-node"
+                        color="#FF9900"
+                        aria-label="AWS"
+                      />
+                    ),
                     title: "AWS",
                   },
                 ]}

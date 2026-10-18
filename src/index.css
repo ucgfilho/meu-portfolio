@@ -36,7 +36,7 @@
     --tertiary-foreground: 40 20% 98%;
 
     --muted: 220 10% 94%;
-    --muted-foreground: 220 10% 36%;
+    --muted-foreground: 220 12% 32%;
 
     --destructive: 0 78% 52%;
     --destructive-foreground: 0 0% 98%;
@@ -85,9 +85,9 @@
     --tertiary: 220 10% 82%;
     --tertiary-foreground: 220 16% 4%;
 
-    /* Muted: Accessible Technical Slate (>7.5:1 contrast on #090A0C) */
+    /* Muted: Accessible Technical Slate (>8.5:1 contrast on #090A0C) */
     --muted: 220 12% 11%;
-    --muted-foreground: 220 9% 68%;
+    --muted-foreground: 220 10% 72%;
 
     /* Destructive */
     --destructive: 0 72% 55%;
@@ -357,25 +357,15 @@
 
 .terminal-prompt {
   display: flex;
-  align-items: center;
+  align-items: baseline;
   gap: 8px;
-  flex-wrap: wrap;
-  word-break: break-all;
-}
-
-@keyframes terminal-line-in {
-  from {
-    opacity: 0;
-    transform: translateY(2px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  flex-wrap: nowrap;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 .terminal-line-enter {
-  animation: terminal-line-in 0.15s ease-out forwards;
+  opacity: 1;
 }
 
 @media (max-width: 640px) {

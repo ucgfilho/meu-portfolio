@@ -1,4 +1,3 @@
-import {useEffect} from "react";
 import {AnimatedBackground} from "@/components/AnimatedBackground";
 import {Navigation} from "@/components/Navigation";
 import {ScrollToTop} from "@/components/ScrollToTop";
@@ -12,10 +11,6 @@ import {LanguagesSection} from "@/components/sections/LanguagesSection";
 import {ContactSection} from "@/components/sections/ContactSection";
 
 const Index = () => {
-    useEffect(() => {
-        document.documentElement.classList.add("dark");
-    }, []);
-
     return (
         <div className="min-h-screen relative bg-background text-foreground">
             <AnimatedBackground/>

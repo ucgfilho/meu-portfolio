@@ -173,4 +173,31 @@ describe("Portfolio Redesign — Content, Structure & Accessibility Verification
         fireEvent.keyDown(window, {key: "Escape"});
         expect(menuButton).toHaveAttribute("aria-expanded", "false");
     });
+
+    it("ensures all SVG role='img' icons have accessible labels and links have no label-content-name mismatch", () => {
+        const {container} = render(<App/>);
+
+        // Verify svg-img-alt & agent-accessibility-tree: every visible svg[role="img"] has aria-label
+        const visibleSvgImgs = Array.from(
+            container.querySelectorAll('ul:not([aria-hidden="true"]) svg[role="img"]'),
+        );
+        expect(visibleSvgImgs.length).toBeGreaterThan(0);
+        for (const svg of visibleSvgImgs) {
+            expect(svg.getAttribute("aria-label")).toBeTruthy();
+        }
+
+        // Verify project and contact cards do not override visible text with mismatched aria-label
+        const projectLinks = Array.from(
+            container.querySelectorAll("#projects a.arch-panel-interactive"),
+        );
+        expect(projectLinks).toHaveLength(4);
+        for (const link of projectLinks) {
+            expect(link.hasAttribute("aria-label")).toBe(false);
+        }
+
+        // Verify responsive WebP source in AboutSection
+        const pictureSource = container.querySelector('#about picture source[type="image/webp"]');
+        expect(pictureSource).toBeInTheDocument();
+        expect(pictureSource?.getAttribute("srcset")).toContain("/images/profile-photo-320.webp");
+    });
 });

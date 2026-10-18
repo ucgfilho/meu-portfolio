@@ -27,15 +27,22 @@ export const AboutSection = () => {
                         <div className="lg:col-span-4">
                             <div className="relative p-2 border border-border bg-surface-container max-w-xs sm:max-w-sm mx-auto lg:mx-0">
                                 <div className="relative overflow-hidden aspect-[3/4] bg-surface">
-                                    <img
-                                        src="/images/profile-photo.png"
-                                        alt={t("about.imageAlt")}
-                                        loading="lazy"
-                                        decoding="async"
-                                        width={600}
-                                        height={800}
-                                        className="w-full h-full object-cover"
-                                    />
+                                    <picture>
+                                        <source
+                                            type="image/webp"
+                                            srcSet="/images/profile-photo-320.webp 320w, /images/profile-photo-540.webp 540w, /images/profile-photo-640.webp 640w"
+                                            sizes="(max-width: 640px) 302px, 368px"
+                                        />
+                                        <img
+                                            src="/images/profile-photo.png"
+                                            alt={t("about.imageAlt")}
+                                            loading="lazy"
+                                            decoding="async"
+                                            width={368}
+                                            height={491}
+                                            className="w-full h-full object-cover"
+                                        />
+                                    </picture>
                                 </div>
                             </div>
                         </div>

@@ -29,7 +29,6 @@ export const Navigation = () => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 24);
     };
-    handleScroll();
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
@@ -60,8 +59,7 @@ export const Navigation = () => {
       });
     };
 
-    observeSections();
-    const timer = setTimeout(observeSections, 600);
+    const timer = setTimeout(observeSections, 300);
 
     return () => {
       clearTimeout(timer);
@@ -128,9 +126,8 @@ export const Navigation = () => {
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center justify-center gap-2 min-h-[40px] sm:min-h-[42px] px-3 sm:px-4 py-2 rounded-sm bg-foreground text-background text-xs sm:text-sm font-medium hover:bg-foreground/90 transition-colors duration-200 cursor-pointer whitespace-nowrap"
-              aria-label={t("nav.downloadCv")}
             >
-              <Download className="w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0" />
+              <Download className="w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0" aria-hidden="true" />
               <span>{t("nav.downloadCv")}</span>
             </a>
 
@@ -143,7 +140,11 @@ export const Navigation = () => {
               aria-expanded={isMobileMenuOpen}
               aria-controls="mobile-navigation-menu"
             >
-              {isMobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+              {isMobileMenuOpen ? (
+                <X className="w-5 h-5" aria-hidden="true" />
+              ) : (
+                <Menu className="w-5 h-5" aria-hidden="true" />
+              )}
             </button>
           </div>
         </div>
@@ -190,10 +191,9 @@ export const Navigation = () => {
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center justify-center gap-2 min-h-[44px] px-4 py-2.5 rounded-sm bg-foreground text-background text-sm font-medium hover:bg-foreground/90 transition-colors duration-200"
-                  aria-label={t("nav.downloadCv")}
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
-                  <Download className="w-4 h-4" />
+                  <Download className="w-4 h-4" aria-hidden="true" />
                   <span>{t("nav.downloadCv")}</span>
                 </a>
 

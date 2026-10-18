@@ -55,9 +55,6 @@ export const ProjectsSection = () => {
                 href={project.link}
                 target="_blank"
                 rel="noopener noreferrer"
-                aria-label={t("projects.openRepository", {
-                  projectName: project.name,
-                })}
                 className="arch-panel-interactive group p-6 sm:p-8 flex flex-col justify-between"
               >
                 <div>
@@ -69,7 +66,10 @@ export const ProjectsSection = () => {
                     >
                       PRJ // {String(index + 1).padStart(2, "0")}
                     </span>
-                    <span className="w-8 h-8 inline-flex items-center justify-center border border-border bg-surface text-muted-foreground group-hover:bg-foreground group-hover:text-background group-hover:border-foreground transition-colors duration-200">
+                    <span
+                      aria-hidden="true"
+                      className="w-8 h-8 inline-flex items-center justify-center border border-border bg-surface text-muted-foreground group-hover:bg-foreground group-hover:text-background group-hover:border-foreground transition-colors duration-200"
+                    >
                       <ArrowUpRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                     </span>
                   </div>
@@ -108,9 +108,12 @@ export const ProjectsSection = () => {
               rel="noopener noreferrer"
               className="inline-flex items-center justify-center gap-2.5 min-h-[44px] px-5 py-2.5 rounded-sm bg-foreground text-background text-sm font-medium hover:bg-foreground/90 transition-colors duration-200 group cursor-pointer shrink-0 w-full sm:w-auto"
             >
-              <Github className="w-4 h-4" />
+              <Github className="w-4 h-4" aria-hidden="true" />
               <span>{t("projects.viewGithubButton")}</span>
-              <ArrowUpRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+              <ArrowUpRight
+                className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                aria-hidden="true"
+              />
             </a>
           </div>
         </div>

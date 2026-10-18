@@ -1,4 +1,4 @@
-import { defineConfig } from "vite";
+import { defineConfig, type Plugin } from "vite";
 import react from "@vitejs/plugin-react-swc";
 import path from "path";
 import crypto from "node:crypto";
@@ -15,8 +15,38 @@ if (!globalThis.crypto) {
   });
 }
 
+function inlineCssPlugin(): Plugin {
+  return {
+    name: "vite-plugin-inline-css",
+    apply: "build",
+    enforce: "post",
+    generateBundle(_options, bundle) {
+      const htmlChunk = bundle["index.html"];
+      if (!htmlChunk || htmlChunk.type !== "asset" || typeof htmlChunk.source !== "string") {
+        return;
+      }
+
+      let html = htmlChunk.source;
+      for (const [fileName, asset] of Object.entries(bundle)) {
+        if (fileName.endsWith(".css") && asset.type === "asset" && typeof asset.source === "string") {
+          const escapedFileName = fileName.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+          const linkRegex = new RegExp(
+            `<link[^>]+href=["']/?${escapedFileName}["'][^>]*>`,
+            "i",
+          );
+          if (linkRegex.test(html)) {
+            html = html.replace(linkRegex, `<style>${asset.source.trim()}</style>`);
+            delete bundle[fileName];
+          }
+        }
+      }
+      htmlChunk.source = html;
+    },
+  };
+}
+
 // https://vitejs.dev/config/
-export default defineConfig(({ mode }) => ({
+export default defineConfig(() => ({
   server: {
     host: "::",
     port: 8080,
@@ -24,7 +54,7 @@ export default defineConfig(({ mode }) => ({
       overlay: false,
     },
   },
-  plugins: [react()],
+  plugins: [react(), inlineCssPlugin()],
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
@@ -35,8 +65,7 @@ export default defineConfig(({ mode }) => ({
       output: {
         manualChunks: {
           "react-vendor": ["react", "react-dom", "react-router-dom"],
-          "motion-vendor": ["framer-motion"],
-          "icons-vendor": ["lucide-react", "react-icons/si", "country-flag-icons/react/3x2"],
+          "icons-vendor": ["lucide-react", "react-icons/si", "react-icons/fa6", "country-flag-icons/react/3x2"],
           "i18n-vendor": ["i18next", "react-i18next"],
         },
       },

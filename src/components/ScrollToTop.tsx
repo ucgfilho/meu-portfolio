@@ -1,4 +1,3 @@
-import {AnimatePresence, motion} from "framer-motion";
 import {ArrowUp} from "lucide-react";
 import {useEffect, useState} from "react";
 
@@ -22,23 +21,19 @@ export const ScrollToTop = () => {
         });
     };
 
+    if (!isVisible) {
+        return null;
+    }
+
     return (
-        <AnimatePresence>
-            {isVisible && (
-                <motion.button
-                    type="button"
-                    onClick={scrollToTop}
-                    aria-label="Voltar ao topo"
-                    initial={{opacity: 0, y: 12}}
-                    animate={{opacity: 1, y: 0}}
-                    exit={{opacity: 0, y: 12}}
-                    transition={{duration: 0.2}}
-                    className="fixed bottom-6 right-6 z-40 min-w-[44px] min-h-[44px] flex items-center justify-center rounded-sm border border-border-strong bg-surface-elevated/95 backdrop-blur-md text-foreground hover:bg-foreground hover:text-background transition-colors duration-200 cursor-pointer shadow-panel"
-                >
-                    <ArrowUp className="w-4 h-4"/>
-                </motion.button>
-            )}
-        </AnimatePresence>
+        <button
+            type="button"
+            onClick={scrollToTop}
+            aria-label="Voltar ao topo"
+            className="fixed bottom-6 right-6 z-40 min-w-[44px] min-h-[44px] flex items-center justify-center rounded-sm border border-border-strong bg-surface-elevated/95 backdrop-blur-md text-foreground hover:bg-foreground hover:text-background transition-all duration-200 cursor-pointer shadow-panel animate-fade-in"
+        >
+            <ArrowUp className="w-4 h-4" aria-hidden="true"/>
+        </button>
     );
 };
 
