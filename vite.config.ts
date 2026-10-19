@@ -42,6 +42,21 @@ function inlineCssPlugin(): Plugin {
         }
       }
 
+      // Ensure the entry module script has a corresponding modulepreload link in <head>
+      // and move the <script type="module"> execution tag to the end of <body> so all
+      // critical JS resources are discovered via preload without chaining.
+      const entryScriptRegex =
+        /<script\s+type=["']module["']\s+crossorigin\s+src=["'](\/assets\/[^"']+\.js)["']\s*><\/script>/i;
+      const entryMatch = html.match(entryScriptRegex);
+      if (entryMatch) {
+        const [fullScriptTag, entrySrc] = entryMatch;
+        html = html.replace(
+          fullScriptTag,
+          `<link rel="modulepreload" crossorigin href="${entrySrc}">`,
+        );
+        html = html.replace("</body>", `  ${fullScriptTag}\n</body>`);
+      }
+
       htmlChunk.source = html;
     },
     async closeBundle() {
@@ -94,8 +109,8 @@ export default defineConfig(() => ({
     rollupOptions: {
       output: {
         manualChunks: {
-          "react-vendor": ["react", "react-dom", "react-router-dom"],
-          "three-vendor": ["three"],
+          "react-vendor": ["react", "react-dom"],
+          "router-vendor": ["react-router-dom"],
           "icons-vendor": ["lucide-react", "react-icons/si", "react-icons/fa6", "country-flag-icons/react/3x2"],
           "i18n-vendor": ["i18next", "react-i18next"],
         },

@@ -7,25 +7,6 @@ import {
   useRef,
   useSyncExternalStore,
 } from "react";
-import {
-  AdditiveBlending,
-  Color,
-  HalfFloatType,
-  LinearFilter,
-  Mesh,
-  NoBlending,
-  NoColorSpace,
-  OrthographicCamera,
-  PlaneGeometry,
-  RGBAFormat,
-  Scene,
-  ShaderMaterial,
-  Vector2,
-  Vector3,
-  Vector4,
-  WebGLRenderer,
-  WebGLRenderTarget,
-} from "three";
 import { cn } from "@/lib/utils";
 
 export interface HorizonBloomRef {
@@ -70,19 +51,42 @@ const clamp = (v: number, min: number, max: number) =>
 const finiteOr = (v: number | undefined, fallback: number) =>
   typeof v === "number" && Number.isFinite(v) ? v : fallback;
 
-const scratchColor = new Color();
-
 const parseColor = (input: string): [number, number, number] | null => {
   const trimmed = input.trim().toLowerCase();
   if (!trimmed || trimmed === "transparent" || trimmed === "none" || trimmed === "auto") {
     return null;
   }
-  try {
-    scratchColor.setStyle(trimmed, NoColorSpace);
-  } catch {
-    return null;
+  const hexMatch = trimmed.match(/^#([0-9a-f]{3}|[0-9a-f]{6})$/i);
+  if (hexMatch) {
+    const hex = hexMatch[1];
+    if (hex.length === 3) {
+      return [
+        Number.parseInt(hex[0] + hex[0], 16) / 255,
+        Number.parseInt(hex[1] + hex[1], 16) / 255,
+        Number.parseInt(hex[2] + hex[2], 16) / 255,
+      ];
+    }
+    return [
+      Number.parseInt(hex.slice(0, 2), 16) / 255,
+      Number.parseInt(hex.slice(2, 4), 16) / 255,
+      Number.parseInt(hex.slice(4, 6), 16) / 255,
+    ];
   }
-  return [scratchColor.r, scratchColor.g, scratchColor.b];
+  const rgbMatch = trimmed.match(/^rgba?\(\s*([^)]+)\s*\)$/i);
+  if (rgbMatch) {
+    const parts = rgbMatch[1]
+      .split(/[\s,/]+/)
+      .filter(Boolean)
+      .map((part) => Number.parseFloat(part));
+    if (parts.length >= 3 && parts.slice(0, 3).every((n) => Number.isFinite(n))) {
+      return [
+        clamp(parts[0] / 255, 0, 1),
+        clamp(parts[1] / 255, 0, 1),
+        clamp(parts[2] / 255, 0, 1),
+      ];
+    }
+  }
+  return null;
 };
 
 const srgbToLinear = (c: number) =>
@@ -141,6 +145,10 @@ const getReducedMotion = () =>
   window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
 const VERTEX_SHADER = `
+precision highp float;
+precision highp int;
+attribute vec2 position;
+attribute vec2 uv;
 varying vec2 vUv;
 void main() {
   vUv = uv;
@@ -148,7 +156,12 @@ void main() {
 }
 `;
 
-const SCENE_FRAGMENT_SHADER = `
+const FRAGMENT_HEADER = `
+precision highp float;
+precision highp int;
+`;
+
+const SCENE_FRAGMENT_SHADER = `${FRAGMENT_HEADER}
 uniform vec2 uRes;
 uniform float uTime;
 uniform float uRoll;
@@ -300,7 +313,7 @@ void main() {
 }
 `;
 
-const DOWN_FRAGMENT_SHADER = `
+const DOWN_FRAGMENT_SHADER = `${FRAGMENT_HEADER}
 uniform sampler2D uSource;
 uniform vec2 uTexel;
 uniform float uThreshold;
@@ -329,7 +342,7 @@ void main() {
 }
 `;
 
-const UP_FRAGMENT_SHADER = `
+const UP_FRAGMENT_SHADER = `${FRAGMENT_HEADER}
 uniform sampler2D uSource;
 uniform vec2 uTexel;
 varying vec2 vUv;
@@ -342,7 +355,7 @@ void main() {
 }
 `;
 
-const COMPOSITE_FRAGMENT_SHADER = `
+const COMPOSITE_FRAGMENT_SHADER = `${FRAGMENT_HEADER}
 uniform sampler2D uScene;
 uniform sampler2D uBloom;
 uniform vec3 uBackground;
@@ -441,6 +454,15 @@ interface AuroraInstance {
   dying: number;
 }
 
+interface RenderTarget {
+  fbo: WebGLFramebuffer;
+  texture: WebGLTexture;
+  width: number;
+  height: number;
+  setSize: (w: number, h: number) => void;
+  dispose: () => void;
+}
+
 export const HorizonBloom = forwardRef<HorizonBloomRef, HorizonBloomProps>(function HorizonBloom(
   {
     colors = ["#FF9FFC", "#5227FF"],
@@ -531,7 +553,6 @@ export const HorizonBloom = forwardRef<HorizonBloomRef, HorizonBloomProps>(funct
       mount: HTMLDivElement,
       propsRef: React.MutableRefObject<RuntimeState>
     ) => {
-      let renderer: WebGLRenderer;
       const doc = container.ownerDocument;
       const win = doc.defaultView ?? window;
       const canvas = doc.createElement("canvas");
@@ -544,123 +565,219 @@ export const HorizonBloom = forwardRef<HorizonBloomRef, HorizonBloomProps>(funct
       ) {
         return null;
       }
+
+      const contextAttributes: WebGLContextAttributes = {
+        alpha: false,
+        antialias: false,
+        depth: false,
+        stencil: false,
+        powerPreference: "high-performance",
+      };
+
+      let gl: WebGLRenderingContext | WebGL2RenderingContext | null = null;
       try {
-        renderer = new WebGLRenderer({
-          canvas,
-          alpha: false,
-          antialias: false,
-          powerPreference: "high-performance",
-        });
+        gl =
+          (canvas.getContext("webgl2", contextAttributes) as WebGL2RenderingContext | null) ??
+          (canvas.getContext("webgl", contextAttributes) as WebGLRenderingContext | null);
       } catch {
         return null;
       }
+      if (!gl) return null;
 
       mount.appendChild(canvas);
-      renderer.autoClear = false;
 
-      const camera = new OrthographicCamera(-1, 1, 1, -1, -1, 1);
-      const geometry = new PlaneGeometry(2, 2);
-      const scene = new Scene();
-      const mesh = new Mesh(geometry);
-      mesh.frustumCulled = false;
-      scene.add(mesh);
+      const isWebGL2 =
+        typeof WebGL2RenderingContext !== "undefined" && gl instanceof WebGL2RenderingContext;
 
-      const vec3Uniform = () => ({ value: new Vector3(1, 1, 1) });
-      const auroraUniforms = Array.from({ length: 8 }, () => new Vector4(0, 0, 0, 0));
+      let texInternalFormat: number = gl.RGBA;
+      let texFormat: number = gl.RGBA;
+      let texType: number = gl.UNSIGNED_BYTE;
 
-      const sceneMaterial = new ShaderMaterial({
-        uniforms: {
-          uRes: { value: new Vector2(1, 1) },
-          uTime: { value: 0 },
-          uRoll: { value: 0 },
-          uApex: { value: -0.22 },
-          uRadius: { value: 2.4 },
-          uSunArc: { value: 0.2 },
-          uSpread: { value: 0.6 },
-          uSunUp: { value: 1 },
-          uAtmo: { value: 1 },
-          uThick: { value: 1 },
-          uRimGain: { value: 1 },
-          uFlare: { value: 1 },
-          uAirglow: { value: 0.5 },
-          uClouds: { value: 0.5 },
-          uStars: { value: 0.5 },
-          uAuroraGain: { value: 1 },
-          uAuroras: { value: auroraUniforms },
-          uInk: { value: 0 },
-          uRimColor: vec3Uniform(),
-          uInner: vec3Uniform(),
-          uMid: vec3Uniform(),
-          uOuter: vec3Uniform(),
-          uGlowColor: vec3Uniform(),
-          uSunColor: vec3Uniform(),
-          uStarColor: vec3Uniform(),
-        },
-        vertexShader: VERTEX_SHADER,
-        fragmentShader: SCENE_FRAGMENT_SHADER,
-        depthTest: false,
-        depthWrite: false,
-      });
+      if (isWebGL2) {
+        const gl2 = gl as WebGL2RenderingContext;
+        const hasFloatBuffer =
+          gl2.getExtension("EXT_color_buffer_half_float") ||
+          gl2.getExtension("EXT_color_buffer_float");
+        if (hasFloatBuffer) {
+          texInternalFormat = gl2.RGBA16F;
+          texFormat = gl2.RGBA;
+          texType = gl2.HALF_FLOAT;
+        }
+      } else {
+        const hf = gl.getExtension("OES_texture_half_float");
+        const hfLinear = gl.getExtension("OES_texture_half_float_linear");
+        gl.getExtension("EXT_color_buffer_half_float");
+        if (hf && hfLinear) {
+          texType = hf.HALF_FLOAT_OES;
+        }
+      }
 
-      const createTarget = () =>
-        new WebGLRenderTarget(1, 1, {
-          type: HalfFloatType,
-          format: RGBAFormat,
-          depthBuffer: false,
-          stencilBuffer: false,
-          minFilter: LinearFilter,
-          magFilter: LinearFilter,
-          generateMipmaps: false,
-        });
+      // Verify framebuffer completeness with chosen half-float format; fallback to RGBA8 if needed
+      {
+        const testTex = gl.createTexture();
+        const testFbo = gl.createFramebuffer();
+        gl.bindTexture(gl.TEXTURE_2D, testTex);
+        gl.texImage2D(gl.TEXTURE_2D, 0, texInternalFormat, 2, 2, 0, texFormat, texType, null);
+        gl.bindFramebuffer(gl.FRAMEBUFFER, testFbo);
+        gl.framebufferTexture2D(gl.FRAMEBUFFER, gl.COLOR_ATTACHMENT0, gl.TEXTURE_2D, testTex, 0);
+        if (gl.checkFramebufferStatus(gl.FRAMEBUFFER) !== gl.FRAMEBUFFER_COMPLETE) {
+          texInternalFormat = gl.RGBA;
+          texFormat = gl.RGBA;
+          texType = gl.UNSIGNED_BYTE;
+        }
+        gl.bindFramebuffer(gl.FRAMEBUFFER, null);
+        gl.bindTexture(gl.TEXTURE_2D, null);
+        if (testFbo) gl.deleteFramebuffer(testFbo);
+        if (testTex) gl.deleteTexture(testTex);
+      }
+
+      const compileShader = (type: number, source: string) => {
+        const shader = gl.createShader(type)!;
+        gl.shaderSource(shader, source);
+        gl.compileShader(shader);
+        return shader;
+      };
+
+      const createProgram = (fragSource: string) => {
+        const vs = compileShader(gl.VERTEX_SHADER, VERTEX_SHADER);
+        const fs = compileShader(gl.FRAGMENT_SHADER, fragSource);
+        const program = gl.createProgram()!;
+        gl.bindAttribLocation(program, 0, "position");
+        gl.bindAttribLocation(program, 1, "uv");
+        gl.attachShader(program, vs);
+        gl.attachShader(program, fs);
+        gl.linkProgram(program);
+        gl.deleteShader(vs);
+        gl.deleteShader(fs);
+        return program;
+      };
+
+      const quadBuffer = gl.createBuffer()!;
+      gl.bindBuffer(gl.ARRAY_BUFFER, quadBuffer);
+      gl.bufferData(
+        gl.ARRAY_BUFFER,
+        new Float32Array([
+          -1, -1, 0, 0,
+           1, -1, 1, 0,
+          -1,  1, 0, 1,
+          -1,  1, 0, 1,
+           1, -1, 1, 0,
+           1,  1, 1, 1,
+        ]),
+        gl.STATIC_DRAW
+      );
+      gl.enableVertexAttribArray(0);
+      gl.vertexAttribPointer(0, 2, gl.FLOAT, false, 16, 0);
+      gl.enableVertexAttribArray(1);
+      gl.vertexAttribPointer(1, 2, gl.FLOAT, false, 16, 8);
+
+      const sceneProgram = createProgram(SCENE_FRAGMENT_SHADER);
+      const downProgram = createProgram(DOWN_FRAGMENT_SHADER);
+      const upProgram = createProgram(UP_FRAGMENT_SHADER);
+      const compositeProgram = createProgram(COMPOSITE_FRAGMENT_SHADER);
+
+      const sceneLocs = {
+        uRes: gl.getUniformLocation(sceneProgram, "uRes"),
+        uTime: gl.getUniformLocation(sceneProgram, "uTime"),
+        uRoll: gl.getUniformLocation(sceneProgram, "uRoll"),
+        uApex: gl.getUniformLocation(sceneProgram, "uApex"),
+        uRadius: gl.getUniformLocation(sceneProgram, "uRadius"),
+        uSunArc: gl.getUniformLocation(sceneProgram, "uSunArc"),
+        uSpread: gl.getUniformLocation(sceneProgram, "uSpread"),
+        uSunUp: gl.getUniformLocation(sceneProgram, "uSunUp"),
+        uAtmo: gl.getUniformLocation(sceneProgram, "uAtmo"),
+        uThick: gl.getUniformLocation(sceneProgram, "uThick"),
+        uRimGain: gl.getUniformLocation(sceneProgram, "uRimGain"),
+        uFlare: gl.getUniformLocation(sceneProgram, "uFlare"),
+        uAirglow: gl.getUniformLocation(sceneProgram, "uAirglow"),
+        uClouds: gl.getUniformLocation(sceneProgram, "uClouds"),
+        uStars: gl.getUniformLocation(sceneProgram, "uStars"),
+        uAuroraGain: gl.getUniformLocation(sceneProgram, "uAuroraGain"),
+        uAuroras:
+          gl.getUniformLocation(sceneProgram, "uAuroras[0]") ??
+          gl.getUniformLocation(sceneProgram, "uAuroras"),
+        uInk: gl.getUniformLocation(sceneProgram, "uInk"),
+        uRimColor: gl.getUniformLocation(sceneProgram, "uRimColor"),
+        uInner: gl.getUniformLocation(sceneProgram, "uInner"),
+        uMid: gl.getUniformLocation(sceneProgram, "uMid"),
+        uOuter: gl.getUniformLocation(sceneProgram, "uOuter"),
+        uGlowColor: gl.getUniformLocation(sceneProgram, "uGlowColor"),
+        uSunColor: gl.getUniformLocation(sceneProgram, "uSunColor"),
+        uStarColor: gl.getUniformLocation(sceneProgram, "uStarColor"),
+      };
+
+      const downLocs = {
+        uSource: gl.getUniformLocation(downProgram, "uSource"),
+        uTexel: gl.getUniformLocation(downProgram, "uTexel"),
+        uThreshold: gl.getUniformLocation(downProgram, "uThreshold"),
+      };
+
+      const upLocs = {
+        uSource: gl.getUniformLocation(upProgram, "uSource"),
+        uTexel: gl.getUniformLocation(upProgram, "uTexel"),
+      };
+
+      const compositeLocs = {
+        uScene: gl.getUniformLocation(compositeProgram, "uScene"),
+        uBloom: gl.getUniformLocation(compositeProgram, "uBloom"),
+        uBackground: gl.getUniformLocation(compositeProgram, "uBackground"),
+        uResolution: gl.getUniformLocation(compositeProgram, "uResolution"),
+        uBloomStrength: gl.getUniformLocation(compositeProgram, "uBloomStrength"),
+        uGrain: gl.getUniformLocation(compositeProgram, "uGrain"),
+        uTime: gl.getUniformLocation(compositeProgram, "uTime"),
+        uInk: gl.getUniformLocation(compositeProgram, "uInk"),
+      };
+
+      const createTarget = (): RenderTarget => {
+        const texture = gl.createTexture()!;
+        const fbo = gl.createFramebuffer()!;
+        gl.bindTexture(gl.TEXTURE_2D, texture);
+        gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR);
+        gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
+        gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
+        gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
+        gl.texImage2D(gl.TEXTURE_2D, 0, texInternalFormat, 1, 1, 0, texFormat, texType, null);
+        gl.bindFramebuffer(gl.FRAMEBUFFER, fbo);
+        gl.framebufferTexture2D(gl.FRAMEBUFFER, gl.COLOR_ATTACHMENT0, gl.TEXTURE_2D, texture, 0);
+        gl.bindFramebuffer(gl.FRAMEBUFFER, null);
+
+        const target: RenderTarget = {
+          fbo,
+          texture,
+          width: 1,
+          height: 1,
+          setSize(w: number, h: number) {
+            target.width = w;
+            target.height = h;
+            gl.bindTexture(gl.TEXTURE_2D, texture);
+            gl.texImage2D(gl.TEXTURE_2D, 0, texInternalFormat, w, h, 0, texFormat, texType, null);
+          },
+          dispose() {
+            gl.deleteFramebuffer(fbo);
+            gl.deleteTexture(texture);
+          },
+        };
+        return target;
+      };
 
       const sceneTarget = createTarget();
       const bloomChain = Array.from({ length: 5 }, createTarget);
-      const bgUniform = new Vector3(0.04, 0.04, 0.04);
 
-      const downMaterial = new ShaderMaterial({
-        uniforms: {
-          uSource: { value: null },
-          uTexel: { value: new Vector2() },
-          uThreshold: { value: 0 },
-        },
-        vertexShader: VERTEX_SHADER,
-        fragmentShader: DOWN_FRAGMENT_SHADER,
-        depthTest: false,
-        depthWrite: false,
-      });
-
-      const upMaterial = new ShaderMaterial({
-        uniforms: {
-          uSource: { value: null },
-          uTexel: { value: new Vector2() },
-        },
-        vertexShader: VERTEX_SHADER,
-        fragmentShader: UP_FRAGMENT_SHADER,
-        blending: AdditiveBlending,
-        transparent: true,
-        depthTest: false,
-        depthWrite: false,
-      });
-
-      const compositeMaterial = new ShaderMaterial({
-        uniforms: {
-          uScene: { value: sceneTarget.texture },
-          uBloom: { value: bloomChain[0].texture },
-          uBackground: { value: bgUniform },
-          uResolution: { value: new Vector2(1, 1) },
-          uBloomStrength: { value: 0.5 },
-          uGrain: { value: 0.25 },
-          uTime: { value: 0 },
-          uInk: { value: 0 },
-        },
-        vertexShader: VERTEX_SHADER,
-        fragmentShader: COMPOSITE_FRAGMENT_SHADER,
-        depthTest: false,
-        depthWrite: false,
-      });
+      const auroraBuffer = new Float32Array(32);
+      const colorUniforms: Record<string, [number, number, number]> = {
+        uRimColor: [1, 1, 1],
+        uInner: [1, 1, 1],
+        uMid: [1, 1, 1],
+        uOuter: [1, 1, 1],
+        uGlowColor: [1, 1, 1],
+        uSunColor: [1, 1, 1],
+        uStarColor: [1, 1, 1],
+      };
 
       let width = 0;
       let height = 0;
+      let renderWidth = 1;
+      let renderHeight = 1;
       let pixelRatio = 1;
       let hasSize = false;
       let colorCacheKey = "";
@@ -687,11 +804,14 @@ export const HorizonBloom = forwardRef<HorizonBloomRef, HorizonBloomProps>(funct
       const nextRandom = () => ((rngState = (16807 * rngState) % 0x7fffffff) - 1) / 0x7ffffffe;
 
       const setColorUniform = (name: string, rgb: [number, number, number]) => {
-        const target = (sceneMaterial.uniforms[name] as { value: Vector3 }).value;
         if (isLightBg) {
-          target.set(rgb[0], rgb[1], rgb[2]);
+          colorUniforms[name] = [rgb[0], rgb[1], rgb[2]];
         } else {
-          target.set(srgbToLinear(rgb[0]), srgbToLinear(rgb[1]), srgbToLinear(rgb[2]));
+          colorUniforms[name] = [
+            srgbToLinear(rgb[0]),
+            srgbToLinear(rgb[1]),
+            srgbToLinear(rgb[2]),
+          ];
         }
       };
 
@@ -724,7 +844,6 @@ export const HorizonBloom = forwardRef<HorizonBloomRef, HorizonBloomProps>(funct
         colorCacheKey = key;
 
         isLightBg = 0.2126 * bgRgb[0] + 0.7152 * bgRgb[1] + 0.0722 * bgRgb[2] > 0.55;
-        bgUniform.set(bgRgb[0], bgRgb[1], bgRgb[2]);
 
         const warmLab = rgbToOklab(parseColor(st.colors[0]) ?? [1, 0.62, 0.99]);
         const coolLab = rgbToOklab(parseColor(st.colors[1]) ?? [0.32, 0.15, 1]);
@@ -761,9 +880,6 @@ export const HorizonBloom = forwardRef<HorizonBloomRef, HorizonBloomProps>(funct
           setColorUniform("uSunColor", oklabToRgb(brighten(warmLab, 0.98, 0.12)));
           setColorUniform("uStarColor", oklabToRgb(brighten(coolLab, 0.93, 0.15)));
         }
-
-        sceneMaterial.uniforms.uInk.value = isLightBg ? 1 : 0;
-        compositeMaterial.uniforms.uInk.value = isLightBg ? 1 : 0;
       };
 
       const syncSize = () => {
@@ -782,11 +898,13 @@ export const HorizonBloom = forwardRef<HorizonBloomRef, HorizonBloomProps>(funct
         width = nextW;
         height = nextH;
         pixelRatio = nextDpr;
-        renderer.setPixelRatio(pixelRatio);
-        renderer.setSize(width, height, false);
 
         const rw = Math.round(width * pixelRatio);
         const rh = Math.round(height * pixelRatio);
+        renderWidth = rw;
+        renderHeight = rh;
+        canvas.width = rw;
+        canvas.height = rh;
         sceneTarget.setSize(rw, rh);
 
         let bw = rw;
@@ -797,8 +915,6 @@ export const HorizonBloom = forwardRef<HorizonBloomRef, HorizonBloomProps>(funct
           target.setSize(bw, bh);
         }
 
-        sceneMaterial.uniforms.uRes.value.set(rw, rh);
-        compositeMaterial.uniforms.uResolution.value.set(rw, rh);
         return true;
       };
 
@@ -827,82 +943,116 @@ export const HorizonBloom = forwardRef<HorizonBloomRef, HorizonBloomProps>(funct
           syncColors();
         }
 
-        const u = sceneMaterial.uniforms;
         const tiltRad = (clamp(finiteOr(st.tilt, 0), -180, 180) * Math.PI) / 180;
-        u.uTime.value = scaledTime;
-        u.uRoll.value = tiltRad + rollOffset;
-        u.uApex.value = computeApex() + apexOffset;
-        u.uRadius.value = computeRadius();
-        u.uSunArc.value = computeSunArc();
-
         const targetSpread = 0.08 + 1.1 * clamp(finiteOr(st.spread, 0.4), 0, 3);
-        u.uSpread.value = 0.05 + (targetSpread - 0.05) * (0.15 + 0.85 * introProgress);
-        u.uSunUp.value = clamp(finiteOr(st.sunrise, 1), 0, 1.5) * (0.12 + 0.88 * introProgress);
-        u.uAtmo.value = clamp(finiteOr(st.atmosphere, 1), 0, 3);
-        u.uThick.value = clamp(finiteOr(st.thickness, 1), 0.3, 3);
-        u.uRimGain.value = clamp(finiteOr(st.rim, 1), 0, 3);
-        u.uFlare.value = clamp(finiteOr(st.flare, 1), 0, 3);
-        u.uAirglow.value = clamp(finiteOr(st.airglow, 0.5), 0, 2);
-        u.uClouds.value = clamp(finiteOr(st.clouds, 0.5), 0, 2);
-        u.uStars.value = clamp(finiteOr(st.stars, 0.5), 0, 2);
-        u.uAuroraGain.value = clamp(finiteOr(st.aurora, 1), 0, 3);
+        const uSpread = 0.05 + (targetSpread - 0.05) * (0.15 + 0.85 * introProgress);
+        const uSunUp = clamp(finiteOr(st.sunrise, 1), 0, 1.5) * (0.12 + 0.88 * introProgress);
 
         for (let i = 0; i < 8; i++) {
           const item = auroras[i];
+          const baseIdx = i * 4;
           if (item) {
             const fade = item.dying < 0 ? 1 : clamp(1 - (realTime - item.dying) / 0.7, 0, 1);
-            auroraUniforms[i].set(
-              item.arc,
-              realTime - item.born,
-              item.strength * fade * fade,
-              item.seed
-            );
+            auroraBuffer[baseIdx] = item.arc;
+            auroraBuffer[baseIdx + 1] = realTime - item.born;
+            auroraBuffer[baseIdx + 2] = item.strength * fade * fade;
+            auroraBuffer[baseIdx + 3] = item.seed;
           } else {
-            auroraUniforms[i].set(0, 0, 0, 0);
+            auroraBuffer[baseIdx] = 0;
+            auroraBuffer[baseIdx + 1] = 0;
+            auroraBuffer[baseIdx + 2] = 0;
+            auroraBuffer[baseIdx + 3] = 0;
           }
         }
 
-        compositeMaterial.uniforms.uGrain.value = clamp(finiteOr(st.grain, 0.25), 0, 1);
-        compositeMaterial.uniforms.uTime.value = scaledTime;
+        gl.bindBuffer(gl.ARRAY_BUFFER, quadBuffer);
+        gl.disable(gl.DEPTH_TEST);
+        gl.disable(gl.BLEND);
 
-        if (isLightBg) {
-          sceneMaterial.blending = NoBlending;
-        }
-        mesh.material = sceneMaterial;
-        renderer.setRenderTarget(sceneTarget);
-        renderer.setClearColor(0, 0);
-        renderer.clear();
-        renderer.render(scene, camera);
+        // Pass 1: Scene -> sceneTarget
+        gl.bindFramebuffer(gl.FRAMEBUFFER, sceneTarget.fbo);
+        gl.viewport(0, 0, sceneTarget.width, sceneTarget.height);
+        gl.clearColor(0, 0, 0, 0);
+        gl.clear(gl.COLOR_BUFFER_BIT);
+        gl.useProgram(sceneProgram);
+        gl.uniform2f(sceneLocs.uRes, renderWidth, renderHeight);
+        gl.uniform1f(sceneLocs.uTime, scaledTime);
+        gl.uniform1f(sceneLocs.uRoll, tiltRad + rollOffset);
+        gl.uniform1f(sceneLocs.uApex, computeApex() + apexOffset);
+        gl.uniform1f(sceneLocs.uRadius, computeRadius());
+        gl.uniform1f(sceneLocs.uSunArc, computeSunArc());
+        gl.uniform1f(sceneLocs.uSpread, uSpread);
+        gl.uniform1f(sceneLocs.uSunUp, uSunUp);
+        gl.uniform1f(sceneLocs.uAtmo, clamp(finiteOr(st.atmosphere, 1), 0, 3));
+        gl.uniform1f(sceneLocs.uThick, clamp(finiteOr(st.thickness, 1), 0.3, 3));
+        gl.uniform1f(sceneLocs.uRimGain, clamp(finiteOr(st.rim, 1), 0, 3));
+        gl.uniform1f(sceneLocs.uFlare, clamp(finiteOr(st.flare, 1), 0, 3));
+        gl.uniform1f(sceneLocs.uAirglow, clamp(finiteOr(st.airglow, 0.5), 0, 2));
+        gl.uniform1f(sceneLocs.uClouds, clamp(finiteOr(st.clouds, 0.5), 0, 2));
+        gl.uniform1f(sceneLocs.uStars, clamp(finiteOr(st.stars, 0.5), 0, 2));
+        gl.uniform1f(sceneLocs.uAuroraGain, clamp(finiteOr(st.aurora, 1), 0, 3));
+        gl.uniform4fv(sceneLocs.uAuroras, auroraBuffer);
+        gl.uniform1f(sceneLocs.uInk, isLightBg ? 1 : 0);
+        gl.uniform3fv(sceneLocs.uRimColor, colorUniforms.uRimColor);
+        gl.uniform3fv(sceneLocs.uInner, colorUniforms.uInner);
+        gl.uniform3fv(sceneLocs.uMid, colorUniforms.uMid);
+        gl.uniform3fv(sceneLocs.uOuter, colorUniforms.uOuter);
+        gl.uniform3fv(sceneLocs.uGlowColor, colorUniforms.uGlowColor);
+        gl.uniform3fv(sceneLocs.uSunColor, colorUniforms.uSunColor);
+        gl.uniform3fv(sceneLocs.uStarColor, colorUniforms.uStarColor);
+        gl.drawArrays(gl.TRIANGLES, 0, 6);
 
+        // Pass 2 & 3: Downsample & Upsample Bloom
         const bloomStrength = isLightBg ? 0 : clamp(finiteOr(st.bloom, 0.5), 0, 3);
         if (bloomStrength > 0.001) {
           let prev = sceneTarget;
-          mesh.material = downMaterial;
+          gl.useProgram(downProgram);
+          gl.uniform1i(downLocs.uSource, 0);
+          gl.activeTexture(gl.TEXTURE0);
           for (const target of bloomChain) {
-            downMaterial.uniforms.uThreshold.value = prev === sceneTarget ? 0.45 : 0;
-            downMaterial.uniforms.uSource.value = prev.texture;
-            downMaterial.uniforms.uTexel.value.set(1 / prev.width, 1 / prev.height);
-            renderer.setRenderTarget(target);
-            renderer.render(scene, camera);
+            gl.bindFramebuffer(gl.FRAMEBUFFER, target.fbo);
+            gl.viewport(0, 0, target.width, target.height);
+            gl.bindTexture(gl.TEXTURE_2D, prev.texture);
+            gl.uniform1f(downLocs.uThreshold, prev === sceneTarget ? 0.45 : 0);
+            gl.uniform2f(downLocs.uTexel, 1 / prev.width, 1 / prev.height);
+            gl.drawArrays(gl.TRIANGLES, 0, 6);
             prev = target;
           }
 
-          mesh.material = upMaterial;
+          gl.enable(gl.BLEND);
+          gl.blendEquation(gl.FUNC_ADD);
+          gl.blendFunc(gl.SRC_ALPHA, gl.ONE);
+          gl.useProgram(upProgram);
+          gl.uniform1i(upLocs.uSource, 0);
           for (let i = bloomChain.length - 1; i > 0; i--) {
-            upMaterial.uniforms.uSource.value = bloomChain[i].texture;
-            upMaterial.uniforms.uTexel.value.set(
-              1 / bloomChain[i].width,
-              1 / bloomChain[i].height
-            );
-            renderer.setRenderTarget(bloomChain[i - 1]);
-            renderer.render(scene, camera);
+            const dst = bloomChain[i - 1];
+            const src = bloomChain[i];
+            gl.bindFramebuffer(gl.FRAMEBUFFER, dst.fbo);
+            gl.viewport(0, 0, dst.width, dst.height);
+            gl.bindTexture(gl.TEXTURE_2D, src.texture);
+            gl.uniform2f(upLocs.uTexel, 1 / src.width, 1 / src.height);
+            gl.drawArrays(gl.TRIANGLES, 0, 6);
           }
+          gl.disable(gl.BLEND);
         }
 
-        compositeMaterial.uniforms.uBloomStrength.value = bloomStrength;
-        mesh.material = compositeMaterial;
-        renderer.setRenderTarget(null);
-        renderer.render(scene, camera);
+        // Pass 4: Composite -> Screen
+        gl.bindFramebuffer(gl.FRAMEBUFFER, null);
+        gl.viewport(0, 0, renderWidth, renderHeight);
+        gl.useProgram(compositeProgram);
+        gl.activeTexture(gl.TEXTURE0);
+        gl.bindTexture(gl.TEXTURE_2D, sceneTarget.texture);
+        gl.uniform1i(compositeLocs.uScene, 0);
+        gl.activeTexture(gl.TEXTURE1);
+        gl.bindTexture(gl.TEXTURE_2D, bloomChain[0].texture);
+        gl.uniform1i(compositeLocs.uBloom, 1);
+        gl.uniform3f(compositeLocs.uBackground, bgRgb[0], bgRgb[1], bgRgb[2]);
+        gl.uniform2f(compositeLocs.uResolution, renderWidth, renderHeight);
+        gl.uniform1f(compositeLocs.uBloomStrength, bloomStrength);
+        gl.uniform1f(compositeLocs.uGrain, clamp(finiteOr(st.grain, 0.25), 0, 1));
+        gl.uniform1f(compositeLocs.uTime, scaledTime);
+        gl.uniform1f(compositeLocs.uInk, isLightBg ? 1 : 0);
+        gl.drawArrays(gl.TRIANGLES, 0, 6);
       };
 
       const clientToArc = (clientX: number, clientY: number) => {
@@ -1172,16 +1322,15 @@ export const HorizonBloom = forwardRef<HorizonBloomRef, HorizonBloomProps>(funct
           document.removeEventListener("visibilitychange", onVisibilityChange);
           canvas.removeEventListener("webglcontextlost", onContextLost);
           canvas.removeEventListener("webglcontextrestored", onContextRestored);
-          geometry.dispose();
-          sceneMaterial.dispose();
-          downMaterial.dispose();
-          upMaterial.dispose();
-          compositeMaterial.dispose();
+          gl.deleteBuffer(quadBuffer);
+          gl.deleteProgram(sceneProgram);
+          gl.deleteProgram(downProgram);
+          gl.deleteProgram(upProgram);
+          gl.deleteProgram(compositeProgram);
           sceneTarget.dispose();
           for (const target of bloomChain) {
             target.dispose();
           }
-          renderer.dispose();
           canvas.remove();
         },
       };
