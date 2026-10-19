@@ -27,7 +27,13 @@ export const Navigation = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 10);
+      const scrollTop =
+        window.scrollY ||
+        window.pageYOffset ||
+        document.documentElement.scrollTop ||
+        document.body.scrollTop ||
+        0;
+      setIsScrolled(scrollTop > 10);
     };
     handleScroll();
     window.addEventListener("scroll", handleScroll, { passive: true });

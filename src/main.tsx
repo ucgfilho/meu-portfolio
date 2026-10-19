@@ -1,4 +1,4 @@
-import {createRoot, hydrateRoot} from "react-dom/client";
+import {createRoot} from "react-dom/client";
 import App from "./App.tsx";
 import "./index.css";
 import "./lib/i18n";
@@ -28,29 +28,4 @@ if (typeof window !== "undefined" && "trustedTypes" in window) {
     }
 }
 
-if (typeof document !== "undefined") {
-    const fontSheet = document.getElementById("google-fonts-stylesheet") as HTMLLinkElement | null;
-    if (fontSheet && fontSheet.media === "print") {
-        fontSheet.media = "all";
-    }
-}
-
-const rootEl = document.getElementById("root")!;
-const savedLang = (() => {
-    try {
-        return typeof window !== "undefined" ? window.localStorage?.getItem("language") : null;
-    } catch {
-        return null;
-    }
-})();
-
-if (
-    rootEl.hasChildNodes() &&
-    typeof window !== "undefined" &&
-    window.location.pathname === "/" &&
-    (!savedLang || savedLang === "pt-BR")
-) {
-    hydrateRoot(rootEl, <App/>);
-} else {
-    createRoot(rootEl).render(<App/>);
-}
+createRoot(document.getElementById("root")!).render(<App/>);

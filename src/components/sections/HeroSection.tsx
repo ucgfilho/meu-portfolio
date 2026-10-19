@@ -56,7 +56,7 @@ export const HeroSection = () => {
                 bloom={0.5}
                 grain={0.25}
                 interactive
-                intro={false}
+                intro
                 className="min-h-[calc(100svh-4rem)]"
             >
                 <div className="min-h-[calc(100svh-4rem)] pt-28 pb-16 md:pt-36 md:pb-24 flex flex-col justify-center">

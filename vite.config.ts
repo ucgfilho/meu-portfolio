@@ -42,21 +42,6 @@ function inlineCssPlugin(): Plugin {
         }
       }
 
-      const entryScriptMatch = html.match(
-        /<script\s+type=["']module["']\s+crossorigin\s+src=["'](\/assets\/index-[^"']+\.js)["']><\/script>/i,
-      );
-      if (entryScriptMatch) {
-        const entrySrc = entryScriptMatch[1];
-        html = html.replace(
-          entryScriptMatch[0],
-          `<link rel="modulepreload" crossorigin href="${entrySrc}">`,
-        );
-        html = html.replace(
-          "</body>",
-          `<script type="module">import "${entrySrc}";</script>\n</body>`,
-        );
-      }
-
       htmlChunk.source = html;
     },
     async closeBundle() {
@@ -110,6 +95,7 @@ export default defineConfig(() => ({
       output: {
         manualChunks: {
           "react-vendor": ["react", "react-dom", "react-router-dom"],
+          "three-vendor": ["three"],
           "icons-vendor": ["lucide-react", "react-icons/si", "react-icons/fa6", "country-flag-icons/react/3x2"],
           "i18n-vendor": ["i18next", "react-i18next"],
         },

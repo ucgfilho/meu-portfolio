@@ -200,4 +200,31 @@ describe("Portfolio Redesign — Content, Structure & Accessibility Verification
         expect(pictureSource).toBeInTheDocument();
         expect(pictureSource?.getAttribute("srcset")).toContain("/images/profile-photo-320.webp");
     });
+
+    it("makes header 100% opaque on scroll and opens language dropdown on click", () => {
+        Object.defineProperty(window, "scrollY", {value: 0, writable: true, configurable: true});
+        render(<App/>);
+
+        const nav = screen.getByRole("navigation", {name: ptBR.nav.title});
+        expect(nav.className).toContain("bg-transparent");
+
+        act(() => {
+            Object.defineProperty(window, "scrollY", {value: 120, writable: true, configurable: true});
+            fireEvent.scroll(window);
+        });
+        expect(nav.className).toContain("bg-background");
+        expect(nav.className).not.toContain("bg-transparent");
+
+        const langTrigger = screen.getByRole("button", {name: /Português/i});
+        expect(langTrigger).toHaveAttribute("aria-expanded", "false");
+
+        fireEvent.click(langTrigger);
+        expect(langTrigger).toHaveAttribute("aria-expanded", "true");
+        const englishOption = screen.getByRole("menuitemradio", {name: /English/i});
+        expect(englishOption).toBeInTheDocument();
+
+        fireEvent.click(englishOption);
+        expect(langTrigger).toHaveAttribute("aria-expanded", "false");
+        expect(screen.getByText(en.hero.title)).toBeInTheDocument();
+    });
 });
