@@ -81,10 +81,10 @@ export const Navigation = () => {
     <header className="fixed top-0 left-0 right-0 z-40">
       <nav
         aria-label={t("nav.title")}
-        className={`transition-colors duration-200 border-b ${
-          isScrolled || isMobileMenuOpen
-            ? "bg-background/90 backdrop-blur-md border-border"
-            : "bg-background/70 backdrop-blur-sm border-border/60"
+        className={`transition-colors duration-200 ${
+          isMobileMenuOpen
+            ? "bg-background/95 backdrop-blur-md"
+            : "bg-transparent"
         }`}
       >
         <div className="container mx-auto flex items-center justify-between gap-3 h-16 md:h-[72px]">

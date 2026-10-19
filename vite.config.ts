@@ -67,6 +67,7 @@ export default defineConfig(() => ({
           "react-vendor": ["react", "react-dom", "react-router-dom"],
           "icons-vendor": ["lucide-react", "react-icons/si", "react-icons/fa6", "country-flag-icons/react/3x2"],
           "i18n-vendor": ["i18next", "react-i18next"],
+          "three-vendor": ["three"],
         },
       },
     },

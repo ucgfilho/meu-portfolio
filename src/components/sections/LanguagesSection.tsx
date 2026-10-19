@@ -38,7 +38,7 @@ export const LanguagesSection = () => {
     ];
 
     return (
-        <section id="languages" className="py-20 md:py-28 relative border-b border-border">
+        <section id="languages" className="py-20 md:py-28 relative">
             <div className="container mx-auto">
                 <div className="max-w-6xl mx-auto">
                     {/* Editorial Section Header */}

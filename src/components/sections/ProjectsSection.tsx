@@ -38,7 +38,7 @@ export const ProjectsSection = () => {
   ];
 
   return (
-    <section id="projects" className="py-20 md:py-28 relative border-b border-border">
+    <section id="projects" className="py-20 md:py-28 relative">
       <div className="container mx-auto">
         <div className="max-w-6xl mx-auto">
           {/* Editorial Section Header */}

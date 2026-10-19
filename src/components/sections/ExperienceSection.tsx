@@ -22,7 +22,7 @@ export const ExperienceSection = () => {
   const experienceItems = t("experience.items", { returnObjects: true }) as ExperienceItem[];
 
   return (
-    <section id="experience" className="py-20 md:py-28 relative border-b border-border">
+    <section id="experience" className="py-20 md:py-28 relative">
       <div className="container mx-auto">
         <div className="max-w-6xl mx-auto">
           {/* Editorial Section Header */}
