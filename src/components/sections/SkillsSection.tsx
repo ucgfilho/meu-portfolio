@@ -22,7 +22,6 @@ import {
   SiRobotframework,
   SiMysql,
   SiGitlab,
-  SiJavascript,
   SiTypescript,
   SiPuppeteer,
   SiDotnet,
@@ -174,16 +173,6 @@ export const SkillsSection = () => {
                       />
                     ),
                     title: "Puppeteer",
-                  },
-                  {
-                    node: (
-                      <SiJavascript
-                        className="logoloop__brand-node"
-                        color="#F7DF1E"
-                        aria-label="JavaScript"
-                      />
-                    ),
-                    title: "JavaScript",
                   },
                   {
                     node: (
