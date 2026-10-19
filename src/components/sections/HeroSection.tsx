@@ -56,14 +56,14 @@ export const HeroSection = () => {
                 bloom={0.5}
                 grain={0.25}
                 interactive
-                intro
+                intro={false}
                 className="min-h-[calc(100svh-4rem)]"
             >
                 <div className="min-h-[calc(100svh-4rem)] pt-28 pb-16 md:pt-36 md:pb-24 flex flex-col justify-center">
                     <div className="container mx-auto">
                         <div className="flex flex-col items-center text-center max-w-3xl mx-auto">
                             {/* Greeting */}
-                            <span className="font-mono text-xs sm:text-sm uppercase tracking-[0.18em] text-muted-foreground mb-3">
+                            <span className="text-xs sm:text-sm font-medium uppercase tracking-[0.18em] text-muted-foreground mb-3">
                                 {t("hero.greeting")}
                             </span>
 
@@ -106,7 +106,7 @@ export const HeroSection = () => {
                                         target="_blank"
                                         rel="noopener noreferrer"
                                         aria-label={t("hero.visitProfile", {platform: social.label})}
-                                        className="min-w-[44px] min-h-[44px] inline-flex items-center justify-center rounded-sm border border-border bg-surface-container/80 backdrop-blur-sm text-muted-foreground hover:text-background hover:bg-foreground hover:border-foreground transition-colors duration-200 cursor-pointer"
+                                        className="min-w-[44px] min-h-[44px] inline-flex items-center justify-center rounded-lg border border-border bg-surface-container/80 backdrop-blur-sm text-muted-foreground hover:text-background hover:bg-foreground hover:border-foreground transition-colors duration-200 cursor-pointer"
                                     >
                                         <social.icon className="w-4 h-4" aria-hidden="true"/>
                                     </a>

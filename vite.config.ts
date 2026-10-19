@@ -1,6 +1,7 @@
-import { defineConfig, type Plugin } from "vite";
+import { createServer, defineConfig, type Plugin } from "vite";
 import react from "@vitejs/plugin-react-swc";
 import path from "path";
+import fs from "node:fs";
 import crypto from "node:crypto";
 
 if (typeof crypto.getRandomValues !== "function") {
@@ -40,7 +41,50 @@ function inlineCssPlugin(): Plugin {
           }
         }
       }
+
+      const entryScriptMatch = html.match(
+        /<script\s+type=["']module["']\s+crossorigin\s+src=["'](\/assets\/index-[^"']+\.js)["']><\/script>/i,
+      );
+      if (entryScriptMatch) {
+        const entrySrc = entryScriptMatch[1];
+        html = html.replace(
+          entryScriptMatch[0],
+          `<link rel="modulepreload" crossorigin href="${entrySrc}">`,
+        );
+        html = html.replace(
+          "</body>",
+          `<script type="module">import "${entrySrc}";</script>\n</body>`,
+        );
+      }
+
       htmlChunk.source = html;
+    },
+    async closeBundle() {
+      const distIndex = path.resolve(__dirname, "dist/index.html");
+      if (!fs.existsSync(distIndex)) return;
+
+      const prevNodeEnv = process.env.NODE_ENV;
+      process.env.NODE_ENV = "development";
+      const vite = await createServer({
+        server: { middlewareMode: true, hmr: false },
+        appType: "custom",
+        logLevel: "silent",
+      });
+      try {
+        const mod = await vite.ssrLoadModule("/src/entry-server.tsx");
+        if (typeof mod.renderAppHtml === "function") {
+          const appHtml: string = mod.renderAppHtml();
+          const html = fs.readFileSync(distIndex, "utf-8");
+          const updated = html.replace(
+            '<div id="root"></div>',
+            `<div id="root">${appHtml}</div>`,
+          );
+          fs.writeFileSync(distIndex, updated, "utf-8");
+        }
+      } finally {
+        await vite.close();
+        process.env.NODE_ENV = prevNodeEnv;
+      }
     },
   };
 }
@@ -61,13 +105,13 @@ export default defineConfig(() => ({
     },
   },
   build: {
+    sourcemap: true,
     rollupOptions: {
       output: {
         manualChunks: {
           "react-vendor": ["react", "react-dom", "react-router-dom"],
           "icons-vendor": ["lucide-react", "react-icons/si", "react-icons/fa6", "country-flag-icons/react/3x2"],
           "i18n-vendor": ["i18next", "react-i18next"],
-          "three-vendor": ["three"],
         },
       },
     },

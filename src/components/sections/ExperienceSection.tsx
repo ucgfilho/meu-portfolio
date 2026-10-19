@@ -57,7 +57,7 @@ export const ExperienceSection = () => {
                       {item.company}
                     </p>
 
-                    <span className="inline-flex items-center gap-1.5 font-mono text-xs text-muted-foreground">
+                    <span className="inline-flex items-center gap-1.5 text-xs text-muted-foreground">
                       <MapPin className="w-3.5 h-3.5 shrink-0" aria-hidden="true" />
                       {item.location}
                     </span>

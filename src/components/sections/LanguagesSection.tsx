@@ -50,7 +50,7 @@ export const LanguagesSection = () => {
                     </div>
 
                     {/* 3-Column Specification Strip */}
-                    <div className="grid grid-cols-1 sm:grid-cols-3 border-t border-l border-border">
+                    <div className="grid grid-cols-1 sm:grid-cols-3 border-t border-l border-border rounded-lg overflow-hidden">
                         {languages.map((lang) => (
                             <div
                                 key={lang.code}
@@ -60,7 +60,7 @@ export const LanguagesSection = () => {
                                 <div className="flex items-center justify-between gap-3">
                                     <span
                                         aria-hidden="true"
-                                        className="w-7 h-5 overflow-hidden flex items-center justify-center border border-border shrink-0"
+                                        className="w-7 h-5 overflow-hidden flex items-center justify-center border border-border rounded-sm shrink-0"
                                     >
                                         <lang.FlagIcon
                                             style={{width: "100%", height: "100%", display: "block"}}

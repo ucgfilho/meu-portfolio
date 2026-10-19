@@ -68,7 +68,7 @@ export const ProjectsSection = () => {
                     </span>
                     <span
                       aria-hidden="true"
-                      className="w-8 h-8 inline-flex items-center justify-center border border-border bg-surface text-muted-foreground group-hover:bg-foreground group-hover:text-background group-hover:border-foreground transition-colors duration-200"
+                      className="w-8 h-8 inline-flex items-center justify-center border border-border bg-surface text-muted-foreground rounded-lg group-hover:bg-foreground group-hover:text-background group-hover:border-foreground transition-colors duration-200"
                     >
                       <ArrowUpRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                     </span>
@@ -98,7 +98,7 @@ export const ProjectsSection = () => {
           </div>
 
           {/* GitHub CTA */}
-          <div className="mt-12 p-6 sm:p-8 border border-border bg-surface-container flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+          <div className="mt-12 p-6 sm:p-8 border border-border bg-surface-container rounded-lg flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
             <p className="text-sm sm:text-base text-muted-foreground">
               {t("projects.viewMoreGithub")}
             </p>
@@ -106,7 +106,7 @@ export const ProjectsSection = () => {
               href="https://github.com/ucgfilho"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2.5 min-h-[44px] px-5 py-2.5 rounded-sm bg-foreground text-background text-sm font-medium hover:bg-foreground/90 transition-colors duration-200 group cursor-pointer shrink-0 w-full sm:w-auto"
+              className="inline-flex items-center justify-center gap-2.5 min-h-[44px] px-5 py-2.5 rounded-lg bg-foreground text-background text-sm font-medium hover:bg-foreground/90 transition-colors duration-200 group cursor-pointer shrink-0 w-full sm:w-auto"
             >
               <Github className="w-4 h-4" aria-hidden="true" />
               <span>{t("projects.viewGithubButton")}</span>

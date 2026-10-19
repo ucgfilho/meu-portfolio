@@ -17,7 +17,7 @@ const NotFound = () => {
                 <p className="mb-8 text-base text-muted-foreground">{t("notFound.message")}</p>
                 <a
                     href="/"
-                    className="inline-flex items-center justify-center min-h-[44px] px-6 py-2.5 rounded-sm bg-foreground text-background text-sm font-medium hover:bg-foreground/90 transition-colors duration-200"
+                    className="inline-flex items-center justify-center min-h-[44px] px-6 py-2.5 rounded-lg bg-foreground text-background text-sm font-medium hover:bg-foreground/90 transition-colors duration-200"
                 >
                     {t("notFound.returnHome")}
                 </a>

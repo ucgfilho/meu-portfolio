@@ -64,7 +64,7 @@ export const ContactSection = () => {
                                     </span>
                                     <span>{t("contact.phone")}</span>
                                 </div>
-                                <div className="flex items-center gap-3 font-mono text-sm text-muted-foreground">
+                                <div className="flex items-center gap-3 text-sm text-muted-foreground">
                                     <span className="icon-container-sm shrink-0" aria-hidden="true">
                                         <MapPin className="w-3.5 h-3.5 text-foreground"/>
                                     </span>
@@ -74,7 +74,7 @@ export const ContactSection = () => {
                         </div>
 
                         {/* Right Column — 2x2 Channel Directory */}
-                        <div className="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 border-t border-l border-border">
+                        <div className="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 border-t border-l border-border rounded-lg overflow-hidden">
                             {contactLinks.map((link) => (
                                 <a
                                     key={link.name}
@@ -94,7 +94,7 @@ export const ContactSection = () => {
                                         <h3 className="text-lg font-display font-semibold text-foreground mb-1">
                                             {link.name}
                                         </h3>
-                                        <p className="font-mono text-xs text-muted-foreground break-all sm:break-normal">
+                                        <p className="text-xs text-muted-foreground break-all sm:break-normal">
                                             {link.description}
                                         </p>
                                     </div>

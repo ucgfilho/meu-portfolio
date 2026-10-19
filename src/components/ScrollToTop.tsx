@@ -30,7 +30,7 @@ export const ScrollToTop = () => {
             type="button"
             onClick={scrollToTop}
             aria-label="Voltar ao topo"
-            className="fixed bottom-6 right-6 z-40 min-w-[44px] min-h-[44px] flex items-center justify-center rounded-sm border border-border-strong bg-surface-elevated/95 backdrop-blur-md text-foreground hover:bg-foreground hover:text-background transition-all duration-200 cursor-pointer shadow-panel animate-fade-in"
+            className="fixed bottom-6 right-6 z-40 min-w-[44px] min-h-[44px] flex items-center justify-center rounded-lg border border-border-strong bg-surface-elevated/95 backdrop-blur-md text-foreground hover:bg-foreground hover:text-background transition-all duration-200 cursor-pointer shadow-panel animate-fade-in"
         >
             <ArrowUp className="w-4 h-4" aria-hidden="true"/>
         </button>

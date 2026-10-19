@@ -25,8 +25,8 @@ export const AboutSection = () => {
                     <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start">
                         {/* Profile Image — 4 Columns */}
                         <div className="lg:col-span-4">
-                            <div className="relative p-2 border border-border bg-surface-container max-w-xs sm:max-w-sm mx-auto lg:mx-0">
-                                <div className="relative overflow-hidden aspect-[3/4] bg-surface">
+                            <div className="relative p-2 border border-border bg-surface-container rounded-lg max-w-xs sm:max-w-sm mx-auto lg:mx-0">
+                                <div className="relative overflow-hidden aspect-[3/4] bg-surface rounded-none">
                                     <picture>
                                         <source
                                             type="image/webp"

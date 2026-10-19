@@ -100,11 +100,14 @@ export default {
             },
 
             borderRadius: {
-                "2xl": "0.5rem",
-                xl: "0.375rem",
-                lg: "0.25rem",
-                md: "0.1875rem",
-                sm: "0.125rem",
+                "3xl": "calc(var(--radius) + 8px)",
+                "2xl": "calc(var(--radius) + 4px)",
+                xl: "calc(var(--radius) + 2px)",
+                lg: "var(--radius)",
+                DEFAULT: "var(--radius)",
+                md: "calc(var(--radius) - 2px)",
+                sm: "calc(var(--radius) - 4px)",
+                xs: "calc(var(--radius) - 6px)",
             },
 
             fontFamily: {

@@ -97,7 +97,7 @@ export const SkillsSection = () => {
           </div>
 
           {/* Unified Architectural Matrix */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 border-t border-l border-border">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 border-t border-l border-border rounded-lg overflow-hidden">
             {skillCategories.map((category, idx) => (
               <div
                 key={category.title}
@@ -136,7 +136,7 @@ export const SkillsSection = () => {
           {/* All technologies strip */}
           <div className="mt-14 pt-8 border-t border-border">
             <div className="flex items-center justify-between gap-4 mb-6">
-              <p className="font-mono text-xs uppercase tracking-[0.16em] text-muted-foreground">
+              <p className="text-xs font-medium uppercase tracking-[0.16em] text-muted-foreground">
                 {t("skills.allTechnologies")}
               </p>
               <span aria-hidden="true" className="flex-1 h-px bg-border" />

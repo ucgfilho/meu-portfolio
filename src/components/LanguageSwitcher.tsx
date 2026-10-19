@@ -72,17 +72,17 @@ export const LanguageSwitcher = () => {
                 aria-haspopup="menu"
                 aria-expanded={isOpen}
                 onClick={() => setIsOpen((prev) => !prev)}
-                className="min-h-[40px] sm:min-h-[42px] h-auto px-2.5 sm:px-3 py-1.5 gap-2 border border-border bg-surface-container/60 hover:bg-surface-elevated text-foreground rounded-sm cursor-pointer"
+                className="min-h-[40px] sm:min-h-[42px] h-auto px-2.5 sm:px-3 py-1.5 gap-2 border border-border bg-surface-container/60 hover:bg-surface-elevated text-foreground rounded-lg cursor-pointer"
             >
                 <span
                     aria-hidden="true"
-                    className="flex items-center justify-center w-5 h-3.5 overflow-hidden shrink-0 border border-border/60"
+                    className="flex items-center justify-center w-5 h-3.5 overflow-hidden shrink-0 border border-border/60 rounded-[2px]"
                 >
                     <currentLanguage.FlagIcon
                         style={{width: "100%", height: "100%", display: "block"}}
                     />
                 </span>
-                <span className="font-mono text-xs font-medium text-foreground whitespace-nowrap">
+                <span className="text-xs sm:text-sm font-medium text-foreground whitespace-nowrap">
                     {currentLanguage.label}
                 </span>
                 <ChevronDown className="w-3.5 h-3.5 text-muted-foreground shrink-0" aria-hidden="true"/>
@@ -93,7 +93,7 @@ export const LanguageSwitcher = () => {
                 <div
                     role="menu"
                     aria-label={t("languageSwitcher.label")}
-                    className="absolute right-0 mt-1.5 z-50 w-44 bg-surface-elevated border border-border-strong rounded-sm p-1 shadow-elevated"
+                    className="absolute right-0 mt-1.5 z-50 w-44 bg-surface-elevated border border-border-strong rounded-lg p-1 shadow-elevated"
                 >
                     {languages.map((lang) => {
                         const isSelected = i18n.language === lang.code;
@@ -104,7 +104,7 @@ export const LanguageSwitcher = () => {
                                 role="menuitemradio"
                                 aria-checked={isSelected}
                                 onClick={() => changeLanguage(lang.code)}
-                                className={`w-full cursor-pointer text-xs font-mono py-2.5 px-3 rounded-sm flex items-center justify-between transition-colors ${
+                                className={`w-full cursor-pointer text-xs sm:text-sm font-medium py-2.5 px-3 rounded-sm flex items-center justify-between transition-colors ${
                                     isSelected
                                         ? "bg-foreground text-background font-semibold"
                                         : "text-foreground hover:bg-surface-container-high"
@@ -113,7 +113,7 @@ export const LanguageSwitcher = () => {
                                 <span className="flex items-center gap-2.5">
                                     <span
                                         aria-hidden="true"
-                                        className="w-5 h-3.5 overflow-hidden flex items-center justify-center shrink-0 border border-border/50"
+                                        className="w-5 h-3.5 overflow-hidden flex items-center justify-center shrink-0 border border-border/50 rounded-[2px]"
                                     >
                                         <lang.FlagIcon
                                             style={{width: "100%", height: "100%", display: "block"}}

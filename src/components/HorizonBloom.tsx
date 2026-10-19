@@ -7,25 +7,6 @@ import {
   useRef,
   useSyncExternalStore,
 } from "react";
-import {
-  AdditiveBlending,
-  Color,
-  HalfFloatType,
-  LinearFilter,
-  Mesh,
-  NoBlending,
-  NoColorSpace,
-  OrthographicCamera,
-  PlaneGeometry,
-  RGBAFormat,
-  Scene,
-  ShaderMaterial,
-  Vector2,
-  Vector3,
-  Vector4,
-  WebGLRenderer,
-  WebGLRenderTarget,
-} from "three";
 import { cn } from "@/lib/utils";
 
 export interface HorizonBloomRef {
@@ -70,19 +51,45 @@ const clamp = (v: number, min: number, max: number) =>
 const finiteOr = (v: number | undefined, fallback: number) =>
   typeof v === "number" && Number.isFinite(v) ? v : fallback;
 
-const scratchColor = new Color();
-
 const parseColor = (input: string): [number, number, number] | null => {
   const trimmed = input.trim().toLowerCase();
   if (!trimmed || trimmed === "transparent" || trimmed === "none" || trimmed === "auto") {
     return null;
   }
-  try {
-    scratchColor.setStyle(trimmed, NoColorSpace);
-  } catch {
+  if (trimmed.startsWith("#")) {
+    const hex = trimmed.slice(1);
+    if (hex.length === 3 || hex.length === 4) {
+      const r = Number.parseInt(hex[0] + hex[0], 16);
+      const g = Number.parseInt(hex[1] + hex[1], 16);
+      const b = Number.parseInt(hex[2] + hex[2], 16);
+      if (Number.isFinite(r) && Number.isFinite(g) && Number.isFinite(b)) {
+        return [r / 255, g / 255, b / 255];
+      }
+    } else if (hex.length === 6 || hex.length === 8) {
+      const r = Number.parseInt(hex.slice(0, 2), 16);
+      const g = Number.parseInt(hex.slice(2, 4), 16);
+      const b = Number.parseInt(hex.slice(4, 6), 16);
+      if (Number.isFinite(r) && Number.isFinite(g) && Number.isFinite(b)) {
+        return [r / 255, g / 255, b / 255];
+      }
+    }
     return null;
   }
-  return [scratchColor.r, scratchColor.g, scratchColor.b];
+  const rgbMatch = trimmed.match(/rgba?\(([^)]+)\)/);
+  if (rgbMatch) {
+    const parts = rgbMatch[1]
+      .split(/[\s,/]+/)
+      .filter(Boolean)
+      .map((p) => Number.parseFloat(p));
+    if (parts.length >= 3 && parts.slice(0, 3).every(Number.isFinite)) {
+      return [
+        clamp(parts[0] / 255, 0, 1),
+        clamp(parts[1] / 255, 0, 1),
+        clamp(parts[2] / 255, 0, 1),
+      ];
+    }
+  }
+  return null;
 };
 
 const srgbToLinear = (c: number) =>
@@ -141,14 +148,17 @@ const getReducedMotion = () =>
   window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
 const VERTEX_SHADER = `
+precision highp float;
+attribute vec2 position;
 varying vec2 vUv;
 void main() {
-  vUv = uv;
-  gl_Position = vec4(position.xy, 0.0, 1.0);
+  vUv = position * 0.5 + 0.5;
+  gl_Position = vec4(position, 0.0, 1.0);
 }
 `;
 
 const SCENE_FRAGMENT_SHADER = `
+precision highp float;
 uniform vec2 uRes;
 uniform float uTime;
 uniform float uRoll;
@@ -301,6 +311,7 @@ void main() {
 `;
 
 const DOWN_FRAGMENT_SHADER = `
+precision highp float;
 uniform sampler2D uSource;
 uniform vec2 uTexel;
 uniform float uThreshold;
@@ -330,6 +341,7 @@ void main() {
 `;
 
 const UP_FRAGMENT_SHADER = `
+precision highp float;
 uniform sampler2D uSource;
 uniform vec2 uTexel;
 varying vec2 vUv;
@@ -343,6 +355,7 @@ void main() {
 `;
 
 const COMPOSITE_FRAGMENT_SHADER = `
+precision highp float;
 uniform sampler2D uScene;
 uniform sampler2D uBloom;
 uniform vec3 uBackground;
@@ -441,6 +454,15 @@ interface AuroraInstance {
   dying: number;
 }
 
+interface RenderTarget {
+  fbo: WebGLFramebuffer | null;
+  texture: WebGLTexture | null;
+  width: number;
+  height: number;
+  setSize: (w: number, h: number) => void;
+  dispose: () => void;
+}
+
 export const HorizonBloom = forwardRef<HorizonBloomRef, HorizonBloomProps>(function HorizonBloom(
   {
     colors = ["#FF9FFC", "#5227FF"],
@@ -531,133 +553,215 @@ export const HorizonBloom = forwardRef<HorizonBloomRef, HorizonBloomProps>(funct
       mount: HTMLDivElement,
       propsRef: React.MutableRefObject<RuntimeState>
     ) => {
-      let renderer: WebGLRenderer;
-      const doc = container.ownerDocument;
-      const win = doc.defaultView ?? window;
-      const canvas = doc.createElement("canvas");
-      canvas.setAttribute("aria-hidden", "true");
-      canvas.style.cssText =
-        "position:absolute;inset:0;width:100%;height:100%;display:block";
       if (
         typeof WebGLRenderingContext === "undefined" &&
         typeof WebGL2RenderingContext === "undefined"
       ) {
         return null;
       }
+
+      const doc = container.ownerDocument;
+      const win = doc.defaultView ?? window;
+      const canvas = doc.createElement("canvas");
+      canvas.setAttribute("aria-hidden", "true");
+      canvas.style.cssText =
+        "position:absolute;inset:0;width:100%;height:100%;display:block";
+
+      const ctxAttrs: WebGLContextAttributes = {
+        alpha: false,
+        antialias: false,
+        depth: false,
+        stencil: false,
+        powerPreference: "high-performance",
+      };
+
+      let gl: WebGL2RenderingContext | WebGLRenderingContext | null = null;
+      let isWebGL2 = false;
       try {
-        renderer = new WebGLRenderer({
-          canvas,
-          alpha: false,
-          antialias: false,
-          powerPreference: "high-performance",
-        });
+        gl = canvas.getContext("webgl2", ctxAttrs) as WebGL2RenderingContext | null;
+        if (gl) {
+          isWebGL2 = true;
+        } else {
+          gl = canvas.getContext("webgl", ctxAttrs) as WebGLRenderingContext | null;
+        }
       } catch {
+        gl = null;
+      }
+      if (!gl) return null;
+
+      mount.appendChild(canvas);
+
+      let fboInternalFormat: number = gl.RGBA;
+      let fboType: number = gl.UNSIGNED_BYTE;
+
+      if (isWebGL2) {
+        const gl2 = gl as WebGL2RenderingContext;
+        if (gl2.getExtension("EXT_color_buffer_float") || gl2.getExtension("EXT_color_buffer_half_float")) {
+          fboInternalFormat = gl2.RGBA16F;
+          fboType = gl2.HALF_FLOAT;
+        }
+      } else {
+        const halfFloat = gl.getExtension("OES_texture_half_float");
+        const halfFloatLinear = gl.getExtension("OES_texture_half_float_linear");
+        if (halfFloat && halfFloatLinear) {
+          fboType = halfFloat.HALF_FLOAT_OES;
+        }
+      }
+
+      const compileShader = (type: number, source: string) => {
+        const shader = gl!.createShader(type);
+        if (!shader) return null;
+        gl!.shaderSource(shader, source);
+        gl!.compileShader(shader);
+        if (!gl!.getShaderParameter(shader, gl!.COMPILE_STATUS)) {
+          gl!.deleteShader(shader);
+          return null;
+        }
+        return shader;
+      };
+
+      const createProgram = (fragSource: string) => {
+        const vs = compileShader(gl!.VERTEX_SHADER, VERTEX_SHADER);
+        const fs = compileShader(gl!.FRAGMENT_SHADER, fragSource);
+        if (!vs || !fs) return null;
+        const prog = gl!.createProgram();
+        if (!prog) return null;
+        gl!.attachShader(prog, vs);
+        gl!.attachShader(prog, fs);
+        gl!.bindAttribLocation(prog, 0, "position");
+        gl!.linkProgram(prog);
+        gl!.deleteShader(vs);
+        gl!.deleteShader(fs);
+        if (!gl!.getProgramParameter(prog, gl!.LINK_STATUS)) {
+          gl!.deleteProgram(prog);
+          return null;
+        }
+        return prog;
+      };
+
+      const sceneProg = createProgram(SCENE_FRAGMENT_SHADER);
+      const downProg = createProgram(DOWN_FRAGMENT_SHADER);
+      const upProg = createProgram(UP_FRAGMENT_SHADER);
+      const compProg = createProgram(COMPOSITE_FRAGMENT_SHADER);
+
+      if (!sceneProg || !downProg || !upProg || !compProg) {
+        canvas.remove();
         return null;
       }
 
-      mount.appendChild(canvas);
-      renderer.autoClear = false;
+      const quadBuffer = gl.createBuffer();
+      gl.bindBuffer(gl.ARRAY_BUFFER, quadBuffer);
+      gl.bufferData(
+        gl.ARRAY_BUFFER,
+        new Float32Array([-1, -1, 1, -1, -1, 1, -1, 1, 1, -1, 1, 1]),
+        gl.STATIC_DRAW
+      );
+      gl.enableVertexAttribArray(0);
+      gl.vertexAttribPointer(0, 2, gl.FLOAT, false, 0, 0);
 
-      const camera = new OrthographicCamera(-1, 1, 1, -1, -1, 1);
-      const geometry = new PlaneGeometry(2, 2);
-      const scene = new Scene();
-      const mesh = new Mesh(geometry);
-      mesh.frustumCulled = false;
-      scene.add(mesh);
+      const uLoc = (prog: WebGLProgram, name: string) => gl!.getUniformLocation(prog, name);
 
-      const vec3Uniform = () => ({ value: new Vector3(1, 1, 1) });
-      const auroraUniforms = Array.from({ length: 8 }, () => new Vector4(0, 0, 0, 0));
+      const sceneLocs = {
+        uRes: uLoc(sceneProg, "uRes"),
+        uTime: uLoc(sceneProg, "uTime"),
+        uRoll: uLoc(sceneProg, "uRoll"),
+        uApex: uLoc(sceneProg, "uApex"),
+        uRadius: uLoc(sceneProg, "uRadius"),
+        uSunArc: uLoc(sceneProg, "uSunArc"),
+        uSpread: uLoc(sceneProg, "uSpread"),
+        uSunUp: uLoc(sceneProg, "uSunUp"),
+        uAtmo: uLoc(sceneProg, "uAtmo"),
+        uThick: uLoc(sceneProg, "uThick"),
+        uRimGain: uLoc(sceneProg, "uRimGain"),
+        uFlare: uLoc(sceneProg, "uFlare"),
+        uAirglow: uLoc(sceneProg, "uAirglow"),
+        uClouds: uLoc(sceneProg, "uClouds"),
+        uStars: uLoc(sceneProg, "uStars"),
+        uAuroraGain: uLoc(sceneProg, "uAuroraGain"),
+        uAuroras: uLoc(sceneProg, "uAuroras[0]"),
+        uInk: uLoc(sceneProg, "uInk"),
+        uRimColor: uLoc(sceneProg, "uRimColor"),
+        uInner: uLoc(sceneProg, "uInner"),
+        uMid: uLoc(sceneProg, "uMid"),
+        uOuter: uLoc(sceneProg, "uOuter"),
+        uGlowColor: uLoc(sceneProg, "uGlowColor"),
+        uSunColor: uLoc(sceneProg, "uSunColor"),
+        uStarColor: uLoc(sceneProg, "uStarColor"),
+      };
 
-      const sceneMaterial = new ShaderMaterial({
-        uniforms: {
-          uRes: { value: new Vector2(1, 1) },
-          uTime: { value: 0 },
-          uRoll: { value: 0 },
-          uApex: { value: -0.22 },
-          uRadius: { value: 2.4 },
-          uSunArc: { value: 0.2 },
-          uSpread: { value: 0.6 },
-          uSunUp: { value: 1 },
-          uAtmo: { value: 1 },
-          uThick: { value: 1 },
-          uRimGain: { value: 1 },
-          uFlare: { value: 1 },
-          uAirglow: { value: 0.5 },
-          uClouds: { value: 0.5 },
-          uStars: { value: 0.5 },
-          uAuroraGain: { value: 1 },
-          uAuroras: { value: auroraUniforms },
-          uInk: { value: 0 },
-          uRimColor: vec3Uniform(),
-          uInner: vec3Uniform(),
-          uMid: vec3Uniform(),
-          uOuter: vec3Uniform(),
-          uGlowColor: vec3Uniform(),
-          uSunColor: vec3Uniform(),
-          uStarColor: vec3Uniform(),
-        },
-        vertexShader: VERTEX_SHADER,
-        fragmentShader: SCENE_FRAGMENT_SHADER,
-        depthTest: false,
-        depthWrite: false,
-      });
+      const downLocs = {
+        uSource: uLoc(downProg, "uSource"),
+        uTexel: uLoc(downProg, "uTexel"),
+        uThreshold: uLoc(downProg, "uThreshold"),
+      };
 
-      const createTarget = () =>
-        new WebGLRenderTarget(1, 1, {
-          type: HalfFloatType,
-          format: RGBAFormat,
-          depthBuffer: false,
-          stencilBuffer: false,
-          minFilter: LinearFilter,
-          magFilter: LinearFilter,
-          generateMipmaps: false,
-        });
+      const upLocs = {
+        uSource: uLoc(upProg, "uSource"),
+        uTexel: uLoc(upProg, "uTexel"),
+      };
+
+      const compLocs = {
+        uScene: uLoc(compProg, "uScene"),
+        uBloom: uLoc(compProg, "uBloom"),
+        uBackground: uLoc(compProg, "uBackground"),
+        uResolution: uLoc(compProg, "uResolution"),
+        uBloomStrength: uLoc(compProg, "uBloomStrength"),
+        uGrain: uLoc(compProg, "uGrain"),
+        uTime: uLoc(compProg, "uTime"),
+        uInk: uLoc(compProg, "uInk"),
+      };
+
+      const createTarget = (): RenderTarget => {
+        const fbo = gl!.createFramebuffer();
+        const texture = gl!.createTexture();
+        gl!.bindTexture(gl!.TEXTURE_2D, texture);
+        gl!.texParameteri(gl!.TEXTURE_2D, gl!.TEXTURE_MIN_FILTER, gl!.LINEAR);
+        gl!.texParameteri(gl!.TEXTURE_2D, gl!.TEXTURE_MAG_FILTER, gl!.LINEAR);
+        gl!.texParameteri(gl!.TEXTURE_2D, gl!.TEXTURE_WRAP_S, gl!.CLAMP_TO_EDGE);
+        gl!.texParameteri(gl!.TEXTURE_2D, gl!.TEXTURE_WRAP_T, gl!.CLAMP_TO_EDGE);
+        gl!.texImage2D(gl!.TEXTURE_2D, 0, fboInternalFormat, 1, 1, 0, gl!.RGBA, fboType, null);
+        gl!.bindFramebuffer(gl!.FRAMEBUFFER, fbo);
+        gl!.framebufferTexture2D(gl!.FRAMEBUFFER, gl!.COLOR_ATTACHMENT0, gl!.TEXTURE_2D, texture, 0);
+        if (gl!.checkFramebufferStatus(gl!.FRAMEBUFFER) !== gl!.FRAMEBUFFER_COMPLETE) {
+          fboInternalFormat = gl!.RGBA;
+          fboType = gl!.UNSIGNED_BYTE;
+          gl!.texImage2D(gl!.TEXTURE_2D, 0, fboInternalFormat, 1, 1, 0, gl!.RGBA, fboType, null);
+        }
+        gl!.bindFramebuffer(gl!.FRAMEBUFFER, null);
+        const rt: RenderTarget = {
+          fbo,
+          texture,
+          width: 1,
+          height: 1,
+          setSize(w: number, h: number) {
+            if (w === rt.width && h === rt.height) return;
+            rt.width = w;
+            rt.height = h;
+            gl!.bindTexture(gl!.TEXTURE_2D, texture);
+            gl!.texImage2D(gl!.TEXTURE_2D, 0, fboInternalFormat, w, h, 0, gl!.RGBA, fboType, null);
+          },
+          dispose() {
+            if (texture) gl!.deleteTexture(texture);
+            if (fbo) gl!.deleteFramebuffer(fbo);
+          },
+        };
+        return rt;
+      };
 
       const sceneTarget = createTarget();
       const bloomChain = Array.from({ length: 5 }, createTarget);
-      const bgUniform = new Vector3(0.04, 0.04, 0.04);
 
-      const downMaterial = new ShaderMaterial({
-        uniforms: {
-          uSource: { value: null },
-          uTexel: { value: new Vector2() },
-          uThreshold: { value: 0 },
-        },
-        vertexShader: VERTEX_SHADER,
-        fragmentShader: DOWN_FRAGMENT_SHADER,
-        depthTest: false,
-        depthWrite: false,
-      });
+      const colorsState: Record<string, [number, number, number]> = {
+        uRimColor: [1, 1, 1],
+        uInner: [1, 1, 1],
+        uMid: [1, 1, 1],
+        uOuter: [1, 1, 1],
+        uGlowColor: [1, 1, 1],
+        uSunColor: [1, 1, 1],
+        uStarColor: [1, 1, 1],
+      };
 
-      const upMaterial = new ShaderMaterial({
-        uniforms: {
-          uSource: { value: null },
-          uTexel: { value: new Vector2() },
-        },
-        vertexShader: VERTEX_SHADER,
-        fragmentShader: UP_FRAGMENT_SHADER,
-        blending: AdditiveBlending,
-        transparent: true,
-        depthTest: false,
-        depthWrite: false,
-      });
-
-      const compositeMaterial = new ShaderMaterial({
-        uniforms: {
-          uScene: { value: sceneTarget.texture },
-          uBloom: { value: bloomChain[0].texture },
-          uBackground: { value: bgUniform },
-          uResolution: { value: new Vector2(1, 1) },
-          uBloomStrength: { value: 0.5 },
-          uGrain: { value: 0.25 },
-          uTime: { value: 0 },
-          uInk: { value: 0 },
-        },
-        vertexShader: VERTEX_SHADER,
-        fragmentShader: COMPOSITE_FRAGMENT_SHADER,
-        depthTest: false,
-        depthWrite: false,
-      });
+      const auroraData = new Float32Array(32);
 
       let width = 0;
       let height = 0;
@@ -687,11 +791,14 @@ export const HorizonBloom = forwardRef<HorizonBloomRef, HorizonBloomProps>(funct
       const nextRandom = () => ((rngState = (16807 * rngState) % 0x7fffffff) - 1) / 0x7ffffffe;
 
       const setColorUniform = (name: string, rgb: [number, number, number]) => {
-        const target = (sceneMaterial.uniforms[name] as { value: Vector3 }).value;
         if (isLightBg) {
-          target.set(rgb[0], rgb[1], rgb[2]);
+          colorsState[name] = [rgb[0], rgb[1], rgb[2]];
         } else {
-          target.set(srgbToLinear(rgb[0]), srgbToLinear(rgb[1]), srgbToLinear(rgb[2]));
+          colorsState[name] = [
+            srgbToLinear(rgb[0]),
+            srgbToLinear(rgb[1]),
+            srgbToLinear(rgb[2]),
+          ];
         }
       };
 
@@ -724,7 +831,6 @@ export const HorizonBloom = forwardRef<HorizonBloomRef, HorizonBloomProps>(funct
         colorCacheKey = key;
 
         isLightBg = 0.2126 * bgRgb[0] + 0.7152 * bgRgb[1] + 0.0722 * bgRgb[2] > 0.55;
-        bgUniform.set(bgRgb[0], bgRgb[1], bgRgb[2]);
 
         const warmLab = rgbToOklab(parseColor(st.colors[0]) ?? [1, 0.62, 0.99]);
         const coolLab = rgbToOklab(parseColor(st.colors[1]) ?? [0.32, 0.15, 1]);
@@ -761,9 +867,6 @@ export const HorizonBloom = forwardRef<HorizonBloomRef, HorizonBloomProps>(funct
           setColorUniform("uSunColor", oklabToRgb(brighten(warmLab, 0.98, 0.12)));
           setColorUniform("uStarColor", oklabToRgb(brighten(coolLab, 0.93, 0.15)));
         }
-
-        sceneMaterial.uniforms.uInk.value = isLightBg ? 1 : 0;
-        compositeMaterial.uniforms.uInk.value = isLightBg ? 1 : 0;
       };
 
       const syncSize = () => {
@@ -782,11 +885,11 @@ export const HorizonBloom = forwardRef<HorizonBloomRef, HorizonBloomProps>(funct
         width = nextW;
         height = nextH;
         pixelRatio = nextDpr;
-        renderer.setPixelRatio(pixelRatio);
-        renderer.setSize(width, height, false);
 
         const rw = Math.round(width * pixelRatio);
         const rh = Math.round(height * pixelRatio);
+        canvas.width = rw;
+        canvas.height = rh;
         sceneTarget.setSize(rw, rh);
 
         let bw = rw;
@@ -796,9 +899,6 @@ export const HorizonBloom = forwardRef<HorizonBloomRef, HorizonBloomProps>(funct
           bh = Math.max(1, Math.round(bh / 2));
           target.setSize(bw, bh);
         }
-
-        sceneMaterial.uniforms.uRes.value.set(rw, rh);
-        compositeMaterial.uniforms.uResolution.value.set(rw, rh);
         return true;
       };
 
@@ -820,89 +920,139 @@ export const HorizonBloom = forwardRef<HorizonBloomRef, HorizonBloomProps>(funct
       };
 
       const renderFrame = () => {
-        if (!hasSize) return;
+        if (!hasSize || !gl) return;
         const st = propsRef.current;
         if (performance.now() - lastColorSync > 1000) {
           lastColorSync = performance.now();
           syncColors();
         }
 
-        const u = sceneMaterial.uniforms;
+        const rw = sceneTarget.width;
+        const rh = sceneTarget.height;
         const tiltRad = (clamp(finiteOr(st.tilt, 0), -180, 180) * Math.PI) / 180;
-        u.uTime.value = scaledTime;
-        u.uRoll.value = tiltRad + rollOffset;
-        u.uApex.value = computeApex() + apexOffset;
-        u.uRadius.value = computeRadius();
-        u.uSunArc.value = computeSunArc();
-
         const targetSpread = 0.08 + 1.1 * clamp(finiteOr(st.spread, 0.4), 0, 3);
-        u.uSpread.value = 0.05 + (targetSpread - 0.05) * (0.15 + 0.85 * introProgress);
-        u.uSunUp.value = clamp(finiteOr(st.sunrise, 1), 0, 1.5) * (0.12 + 0.88 * introProgress);
-        u.uAtmo.value = clamp(finiteOr(st.atmosphere, 1), 0, 3);
-        u.uThick.value = clamp(finiteOr(st.thickness, 1), 0.3, 3);
-        u.uRimGain.value = clamp(finiteOr(st.rim, 1), 0, 3);
-        u.uFlare.value = clamp(finiteOr(st.flare, 1), 0, 3);
-        u.uAirglow.value = clamp(finiteOr(st.airglow, 0.5), 0, 2);
-        u.uClouds.value = clamp(finiteOr(st.clouds, 0.5), 0, 2);
-        u.uStars.value = clamp(finiteOr(st.stars, 0.5), 0, 2);
-        u.uAuroraGain.value = clamp(finiteOr(st.aurora, 1), 0, 3);
 
         for (let i = 0; i < 8; i++) {
           const item = auroras[i];
+          const baseIdx = i * 4;
           if (item) {
             const fade = item.dying < 0 ? 1 : clamp(1 - (realTime - item.dying) / 0.7, 0, 1);
-            auroraUniforms[i].set(
-              item.arc,
-              realTime - item.born,
-              item.strength * fade * fade,
-              item.seed
-            );
+            auroraData[baseIdx] = item.arc;
+            auroraData[baseIdx + 1] = realTime - item.born;
+            auroraData[baseIdx + 2] = item.strength * fade * fade;
+            auroraData[baseIdx + 3] = item.seed;
           } else {
-            auroraUniforms[i].set(0, 0, 0, 0);
+            auroraData[baseIdx] = 0;
+            auroraData[baseIdx + 1] = 0;
+            auroraData[baseIdx + 2] = 0;
+            auroraData[baseIdx + 3] = 0;
           }
         }
 
-        compositeMaterial.uniforms.uGrain.value = clamp(finiteOr(st.grain, 0.25), 0, 1);
-        compositeMaterial.uniforms.uTime.value = scaledTime;
+        gl.bindBuffer(gl.ARRAY_BUFFER, quadBuffer);
+        gl.enableVertexAttribArray(0);
+        gl.vertexAttribPointer(0, 2, gl.FLOAT, false, 0, 0);
+        gl.disable(gl.BLEND);
 
-        if (isLightBg) {
-          sceneMaterial.blending = NoBlending;
-        }
-        mesh.material = sceneMaterial;
-        renderer.setRenderTarget(sceneTarget);
-        renderer.setClearColor(0, 0);
-        renderer.clear();
-        renderer.render(scene, camera);
+        // Pass 1: Scene
+        gl.bindFramebuffer(gl.FRAMEBUFFER, sceneTarget.fbo);
+        gl.viewport(0, 0, rw, rh);
+        gl.clearColor(0, 0, 0, 0);
+        gl.clear(gl.COLOR_BUFFER_BIT);
+        gl.useProgram(sceneProg);
 
+        gl.uniform2f(sceneLocs.uRes, rw, rh);
+        gl.uniform1f(sceneLocs.uTime, scaledTime);
+        gl.uniform1f(sceneLocs.uRoll, tiltRad + rollOffset);
+        gl.uniform1f(sceneLocs.uApex, computeApex() + apexOffset);
+        gl.uniform1f(sceneLocs.uRadius, computeRadius());
+        gl.uniform1f(sceneLocs.uSunArc, computeSunArc());
+        gl.uniform1f(
+          sceneLocs.uSpread,
+          0.05 + (targetSpread - 0.05) * (0.15 + 0.85 * introProgress)
+        );
+        gl.uniform1f(
+          sceneLocs.uSunUp,
+          clamp(finiteOr(st.sunrise, 1), 0, 1.5) * (0.12 + 0.88 * introProgress)
+        );
+        gl.uniform1f(sceneLocs.uAtmo, clamp(finiteOr(st.atmosphere, 1), 0, 3));
+        gl.uniform1f(sceneLocs.uThick, clamp(finiteOr(st.thickness, 1), 0.3, 3));
+        gl.uniform1f(sceneLocs.uRimGain, clamp(finiteOr(st.rim, 1), 0, 3));
+        gl.uniform1f(sceneLocs.uFlare, clamp(finiteOr(st.flare, 1), 0, 3));
+        gl.uniform1f(sceneLocs.uAirglow, clamp(finiteOr(st.airglow, 0.5), 0, 2));
+        gl.uniform1f(sceneLocs.uClouds, clamp(finiteOr(st.clouds, 0.5), 0, 2));
+        gl.uniform1f(sceneLocs.uStars, clamp(finiteOr(st.stars, 0.5), 0, 2));
+        gl.uniform1f(sceneLocs.uAuroraGain, clamp(finiteOr(st.aurora, 1), 0, 3));
+        gl.uniform4fv(sceneLocs.uAuroras, auroraData);
+        gl.uniform1f(sceneLocs.uInk, isLightBg ? 1 : 0);
+
+        gl.uniform3fv(sceneLocs.uRimColor, colorsState.uRimColor);
+        gl.uniform3fv(sceneLocs.uInner, colorsState.uInner);
+        gl.uniform3fv(sceneLocs.uMid, colorsState.uMid);
+        gl.uniform3fv(sceneLocs.uOuter, colorsState.uOuter);
+        gl.uniform3fv(sceneLocs.uGlowColor, colorsState.uGlowColor);
+        gl.uniform3fv(sceneLocs.uSunColor, colorsState.uSunColor);
+        gl.uniform3fv(sceneLocs.uStarColor, colorsState.uStarColor);
+
+        gl.drawArrays(gl.TRIANGLES, 0, 6);
+
+        // Pass 2: Bloom downsample & upsample
         const bloomStrength = isLightBg ? 0 : clamp(finiteOr(st.bloom, 0.5), 0, 3);
         if (bloomStrength > 0.001) {
           let prev = sceneTarget;
-          mesh.material = downMaterial;
+          gl.useProgram(downProg);
+          gl.uniform1i(downLocs.uSource, 0);
+          gl.activeTexture(gl.TEXTURE0);
+
           for (const target of bloomChain) {
-            downMaterial.uniforms.uThreshold.value = prev === sceneTarget ? 0.45 : 0;
-            downMaterial.uniforms.uSource.value = prev.texture;
-            downMaterial.uniforms.uTexel.value.set(1 / prev.width, 1 / prev.height);
-            renderer.setRenderTarget(target);
-            renderer.render(scene, camera);
+            gl.bindFramebuffer(gl.FRAMEBUFFER, target.fbo);
+            gl.viewport(0, 0, target.width, target.height);
+            gl.bindTexture(gl.TEXTURE_2D, prev.texture);
+            gl.uniform1f(downLocs.uThreshold, prev === sceneTarget ? 0.45 : 0);
+            gl.uniform2f(downLocs.uTexel, 1 / prev.width, 1 / prev.height);
+            gl.drawArrays(gl.TRIANGLES, 0, 6);
             prev = target;
           }
 
-          mesh.material = upMaterial;
+          gl.useProgram(upProg);
+          gl.uniform1i(upLocs.uSource, 0);
+          gl.enable(gl.BLEND);
+          gl.blendFunc(gl.ONE, gl.ONE);
+
           for (let i = bloomChain.length - 1; i > 0; i--) {
-            upMaterial.uniforms.uSource.value = bloomChain[i].texture;
-            upMaterial.uniforms.uTexel.value.set(
-              1 / bloomChain[i].width,
-              1 / bloomChain[i].height
-            );
-            renderer.setRenderTarget(bloomChain[i - 1]);
-            renderer.render(scene, camera);
+            const src = bloomChain[i];
+            const dst = bloomChain[i - 1];
+            gl.bindFramebuffer(gl.FRAMEBUFFER, dst.fbo);
+            gl.viewport(0, 0, dst.width, dst.height);
+            gl.bindTexture(gl.TEXTURE_2D, src.texture);
+            gl.uniform2f(upLocs.uTexel, 1 / src.width, 1 / src.height);
+            gl.drawArrays(gl.TRIANGLES, 0, 6);
           }
+
+          gl.disable(gl.BLEND);
         }
 
-        compositeMaterial.uniforms.uBloomStrength.value = bloomStrength;
-        mesh.material = compositeMaterial;
-        renderer.setRenderTarget(null);
-        renderer.render(scene, camera);
+        // Pass 3: Composite
+        gl.bindFramebuffer(gl.FRAMEBUFFER, null);
+        gl.viewport(0, 0, rw, rh);
+        gl.useProgram(compProg);
+
+        gl.activeTexture(gl.TEXTURE0);
+        gl.bindTexture(gl.TEXTURE_2D, sceneTarget.texture);
+        gl.uniform1i(compLocs.uScene, 0);
+
+        gl.activeTexture(gl.TEXTURE1);
+        gl.bindTexture(gl.TEXTURE_2D, bloomChain[0].texture);
+        gl.uniform1i(compLocs.uBloom, 1);
+
+        gl.uniform3f(compLocs.uBackground, bgRgb[0], bgRgb[1], bgRgb[2]);
+        gl.uniform2f(compLocs.uResolution, rw, rh);
+        gl.uniform1f(compLocs.uBloomStrength, bloomStrength);
+        gl.uniform1f(compLocs.uGrain, clamp(finiteOr(st.grain, 0.25), 0, 1));
+        gl.uniform1f(compLocs.uTime, scaledTime);
+        gl.uniform1f(compLocs.uInk, isLightBg ? 1 : 0);
+
+        gl.drawArrays(gl.TRIANGLES, 0, 6);
       };
 
       const clientToArc = (clientX: number, clientY: number) => {
@@ -934,9 +1084,18 @@ export const HorizonBloom = forwardRef<HorizonBloomRef, HorizonBloomProps>(funct
         }
       };
 
+      let ambientActive = Boolean(propsRef.current.intro);
+
       const scheduleTick = () => {
         if (!isDestroyed && !isContextLost && isIntersecting && !rafId) {
           rafId = requestAnimationFrame(tick);
+        }
+      };
+
+      const activateAmbient = () => {
+        if (!ambientActive) {
+          ambientActive = true;
+          scheduleTick();
         }
       };
 
@@ -950,7 +1109,7 @@ export const HorizonBloom = forwardRef<HorizonBloomRef, HorizonBloomProps>(funct
             : 1 / 60;
         lastFrameTime = now;
 
-        const running = !st.reduced && !st.paused;
+        const running = !st.reduced && !st.paused && ambientActive;
         if (running) {
           realTime += dt;
           scaledTime += dt * clamp(finiteOr(st.speed, 0.5), 0, 3);
@@ -997,7 +1156,7 @@ export const HorizonBloom = forwardRef<HorizonBloomRef, HorizonBloomProps>(funct
           Math.abs(targetRollOffset - rollOffset) > 5e-5 ||
           Math.abs(targetApexOffset - apexOffset) > 5e-5;
 
-        if ((running || hasParallaxDelta || introProgress < 1) && !document.hidden) {
+        if ((running || hasParallaxDelta || introProgress < 1 || auroras.length > 0) && !document.hidden) {
           rafId = requestAnimationFrame(tick);
         } else {
           lastFrameTime = 0;
@@ -1005,6 +1164,7 @@ export const HorizonBloom = forwardRef<HorizonBloomRef, HorizonBloomProps>(funct
       };
 
       const onPointerMove = (e: PointerEvent) => {
+        ambientActive = true;
         const st = propsRef.current;
         if (!st.interactive || st.reduced || e.pointerType === "touch") return;
         const rect = container.getBoundingClientRect();
@@ -1026,6 +1186,7 @@ export const HorizonBloom = forwardRef<HorizonBloomRef, HorizonBloomProps>(funct
       let downState: { id: number; x: number; y: number; time: number } | null = null;
 
       const onPointerDown = (e: PointerEvent) => {
+        ambientActive = true;
         downState = null;
         const st = propsRef.current;
         if (
@@ -1111,7 +1272,9 @@ export const HorizonBloom = forwardRef<HorizonBloomRef, HorizonBloomProps>(funct
               ([entry]) => {
                 isIntersecting = entry.isIntersecting;
                 lastFrameTime = 0;
-                scheduleTick();
+                if (isIntersecting && ambientActive) {
+                  scheduleTick();
+                }
               },
               { rootMargin: "120px" }
             )
@@ -1122,6 +1285,8 @@ export const HorizonBloom = forwardRef<HorizonBloomRef, HorizonBloomProps>(funct
       container.addEventListener("pointerdown", onPointerDown);
       container.addEventListener("pointerup", onPointerUp);
       container.addEventListener("pointercancel", onPointerCancel);
+      win.addEventListener("scroll", activateAmbient, { passive: true, once: true });
+      win.addEventListener("keydown", activateAmbient, { passive: true, once: true });
       document.addEventListener("visibilitychange", onVisibilityChange);
       canvas.addEventListener("webglcontextlost", onContextLost);
       canvas.addEventListener("webglcontextrestored", onContextRestored);
@@ -1130,6 +1295,11 @@ export const HorizonBloom = forwardRef<HorizonBloomRef, HorizonBloomProps>(funct
 
       syncSize();
       syncColors();
+      isIntersecting = true;
+      renderFrame();
+      if (ambientActive) {
+        scheduleTick();
+      }
 
       return {
         sync: () => {
@@ -1138,11 +1308,14 @@ export const HorizonBloom = forwardRef<HorizonBloomRef, HorizonBloomProps>(funct
           lastFrameTime = 0;
           if (!rafId && isIntersecting) {
             renderFrame();
-            scheduleTick();
+            if (ambientActive) {
+              scheduleTick();
+            }
           }
         },
         bloom: (x?: number, strength?: number) => {
           if (propsRef.current.reduced) return;
+          ambientActive = true;
           const rect = container.getBoundingClientRect();
           const arc = clientToArc(
             rect.left + clamp(x ?? 0.5, 0, 1) * rect.width,
@@ -1154,6 +1327,7 @@ export const HorizonBloom = forwardRef<HorizonBloomRef, HorizonBloomProps>(funct
           }
         },
         replay: () => {
+          ambientActive = true;
           introStart = -1;
           introProgress = 0;
           lastFrameTime = 0;
@@ -1169,19 +1343,20 @@ export const HorizonBloom = forwardRef<HorizonBloomRef, HorizonBloomProps>(funct
           container.removeEventListener("pointerdown", onPointerDown);
           container.removeEventListener("pointerup", onPointerUp);
           container.removeEventListener("pointercancel", onPointerCancel);
+          win.removeEventListener("scroll", activateAmbient);
+          win.removeEventListener("keydown", activateAmbient);
           document.removeEventListener("visibilitychange", onVisibilityChange);
           canvas.removeEventListener("webglcontextlost", onContextLost);
           canvas.removeEventListener("webglcontextrestored", onContextRestored);
-          geometry.dispose();
-          sceneMaterial.dispose();
-          downMaterial.dispose();
-          upMaterial.dispose();
-          compositeMaterial.dispose();
+          if (quadBuffer) gl?.deleteBuffer(quadBuffer);
+          gl?.deleteProgram(sceneProg);
+          gl?.deleteProgram(downProg);
+          gl?.deleteProgram(upProg);
+          gl?.deleteProgram(compProg);
           sceneTarget.dispose();
           for (const target of bloomChain) {
             target.dispose();
           }
-          renderer.dispose();
           canvas.remove();
         },
       };
@@ -1220,7 +1395,13 @@ export const HorizonBloom = forwardRef<HorizonBloomRef, HorizonBloomProps>(funct
       <div
         ref={canvasHostRef}
         aria-hidden="true"
-        style={{ position: "absolute", inset: 0, pointerEvents: "none" }}
+        style={{
+          position: "absolute",
+          inset: 0,
+          pointerEvents: "none",
+          background:
+            "radial-gradient(ellipse 65% 32% at 56% 72%, rgba(255, 159, 252, 0.38) 0%, rgba(82, 39, 255, 0.28) 45%, transparent 78%)",
+        }}
       />
       {children ? (
         <div style={{ position: "relative", zIndex: 1, height: "100%" }}>{children}</div>

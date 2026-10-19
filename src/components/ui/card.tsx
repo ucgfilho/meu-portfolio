@@ -24,7 +24,7 @@ const Card = React.forwardRef<
         ref={ref}
         className={cn(
             /* M3 Filled Card: Surface container */
-            "bg-card text-card-foreground",
+            "rounded-lg bg-card text-card-foreground",
             /* Transição M3 emphasized para hover states */
             "transition-all duration-300 ease-m3-emphasized",
             className,

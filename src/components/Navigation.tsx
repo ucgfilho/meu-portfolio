@@ -27,8 +27,9 @@ export const Navigation = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 24);
+      setIsScrolled(window.scrollY > 10);
     };
+    handleScroll();
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
@@ -82,8 +83,8 @@ export const Navigation = () => {
       <nav
         aria-label={t("nav.title")}
         className={`transition-colors duration-200 ${
-          isMobileMenuOpen
-            ? "bg-background/95 backdrop-blur-md"
+          isScrolled || isMobileMenuOpen
+            ? "bg-background"
             : "bg-transparent"
         }`}
       >
@@ -97,7 +98,7 @@ export const Navigation = () => {
                   key={item.href}
                   href={item.href}
                   aria-current={isActive ? "location" : undefined}
-                  className={`relative px-3.5 py-2 text-sm font-medium transition-colors duration-200 rounded-sm ${
+                  className={`relative px-3.5 py-2 text-sm font-medium transition-colors duration-200 rounded-lg ${
                     isActive
                       ? "text-foreground bg-surface-elevated"
                       : "text-muted-foreground hover:text-foreground hover:bg-surface-container"
@@ -107,7 +108,7 @@ export const Navigation = () => {
                   {isActive && (
                     <span
                       aria-hidden="true"
-                      className="absolute inset-x-3.5 -bottom-[1px] h-[2px] bg-foreground"
+                      className="absolute inset-x-3.5 -bottom-[1px] h-[2px] bg-foreground rounded-full"
                     />
                   )}
                 </a>
@@ -125,7 +126,7 @@ export const Navigation = () => {
               href="https://drive.google.com/file/d/1xCiolo4vc35d92N6LmUeDl9VOH6U4TWS/view?usp=sharing"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2 min-h-[40px] sm:min-h-[42px] px-3 sm:px-4 py-2 rounded-sm bg-foreground text-background text-xs sm:text-sm font-medium hover:bg-foreground/90 transition-colors duration-200 cursor-pointer whitespace-nowrap"
+              className="inline-flex items-center justify-center gap-2 min-h-[40px] sm:min-h-[42px] px-3 sm:px-4 py-2 rounded-lg bg-foreground text-background text-xs sm:text-sm font-medium hover:bg-foreground/90 transition-colors duration-200 cursor-pointer whitespace-nowrap"
             >
               <Download className="w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0" aria-hidden="true" />
               <span>{t("nav.downloadCv")}</span>
@@ -134,7 +135,7 @@ export const Navigation = () => {
             {/* Mobile Menu Button */}
             <button
               type="button"
-              className="lg:hidden min-w-[44px] min-h-[44px] inline-flex items-center justify-center rounded-sm border border-border bg-surface-container text-foreground hover:bg-surface-elevated transition-colors duration-200 cursor-pointer"
+              className="lg:hidden min-w-[44px] min-h-[44px] inline-flex items-center justify-center rounded-lg border border-border bg-surface-container text-foreground hover:bg-surface-elevated transition-colors duration-200 cursor-pointer"
               onClick={() => setIsMobileMenuOpen((prev) => !prev)}
               aria-label={isMobileMenuOpen ? t("nav.closeMenu") : t("nav.openMenu")}
               aria-expanded={isMobileMenuOpen}
@@ -173,7 +174,7 @@ export const Navigation = () => {
                     key={item.href}
                     href={item.href}
                     aria-current={isActive ? "location" : undefined}
-                    className={`flex items-center justify-between px-4 py-3.5 min-h-[48px] text-base font-medium border-b border-border/60 last:border-b-0 transition-colors duration-200 ${
+                    className={`flex items-center justify-between px-4 py-3.5 min-h-[48px] text-base font-medium rounded-lg border-b border-border/60 last:border-b-0 transition-colors duration-200 ${
                       isActive
                         ? "text-foreground bg-surface-elevated"
                         : "text-muted-foreground hover:text-foreground hover:bg-surface-container"
@@ -190,7 +191,7 @@ export const Navigation = () => {
                   href="https://drive.google.com/file/d/1xCiolo4vc35d92N6LmUeDl9VOH6U4TWS/view?usp=sharing"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center gap-2 min-h-[44px] px-4 py-2.5 rounded-sm bg-foreground text-background text-sm font-medium hover:bg-foreground/90 transition-colors duration-200"
+                  className="inline-flex items-center justify-center gap-2 min-h-[44px] px-4 py-2.5 rounded-lg bg-foreground text-background text-sm font-medium hover:bg-foreground/90 transition-colors duration-200"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
                   <Download className="w-4 h-4" aria-hidden="true" />
