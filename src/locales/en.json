@@ -34,7 +34,7 @@
   },
   "about": {
     "title": "About Me",
-    "bio1": "I'm a Backend Developer at Port Louis, working on a serverless audit automation ecosystem. I develop and maintain crawlers that interact with court portals, boards of trade, public agencies, and municipal services to issue certificates, track requests, and capture payment slips and case records.",
+    "bio1": "I'm a Backend Developer working on a serverless audit automation ecosystem. I develop and maintain crawlers that interact with court portals, boards of trade, public agencies, and municipal services to issue certificates, track requests, and capture payment slips and case records.",
     "bio2": "I work across the full technical lifecycle with JSON workflows executed by Puppeteer, REST integrations, CAPTCHA, and proxies. The pipeline includes downloading and persisting artifacts in Amazon S3, document identification, and TypeScript readers that extract and validate PDF data through regex, OCR, and business rules.",
     "bio3": "I also troubleshoot production issues by correlating rendered DOM state, logs, payloads, and relationships among audits, certificates, entities, and tasks. I validate fixes with Jest, focused staging runs, and persisted-file evidence, applying the QA discipline I developed while working on SGDoctor.",
     "goalTitle": "Professional focus",
@@ -110,23 +110,11 @@
     "current": "Present",
     "items": [
       {
-        "company": "Port Louis",
-        "role": "Junior Backend Developer I",
-        "location": "Remote",
-        "period": "Jul/2025 – Present",
-        "isCurrent": true,
-        "responsibilities": [
-          "Increased automated coverage of public agencies by approximately 35% by developing and enhancing more than 15 automation workflows for issuing, capturing, and reading certificates, payment slips, invoices, and queries in a C#, .NET, and TypeScript ecosystem, integrating portals such as TJRS, TRF1, TRF5, MPT, MPMT, TCU, CETESB, SEMAE, and SAESA SCS.",
-          "Structured the C# orchestration layer responsible for audit distribution and task lifecycle management, implementing retry controls, SQS queue management, and SQL Server persistence, with JSON-parameterized crawlers and TypeScript readers (Puppeteer, REST APIs, regex, CAPTCHA solving, PDF manipulation, and modal handling), validated by integration tests in local and staging environments executed via AWS Lambda.",
-          "Reduced execution time of specific workflows by up to 23% and decreased failures and manual interventions in automations by 20% to 30%, delivering more than 40 production improvements in the first months of the project across more than 20 components (C# backend services, TypeScript crawlers, and invoice readers), saving an estimated dozens of monthly hours in operations and rework for the team."
-        ]
-      },
-      {
         "company": "CPDS – Centro de Pesquisa e Desenvolvimento de Software",
         "role": "Backend Developer Intern",
         "location": "Hybrid",
-        "period": "Jul/2024 – Jun/2025",
-        "isCurrent": false,
+        "period": "May/2026 – Present",
+        "isCurrent": true,
         "responsibilities": [
           "Reduced user provisioning time by 70% to 90% and medical-record validation rework by 30% to 50%, developing the back end of a clinical and academic platform with the complete care workflow: scheduling, patient records, clinical notes, procedures, documents, validation, and digital signatures with history and traceability.",
           "Blocked 100% of inventory movements above available balance and ensured full traceability of signatures and clinical changes, implementing workflows in Laravel, PHP, Eloquent, and PostgreSQL under Controller–Service–Repository architecture, with migrations, relationships between clinical entities, role-based permission middleware, transactions with lockForUpdate, and concurrency handling.",

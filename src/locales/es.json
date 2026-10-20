@@ -34,7 +34,7 @@
   },
   "about": {
     "title": "Sobre Mí",
-    "bio1": "Soy Desarrollador Back-End en Port Louis y trabajo en un ecosistema serverless de automatización de auditorías. Desarrollo y mantengo crawlers que consultan portales judiciales, juntas comerciales, organismos públicos y servicios municipales para emitir certificados, acompañar solicitudes y capturar comprobantes y procesos.",
+    "bio1": "Soy Desarrollador Back-End con actuación en un ecosistema serverless de automatización de auditorías. Desarrollo y mantengo crawlers que consultan portales judiciales, juntas comerciales, organismos públicos y servicios municipales para emitir certificados, acompañar solicitudes y capturar comprobantes y procesos.",
     "bio2": "Trabajo en todo el ciclo técnico con flujos JSON ejecutados mediante Puppeteer, integraciones REST, CAPTCHA y proxies. El pipeline incluye la descarga y persistencia de artefactos en Amazon S3, la identificación documental y lectores TypeScript que extraen y validan datos de PDFs mediante regex, OCR y reglas de negocio.",
     "bio3": "También investigo fallas de producción correlacionando el DOM renderizado, logs, payloads y relaciones entre auditoría, certificado, entidad y task. Valido correcciones con Jest, ejecuciones enfocadas en homologación y evidencia del archivo persistido, aplicando la disciplina de QA desarrollada en SGDoctor.",
     "goalTitle": "Enfoque profesional",
@@ -110,23 +110,11 @@
     "current": "Actual",
     "items": [
       {
-        "company": "Port Louis",
-        "role": "Desarrollador Back-End Junior I",
-        "location": "Remoto",
-        "period": "Jul/2025 – Actual",
-        "isCurrent": true,
-        "responsibilities": [
-          "Amplié en aproximadamente un 35% la cobertura automatizada de organismos públicos al desarrollar y mejorar más de 15 flujos de automatización para la emisión, captura y lectura de certificados, comprobantes de pago, facturas y consultas en un ecosistema C#, .NET y TypeScript, integrando portales como TJRS, TRF1, TRF5, MPT, MPMT, TCU, CETESB, SEMAE y SAESA SCS.",
-          "Estructuré la capa de orquestación en C# responsable de la distribución de auditorías y del ciclo de vida de las tasks, implementando control de reintentos, gestión de colas SQS y persistencia en SQL Server, con crawlers parametrizados en JSON y lectores en TypeScript (Puppeteer, APIs REST, regex, resolución de CAPTCHA, manipulación de PDFs y tratamiento de modales), validados mediante pruebas integradas en entornos locales y de homologación ejecutados a través de AWS Lambda.",
-          "Reduje hasta en un 23% el tiempo de ejecución de flujos específicos y disminuí entre un 20% y un 30% las fallas e intervenciones manuales en las automatizaciones, entregando más de 40 mejoras en producción en los primeros meses de proyecto, distribuidas en más de 20 componentes (servicios C# de backend, crawlers TypeScript y lectores de notas fiscales), generando un ahorro estimado en decenas de horas mensuales de operación y retrabajo para el equipo."
-        ]
-      },
-      {
         "company": "CPDS – Centro de Pesquisa e Desenvolvimento de Software",
         "role": "Desarrollador Back-End – Prácticas",
         "location": "Híbrido",
-        "period": "Jul/2024 – Jun/2025",
-        "isCurrent": false,
+        "period": "May/2026 – Actual",
+        "isCurrent": true,
         "responsibilities": [
           "Reduje entre un 70% y un 90% el tiempo de aprovisionamiento de usuarios y entre un 30% y un 50% el retrabajo en la validación de historias clínicas, desarrollando el back-end de una plataforma clínica y académica con el flujo completo de atención: agenda, ficha del paciente, evolución clínica, procedimientos, documentos, validación y firma digital con historial y trazabilidad.",
           "Bloqueé el 100% de los movimientos de stock superiores al saldo disponible y garanticé la trazabilidad integral de firmas y modificaciones clínicas, implementando los flujos en Laravel, PHP, Eloquent y PostgreSQL bajo arquitectura Controller–Service–Repository, con migraciones, relaciones entre entidades clínicas, middleware de permisos por perfil, transacciones con lockForUpdate y tratamiento de concurrencia.",
